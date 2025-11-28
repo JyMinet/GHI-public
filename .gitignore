@@ -1,0 +1,6 @@
+# Fichiers macOS
+.DS_Store
+
+# Sauvegardes éventuelles
+*.tmp
+*.log
