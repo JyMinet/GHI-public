@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>GHI – API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Documentation de l’API du Global HashCost Index." />
+  <meta name="description" content="Documentation de l’API du Global HashCost Index (sandbox)." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -18,7 +18,7 @@
           Un indicateur ouvert du coût de production du Bitcoin.
         </p>
         <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
-          Version : GHI v1.0
+          Version : GHI Standard v1.0 – API sandbox
         </p>
       </div>
     </header>
@@ -31,142 +31,246 @@
         <li><a href="regions.html">Régions</a></li>
         <li><a href="api.html" class="active">API</a></li>
         <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
         <li><a href="roadmap.html">Roadmap</a></li>
         <li><a href="about.html">À propos</a></li>
         <li><a href="legal.html">Mentions légales</a></li>
       </ul>
     </nav>
 
-    <main>
-      <main class="api-section">
-      <h2>API GHI – Documentation (pré-version)</h2>
+    <main class="api-section">
+      <h2>API GHI – Sandbox (pré-version)</h2>
+
       <p>
-        L’API GHI permet d’accéder par programme aux snapshots, à l’historique et aux statistiques du modèle.
-        Cette page décrit la structure cible de l’API. La pré-version peut retourner des données de test.
+        L’API GHI est actuellement disponible sous forme de <strong>sandbox</strong>. Elle suit le
+        <code>GHI Data Model v1.0</code> et retourne des données <strong>synthétiques</strong>
+        (fake data), mais avec une structure identique à celle de l’API de production future.
       </p>
 
-      <h3>Principes généraux</h3>
+      <p>
+        Cette sandbox permet :
+      </p>
       <ul>
-        <li>Toutes les réponses sont au format JSON.</li>
-        <li>Les timestamps sont en UTC.</li>
-        <li>Chaque réponse indique la version du modèle (<code>model_version</code>).</li>
-        <li>Les codes de statut HTTP suivent la convention standard (2xx, 4xx, 5xx).</li>
+        <li>de valider l’architecture des modèles de données ;</li>
+        <li>d’intégrer l’API dans des dashboards ou outils internes ;</li>
+        <li>de tester des flux institutionnels (risque, reporting, ESG) sans exposer le moteur réel.</li>
       </ul>
 
-      <h3>GET /v1/ghi/snapshot</h3>
-      <p>Retourne le snapshot global courant du coût de production du BTC.</p>
+      <h3>Base et version</h3>
+      <p><strong>Base locale (développement)</strong></p>
+      <pre><code>http://127.0.0.1:8000</code></pre>
+
+      <p><strong>Préfixe de version</strong></p>
+      <pre><code>/v1/ghi</code></pre>
+
+      <p>Toutes les réponses sont en <strong>JSON</strong>, avec des timestamps au format
+        <strong>ISO 8601 (UTC)</strong>.
+      </p>
+
+      <hr />
+
+      <h3>Modèles principaux</h3>
+
+      <h4>Objet <code>Cost</code></h4>
+      <pre><code>{
+  "min_cost_btc": 20000.0,
+  "avg_cost_btc": 25000.0,
+  "max_cost_btc": 30000.0
+}</code></pre>
+
+      <h4>Objet <code>Region</code></h4>
+      <pre><code>{
+  "region_id": "north_america",
+  "name": "North America",
+  "hashrate_pct": 0.35,
+  "cost": {
+    "min_cost_btc": 21000.0,
+    "avg_cost_btc": 26000.0,
+    "max_cost_btc": 31000.0
+  },
+  "energy": {
+    "price_min_usd_kwh": 0.04,
+    "price_avg_usd_kwh": 0.06,
+    "price_max_usd_kwh": 0.08
+  },
+  "hardware": {
+    "efficiency_min_w_th": 20.0,
+    "efficiency_avg_w_th": 25.0,
+    "efficiency_max_w_th": 30.0
+  },
+  "metadata": {
+    "updated_at": "2025-01-01T12:00:00Z",
+    "data_source": "fake_public"
+  }
+}</code></pre>
+
+      <h4>Objet <code>Snapshot</code></h4>
+      <pre><code>{
+  "timestamp": "2025-01-01T12:00:00Z",
+  "ghi": {
+    "min_cost_btc": 23000.0,
+    "avg_cost_btc": 26000.0,
+    "max_cost_btc": 29000.0
+  },
+  "difficulty": 80000000000000.0,
+  "hashrate_total_th": 600000000.0,
+  "block_reward_btc": 3.125,
+  "regions": [ ... ],
+  "version": "1.0"
+}</code></pre>
+
+      <h4>Objet <code>HistoryPoint</code></h4>
+      <pre><code>{
+  "timestamp": "2025-01-01T00:00:00Z",
+  "min_cost_btc": 22000.0,
+  "avg_cost_btc": 25000.0,
+  "max_cost_btc": 28000.0,
+  "difficulty": 80000000000000.0,
+  "hashrate_total_th": 600000000.0
+}</code></pre>
+
+      <h4>Objet <code>Stats</code></h4>
+      <pre><code>{
+  "timestamp": "2025-01-01T12:00:00Z",
+  "regions_count": 3,
+  "avg_hashrate_total_th": 600000000.0,
+  "avg_cost_btc": 25000.0,
+  "notes": "Sandbox stats on fake data – GHI Data Model v1.0 compatible."
+}</code></pre>
+
+      <hr />
+
+      <h3>Endpoints disponibles</h3>
+
+      <h4>GET <code>/v1/ghi/snapshot</code></h4>
+      <p>
+        Retourne un snapshot global du GHI à l’instant T, incluant :
+        coût min/avg/max, difficulté, hashrate total, récompense de bloc et liste des régions.
+      </p>
+
       <p><strong>Exemple de requête</strong></p>
       <pre><code>GET /v1/ghi/snapshot HTTP/1.1
-Host: api.ghi.example</code></pre>
+Host: 127.0.0.1:8000</code></pre>
 
-      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <p><strong>Exemple de réponse (JSON)</strong></p>
       <pre><code>{
-  "timestamp": "2025-01-01T00:00:00Z",
-  "model_version": "GHI v1.0",
-  "global": {
-    "cost_min_usd_per_btc": 20000,
-    "cost_avg_usd_per_btc": 28000,
-    "cost_max_usd_per_btc": 36000
-  }
+  "timestamp": "2025-01-01T12:00:00Z",
+  "ghi": { "min_cost_btc": 23000.0, "avg_cost_btc": 26000.0, "max_cost_btc": 29000.0 },
+  "difficulty": 80000000000000.0,
+  "hashrate_total_th": 600000000.0,
+  "block_reward_btc": 3.125,
+  "regions": [ ... ],
+  "version": "1.0"
 }</code></pre>
 
-      <h3>GET /v1/ghi/regions</h3>
-      <p>Liste les régions suivies par GHI, avec des informations synthétiques.</p>
+      <h4>GET <code>/v1/ghi/history</code></h4>
+      <p>
+        Retourne une série temporelle agrégée de GHI (données sandbox), utile pour des graphiques et du backtesting.
+      </p>
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/history HTTP/1.1
+Host: 127.0.0.1:8000</code></pre>
+
+      <p><strong>Exemple de réponse (JSON)</strong></p>
+      <pre><code>[
+  {
+    "timestamp": "2025-01-01T00:00:00Z",
+    "min_cost_btc": 22000.0,
+    "avg_cost_btc": 25000.0,
+    "max_cost_btc": 28000.0,
+    "difficulty": 80000000000000.0,
+    "hashrate_total_th": 600000000.0
+  },
+  {
+    "timestamp": "2025-01-02T00:00:00Z",
+    "min_cost_btc": 22100.0,
+    "avg_cost_btc": 25100.0,
+    "max_cost_btc": 28100.0,
+    "difficulty": 80000100000000.0,
+    "hashrate_total_th": 600100000.0
+  }
+]</code></pre>
+
+      <h4>GET <code>/v1/ghi/regions</code></h4>
+      <p>
+        Liste les régions suivies dans la sandbox, avec part de hashrate et coûts synthétiques.
+      </p>
+
       <p><strong>Exemple de requête</strong></p>
       <pre><code>GET /v1/ghi/regions HTTP/1.1
-Host: api.ghi.example</code></pre>
+Host: 127.0.0.1:8000</code></pre>
 
-      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
-      <pre><code>{
-  "timestamp": "2025-01-01T00:00:00Z",
-  "model_version": "GHI v1.0",
-  "regions": [
-    {
-      "region_id": "na",
-      "name": "Amérique du Nord",
-      "hashrate_share": 0.40
-    },
-    {
-      "region_id": "eu",
-      "name": "Europe",
-      "hashrate_share": 0.15
-    }
-  ]
-}</code></pre>
+      <p><strong>Exemple de réponse (JSON, simplifiée)</strong></p>
+      <pre><code>[
+  { "region_id": "north_america", "name": "North America", "hashrate_pct": 0.35, ... },
+  { "region_id": "europe", "name": "Europe", "hashrate_pct": 0.25, ... },
+  { "region_id": "asia_no_china", "name": "Asia (ex-China)", "hashrate_pct": 0.20, ... }
+]</code></pre>
 
-      <h3>GET /v1/ghi/regions/{region_id}</h3>
-      <p>Retourne le détail du coût de production pour une région.</p>
-      <p><strong>Paramètres path</strong> : <code>region_id</code> (par ex. <code>na</code>, <code>eu</code>).</p>
+      <h4>GET <code>/v1/ghi/regions/{region_id}</code></h4>
+      <p>
+        Retourne le détail complet d’une région (coûts, énergie, hardware, métadonnées).
+      </p>
 
       <p><strong>Exemple de requête</strong></p>
-      <pre><code>GET /v1/ghi/regions/na HTTP/1.1
-Host: api.ghi.example</code></pre>
+      <pre><code>GET /v1/ghi/regions/north_america HTTP/1.1
+Host: 127.0.0.1:8000</code></pre>
 
-      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <p><strong>Exemple de réponse (JSON, simplifiée)</strong></p>
       <pre><code>{
-  "timestamp": "2025-01-01T00:00:00Z",
-  "model_version": "GHI v1.0",
-  "region": {
-    "region_id": "na",
-    "name": "Amérique du Nord",
-    "hashrate_share": 0.40,
-    "cost_min_usd_per_btc": 22000,
-    "cost_avg_usd_per_btc": 29000,
-    "cost_max_usd_per_btc": 37000
-  }
+  "region_id": "north_america",
+  "name": "North America",
+  "hashrate_pct": 0.35,
+  "cost": { "min_cost_btc": 21000.0, "avg_cost_btc": 26000.0, "max_cost_btc": 31000.0 },
+  "energy": { "price_min_usd_kwh": 0.04, "price_avg_usd_kwh": 0.06, "price_max_usd_kwh": 0.08 },
+  "hardware": { "efficiency_min_w_th": 20.0, "efficiency_avg_w_th": 25.0, "efficiency_max_w_th": 30.0 },
+  "metadata": { "updated_at": "2025-01-01T12:00:00Z", "data_source": "fake_public" }
 }</code></pre>
 
-      <h3>GET /v1/ghi/history</h3>
-      <p>Retourne l’historique global du coût de production.</p>
-      <p><strong>Paramètres query (exemples)</strong> :</p>
+      <h4>GET <code>/v1/ghi/stats</code></h4>
+      <p>
+        Retourne des statistiques globales sur l’ensemble des régions (sandbox).
+      </p>
+
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/stats HTTP/1.1
+Host: 127.0.0.1:8000</code></pre>
+
+      <p><strong>Exemple de réponse (JSON)</strong></p>
+      <pre><code>{
+  "timestamp": "2025-01-01T12:00:00Z",
+  "regions_count": 3,
+  "avg_hashrate_total_th": 600000000.0,
+  "avg_cost_btc": 25000.0,
+  "notes": "Sandbox stats on fake data – GHI Data Model v1.0 compatible."
+}</code></pre>
+
+      <hr />
+
+      <h3>Documentation interactive & référence formelle</h3>
+
+      <p>
+        Lorsque le moteur sandbox est lancé, la documentation interactive (OpenAPI) est disponible à :
+      </p>
+      <pre><code>http://127.0.0.1:8000/docs</code></pre>
+
+      <p>
+        La référence formelle complète de l’API sandbox est maintenue dans
+        <code>API_REFERENCE.md</code> au sein du dépôt
+        <a href="https://github.com/JyMinet/GHI-public" target="_blank" rel="noopener noreferrer">
+          GHI-public
+        </a>, en cohérence avec :
+      </p>
       <ul>
-        <li><code>from</code> – date de début (ISO 8601).</li>
-        <li><code>to</code> – date de fin (ISO 8601).</li>
-        <li><code>interval</code> – agrégation (<code>daily</code>, <code>weekly</code>, etc.).</li>
+        <li><code>standard/GHI-Data-Model-v1.0.md</code></li>
+        <li><code>standard/GHI-Technical-Standard-v1.0.md</code></li>
       </ul>
 
-      <p><strong>Exemple de requête</strong></p>
-      <pre><code>GET /v1/ghi/history?from=2024-12-01&amp;to=2025-01-01&amp;interval=daily HTTP/1.1
-Host: api.ghi.example</code></pre>
-
-      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
-      <pre><code>{
-  "model_version": "GHI v1.0",
-  "interval": "daily",
-  "points": [
-    {
-      "date": "2024-12-01",
-      "cost_min_usd_per_btc": 19500,
-      "cost_avg_usd_per_btc": 27000,
-      "cost_max_usd_per_btc": 35000
-    }
-  ]
-}</code></pre>
-
-      <h3>GET /v1/ghi/stats</h3>
-      <p>Retourne des statistiques (moyennes, médianes, etc.) sur une période donnée.</p>
-      <p><strong>Paramètres query (exemples)</strong> :</p>
-      <ul>
-        <li><code>from</code> – date de début.</li>
-        <li><code>to</code> – date de fin.</li>
-      </ul>
-
-      <p><strong>Exemple de requête</strong></p>
-      <pre><code>GET /v1/ghi/stats?from=2024-01-01&amp;to=2024-12-31 HTTP/1.1
-Host: api.ghi.example</code></pre>
-
-      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
-      <pre><code>{
-  "model_version": "GHI v1.0",
-  "period": {
-    "from": "2024-01-01",
-    "to": "2024-12-31"
-  },
-  "global_stats": {
-    "avg_cost_usd_per_btc_mean": 26000,
-    "avg_cost_usd_per_btc_median": 25500
-  }
-}</code></pre>
+      <p>
+        La future API de production (avec moteur réel et données issues du modèle complet) sera
+        introduite lors de la <strong>Phase 3</strong> de la roadmap, après validation interne
+        et revue institutionnelle.
+      </p>
     </main>
 
   </div>
