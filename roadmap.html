@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>GHI – Roadmap &amp; versions</title>
+  <title>GHI – Roadmap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Roadmap et versions du Global HashCost Index." />
+  <meta name="description" content="Roadmap du Global HashCost Index (GHI) – standard, sandbox API et moteur de production." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -18,7 +18,7 @@
           Un indicateur ouvert du coût de production du Bitcoin.
         </p>
         <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
-          Version : GHI v1.0
+          Roadmap officielle – Standard v1.0
         </p>
       </div>
     </header>
@@ -31,56 +31,137 @@
         <li><a href="regions.html">Régions</a></li>
         <li><a href="api.html">API</a></li>
         <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
         <li><a href="roadmap.html" class="active">Roadmap</a></li>
         <li><a href="about.html">À propos</a></li>
         <li><a href="legal.html">Mentions légales</a></li>
       </ul>
     </nav>
 
-    <main>
-      <h2>Roadmap &amp; versions</h2>
+    <main class="roadmap-section">
+      <h2>Roadmap du Global HashCost Index</h2>
+
       <p>
-        Cette page présente les grandes étapes de développement de GHI et le principe de versionnage du modèle.
-        La roadmap détaillée pourra être enrichie au fil du temps.
+        Le Global HashCost Index (GHI) suit une stratégie de déploiement en plusieurs phases :
+        d’abord la publication du <strong>standard</strong>, puis une <strong>API sandbox</strong> structurée,
+        et enfin le <strong>moteur de production</strong> avec données réelles et SLA institutionnels.
       </p>
 
-      <h3>Version actuelle – GHI v1.0 (prévue)</h3>
-      <ul>
-        <li>Découpage régional de base (Amérique du Nord, Europe, Asie, etc.).</li>
-        <li>Moteur Python de calcul du coût par région et global.</li>
-        <li>API FastAPI avec endpoints principaux (snapshot, régions, historique, stats).</li>
-        <li>Dashboard web simple, basé sur des appels à l’API.</li>
-        <li>Documentation de méthodologie et de gouvernance.</li>
-      </ul>
+      <section class="roadmap-phase roadmap-phase-done">
+        <h3>Phase 1 – Standard & Documentation (complétée)</h3>
+        <p class="phase-status"><strong>Statut :</strong> terminée</p>
 
-      <h3>Étapes suivantes (exemples)</h3>
+        <p>
+          Objectif : publier un socle public, auditable et lisible pour les institutions, sans exposer
+          le moteur interne.
+        </p>
 
-      <h4>v1.x – Améliorations incrémentales</h4>
-      <ul>
-        <li>Affinage des sources de données énergétiques par région.</li>
-        <li>Meilleure modélisation du mix machines par région.</li>
-        <li>Amélioration de la couverture temporelle de l’historique.</li>
-        <li>Ajout de métriques dérivées (par exemple coût / TH, comparaisons avec le prix spot).</li>
-      </ul>
+        <h4>Livrables clés</h4>
+        <ul>
+          <li>Publication du <strong>whitepaper</strong> GHI (FR &amp; EN).</li>
+          <li>Publication du document <strong>Méthodologie &amp; Transparence</strong> (FR &amp; EN).</li>
+          <li>Document <strong>GHI for Institutions</strong> (FR &amp; EN).</li>
+          <li>Standard technique <strong>GHI Technical Standard v1.0</strong>.</li>
+          <li>Modèle de données <strong>GHI Data Model v1.0</strong>.</li>
+          <li>Site statique <strong>GHI-public</strong> avec pages Overview, Méthodologie, Régions, Gouvernance, Roadmap, API.</li>
+        </ul>
 
-      <h4>v2.0 – Extension de périmètre</h4>
-      <ul>
-        <li>Segmentation régionale plus fine, si les données le permettent.</li>
-        <li>Ouverture à davantage de partenaires pour la fourniture de données.</li>
-        <li>Modules complémentaires possibles (par exemple composante GES, scénarios).</li>
-      </ul>
+        <h4>But institutionnel</h4>
+        <ul>
+          <li>Figé l’antériorité du standard GHI.</li>
+          <li>Fournir une base compréhensible pour régulateurs, risk managers, analysts.</li>
+          <li>Permettre des premières revues méthodologiques sans exposer les données internes.</li>
+        </ul>
+      </section>
 
-      <h3>Changelog</h3>
-      <p>
-        Le détail des changements (changelog) pour chaque version de GHI pourra être publié
-        dans un dépôt public, avec pour chaque entrée :
-      </p>
-      <ul>
-        <li>la version concernée,</li>
-        <li>la date de publication,</li>
-        <li>les modifications principales,</li>
-        <li>l’impact attendu sur les résultats.</li>
-      </ul>
+      <section class="roadmap-phase roadmap-phase-current">
+        <h3>Phase 2 – Moteur Sandbox & API (en cours)</h3>
+        <p class="phase-status"><strong>Statut :</strong> en cours</p>
+
+        <p>
+          Objectif : proposer une API <strong>fonctionnelle</strong> mais alimentée en
+          <strong>fake data structurées</strong>, parfaitement alignées sur le Data Model v1.0.
+          Cette étape permet de tester les intégrations sans risque opérationnel.
+        </p>
+
+        <h4>Composants techniques</h4>
+        <ul>
+          <li>Référentiel <code>ghi-engine</code> dédié au moteur et à l’API.</li>
+          <li>API FastAPI (sandbox) exposant :
+            <ul>
+              <li><code>GET /v1/ghi/snapshot</code></li>
+              <li><code>GET /v1/ghi/history</code></li>
+              <li><code>GET /v1/ghi/regions</code></li>
+              <li><code>GET /v1/ghi/regions/{region_id}</code></li>
+              <li><code>GET /v1/ghi/stats</code></li>
+            </ul>
+          </li>
+          <li>Données synthétiques conformes au <strong>GHI Data Model v1.0</strong> (snapshot, historique, régions, stats).</li>
+          <li>Tests automatisés de non-régression (Pytest) sur les endpoints principaux.</li>
+        </ul>
+
+        <h4>Objectifs de la phase</h4>
+        <ul>
+          <li>Valider le design de l’API avec des équipes techniques externes.</li>
+          <li>Permettre aux institutions de construire des dashboards/tests sur une interface stable.</li>
+          <li>Préparer l’infrastructure pour le moteur réel (config, sécurité, monitoring).</li>
+        </ul>
+
+        <h4>Étapes restantes sur la Phase 2</h4>
+        <ul>
+          <li>Documenter la sandbox dans la documentation publique (<code>API_REFERENCE.md</code> et <code>api.html</code>).</li>
+          <li>Clarifier le futur endpoint public (domaine, authentification, limites de débit).</li>
+          <li>Préparer les gabarits de reporting (exemples de JSON/CSV pour les institutions).</li>
+        </ul>
+      </section>
+
+      <section class="roadmap-phase roadmap-phase-future">
+        <h3>Phase 3 – Moteur de Production & API réelle (à venir)</h3>
+        <p class="phase-status"><strong>Statut :</strong> planifiée</p>
+
+        <p>
+          Objectif : activer le moteur complet de calcul du coût de production du Bitcoin, alimenté par
+          des données réelles (hashrate, mix hardware, énergie, régions), avec un niveau de qualité
+          compatible avec une utilisation institutionnelle.
+        </p>
+
+        <h4>Fonctionnalités prévues</h4>
+        <ul>
+          <li>Activation du moteur de calcul réel (par région, agrégation globale min/avg/max).</li>
+          <li>Intégration des données de hashrate régionales issues de fournisseurs spécialisés.</li>
+          <li>Mise à jour régulière des paramètres machines (efficacité, générations ASIC, etc.).</li>
+          <li>Snapshots quotidiens (puis intrajournaliers si nécessaire).</li>
+          <li>Historique complet <strong>GHI</strong> exploitable en API et via exports CSV.</li>
+        </ul>
+
+        <h4>Exigences institutionnelles</h4>
+        <ul>
+          <li>Versioning strict des modèles (Data Model, Technical Standard, moteur).</li>
+          <li>Processus de gouvernance définis (validation des mises à jour, changelog public).</li>
+          <li>Documentation renforcée sur les hypothèses régionales et les sources de données.</li>
+          <li>Possibilité d’ajouter des extensions : coûts CO₂, fiscalité, granularité sous-régionale.</li>
+        </ul>
+
+        <h4>Extensions envisagées</h4>
+        <ul>
+          <li>Intégration de métriques carbone (par région, par kWh, par BTC produit).</li>
+          <li>Affinage des régions (ex : Texas, Québec) lorsque les données sont suffisamment robustes.</li>
+          <li>Exports avancés (CSV/Parquet) pour les équipes quant et risk.</li>
+        </ul>
+      </section>
+
+      <section class="roadmap-phase roadmap-phase-meta">
+        <h3>Gouvernance et mises à jour</h3>
+        <p>
+          Chaque évolution majeure (nouvelle version de moteur, ajout de régions, changements
+          méthodologiques significatifs) sera publiée avec :
+        </p>
+        <ul>
+          <li>un tag de version dans les dépôts publics concernés ;</li>
+          <li>un changelog clair pour les institutions ;</li>
+          <li>une mise à jour de la page Roadmap et des documents standards (Tech Standard, Data Model).</li>
+        </ul>
+      </section>
     </main>
 
   </div>
