@@ -1,75 +1,94 @@
 # Contributing to the Global HashCost Index (GHI)
+# Contribution au Global HashCost Index (GHI)
 
-Thank you for your interest in contributing to the Global HashCost Index (GHI).
-This repository defines the **public documentation**, **methodologies**, and **governance rules** of the GHI standard.
+This repository defines the **public documentation**, **methodology**, and **governance** of the GHI standard.  
+Ce dépôt définit la **documentation publique**, la **méthodologie** et la **gouvernance** du standard GHI.
 
-All contributions follow a strict review process to ensure:
-- methodological consistency,
-- scientific neutrality,
-- reproducibility of the standard,
-- transparency for institutions and researchers.
+All contributions must follow the rules below to ensure:
+- scientific neutrality  
+- methodological consistency  
+- reproducibility  
+- institutional transparency  
+
+Toutes les contributions doivent suivre les règles ci-dessous afin de garantir :
+- la neutralité scientifique  
+- la cohérence méthodologique  
+- la reproductibilité  
+- la transparence institutionnelle  
 
 ---
 
-## 1. Branch Naming Convention
+## 1. Branch Naming Convention  
+## 1. Convention de nommage des branches
 
-All contributions must use the following branch format:
-feature/
-fix/
-docs/
+Allowed prefixes / Préfixes autorisés :
 
-Examples:
-- `feature/new-region-energy-model`
-- `fix/typo-methodology`
+- `feature/...`
+- `fix/...`
+- `docs/...`
+
+Examples / Exemples :  
+- `feature/new-region-energy-model`  
+- `fix/typo-methodology`  
 - `docs/add-governance-section`
 
----
-
-## 2. Workflow
-main          → protected (no direct commits)
-feature/*     → open for contributions
-docs/*        → documentation-only changes
-
-Steps:
-
-1. Fork or clone the repository.
-2. Create a new branch following naming rules.
-3. Make your changes.
-4. Open a Pull Request into `main`.
-5. Wait for automated checks to pass.
-6. Your PR will be reviewed by the **GHI Technical Committee**.
-7. Once approved, it is merged via **Squash & Merge**.
-
-Direct pushes to `main` are blocked.
+Direct commits to `main` are forbidden.  
+Les commits directs sur `main` sont interdits.
 
 ---
 
-## 3. Pull Request Requirements
+## 2. Contribution Workflow  
+## 2. Flux de contribution
 
-Every PR must include:
+1. Create a new branch from `main`.  
+2. Implement your changes.  
+3. Open a Pull Request targeting `main`.  
+4. CI must pass.  
+5. Review by the **GHI Technical Committee**.  
+6. Merge via **Squash & Merge**.
 
-- A clear explanation of the change.
-- A justification of methodological impact (if any).
-- Links to scientific sources or energy-mix datasets (when relevant).
-- Consistency with the GHI core definitions (`/standard/`, `/docs/`).
-- No breaking modification of the public API without discussion.
-
----
-
-## 4. Documentation Standards
-
-When modifying documentation:
-
-- Follow Markdown best practices.
-- Keep formulas readable and consistent.
-- Keep the tone neutral, scientific, and institution-oriented.
-- All methodology updates must be reflected in `/docs/`.
+1. Créez une branche depuis `main`.  
+2. Implémentez vos modifications.  
+3. Ouvrez une Pull Request vers `main`.  
+4. La CI doit passer.  
+5. Revue par le **Comité Technique GHI**.  
+6. Fusion via **Squash & Merge**.
 
 ---
 
-## 5. Change Categorization
+## 3. Pull Request Requirements  
+## 3. Exigences pour les Pull Requests
 
-Every PR must be labeled with **exactly one**:
+Each PR must include:  
+Chaque PR doit inclure :
+
+- Clear description of the change  
+- Impact on methodology (if any)  
+- References to external data sources (if relevant)  
+- Compliance with `/docs/` and `/standard/`  
+- No breaking change without discussion
+
+---
+
+## 4. Documentation Standards  
+## 4. Standards de documentation
+
+- Markdown only  
+- Neutral, scientific tone  
+- Equations clear and stable  
+- Updates reflected in `/docs/`
+
+- Markdown uniquement  
+- Ton neutre et scientifique  
+- Formules lisibles et stables  
+- Mises à jour répercutées dans `/docs/`
+
+---
+
+## 5. PR Classification  
+## 5. Classification des PR
+
+Exactly one label / Un seul label :
 
 - `enhancement`
 - `bug`
@@ -78,19 +97,21 @@ Every PR must be labeled with **exactly one**:
 - `governance`
 - `breaking-change`
 
-The GHI Technical Committee reserves the right to reclassify contributions.
+The Committee may reclassify.  
+Le Comité peut reclassifier.
 
 ---
 
-## 6. Licensing
+## 6. Licensing  
+## 6. Licence
 
-By contributing, you agree that your contributions are published under the repository license and may be incorporated into future versions of the GHI standard.
+By contributing, you agree your work becomes part of the GHI standard.  
+En contribuant, vous acceptez que votre travail soit intégré au standard GHI.
 
 ---
 
+## 7. Contact  
 ## 7. Contact
 
-For questions related to contributions:
-- Email: ghi-standard@protonmail.ch
-- Official website: https://github.com/ghi-standard
-
+- Email : ghi-standard@protonmail.ch  
+- Website : https://github.com/ghi-standard
