@@ -111,3 +111,15 @@ Cette politique de sécurité ne constitue pas une garantie d’absence de vuln�
 **EN**  
 The information in this repository is provided “as is”.  
 This security policy does not constitute a guarantee that the software or documentation is free from vulnerabilities, nor any legal commitment to a particular outcome.
+
+---
+
+## 7. Licence / License
+
+**FR**  
+Ce document fait partie du standard ouvert GHI et est publié sous la licence **MIT**, comme indiqué dans le fichier `LICENSE.md` du dépôt.  
+Tout utilisateur est libre de le consulter, le reproduire ou l’adapter, sous réserve du respect des termes de la licence.
+
+**EN**  
+This document is part of the GHI open standard and is released under the **MIT license**, as specified in the repository’s `LICENSE.md`.  
+Users are free to view, reproduce or adapt it, provided they comply with the license terms.

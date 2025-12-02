@@ -141,3 +141,15 @@ If there is a persistent disagreement on a major GHI standard evolution:
   - Overall consistency of the standard.
   - Needs of institutional users.
   - Long-term stability of the data series.
+
+---
+
+## 7. Licence / License
+
+**FR**  
+Ce document fait partie du standard ouvert GHI et est publié sous la licence **MIT**, comme indiqué dans le fichier `LICENSE.md` du dépôt.  
+Tout utilisateur est libre de le consulter, le reproduire ou l’adapter, sous réserve du respect des termes de la licence.
+
+**EN**  
+This document is part of the GHI open standard and is released under the **MIT license**, as specified in the repository’s `LICENSE.md`.  
+Users are free to view, reproduce or adapt it, provided they comply with the license terms.
