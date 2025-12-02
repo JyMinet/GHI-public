@@ -3,6 +3,21 @@ Versioning: Semantic Versioning (SemVer)
 Documentation and standards published under CC BY-NC-SA 4.0.
 
 ---
+## [0.2.0-docs] – 2025-12-02
+
+### Ajouts
+
+- Ajout des standards de contribution et de collaboration (`docs/CONTRIBUTING.md`).
+- Ajout du code de conduite (`docs/CODE_OF_CONDUCT.md`) pour les contributeurs externes.
+- Ajout des politiques de sécurité et de divulgation responsable (`docs/SECURITY.md`).
+- Ajout des documents de gouvernance et d’architecture (`docs/GOVERNANCE.md`, `docs/ARCHITECTURE.md`).
+- Ajout du bundle légal complet : licence, copyright, marque, attribution (`docs/LICENSE.md`, `docs/COPYRIGHT.md`, `docs/TRADEMARK_POLICY.md`, `docs/ATTRIBUTION_GUIDE.md`).
+
+### Notes
+
+- Ces documents s’appliquent à l’ensemble de l’écosystème GHI-public.
+- Ils n’emportent aucune recommandation d’investissement ni garantie de performance.
+
 
 ## [0.1.0] — Initial Public Release  
 **Date : 2025-11-30**  
