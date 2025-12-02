@@ -3,7 +3,7 @@ Versioning: Semantic Versioning (SemVer)
 Documentation and standards published under CC BY-NC-SA 4.0.
 
 ---
-## [0.2.0-docs] – 2025-12-02
+## [0.2.2-docs] – 2025-12-02
 
 ### Ajouts
 
@@ -17,7 +17,7 @@ Documentation and standards published under CC BY-NC-SA 4.0.
 
 - Ces documents s’appliquent à l’ensemble de l’écosystème GHI-public.
 - Ils n’emportent aucune recommandation d’investissement ni garantie de performance.
-
+docs: update site version to v0.2.2-docs
 
 ## [0.1.0] — Initial Public Release  
 **Date : 2025-11-30**  
