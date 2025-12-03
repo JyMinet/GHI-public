@@ -174,5 +174,49 @@ They are planned for future releases, but not yet exposed in the current sandbox
 Les spécifications détaillées seront ajoutées lorsque ces endpoints seront stabilisés.
 Detailed specifications will be added once these endpoints are stabilized.
 
+
+---
+## Quickstart – Sandbox API v1 (FR/EN)
+
+### Endpoint principal / Main endpoint
+
+- Méthode / Method: `GET`
+- URL (sandbox locale) / URL (local sandbox): `http://127.0.0.1:8000/v1/ghi/snapshot`
+- Format: `application/json`
+
+### Exemple de requête (curl)
+
+```bash
+curl -s http://127.0.0.1:8000/v1/ghi/snapshot
+
+Exemple de réponse (tronquée)
+{
+  "as_of": "2025-12-02T21:38:33+00:00",
+  "network_hashrate_eh": 600.0,
+  "block_reward_btc": 3.125,
+  "difficulty": 80000000000000.0,
+  "ghi": {
+    "min_cost_btc": 22000.0,
+    "avg_cost_btc": 25666.67,
+    "max_cost_btc": 29000.0
+  },
+  "regions": [
+    {
+      "region_id": "north_america",
+      "hashrate_pct": 0.35,
+      "cost": {
+        "min_cost_btc": 24000.0,
+        "avg_cost_btc": 26000.0,
+        "max_cost_btc": 28000.0
+      }
+    }
+    // ...
+  ]
+}
+
+Notes
+	•	Cette API est sandbox : les données sont synthétiques et ne doivent pas être utilisées pour des décisions financières.
+	•	Le moteur réel (core privé) n’est pas exposé dans ce dépôt.
+	•	Pour un usage institutionnel ou une intégration avancée, merci de nous contacter.
 ⸻
 
