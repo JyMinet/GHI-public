@@ -1,0 +1,20 @@
+cat > examples/history.json << 'EOF'
+[
+  {
+    "timestamp": "2025-01-01T00:00:00Z",
+    "min_cost_btc": 22000.0,
+    "avg_cost_btc": 25000.0,
+    "max_cost_btc": 28000.0,
+    "difficulty": 80000000000000,
+    "hashrate_total_th": 600000000
+  },
+  {
+    "timestamp": "2025-01-02T00:00:00Z",
+    "min_cost_btc": 22100.0,
+    "avg_cost_btc": 25100.0,
+    "max_cost_btc": 28100.0,
+    "difficulty": 80001000000000,
+    "hashrate_total_th": 600050000
+  }
+]
+EOF

@@ -1,0 +1,182 @@
+Global HashCost Index — Use-Cases Institutionnels v1.0
+
+Standard Technique – Version 1.0
+
+⸻
+
+1. Objet de la section
+
+Cette section présente les principaux cas d’usage du Global HashCost Index (GHI) dans les domaines institutionnels, réglementaires, financiers, industriels et académiques.
+Elle définit les contextes dans lesquels le GHI apporte une valeur stratégique, économique et analytique.
+
+⸻
+
+2. Institutions financières
+
+2.1. Analyse de résilience du réseau Bitcoin
+
+Les banques, fonds spécialisés et analystes macro utilisent le GHI pour :
+	•	mesurer la robustesse économique des mineurs,
+	•	évaluer la probabilité de capitulation régionale,
+	•	détecter les pressions sur le hashrate.
+
+Le GHI min/avg/max fournit une vision unique des zones de coût critique.
+
+2.2. Détermination du prix plancher économique du Bitcoin
+
+Le GHI avg constitue un indicateur objectif de la production cost floor.
+Il complète les analyses cycles/halvings en apportant une base réelle et vérifiable.
+
+2.3. Stress-tests et scénarios de marché
+
+Les institutions peuvent modéliser :
+	•	variations de difficulté,
+	•	fluctuations énergétiques,
+	•	migrations de hashrate.
+
+Cela permet d’intégrer Bitcoin dans les modèles institutionnels sans hypothèses arbitraires.
+
+⸻
+
+3. Régulateurs et autorités publiques
+
+3.1. Transparence énergétique
+
+Le GHI documente le lien entre :
+	•	consommation énergétique globale,
+	•	efficacité machine régionale,
+	•	conditions économiques.
+
+Il sert de référence neutre pour les échanges entre industrie, ONG et autorités.
+
+3.2. Suivi des migrations de hashrate
+
+Les mouvements régionaux modifiant les coûts permettent de :
+	•	comprendre les motivations économiques,
+	•	anticiper les modifications de consommation électrique,
+	•	identifier les zones sensibles (hydro, thermique, nucléaire).
+
+3.3. Évaluation des risques systémiques
+
+Le GHI global montre comment les hausses extrêmes de difficulté ou d’énergie pourraient affecter :
+	•	le taux d’abandon des mineurs,
+	•	la concentration géographique,
+	•	la sécurité du réseau.
+
+⸻
+
+4. Think-tanks, centres d’analyse et organismes publics
+
+4.1. Public policy & énergie
+
+Le GHI permet d’éclairer les politiques publiques sur :
+	•	l’impact économique du minage industriel,
+	•	les régions pouvant accueillir de nouveaux mineurs,
+	•	les zones où l’équilibre réseau/énergie est fragile.
+
+4.2. Rapports thématiques nationaux et internationaux
+
+Les organismes de type ADEME, IEA, OCDE, ou Banque mondiale peuvent s’appuyer sur GHI pour :
+	•	calibrer des rapports macroéconomiques,
+	•	actualiser leurs données annuelles,
+	•	comparer des modèles régionaux.
+
+⸻
+
+5. Entreprises de minage et industrie énergétique
+
+5.1. Stratégies de localisation
+
+Les mineurs utilisent GHI pour :
+	•	comparer les coûts mondiaux,
+	•	identifier des opportunités géographiques,
+	•	anticiper les futures zones compétitives.
+
+5.2. Optimisation opérationnelle
+
+Le GHI max met en évidence :
+	•	les configurations les moins efficientes,
+	•	les régions à risque pour les mineurs les moins performants,
+	•	les besoins de modernisation machine.
+
+5.3. Négociation de contrats énergétiques
+
+Données utiles pour :
+	•	établir des prix planchers crédibles,
+	•	justifier des accords tarifaires industriels,
+	•	expliquer le poids de la volatilité énergétique.
+
+⸻
+
+6. Médias économiques et data-journalisme
+
+6.1. Indicateur de référence pour vulgarisation
+
+Le GHI répond à une question simple et fréquente :
+
+“Combien coûte réellement la production d’un bitcoin ?”
+
+Il permet une communication claire, transparente, neutre.
+
+6.2. Analyse contextuelle des cycles Bitcoin
+
+Le trio min/avg/max rend visible :
+	•	les périodes de tension,
+	•	les phases de marge confortable,
+	•	les périodes à risque pour les mineurs.
+
+⸻
+
+7. Recherche académique et universités
+
+7.1. Base de données ouverte
+
+Les chercheurs peuvent utiliser les séries historiques GHI pour :
+	•	analyser la dynamique réseau-énergie,
+	•	étudier la rentabilité comparée des régions,
+	•	modéliser les migrations géographiques.
+
+7.2. Comparaison avec d’autres modèles
+
+Le GHI s’intègre facilement dans les analyses comparatives :
+	•	modèles consommation énergétique,
+	•	analyses carbone,
+	•	travaux d’économie numérique.
+
+7.3. Publication scientifique
+
+Le GHI est reproductible, documenté, open-source :
+	•	compatible avec peer-review,
+	•	utilisable dans des articles ou thèses,
+	•	exportable dans formats standards.
+
+⸻
+
+8. Gouvernements et administrations locales
+
+8.1. Compréhension des impacts réseaux
+
+Les autorités régionales peuvent estimer :
+	•	l’impact potentiel d’un cluster de minage,
+	•	le niveau de stress énergétique induit,
+	•	les avantages économiques pour leur territoire.
+
+8.2. Décisions d’allocation énergétique
+
+Les données min/avg/max permettent d’évaluer :
+	•	l’attractivité potentielle d’une zone,
+	•	la capacité à absorber des charges industrielles,
+	•	les besoins en infrastructure.
+
+⸻
+
+9. Usage général (grand public avancé)
+
+Le GHI global permet de comprendre :
+	•	les moments où miner coûte plus cher que le prix du marché,
+	•	la compétitivité mondiale,
+	•	les cycles économiques sous-jacents au réseau.
+
+⸻
+
+Fin du document — Use-Cases Institutionnels v1.0

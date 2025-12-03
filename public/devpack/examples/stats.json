@@ -1,0 +1,9 @@
+cat > examples/stats.json << 'EOF'
+{
+  "timestamp": "2025-01-01T12:00:00Z",
+  "regions_count": 3,
+  "avg_hashrate_total_th": 600000000.0,
+  "avg_cost_btc": 25000.0,
+  "notes": "Sandbox stats on synthetic data – GHI Data Model v1.0"
+}
+EOF

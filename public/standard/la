@@ -1,0 +1,209 @@
+Global HashCost Index — Methodology v1.0
+
+Standard Technique – Version 1.0
+
+⸻
+
+1. Objet et périmètre
+
+La méthodologie GHI v1.0 définit les règles, hypothèses et procédures permettant de calculer le coût de production d’un bitcoin à l’échelle régionale et mondiale.
+Elle décrit les jeux de données utilisés, les transformations appliquées, les limites du modèle et les normes de mise à jour.
+
+Cette méthodologie constitue la base du Global HashCost Index (GHI), un standard ouvert visant la transparence, la reproductibilité et l’uniformité des calculs entre régions.
+
+⸻
+
+2. Structure générale du modèle
+
+La méthodologie repose sur trois blocs principaux :
+
+2.1. Bloc énergétique
+
+Détermination du prix de l’électricité pour chaque région et typologie d’acteurs.
+Trois niveaux sont définis :
+	•	minimum (min) : conditions optimales
+	•	moyen (avg) : conditions représentatives
+	•	maximum (max) : conditions défavorables
+
+Ces valeurs servent de base au coût énergétique du minage.
+
+2.2. Bloc matériel
+
+Évaluation de l’efficacité des machines présentes dans chaque région.
+Les mineurs ne disposent pas tous des mêmes générations d’ASIC :
+	•	efficacité optimale (min),
+	•	efficacité courante (avg),
+	•	efficacité dégradée ou ancienne (max).
+
+2.3. Bloc hashrate
+
+Répartition du hashrate mondial par région.
+Cette pondération permet de synthétiser le coût global.
+
+Le modèle s’exprime comme :
+GHI_global = ∑ (coût_régional × hashrate_pct_régional)
+
+
+⸻
+
+3. Données utilisées
+
+3.1. Prix de l’électricité
+
+Sources possibles :
+	•	marchés spot (USA, Europe),
+	•	tarifs régionaux moyens,
+	•	données publiques de fournisseurs,
+	•	rapports énergétiques.
+
+Les prix retenus reflètent des conditions industrielles (≥1 MW).
+
+Les valeurs min/avg/max sont définies ainsi :
+	•	min : zones à excès énergétique, hydro/nucléaire, accords industriels
+	•	avg : tarif dominant observé dans le pays/regroupement
+	•	max : pays/tarifs défavorables ou absence d’accès au marché spot
+
+3.2. Rendement machines (W/TH)
+
+Chaque région se voit attribuer trois niveaux :
+	•	min : ASIC dernière génération
+	•	avg : ASIC majoritaires (génération N-1 à N-2)
+	•	max : ASIC anciennes (N-3 ou plus)
+
+Ces valeurs sont documentées et mises à jour selon les cycles d’innovation.
+
+3.3. Difficulté et hashrate global
+
+Données issues des blockchains publiques.
+Le modèle utilise :
+	•	difficulté courante,
+	•	hashrate moyen sur 24h ou 7 jours,
+	•	production de BTC par bloc (actuellement 3,125 BTC).
+
+3.4. Mix énergétique régional
+
+Non utilisé pour le calcul du coût en v1.0, mais documenté pour les futures versions (v1.1).
+Les mix sont issus de :
+	•	agences énergétiques,
+	•	opérateurs régionaux,
+	•	données publiques (EIA, Eurostat, etc.).
+
+⸻
+
+4. Calcul du coût énergétique par TH
+
+4.1. Consommation énergétique par TH
+
+La conversion efficacité → énergie s’effectue via :
+
+Énergie (kWh/TH) = (W/TH) × (1h) / 1000
+
+4.2. Conversion en coût
+
+Pour une région donnée :
+
+coût_énergie_TH = énergie_TH × prix_kWh
+
+4.3. Trois niveaux par région
+
+Pour chaque région :
+	•	coût_min_TH = rendement_min × prix_min
+	•	coût_avg_TH = rendement_avg × prix_avg
+	•	coût_max_TH = rendement_max × prix_max
+
+Ces trois séries sont indépendantes mais cohérentes.
+
+⸻
+
+5. Calcul du coût pour miner 1 BTC
+
+5.1. Hashes nécessaires par bloc
+
+Le nombre de hashes produits pour sécuriser un bloc dépend de la difficulté :
+Hashes_par_bloc = difficulté × 2^32
+
+5.2. Hashes nécessaires par bitcoin
+
+Comme un bloc contient actuellement 3,125 BTC :
+
+Hashes_par_BTC = Hashes_par_bloc / 3,125
+
+5.3. Conversion en TH
+TH_par_BTC = Hashes_par_BTC / 10^12
+
+5.4. Coût final par BTC
+
+Pour chaque région :
+coût_BTC_régional = TH_par_BTC × coût_TH_régional
+
+Donc trois versions :
+	•	coût_min_BTC
+	•	coût_avg_BTC
+	•	coût_max_BTC
+
+⸻
+
+6. Pondération régionale et coût global
+
+6.1. Hashrate régional
+
+Chaque région possède un pourcentage :
+hashrate_pct_régional = hashrate_région / hashrate_mondial
+
+6.2. Pondération
+GHI_min   = ∑ (coût_min_régional  × hashrate_pct_régional)
+GHI_avg   = ∑ (coût_avg_régional  × hashrate_pct_régional)
+GHI_max   = ∑ (coût_max_régional × hashrate_pct_régional)
+
+6.3. Mise à jour
+	•	Difficulté : toutes les 2016 blocs
+	•	Prix électrique : hebdomadaire lorsque possible
+	•	Hashrate régional : mensuel ou trimestriel selon disponibilité
+	•	Mise à jour GHI : quotidienne (snapshot + historique)
+
+⸻
+
+7. Qualité, limites et gestion des biais
+
+7.1. Limites assumées
+	•	Les données électriques varient fortement selon les contrats ; le modèle utilise des équivalents industriels.
+	•	Les migrations rapides de hashrate ne sont parfois visibles qu’a posteriori.
+	•	Les données régionales manquent de granularité dans certains pays.
+
+7.2. Biais possibles
+	•	Sous-représentation des petits mineurs.
+	•	Mise à jour asynchrone des prix de l’énergie.
+	•	Variations saisonnières non capturées dans certaines régions (hydro, géothermie).
+
+7.3. Réduction des biais
+	•	Utilisation systématique de trois niveaux min/avg/max.
+	•	Segmentation régionale large pour lisser les extrêmes.
+	•	Mise à jour continue de l’efficacité machine régionale.
+
+⸻
+
+8. Normes de versioning et évolutions futures
+
+8.1. Versioning
+	•	v1.0 : modèle économique pur (coût énergétique × efficacité)
+	•	v1.1 : ajout dépréciation ASIC en option
+	•	v2.0 : ajout composante carbone (grammes ou kg CO₂ par BTC)
+	•	v3.0 : granularité pays/États (Texas, Québec, Sichuan…)
+
+8.2. Objectif à long terme
+
+Faire de GHI un standard institutionnel international comparable aux indices énergétiques ou macroéconomiques existants.
+
+⸻
+
+9. Reproductibilité totale
+
+Chaque étape du calcul peut être reproduite avec les données publiques suivantes :
+	•	difficulté Bitcoin
+	•	prix électriques régionaux
+	•	rendement machine
+	•	répartition du hashrate
+	•	offre monétaire par bloc
+
+La transparence est un pilier central du GHI.
+

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard – Global HashCost Index</title>
+    <meta
+      name="description"
+      content="Dashboard démonstratif du Global HashCost Index (GHI) – coûts de production du Bitcoin sur données factices (FAKE DATA)."
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* ---- Styles spécifiques à cette page (ne touchent PAS au header/nav globaux) ---- */
+
+      main.dashboard-main {
+        max-width: 1200px;
+        margin: 32px auto 64px;
+      }
+
+      .dashboard-card {
+        background: #f9fafb;
+        border-radius: 24px;
+        padding: 24px 28px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+        margin-bottom: 24px;
+      }
+
+      .dashboard-card h1 {
+        font-size: 1.6rem;
+        margin: 0 0 8px;
+        color: #020617;
+      }
+
+      .dashboard-card h2 {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 6px;
+        color: #020617;
+      }
+
+      .dashboard-card p {
+        margin: 4px 0 10px;
+        color: #1e293b;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+      }
+
+      table.snapshot-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 0.9rem;
+      }
+
+      table.snapshot-table th,
+      table.snapshot-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: left;
+      }
+
+      table.snapshot-table thead th {
+        font-weight: 600;
+        color: #0f172a;
+        background: #e5e7eb;
+      }
+
+      table.snapshot-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* --- Bloc relation prix / coût + jauge --- */
+
+      .ghi-indicator-card {
+        margin-top: 16px;
+        background: radial-gradient(circle at top left, #0f172a, #020617);
+        border-radius: 24px;
+        padding: 24px 28px 20px;
+        color: #f9fafb;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.7);
+      }
+
+      .ghi-indicator-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .ghi-indicator-header h2 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .ghi-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .badge-pill {
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+
+      .badge-pill span.label {
+        color: #e5e7eb;
+      }
+
+      .badge-pill span.value {
+        color: #bef264;
+        font-weight: 600;
+      }
+
+      .ghi-indicator-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .ghi-indicator-item {
+        background: rgba(15, 23, 42, 0.85);
+        border-radius: 16px;
+        padding: 10px 12px;
+        border: 1px solid rgba(51, 65, 85, 0.9);
+      }
+
+      .ghi-indicator-item h3 {
+        font-size: 0.75rem;
+        margin: 0 0 4px;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .ghi-indicator-item .value-main {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #f9fafb;
+      }
+
+      .ghi-indicator-item .value-sub {
+        margin-top: 2px;
+        font-size: 0.78rem;
+        color: #94a3b8;
+      }
+
+      .ghi-indicator-item.zone-positive {
+        border-color: #22c55e;
+        box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.35);
+      }
+
+      .ghi-indicator-item.zone-neutral {
+        border-color: #eab308;
+        box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.35);
+      }
+
+      .ghi-indicator-item.zone-negative {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35);
+      }
+
+      .ghi-pill-bar {
+        margin-top: 6px;
+        margin-bottom: 10px;
+      }
+
+      .ghi-pill-bar-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.72rem;
+        color: #94a3b8;
+        margin-bottom: 4px;
+      }
+
+      .ghi-pill-bar-track {
+        position: relative;
+        height: 7px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          #22c55e 0%,
+          #84cc16 22%,
+          #eab308 34%,
+          #f97316 50%,
+          #ef4444 100%
+        );
+        overflow: hidden;
+      }
+
+      .ghi-pill-bar-thumb {
+        position: absolute;
+        top: -4px;
+        width: 2px;
+        height: 15px;
+        border-radius: 999px;
+        background: #f9fafb;
+        box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.7);
+      }
+
+      .ghi-indicator-footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .ghi-indicator-footer p {
+        margin: 0;
+        font-size: 0.72rem;
+        color: #cbd5e1;
+      }
+
+      .ghi-indicator-footer p strong {
+        color: #f9fafb;
+      }
+
+      /* --- bloc email --- */
+
+      .ghi-email-box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .ghi-email-box label {
+        font-size: 0.78rem;
+        color: #e5e7eb;
+      }
+
+      .ghi-email-box input[type="email"] {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        background: rgba(15, 23, 42, 0.95);
+        color: #f9fafb;
+        font-size: 0.8rem;
+        min-width: 220px;
+      }
+
+      .ghi-email-box input[type="email"]::placeholder {
+        color: #64748b;
+      }
+
+      .ghi-email-box button {
+        border-radius: 999px;
+        padding: 6px 14px;
+        border: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        background: #2563eb;
+        color: #f9fafb;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+      }
+
+      .ghi-email-box button:hover {
+        background: #1d4ed8;
+      }
+
+      /* responsive */
+      @media (max-width: 960px) {
+        .ghi-indicator-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .ghi-indicator-grid {
+          grid-template-columns: 1fr;
+        }
+
+        main.dashboard-main {
+          margin: 16px auto 48px;
+          padding-inline: 12px;
+        }
+
+        .dashboard-card,
+        .ghi-indicator-card {
+          padding-inline: 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <!-- EN-TÊTE IDENTIQUE À ABOUT.HTML -->
+      <header>
+        <div class="site-title">
+          <h1>Global HashCost Index</h1>
+          <p
+            style="
+              color: #f9fafb;
+              text-shadow: 0 1px 2px rgba(15, 23, 42, 0.7);
+              margin-bottom: 2px;
+            "
+          >
+            Un indicateur ouvert du coût de production du Bitcoin.
+          </p>
+          <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 2px">
+            Version : GHI v1.0
+          </p>
+        </div>
+      </header>
+
+      <!-- NAVIGATION IDENTIQUE AUX AUTRES PAGES -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="methodology.html">Méthodologie</a></li>
+          <li><a href="regions.html">Régions</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="engine.html" class="active">Moteur</a></li>
+          <li><a href="governance.html">Gouvernance</a></li>
+          <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="legal.html">Mentions légales</a></li>
+        </ul>
+      </nav>
+
+      <!-- CONTENU DU DASHBOARD -->
+      <main class="dashboard-main">
+        <section class="dashboard-card">
+          <h1>Dashboard Global HashCost Index (pré-version)</h1>
+          <p>
+            Cette page présente une version statique du dashboard GHI. Les
+            valeurs ci-dessous sont illustratives. La version en ligne sera
+            alimentée automatiquement par le moteur Python et l’API FastAPI.
+          </p>
+
+<section>
+  <h3>Sandbox GHI Snapshot (API v1)</h3>
+
+  <p id="sandbox-api-v1-status">Chargement des données…</p>
+
+  <ul>
+    <li>As of : <span id="sandbox-as-of">N/A</span></li>
+    <li>BTC price (USD) : <span id="sandbox-btc-price">N/A</span></li>
+    <li>Network hashrate (EH/s) : <span id="sandbox-hashrate">N/A</span></li>
+    <li>Regions : <span id="sandbox-regions">0</span></li>
+  </ul>
+</section>
+<script>
+  (async function loadSandboxSnapshotV1() {
+    const statusEl   = document.getElementById('sandbox-api-v1-status');
+    const asOfEl     = document.getElementById('sandbox-as-of');
+    const priceEl    = document.getElementById('sandbox-btc-price');
+    const hashrateEl = document.getElementById('sandbox-hashrate');
+    const regionsEl  = document.getElementById('sandbox-regions');
+
+    try {
+      const resp = await fetch('http://127.0.0.1:8000/v1/ghi/snapshot');
+      if (!resp.ok) {
+        throw new Error('HTTP ' + resp.status);
+      }
+      const data = await resp.json();
+
+      statusEl.textContent = "Données sandbox chargées depuis l’API v1.";
+
+      // 1) as_of : on prend la valeur si présente, sinon on reconstruit
+      let asOf = data.as_of;
+      if (!asOf) {
+        // approximation : on reconstruit un timestamp actuel en ISO
+        asOf = new Date().toISOString();
+      }
+      asOfEl.textContent = asOf;
+
+      // 2) BTC price USD
+      let btcPrice = null;
+      if (typeof data.btc_price_usd === "number") {
+        btcPrice = data.btc_price_usd;
+      } else if (data.ghi && typeof data.ghi.avg_cost_btc === "number") {
+        // fallback : on prend le coût moyen global en BTC comme proxy
+        btcPrice = data.ghi.avg_cost_btc;
+      }
+
+      if (typeof btcPrice === "number") {
+        priceEl.textContent = btcPrice.toLocaleString("en-US", {
+          maximumFractionDigits: 0,
+        });
+      } else {
+        priceEl.textContent = "N/A";
+      }
+
+      // 3) Network hashrate (EH/s)
+      let hashrateEh = null;
+      if (typeof data.network_hashrate_eh === "number") {
+        hashrateEh = data.network_hashrate_eh;
+      } else if (typeof data.hashrate_total_th === "number") {
+        // conversion TH/s -> EH/s
+        hashrateEh = data.hashrate_total_th / 1_000_000;
+      }
+
+      if (typeof hashrateEh === "number") {
+        hashrateEl.textContent = hashrateEh.toLocaleString("en-US", {
+          maximumFractionDigits: 2,
+        });
+      } else {
+        hashrateEl.textContent = "N/A";
+      }
+
+      // 4) Regions count
+      if (Array.isArray(data.regions)) {
+        regionsEl.textContent = data.regions.length.toString();
+      } else {
+        regionsEl.textContent = "0";
+      }
+    } catch (err) {
+      console.error("Erreur lors du fetch sandbox v1:", err);
+      statusEl.textContent =
+        "Impossible de joindre l’API sandbox (vérifie que le moteur tourne sur 127.0.0.1:8000).";
+      asOfEl.textContent = "N/A";
+      priceEl.textContent = "N/A";
+      hashrateEl.textContent = "N/A";
+      regionsEl.textContent = "0";
+    }
+  })();
+</script>
+          <h2>Snapshot global – Exemple</h2>
+          <p>
+            Exemple de structure de données pour un snapshot global (coût min /
+            moyen / max, date de référence, version du modèle).
+          </p>
+
+          <div class="table-wrapper">
+            <table class="snapshot-table">
+              <thead>
+                <tr>
+                  <th>Date de référence</th>
+                  <th>Coût min (USD/BTC)</th>
+                  <th>Coût moyen (USD/BTC)</th>
+                  <th>Coût max (USD/BTC)</th>
+                  <th>Version du modèle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025-01-01</td>
+                  <td>20&nbsp;000</td>
+                  <td>28&nbsp;000</td>
+                  <td>36&nbsp;000</td>
+                  <td>GHI v1.0 (exemple)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Coût de production par région – Exemple</h2>
+          <p>
+            Tableau illustratif de la structure de données par région de minage.
+          </p>
+
+          <div class="table-wrapper">
+            <table class="snapshot-table">
+              <thead>
+                <tr>
+                  <th>Région</th>
+                  <th>Coût min</th>
+                  <th>Coût moyen</th>
+                  <th>Coût max</th>
+                  <th>Part du hashrate</th>
+                  <th>Version des données</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Amérique du Nord</td>
+                  <td>22&nbsp;000</td>
+                  <td>29&nbsp;000</td>
+                  <td>37&nbsp;000</td>
+                  <td>40&nbsp;%</td>
+                  <td>GHI v1.0 (exemple)</td>
+                </tr>
+                <tr>
+                  <td>Europe</td>
+                  <td>24&nbsp;000</td>
+                  <td>31&nbsp;000</td>
+                  <td>39&nbsp;000</td>
+                  <td>15&nbsp;%</td>
+                  <td>GHI v1.0 (exemple)</td>
+                </tr>
+                <tr>
+                  <td>Asie</td>
+                  <td>18&nbsp;000</td>
+                  <td>26&nbsp;000</td>
+                  <td>34&nbsp;000</td>
+                  <td>35&nbsp;%</td>
+                  <td>GHI v1.0 (exemple)</td>
+                </tr>
+                <tr>
+                  <td>Autres</td>
+                  <td>19&nbsp;000</td>
+                  <td>27&nbsp;000</td>
+                  <td>35&nbsp;000</td>
+                  <td>10&nbsp;%</td>
+                  <td>GHI v1.0 (exemple)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Historique global – Placeholder</h2>
+          <p>
+            Un graphique montrera ici l’évolution du coût de production global
+            (min / moyen / max) par jour ou par semaine. Dans cette
+            pré-version, seule la structure de la section est définie.
+          </p>
+          <div
+            style="
+              margin-top: 12px;
+              border-radius: 16px;
+              padding: 18px;
+              border: 1px dashed #cbd5e1;
+              color: #4b5563;
+              font-size: 0.85rem;
+              background: #f1f5f9;
+            "
+          >
+            Placeholder visuel – futur graphique historique (coût de production
+            global).
+          </div>
+        </section>
+
+        <!-- BLOC RELATION PRIX / COÛT GLOBAL + JAUGE + EMAIL -->
+        <section class="ghi-indicator-card">
+          <div class="ghi-indicator-header">
+            <h2>Relation prix / coût global de production (GHI)</h2>
+            <div class="ghi-badges">
+              <div class="badge-pill">
+                <span class="label">mode :</span>
+                <span class="value" id="ghi-mode-label">FAKE DATA</span>
+              </div>
+              <div class="badge-pill">
+                <span class="label">Source prix BTC :</span>
+                <span class="value">API publique (CoinGecko)</span>
+              </div>
+              <div class="badge-pill">
+                <span class="label">Source coût :</span>
+                <span class="value">/v1/ghi/indicator</span>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 0.85rem; color: #e5e7eb; margin-top: 0">
+            Cet indicateur met en regard le prix observé du Bitcoin et une
+            estimation du coût moyen global de production basée sur le modèle
+            Global HashCost Index (GHI).
+          </p>
+
+          <div class="ghi-indicator-grid">
+            <!-- Prix BTC -->
+            <div class="ghi-indicator-item" id="ghi-box-price">
+              <h3>Prix du Bitcoin</h3>
+              <div class="value-main" id="ghi-price-usd">–</div>
+              <div class="value-sub">Cours spot BTC en USD (source publique)</div>
+            </div>
+
+            <!-- Coût moyen GHI -->
+            <div class="ghi-indicator-item" id="ghi-box-cost">
+              <h3>Coût moyen GHI</h3>
+              <div class="value-main" id="ghi-avg-cost-usd">–</div>
+              <div class="value-sub">
+                Coût de production moyen global estimé (USD/BTC)
+              </div>
+            </div>
+
+            <!-- Ratio prix / coût -->
+            <div class="ghi-indicator-item" id="ghi-box-ratio">
+              <h3>Ratio prix / coût global</h3>
+              <div class="value-main" id="ghi-ratio">–</div>
+              <div class="value-sub">
+                1.0 ≈ prix proche du coût – > 1.0 = surévaluation potentielle
+              </div>
+            </div>
+
+            <!-- Zone + score -->
+            <div class="ghi-indicator-item" id="ghi-box-zone">
+              <h3>Zone &amp; score GHI</h3>
+              <div class="value-main" id="ghi-zone-label">–</div>
+              <div class="value-sub">
+                Score GHI (0–100) basé sur la position du prix par rapport au
+                coût moyen
+                <span id="ghi-score-text"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jauge -->
+          <div class="ghi-pill-bar">
+            <div class="ghi-pill-bar-labels">
+              <span>Prix &lt; coût</span>
+              <span>Zone d’équilibre</span>
+              <span>Prix &gt; coût</span>
+            </div>
+            <div class="ghi-pill-bar-track">
+              <div
+                class="ghi-pill-bar-thumb"
+                id="ghi-pill-thumb"
+                style="left: 50%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="ghi-indicator-footer">
+            <p>
+              <strong>Note méthodologique :</strong> cet indicateur est une
+              pré-version démonstrative. Les valeurs affichées sont des données
+              factices (FAKE DATA) générées par une API de test et ne doivent
+              pas être utilisées pour la prise de décision d’investissement, de
+              conformité ou de reporting.
+            </p>
+
+            <div class="ghi-email-box">
+              <label for="ghi-email"
+                >Intéressé par une version institutionnelle du GHI ?</label
+              >
+              <input
+                type="email"
+                id="ghi-email"
+                placeholder="Votre email institutionnel…"
+              />
+              <button type="button" id="ghi-email-btn">S’inscrire</button>
+            </div>
+          </div>
+        </section>
+
+        <p
+          style="
+            margin-top: 10px;
+            font-size: 0.72rem;
+            color: #9ca3af;
+            max-width: 1100px;
+          "
+        >
+          <strong>Avertissement&nbsp;:</strong> toutes les valeurs affichées sur
+          ce tableau de bord sont des données factices (FAKE DATA) générées
+          pour démonstration. Elles ne doivent pas être utilisées pour la prise
+          de décision d’investissement, de conformité ou de reporting.
+        </p>
+      </main>
+    </div>
+
+    <!-- Script : consommation de l’endpoint /v1/ghi/indicator -->
+    <script>
+      async function loadGhiIndicator() {
+        const endpoint = "http://127.0.0.1:8000/v1/ghi/indicator";
+
+        const elPrice = document.getElementById("ghi-price-usd");
+        const elAvgCost = document.getElementById("ghi-avg-cost-usd");
+        const elRatio = document.getElementById("ghi-ratio");
+        const elZone = document.getElementById("ghi-zone-label");
+        const elScore = document.getElementById("ghi-score-text");
+        const elThumb = document.getElementById("ghi-pill-thumb");
+        const elMode = document.getElementById("ghi-mode-label");
+
+        const boxZone = document.getElementById("ghi-box-zone");
+
+        try {
+          const resp = await fetch(endpoint);
+          if (!resp.ok) throw new Error("HTTP " + resp.status);
+          const data = await resp.json();
+
+          const price = data.btc_price_usd;
+          const avgCost = data.avg_cost_usd;
+          const ratio = data.price_cost_ratio;
+          const zone = data.zone;
+          const score = data.ghi_score;
+          const mode = data.mode || "FAKE";
+
+          elPrice.textContent =
+            price != null ? "$" + price.toLocaleString("en-US") : "–";
+          elAvgCost.textContent =
+            avgCost != null ? "$" + avgCost.toLocaleString("en-US") : "–";
+          elRatio.textContent =
+            ratio != null ? ratio.toFixed(2) + "x" : "–";
+
+          let zoneLabel = "–";
+          if (zone === "below_cost") zoneLabel = "Prix < coût (zone basse)";
+          else if (zone === "near_cost")
+            zoneLabel = "Proche du coût (zone d’équilibre)";
+          else if (zone === "above_cost")
+            zoneLabel = "Prix > coût (zone haute)";
+
+          elZone.textContent = zoneLabel;
+          elScore.textContent =
+            score != null ? " – score GHI : " + score.toFixed(0) + "/100" : "";
+
+          elMode.textContent =
+            mode === "real" ? "RÉEL (TEST)" : "FAKE DATA";
+
+          boxZone.classList.remove(
+            "zone-positive",
+            "zone-neutral",
+            "zone-negative"
+          );
+          if (zone === "below_cost") boxZone.classList.add("zone-negative");
+          else if (zone === "near_cost") boxZone.classList.add("zone-neutral");
+          else if (zone === "above_cost")
+            boxZone.classList.add("zone-positive");
+
+          // Position de la jauge : ratio borné entre 0.5 et 2.0
+          let r = ratio;
+          if (typeof r !== "number" || !isFinite(r)) {
+            r = 1.0;
+          }
+          const minR = 0.5;
+          const maxR = 2.0;
+          const clamped = Math.max(minR, Math.min(maxR, r));
+          const pct = ((clamped - minR) / (maxR - minR)) * 100;
+          elThumb.style.left = pct + "%";
+        } catch (err) {
+          console.error("Erreur chargement GHI indicator:", err);
+          elPrice.textContent = "Erreur";
+          elAvgCost.textContent = "Erreur";
+          elRatio.textContent = "–";
+          elZone.textContent = "Erreur de chargement";
+          elScore.textContent = "";
+          elMode.textContent = "ERREUR";
+          boxZone.classList.remove(
+            "zone-positive",
+            "zone-neutral",
+            "zone-negative"
+          );
+          elThumb.style.left = "50%";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadGhiIndicator();
+
+        const emailInput = document.getElementById("ghi-email");
+        const emailBtn = document.getElementById("ghi-email-btn");
+
+        emailBtn.addEventListener("click", () => {
+          const value = (emailInput.value || "").trim();
+          if (!value) {
+            alert("Merci d’indiquer une adresse email institutionnelle.");
+            return;
+          }
+          alert(
+            "Merci ! Votre intérêt est noté. Un canal de contact institutionnel sera communiqué dans une prochaine version."
+          );
+          emailInput.value = "";
+        });
+      });
+    </script>
+<script>
+  async function loadSandboxSnapshot() {
+    const statusEl = document.getElementById("sandbox-status");
+    const metricsEl = document.getElementById("sandbox-metrics");
+
+    const asofEl = document.getElementById("m-asof");
+    const btcPriceEl = document.getElementById("m-btc-price");
+    const hashrateEl = document.getElementById("m-hashrate");
+    const regionsCountEl = document.getElementById("m-regions-count");
+
+    try {
+      // Pour le dev local : engine sur 127.0.0.1:8000
+      // Plus tard : on basculera sur l’URL de prod (reverse proxy / domaine)
+      const resp = await fetch("http://127.0.0.1:8000/v1/ghi/snapshot");
+
+      if (!resp.ok) {
+        throw new Error("HTTP " + resp.status);
+      }
+
+      const data = await resp.json();
+
+      // Remplir les champs
+      asofEl.textContent = data.as_of || "N/A";
+      btcPriceEl.textContent = data.btc_price_usd != null ? data.btc_price_usd.toLocaleString("en-US") : "N/A";
+      hashrateEl.textContent = data.network_hashrate_eh != null ? data.network_hashrate_eh.toFixed(2) : "N/A";
+      regionsCountEl.textContent = Array.isArray(data.regions) ? data.regions.length : 0;
+
+      statusEl.textContent = "Données sandbox chargées depuis l’API v1.";
+      metricsEl.style.display = "block";
+    } catch (err) {
+      console.error("Erreur lors du chargement du snapshot GHI :", err);
+      statusEl.textContent = "Impossible de joindre l’API sandbox (vérifie que le moteur tourne sur 127.0.0.1:8000).";
+      metricsEl.style.display = "none";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadSandboxSnapshot);
+</script>
+  </body>
+</html>
