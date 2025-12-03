@@ -1,0 +1,160 @@
+Global HashCost Index — Roadmap Métier v1.0
+
+Standard Technique – Version 1.0
+
+⸻
+
+1. Objet de la roadmap
+
+Cette roadmap décrit l’évolution planifiée du Global HashCost Index (GHI) sous ses aspects méthodologiques, techniques et institutionnels.
+Elle fournit un horizon clair pour les prochaines versions du standard et fixe les priorités de développement des données, du moteur, de l’API et de l’écosystème.
+
+⸻
+
+2. Vision long terme
+
+Le GHI vise à devenir :
+	•	l’indicateur mondial de référence sur le coût réel de production du Bitcoin,
+	•	un standard technique ouvert,
+	•	une base de données stable et indépendante pour les institutions publiques et privées,
+	•	un outil d’analyse destiné aux gouvernements, régulateurs, think-tanks, chercheurs et entreprises du secteur énergétique.
+
+La roadmap structure cette ambition en trois grandes versions :
+v1.x → v2.x → v3.x
+
+⸻
+
+3. Roadmap v1.x — Consolidation (court terme, 0–12 mois)
+
+3.1. v1.0 — Standard initial (accompli ou en cours)
+	•	Model Overview
+	•	Methodology v1.0
+	•	Data Model v1.0
+	•	Governance & Versioning
+	•	Use-Cases institutionnels
+	•	Roadmap
+	•	Engine Python (coût min/avg/max par région)
+	•	API FastAPI v1
+	•	Snapshot + historique journalier
+	•	Dépôt GitHub structuré
+	•	Documentation publique
+
+3.2. v1.1 — Améliorations non disruptives
+
+Objectifs : affiner le modèle sans changer la structure.
+
+Évolutions prévues :
+	•	mise à jour précise des rendements ASIC par génération dominante
+	•	meilleure granularité énergétique dans certaines régions (ex : USA → “North America” reste, mais avec données énergie plus fines)
+	•	ajout d’un indicateur auxiliaire :
+	•	coût/TH
+	•	énergie/BTC
+	•	documentation enrichie (tutoriels de calcul)
+	•	systèmes de tests unitaires pour le moteur
+	•	cohérence renforcée des données historiques
+
+3.3. v1.2 — Ouverture et transparence élargies
+
+Évolutions :
+	•	mise en place des GHI Improvement Proposals (GHIP)
+	•	contribution externe facilitée
+	•	système de vérification automatique d’intégrité (hash des snapshots)
+	•	scénarios énergétiques “stress-test” intégrés
+	•	documentation API complète (OpenAPI/Swagger)
+
+⸻
+
+4. Roadmap v2.x — Extension (moyen terme, 12–36 mois)
+
+4.1. v2.0 — Modèle enrichi (version majeure)
+
+Changements significatifs, mais toujours compatibles avec la philosophie initiale.
+
+Nouveaux modules :
+	•	intégration d’un modèle carbone (optionnel)
+	•	intensité CO₂ régionale
+	•	équivalence CO₂/BTC
+	•	estimation décomposée par source d’énergie
+	•	ajout d’un module dépréciation ASIC (capex → opex)
+	•	scénarios énergétiques :
+	•	prix projetés
+	•	stress énergétique régional
+	•	sensibilité au prix du gaz, charbon, hydro, etc.
+
+Nouvelles données :
+	•	segmentation électrique avancée
+	•	sources multiples pour hashrate régional
+
+4.2. v2.1 — Ouverture institutionnelle
+	•	intégration des retours universités + think-tanks
+	•	création de jeux de données annexes (énergie, emissions)
+	•	validation méthodologique par comité externe (optionnel)
+
+4.3. v2.2 — Compatibilité industrielle
+	•	standardisation des exports CSV/JSON pour les plateformes énergétiques et crypto
+	•	normes de qualité avancées
+	•	intégration aux tableaux de bord externes (Bloomberg, Kaiko, etc.) via un format standard
+
+⸻
+
+5. Roadmap v3.x — Granularité & Standardisation (long terme, 36–60 mois)
+
+5.1. v3.0 — Sous-régions & granularité fine
+
+Changement majeur : le monde n’est plus découpé en 8–10 régions mais en sous-régions économiques.
+
+Exemples :
+	•	USA → Texas / reste USA
+	•	Chine → Sichuan / Xinjiang / Inner Mongolia
+	•	Canada → Québec / Alberta
+	•	Amérique du Sud → Chili / Paraguay / Argentine
+	•	Europe → Nord / Sud / Est
+
+Objectif :
+permettre une vraie analyse géo-énergétique.
+
+5.2. v3.1 — Standardisation internationale
+	•	reconnaissance institutionnelle par organismes internationaux
+	•	intégration dans des rapports annuels
+	•	contribution croisée avec études académiques référentes
+	•	proposition pour inclusion dans frameworks publics énergie/minage
+
+5.3. v3.2 — Oracles & automatisation avancée
+
+Sans coût obligatoire, mais option ouverte pour les acteurs qui le souhaitent :
+	•	publication automatisée vers des oracles (Pyth, Chainlink)
+	•	mise à disposition pour smart-contracts
+	•	intégration dans dashboards crypto institutionnels
+
+⸻
+
+6. Priorités transversales (toutes versions)
+	•	amélioration continue de la qualité des données
+	•	documentation claire et à jour
+	•	reproductibilité parfaite
+	•	transparence des sources
+	•	rigueur institutionnelle
+	•	optimisation du moteur Python
+	•	automatisation API + snapshots
+	•	consolidation open-source
+	•	traçabilité complète via ChangeLog
+
+⸻
+
+7. Résumé stratégique
+
+Court terme (v1.x)
+
+Stabiliser, documenter, construire un standard clair.
+
+Moyen terme (v2.x)
+
+Étendre méthodologie, carbone, dépréciation, scénarios avancés.
+
+Long terme (v3.x)
+
+Granularité fine + standardisation mondiale + écosystème institutionnel.
+
+⸻
+
+Fin du document — Roadmap Métier GHI v1.0

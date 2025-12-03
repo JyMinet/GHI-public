@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>GHI – Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Global HashCost Index – Indicateur ouvert du coût de production du Bitcoin." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p style="color:#f9fafb; text-shadow:0 1px 2px rgba(15,23,42,0.7);">
+          Un indicateur ouvert du coût de production du Bitcoin.
+        </p>
+        <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
+          Version : GHI v1.0
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="methodology.html">Méthodologie</a></li>
+        <li><a href="regions.html">Régions</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="engine.html" class="active">Moteur</a></li>
+        <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="legal.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2>Pourquoi GHI ?</h2>
+      <p>
+        Le Bitcoin est produit à partir d’électricité, de matériel de minage et d’infrastructures répartis
+        dans le monde entier. Pourtant, il existe très peu de métriques transparentes, reproductibles et
+        indépendantes pour estimer le coût réel de production d’un BTC.
+      </p>
+
+      <p>
+        Le Global HashCost Index (GHI) propose un modèle ouvert, documenté et versionné qui estime ce coût
+        par grandes régions de minage, puis au niveau global, en pondérant par le hashrate.
+      </p>
+
+      <h2>Ce que fournit GHI</h2>
+      <ul>
+        <li>Coût min / moyen / max de production du BTC par région de minage.</li>
+        <li>Coût agrégé global pondéré par le hashrate.</li>
+        <li>Historique et statistiques par version de modèle.</li>
+        <li>API documentée pour intégration dans vos propres outils.</li>
+      </ul>
+
+      <h2>Comment fonctionne GHI (aperçu)</h2>
+      <p>
+        Le moteur GHI agrège pour chaque grande région de minage des hypothèses de coût (énergie, CAPEX, OPEX),
+        un mix de machines et une estimation de hashrate. Ces briques permettent de calculer un coût de
+        production par région, puis un coût global pondéré par la part de hashrate.
+      </p>
+
+      <p class="text-muted">
+        La méthodologie complète est décrite dans la page
+        <a href="methodology.html">Méthodologie</a>.
+      </p>
+
+      <h2>Accès aux données</h2>
+      <p>
+        Cette pré-version du site présente la structure du projet. Le jour J, les pages seront alimentées
+        automatiquement par le moteur Python et l’API FastAPI.
+      </p>
+
+      <div class="cta-links">
+        <a href="dashboard.html">Voir le dashboard</a>
+        <a href="methodology.html">Lire la méthodologie</a>
+        <a href="api.html">Explorer l’API</a>
+      </div>
+    </main>
+
+  </div>
+
+  <footer>
+    <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+  </footer>
+</body>
+</html>
+
