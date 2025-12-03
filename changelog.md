@@ -3,6 +3,13 @@ Versioning: Semantic Versioning (SemVer)
 Documentation and standards published under CC BY-NC-SA 4.0.
 
 ---
+## v0.3.1-docs — Modèle mathématique (public)
+
+- Ajout du modèle mathématique public du GHI :
+  - `docs/GHI_MATHEMATICAL_MODEL.md`
+  - `docs/GHI_MATHEMATICAL_MODEL.pdf`
+- Mise à jour de la structure de la documentation pour séparer modèle / méthodologie / API.
+
 ## [0.2.2-docs] – 2025-12-02
 
 ### Ajouts
