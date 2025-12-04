@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Global HashCost Index – Sandbox API",
+    "version": "0.1-sandbox",
+    "description": "Fake data API for developers to test integration with the Global HashCost Index (GHI). No real production-cost data is served at this stage."
+  },
+  "servers": [
+    {
+      "url": "https://globalhashcostindex.org",
+      "description": "Public sandbox (fake data)"
+    }
+  ],
+  "paths": {
+    "/api/latest.json": {
+      "get": {
+        "summary": "Latest global GHI snapshot (fake)",
+        "responses": {
+          "200": {
+            "description": "Fake snapshot"
+          }
+        }
+      }
+    },
+    "/api/regions.json": {
+      "get": {
+        "summary": "Regional GHI breakdown (fake)",
+        "responses": {
+          "200": {
+            "description": "Fake regions breakdown"
+          }
+        }
+      }
+    },
+    "/api/history.json": {
+      "get": {
+        "summary": "Historical GHI series (fake)",
+        "responses": {
+          "200": {
+            "description": "Fake time series"
+          }
+        }
+      }
+    }
+  }
+}

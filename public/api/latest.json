@@ -1,0 +1,29 @@
+{
+  "as_of": "2025-12-04T00:00:00Z",
+  "version": "0.1-sandbox",
+  "symbol": "BTC",
+  "global_hashcost_usd": 54321.0,
+  "spot_price_usd": 48000.0,
+  "premium_vs_cost_pct": -11.6,
+  "notes": "Fake sandbox data for demonstration only. Does not reflect real-world production costs.",
+  "regions": [
+    {
+      "code": "NA",
+      "name": "North America",
+      "hashcost_usd": 56000.0,
+      "share_of_hashrate_pct": 32.0
+    },
+    {
+      "code": "EU",
+      "name": "Europe",
+      "hashcost_usd": 53000.0,
+      "share_of_hashrate_pct": 24.0
+    },
+    {
+      "code": "APAC",
+      "name": "Asia-Pacific",
+      "hashcost_usd": 49500.0,
+      "share_of_hashrate_pct": 44.0
+    }
+  ]
+}

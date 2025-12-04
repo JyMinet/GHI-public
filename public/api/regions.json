@@ -1,0 +1,29 @@
+{
+  "as_of": "2025-12-04T00:00:00Z",
+  "version": "0.1-sandbox",
+  "symbol": "BTC",
+  "regions": [
+    {
+      "code": "NA",
+      "name": "North America",
+      "hashcost_usd": 56000.0,
+      "power_price_usd_per_mwh": 55.0,
+      "average_efficiency_j_per_th": 28.5
+    },
+    {
+      "code": "EU",
+      "name": "Europe",
+      "hashcost_usd": 53000.0,
+      "power_price_usd_per_mwh": 45.0,
+      "average_efficiency_j_per_th": 27.0
+    },
+    {
+      "code": "APAC",
+      "name": "Asia-Pacific",
+      "hashcost_usd": 49500.0,
+      "power_price_usd_per_mwh": 40.0,
+      "average_efficiency_j_per_th": 26.0
+    }
+  ],
+  "notes": "Fake sandbox data, structure only."
+}
