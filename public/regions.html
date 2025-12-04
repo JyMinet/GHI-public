@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>GHI – Régions de minage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Régions de minage suivies par le Global HashCost Index." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p style="color:#f9fafb; text-shadow:0 1px 2px rgba(15,23,42,0.7);">
+          Un indicateur ouvert du coût de production du Bitcoin.
+        </p>
+        <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
+          Version : GHI v1.0
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="methodology.html">Méthodologie</a></li>
+        <li><a href="regions.html" class="active">Régions</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="engine.html" class="active">Moteur</a></li>
+        <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="legal.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2>Régions de minage suivies par GHI</h2>
+      <p>
+        GHI segmente le hashrate mondial en grandes régions de minage, afin de capturer les différences de
+        mix énergétique, de régulation et de structure de coûts. Cette page présente un exemple de découpage.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Région</th>
+            <th>Description</th>
+            <th>Particularités énergétiques</th>
+            <th>Niveau de granularité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amérique du Nord</td>
+            <td>
+              États-Unis, Canada et autres pays d’Amérique du Nord où le minage est significatif.
+            </td>
+            <td>
+              Mix de réseaux interconnectés, abondance relative de capacités de production (gaz,
+              renouvelables, nucléaire), tarifs très variables selon les États et les contrats privés.
+            </td>
+            <td>
+              Granularité par grandes zones (États/Provinces), avec possibilité de raffiner selon les
+              données disponibles.
+            </td>
+          </tr>
+          <tr>
+            <td>Europe</td>
+            <td>
+              Union européenne, Royaume-Uni, Suisse et autres pays européens avec activité de minage notable.
+            </td>
+            <td>
+              Tarifs d’électricité plus élevés en moyenne, régulations environnementales strictes,
+              part importante de renouvelables et de nucléaire selon les pays.
+            </td>
+            <td>
+              Granularité par pays ou groupes de pays, selon l’accès aux données.
+            </td>
+          </tr>
+          <tr>
+            <td>Asie</td>
+            <td>
+              Principales zones de minage en Asie (par exemple Asie centrale, Asie de l’Est, Asie du Sud).
+            </td>
+            <td>
+              Mix énergétique très hétérogène (charbon, hydroélectricité, gaz), variations saisonnières
+              fortes dans certaines zones.
+            </td>
+            <td>
+              Granularité par sous-régions, en fonction des sources disponibles.
+            </td>
+          </tr>
+          <tr>
+            <td>Amérique latine</td>
+            <td>
+              Pays d’Amérique centrale et du Sud avec une activité de minage identifiée.
+            </td>
+            <td>
+              Présence d’hydroélectricité, de projets dédiés et de régulations en évolution rapide.
+            </td>
+            <td>
+              Granularité par pays ou clusters régionaux.
+            </td>
+          </tr>
+          <tr>
+            <td>Autres régions</td>
+            <td>
+              Autres zones de minage en Afrique, Moyen-Orient et Océanie, regroupées pour l’instant
+              dans une catégorie agrégée.
+            </td>
+            <td>
+              Mix énergétique spécifique à chaque pays, souvent avec une disponibilité de données plus limitée.
+            </td>
+            <td>
+              Niveau de granularité global, avec possibilité de détailler davantage à mesure que les
+              données s’améliorent.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Note méthodologique</h3>
+      <p class="text-muted">
+        Cette version préliminaire décrit les régions et leur logique de segmentation. Les valeurs chiffrées
+        affichées sur le dashboard peuvent être illustratives. La version en ligne utilisera les meilleures
+        données accessibles au moment du calcul.
+      </p>
+    </main>
+
+  </div>
+
+  <footer>
+    <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+  </footer>
+</body>
+</html>
