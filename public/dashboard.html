@@ -435,6 +435,16 @@
     }
   })();
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("cost-avg").textContent = "54 321 $";
+    document.getElementById("cost-min").textContent = "48 000 $";
+    document.getElementById("cost-change").textContent = "-11,6 %";
+  });
+</script>
+<span class="value" id="cost-avg"></span>
+<span class="value" id="cost-min"></span>
+<span class="value" id="cost-change"></span>
           <h2>Snapshot global – Exemple</h2>
           <p>
             Exemple de structure de données pour un snapshot global (coût min /
