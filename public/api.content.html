@@ -1,242 +1,116 @@
+<main class="api-section">
 
-  <main class="api-section">
-    <p class="muted" style="margin-top: 6px;">
+  <div class="lang-switch">
     Langue / Language :
-    <a href="#fr">FR</a> · <a href="#en">EN</a>
-  </p>
+    <a href="#fr" class="active">FR</a> ·
+    <a href="#en">EN</a>
+  </div>
 
-  <h2>GHI API – Sandbox (pre-release)</h2>
-
-<p>
-  The GHI API is currently available in sandbox mode. It follows the
-  <strong>GHI Data Model v1.0</strong> and returns synthetic
-  (<em>fake data</em>) outputs, but with the exact same structure as the future
-  production API.
-</p>
-
-<ul>
-  <li>validate the architecture of the data models;</li>
-  <li>integrate the API into dashboards or internal tools;</li>
-  <li>test institutional workflows (risk, reporting, ESG) without exposing the real engine.</li>
-</ul>
-
+  <!-- ================= SECTION FR ================= -->
+  <section id="fr" class="page-section">
     <h2>API GHI – Sandbox (pré-version)</h2>
 
-  <p>
-    L’API GHI est actuellement disponible sous forme de sandbox. Elle suit le
-    <strong>GHI Data Model v1.0</strong> et retourne des données synthétiques
-    (<em>fake data</em>), mais avec une structure identique à celle de l’API
-    de production future.
-  </p>
+    <p>
+      L’API GHI est actuellement disponible sous forme de sandbox. Elle suit le
+      <strong>GHI Data Model v1.0</strong> et retourne des données synthétiques
+      (<em>fake data</em>), mais avec une structure identique à celle de l’API
+      de production future.
+    </p>
 
-  <ul>
-    <li>de valider l’architecture des modèles de données ;</li>
-    <li>d’intégrer l’API dans des dashboards ou outils internes ;</li>
-    <li>de tester des flux institutionnels (risque, reporting, ESG) sans exposer le moteur réel.</li>
-  </ul>
+    <ul>
+      <li>valider l’architecture des modèles de données ;</li>
+      <li>intégrer l’API dans des dashboards ou outils internes ;</li>
+      <li>tester des flux institutionnels (risque, reporting, ESG) sans exposer le moteur réel.</li>
+    </ul>
 
+    <h3>1. Base et version (sandbox locale)</h3>
 
-  <article class="card" style="margin-top: 20px; padding: 20px;">
+    <p><strong>Base locale (développement)</strong></p>
+    <pre><code>http://127.0.0.1:8000</code></pre>
 
-    <!-- ===================== SECTION FR ===================== -->
-    <section id="fr" class="page-section">
-      <h3>1. Base et version (sandbox locale)</h3>
+    <p><strong>Préfixe de version</strong></p>
+    <pre><code>/v1/ghi</code></pre>
 
-      <h4>Base locale (développement)</h4>
-      <ul>
-        <li><code>http://127.0.0.1:8000</code></li>
-      </ul>
+    <p>
+      Toutes les réponses sont en JSON, avec des timestamps au format
+      <strong>ISO 8601 (UTC)</strong>.
+    </p>
 
-      <h4>Préfixe de version</h4>
-      <ul>
-        <li><code>/v1/ghi</code></li>
-      </ul>
+    <h3>2. Sandbox API en ligne (fake data statique)</h3>
 
-      <p class="muted">
-        Toutes les réponses sont en JSON, avec des timestamps au format
-        <strong>ISO 8601 (UTC)</strong>.
-      </p>
+    <p>
+      En plus de la sandbox locale utilisée pour le développement, une version
+      <strong>statique</strong> de l’API GHI est disponible en ligne. Elle
+      retourne des <em>fake data</em> mais respecte le
+      <strong>GHI Data Model v1.0</strong>, idéal pour tester rapidement des
+      intégrations (dashboards, outils internes, pipelines institutionnels) sans
+      lancer le moteur Python.
+    </p>
 
-      <h3>2. Sandbox API en ligne (fake data statique)</h3>
-      <p>
-        En plus de la sandbox locale (<code>http://127.0.0.1:8000/v1/ghi</code>),
-        une version <strong>statique</strong> de l’API GHI est disponible en ligne.
-        Elle retourne des <strong>fake data</strong> mais respecte le
-        <strong>GHI Data Model v1.0</strong>. Idéal pour tester rapidement des
-        intégrations (dashboards, outils internes, pipelines institutionnels)
-        sans lancer le moteur Python.
-      </p>
+    <p><strong>Base publique</strong></p>
+    <pre><code>https://globalhashcostindex.org/api</code></pre>
 
-      <h4>Base publique</h4>
-      <ul>
-        <li><code>https://globalhashcostindex.org/api</code></li>
-      </ul>
+    <h4>Endpoints statiques disponibles</h4>
 
-      <h4>Endpoints statiques disponibles</h4>
-      <ul>
-        <li>
-          <code>GET /latest.json</code> – snapshot global GHI
-          (coût min / moyen / max, difficulté, hashrate, etc.)<br>
-          <em>URL complète :</em>
-          <code>https://globalhashcostindex.org/api/latest.json</code>
-        </li>
-        <li>
-          <code>GET /history.json</code> – série temporelle d’exemple pour graphiques et backtesting<br>
-          <em>URL complète :</em>
-          <code>https://globalhashcostindex.org/api/history.json</code>
-        </li>
-        <li>
-          <code>GET /regions.json</code> – liste des régions (nom, part de hashrate,
-          coûts synthétiques, métadonnées)<br>
-          <em>URL complète :</em>
-          <code>https://globalhashcostindex.org/api/regions.json</code>
-        </li>
-        <li>
-          <code>GET /openapi.json</code> – description OpenAPI de la sandbox statique<br>
-          <em>URL complète :</em>
-          <code>https://globalhashcostindex.org/api/openapi.json</code>
-        </li>
-      </ul>
+    <ul>
+      <li>
+        <code class="inline-code">GET /latest.json</code> – snapshot global GHI
+        (coût min / moyen / max, difficulté, hashrate, etc.).
+        <br />
+        <span class="text-muted">
+          URL complète :
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/latest.json
+          </code>
+        </span>
+      </li>
 
-      <h4>Exemple d’appel avec <code>curl</code></h4>
-      <pre><code>curl -s https://globalhashcostindex.org/api/latest.json</code></pre>
+      <li>
+        <code class="inline-code">GET /history.json</code> – série temporelle
+        d’exemple pour graphiques et backtesting.
+        <br />
+        <span class="text-muted">
+          URL complète :
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/history.json
+          </code>
+        </span>
+      </li>
 
-      <h4>Exemple Python</h4>
-      <pre><code>import requests
+      <li>
+        <code class="inline-code">GET /regions.json</code> – liste des régions
+        (nom, part de hashrate, coûts synthétiques, métadonnées).
+        <br />
+        <span class="text-muted">
+          URL complète :
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/regions.json
+          </code>
+        </span>
+      </li>
 
-url = "https://globalhashcostindex.org/api/latest.json"
-resp = requests.get(url, timeout=10)
-resp.raise_for_status()
-data = resp.json()
+      <li>
+        <code class="inline-code">GET /openapi.json</code> – description
+        OpenAPI de la sandbox statique.
+        <br />
+        <span class="text-muted">
+          URL complète :
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/openapi.json
+          </code>
+        </span>
+      </li>
+    </ul>
 
-print("Version du modèle :", data["version"])
-print("Coût moyen (USD/BTC) :", data["ghi"]["avg_cost_btc"])</code></pre>
+    <h3>3. Exemples d’appel</h3>
 
-      <h4>Exemple JavaScript (fetch)</h4>
-      <pre><code>fetch("https://globalhashcostindex.org/api/latest.json")
-  .then(r =&gt; r.json())
-  .then(data =&gt; {
-    console.log("Timestamp:", data.timestamp);
-    console.log("GHI avg cost:", data.ghi.avg_cost_btc);
-  })
-  .catch(err =&gt; console.error("Erreur GHI API:", err));</code></pre>
+    <h4>Exemple curl</h4>
+    <div class="api-box-title">Exemple de requête</div>
+    <pre class="code-block"><code>curl -s https://globalhashcostindex.org/api/latest.json</code></pre>
 
-      <h3>3. Modèles principaux (structure JSON)</h3>
-
-      <p class="api-box-title">Objet <code>Cost</code></p>
-      <pre><code>{
-  "min_cost_btc": 20000.0,
-  "avg_cost_btc": 25000.0,
-  "max_cost_btc": 30000.0
-}</code></pre>
-
-      <p class="api-box-title">Objet <code>Snapshot</code> (exemple simplifié)</p>
-      <pre><code>{
-  "timestamp": "2025-01-01T12:00:00Z",
-  "ghi": {
-    "min_cost_btc": 23000.0,
-    "avg_cost_btc": 26000.0,
-    "max_cost_btc": 29000.0
-  },
-  "difficulty": 80000000000000.0,
-  "hashrate_total_th": 600000000.0,
-  "block_reward_btc": 3.125,
-  "regions": [...],
-  "version": "1.0"
-}</code></pre>
-
-      <p class="api-box-title">Objet <code>Region</code></p>
-      <pre><code>{
-  "region_id": "north_america",
-  "name": "North America",
-  "hashrate_pct": 0.35,
-  "cost": {
-    "min_cost_btc": 21000.0,
-    "avg_cost_btc": 26000.0,
-    "max_cost_btc": 31000.0
-  },
-  "energy": {
-    "price_min_usd_kwh": 0.04,
-    "price_avg_usd_kwh": 0.06,
-    "price_max_usd_kwh": 0.08
-  },
-  "hardware": {
-    "efficiency_min_w_th": 20.0,
-    "efficiency_avg_w_th": 25.0,
-    "efficiency_max_w_th": 30.0
-  },
-  "metadata": {
-    "updated_at": "2025-01-01T12:00:00Z",
-    "data_source": "fake_public"
-  }
-}</code></pre>
-
-    </section>
-
-    <!-- ===================== SECTION EN ===================== -->
-    <section id="en" class="page-section" style="margin-top: 32px;">
-      <h3>1. Base and version (local sandbox)</h3>
-
-      <h4>Local base (development)</h4>
-      <ul>
-        <li><code>http://127.0.0.1:8000</code></li>
-      </ul>
-
-      <h4>Version prefix</h4>
-      <ul>
-        <li><code>/v1/ghi</code></li>
-      </ul>
-
-      <p class="muted">
-        All responses are JSON with timestamps in
-        <strong>ISO 8601 (UTC)</strong>.
-      </p>
-
-      <h3>2. Online sandbox API (static fake data)</h3>
-      <p>
-        In addition to the local sandbox (<code>http://127.0.0.1:8000/v1/ghi</code>),
-        a <strong>static</strong> version of the GHI API is available online.
-        It returns <strong>fake data</strong> but strictly follows the
-        <strong>GHI Data Model v1.0</strong>. This is ideal to test dashboards,
-        internal tools or institutional pipelines without running the Python engine.
-      </p>
-
-      <h4>Public base URL</h4>
-      <ul>
-        <li><code>https://globalhashcostindex.org/api</code></li>
-      </ul>
-
-      <h4>Available static endpoints</h4>
-      <ul>
-        <li>
-          <code>GET /latest.json</code> – global GHI snapshot
-          (min / avg / max cost, difficulty, hashrate, etc.)<br>
-          <em>Full URL:</em>
-          <code>https://globalhashcostindex.org/api/latest.json</code>
-        </li>
-        <li>
-          <code>GET /history.json</code> – sample time-series for charts and backtesting<br>
-          <em>Full URL:</em>
-          <code>https://globalhashcostindex.org/api/history.json</code>
-        </li>
-        <li>
-          <code>GET /regions.json</code> – list of regions (name, hashrate share,
-          synthetic costs, metadata)<br>
-          <em>Full URL:</em>
-          <code>https://globalhashcostindex.org/api/regions.json</code>
-        </li>
-        <li>
-          <code>GET /openapi.json</code> – OpenAPI description of the static sandbox<br>
-          <em>Full URL:</em>
-          <code>https://globalhashcostindex.org/api/openapi.json</code>
-        </li>
-      </ul>
-
-      <h4>curl example</h4>
-      <pre><code>curl -s https://globalhashcostindex.org/api/latest.json</code></pre>
-
-      <h4>Python example</h4>
-      <pre><code>import requests
+    <h4>Exemple Python</h4>
+    <div class="api-box-title">Exemple minimal avec <code>requests</code></div>
+    <pre class="code-block"><code>import requests
 
 url = "https://globalhashcostindex.org/api/latest.json"
 resp = requests.get(url, timeout=10)
@@ -244,10 +118,12 @@ resp.raise_for_status()
 data = resp.json()
 
 print("Model version:", data["version"])
-print("Average cost (USD/BTC):", data["ghi"]["avg_cost_btc"])</code></pre>
+print("Average cost (USD/BTC):", data["ghi"]["avg_cost_btc"])
+</code></pre>
 
-      <h4>JavaScript (fetch) example</h4>
-      <pre><code>fetch("https://globalhashcostindex.org/api/latest.json")
+    <h4>Exemple JavaScript (fetch)</h4>
+    <div class="api-box-title">Exemple front-end</div>
+    <pre class="code-block"><code>fetch("https://globalhashcostindex.org/api/latest.json")
   .then(r =&gt; r.json())
   .then(data =&gt; {
     console.log("Timestamp:", data.timestamp);
@@ -255,185 +131,152 @@ print("Average cost (USD/BTC):", data["ghi"]["avg_cost_btc"])</code></pre>
   })
   .catch(err =&gt; console.error("GHI API error:", err));</code></pre>
 
-      <h3>3. Core data models (JSON structure)</h3>
+    <p class="text-muted">
+      La structure de ces réponses est alignée avec les endpoints locaux
+      (<code class="inline-code">/v1/ghi/snapshot</code>,
+      <code class="inline-code">/v1/ghi/history</code>,
+      <code class="inline-code">/v1/ghi/regions</code>, etc.). Le passage à
+      l’API de production consistera principalement à remplacer les jeux de
+      données factices par ceux du moteur GHI réel.
+    </p>
+  </section>
 
-      <p class="api-box-title"><code>Cost</code> object</p>
-      <pre><code>{
-  "min_cost_btc": 20000.0,
-  "avg_cost_btc": 25000.0,
-  "max_cost_btc": 30000.0
-}</code></pre>
+  <!-- ================= SECTION EN ================= -->
+  <section id="en" class="page-section">
+    <h2>GHI API – Sandbox (pre-release)</h2>
 
-      <p class="api-box-title"><code>Snapshot</code> object (simplified)</p>
-      <pre><code>{
-  "timestamp": "2025-01-01T12:00:00Z",
-  "ghi": {
-    "min_cost_btc": 23000.0,
-    "avg_cost_btc": 26000.0,
-    "max_cost_btc": 29000.0
-  },
-  "difficulty": 80000000000000.0,
-  "hashrate_total_th": 600000000.0,
-  "block_reward_btc": 3.125,
-  "regions": [...],
-  "version": "1.0"
-}</code></pre>
+    <p>
+      The GHI API is currently available as a sandbox. It follows the
+      <strong>GHI Data Model v1.0</strong> and returns synthetic
+      <em>fake data</em>, while keeping the same structure as the future
+      production API.
+    </p>
 
-      <p class="api-box-title"><code>Region</code> object</p>
-      <pre><code>{
-  "region_id": "north_america",
-  "name": "North America",
-  "hashrate_pct": 0.35,
-  "cost": {
-    "min_cost_btc": 21000.0,
-    "avg_cost_btc": 26000.0,
-    "max_cost_btc": 31000.0
-  },
-  "energy": {
-    "price_min_usd_kwh": 0.04,
-    "price_avg_usd_kwh": 0.06,
-    "price_max_usd_kwh": 0.08
-  },
-  "hardware": {
-    "efficiency_min_w_th": 20.0,
-    "efficiency_avg_w_th": 25.0,
-    "efficiency_max_w_th": 30.0
-  },
-  "metadata": {
-    "updated_at": "2025-01-01T12:00:00Z",
-    "data_source": "fake_public"
-  }
-}</code></pre>
+    <ul>
+      <li>validate the data-model architecture;</li>
+      <li>integrate the API into dashboards or internal tools;</li>
+      <li>
+        test institutional workflows (risk, reporting, ESG) without exposing
+        the real engine.
+      </li>
+    </ul>
 
-    </section>
-  </article>
-      <!-- 3. Core models (Data Model v1.0) -->
-      <h3>3. Core models (GHI Data Model v1.0)</h3>
+    <h3>1. Base URL and version (local sandbox)</h3>
 
-      <h4>3.1 Cost</h4>
-      <p class="text-muted">
-        Basic structure for cost per BTC (minimum, average, maximum).
-      </p>
-      <pre class="code-block"><code>{
-  "min_cost_btc": 20000.0,
-  "avg_cost_btc": 25000.0,
-  "max_cost_btc": 30000.0
-}</code></pre>
+    <p><strong>Local base URL (development)</strong></p>
+    <pre><code>http://127.0.0.1:8000</code></pre>
 
-      <h4>3.2 Region</h4>
-      <p class="text-muted">
-        Structure describing a mining region with hashrate share, cost profile, 
-        energy prices, hardware efficiency and metadata.
-      </p>
-      <pre class="code-block"><code>{
-  "region_id": "north_america",
-  "name": "North America",
-  "hashrate_pct": 0.35,
-  "cost": {
-    "min_cost_btc": 21000.0,
-    "avg_cost_btc": 26000.0,
-    "max_cost_btc": 31000.0
-  },
-  "energy": {
-    "price_min_usd_kwh": 0.04,
-    "price_avg_usd_kwh": 0.06,
-    "price_max_usd_kwh": 0.08
-  },
-  "hardware": {
-    "efficiency_min_w_th": 20.0,
-    "efficiency_avg_w_th": 25.0,
-    "efficiency_max_w_th": 30.0
-  },
-  "metadata": {
-    "updated_at": "2025-01-01T12:00:00Z",
-    "data_source": "fake_public"
-  }
-}</code></pre>
+    <p><strong>Version prefix</strong></p>
+    <pre><code>/v1/ghi</code></pre>
 
-      <h4>3.3 Snapshot</h4>
-      <p class="text-muted">
-        Global snapshot of the GHI at a given timestamp, including aggregated
-        costs, difficulty, total hashrate, block reward and per-region details.
-      </p>
-      <pre class="code-block"><code>{
-  "timestamp": "2025-01-01T12:00:00Z",
-  "ghi": {
-    "min_cost_btc": 23000.0,
-    "avg_cost_btc": 26000.0,
-    "max_cost_btc": 29000.0
-  },
-  "difficulty": 80000000000000.0,
-  "hashrate_total_th": 600000000.0,
-  "block_reward_btc": 3.125,
-  "regions": [ /* list of Region */ ],
-  "version": "1.0"
-}</code></pre>
+    <p>
+      All responses are JSON with timestamps in
+      <strong>ISO 8601 (UTC)</strong> format.
+    </p>
 
-      <h4>3.4 HistoryPoint</h4>
-      <p class="text-muted">
-        One point in the historical time-series returned by 
-        <code>/v1/ghi/history</code>.
-      </p>
-      <pre class="code-block"><code>{
-  "timestamp": "2025-01-01T00:00:00Z",
-  "min_cost_btc": 22000.0,
-  "avg_cost_btc": 25000.0,
-  "max_cost_btc": 28000.0,
-  "difficulty": 80000000000000.0,
-  "hashrate_total_th": 600000000.0
-}</code></pre>
+    <h3>2. Online sandbox API (static fake data)</h3>
 
-      <h4>3.5 Stats</h4>
-      <p class="text-muted">
-        Aggregated statistics over all regions in the sandbox.
-      </p>
-      <pre class="code-block"><code>{
-  "timestamp": "2025-01-01T12:00:00Z",
-  "regions_count": 3,
-  "avg_hashrate_total_th": 600000000.0,
-  "avg_cost_btc": 25000.0,
-  "notes": "Sandbox stats on fake data – GHI Data Model v1.0 compatible."
-}</code></pre>
+    <p>
+      In addition to the local development sandbox, a
+      <strong>static</strong> version of the GHI API is available online. It
+      returns <em>fake data</em> but strictly follows
+      <strong>GHI Data Model v1.0</strong>, which is ideal for quickly
+      testing integrations (dashboards, internal tools, institutional
+      pipelines) without running the Python engine.
+    </p>
 
-      <!-- 4. Local sandbox endpoints (reminder) -->
-      <h3>4. Local sandbox endpoints (reminder)</h3>
-      <p class="text-muted">
-        When running the Python engine locally (sandbox mode), the same
-        structures are exposed under the following endpoints:
-      </p>
-      <ul>
-        <li><code>GET /v1/ghi/snapshot</code> – global snapshot at time T.</li>
-        <li><code>GET /v1/ghi/history</code> – historical series for charts and backtesting.</li>
-        <li><code>GET /v1/ghi/regions</code> – list of all regions with costs and metadata.</li>
-        <li><code>GET /v1/ghi/regions/{region_id}</code> – detailed view for a single region.</li>
-        <li><code>GET /v1/ghi/stats</code> – global stats over the sandbox dataset.</li>
-      </ul>
+    <p><strong>Public base URL</strong></p>
+    <pre><code>https://globalhashcostindex.org/api</code></pre>
 
-      <div class="api-box-title">Request example</div>
-      <pre class="code-block"><code>GET /v1/ghi/snapshot HTTP/1.1
-Host: 127.0.0.1:8000</code></pre>
+    <h4>Available static endpoints</h4>
 
-      <!-- 5. Interactive docs & formal reference -->
-      <h3>5. Interactive docs & formal reference</h3>
-      <p>
-        When the sandbox engine is running locally, the interactive OpenAPI
-        documentation is available at:
-      </p>
-      <p><code>http://127.0.0.1:8000/docs</code></p>
+    <ul>
+      <li>
+        <code class="inline-code">GET /latest.json</code> – global GHI
+        snapshot (min / avg / max cost, difficulty, hashrate, etc.).
+        <br />
+        <span class="text-muted">
+          Full URL:
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/latest.json
+          </code>
+        </span>
+      </li>
 
-      <p class="text-muted">
-        The formal API reference for the sandbox is maintained in
-        <code>API_REFERENCE.md</code> inside the <code>GHI-public</code>
-        repository and is aligned with:
-      </p>
-      <ul>
-        <li><code>standard/GHI-Data-Model-v1.0.md</code></li>
-        <li><code>standard/GHI-Technical-Standard-v1.0.md</code></li>
-      </ul>
+      <li>
+        <code class="inline-code">GET /history.json</code> – sample time
+        series for charts and backtesting.
+        <br />
+        <span class="text-muted">
+          Full URL:
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/history.json
+          </code>
+        </span>
+      </li>
 
-      <p class="text-muted">
-        The production API (with the full engine and live data) will be
-        introduced in Phase 3 of the roadmap, after internal validation and
-        institutional review.
-      </p>
+      <li>
+        <code class="inline-code">GET /regions.json</code> – list of regions
+        (name, hashrate share, synthetic costs, metadata).
+        <br />
+        <span class="text-muted">
+          Full URL:
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/regions.json
+          </code>
+        </span>
+      </li>
+
+      <li>
+        <code class="inline-code">GET /openapi.json</code> – OpenAPI
+        description of the static sandbox.
+        <br />
+        <span class="text-muted">
+          Full URL:
+          <code class="inline-code">
+            https://globalhashcostindex.org/api/openapi.json
+          </code>
+        </span>
+      </li>
+    </ul>
+
+    <h3>3. Call examples</h3>
+
+    <h4>curl example</h4>
+    <div class="api-box-title">Request</div>
+    <pre class="code-block"><code>curl -s https://globalhashcostindex.org/api/latest.json</code></pre>
+
+    <h4>Python example</h4>
+    <div class="api-box-title">Minimal example using <code>requests</code></div>
+    <pre class="code-block"><code>import requests
+
+url = "https://globalhashcostindex.org/api/latest.json"
+resp = requests.get(url, timeout=10)
+resp.raise_for_status()
+data = resp.json()
+
+print("Model version:", data["version"])
+print("Average cost (USD/BTC):", data["ghi"]["avg_cost_btc"])
+</code></pre>
+
+    <h4>JavaScript (fetch) example</h4>
+    <div class="api-box-title">Front-end usage</div>
+    <pre class="code-block"><code>fetch("https://globalhashcostindex.org/api/latest.json")
+  .then(r =&gt; r.json())
+  .then(data =&gt; {
+    console.log("Timestamp:", data.timestamp);
+    console.log("GHI avg cost:", data.ghi.avg_cost_btc);
+  })
+  .catch(err =&gt; console.error("GHI API error:", err));</code></pre>
+
+    <p class="text-muted">
+      The response structure is aligned with the local endpoints
+      (<code class="inline-code">/v1/ghi/snapshot</code>,
+      <code class="inline-code">/v1/ghi/history</code>,
+      <code class="inline-code">/v1/ghi/regions</code>, etc.). Moving to
+      the production API will mainly consist in replacing fake data with
+      outputs from the real GHI engine.
+    </p>
+  </section>
+
 </main>
