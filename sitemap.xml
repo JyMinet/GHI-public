@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Racine -->
+  <url>
+    <loc>https://globalhashcostindex.org/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- Accueil -->
+  <url>
+    <loc>https://globalhashcostindex.org/index.html</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- Dashboard -->
+  <url>
+    <loc>https://globalhashcostindex.org/dashboard.html</loc>
+    <priority>0.9</priority>
+    <changefreq>hourly</changefreq>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://globalhashcostindex.org/about.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Changelog -->
+  <url>
+    <loc>https://globalhashcostindex.org/changelog.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Roadmap -->
+  <url>
+    <loc>https://globalhashcostindex.org/roadmap.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- GHI for Institutions -->
+  <url>
+    <loc>https://globalhashcostindex.org/ghi-for-institutions.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Governance -->
+  <url>
+    <loc>https://globalhashcostindex.org/governance.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Engine -->
+  <url>
+    <loc>https://globalhashcostindex.org/engine.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- API -->
+  <url>
+    <loc>https://globalhashcostindex.org/api.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Régions -->
+  <url>
+    <loc>https://globalhashcostindex.org/regions.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Méthodologie -->
+  <url>
+    <loc>https://globalhashcostindex.org/methodology.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+</urlset>

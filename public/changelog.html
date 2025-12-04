@@ -9,7 +9,63 @@
     content="Global HashCost Index – Indicateur ouvert du coût de production du Bitcoin."
   />
   <!-- Styles globaux du site -->
+  <!-- Referencement Institutionnel -->
   <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://globalhashcostindex.org/#organization",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/",
+  "description": "Le Global HashCost Index (GHI) est un standard ouvert visant à mesurer le coût de production du Bitcoin à l'échelle mondiale, à destination des institutions, chercheurs et acteurs de marché.",
+  "foundingDate": "2025",
+  "logo": "https://globalhashcostindex.org/PATH-VERS-VOTRE-LOGO.png",
+  "sameAs": [
+    "https://globalhashcostindex.org/",
+    "https://globalhashcostindex.org/api.html"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://globalhashcostindex.org/#dataset",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/dashboard.html",
+  "description": "Jeu de données agrégé décrivant une estimation du coût global de production du Bitcoin, région par région, à partir de modèles publics et transparents. Le GHI fournit un indicateur institutionnel pour analyser la relation entre prix du Bitcoin et coût de production.",
+  "creator": {
+    "@id": "https://globalhashcostindex.org/#organization"
+  },
+  "inLanguage": "fr",
+  "keywords": [
+    "Bitcoin",
+    "coût de production",
+    "minage",
+    "énergie",
+    "indice",
+    "standard ouvert"
+  ],
+  "measurementTechnique": "Modélisation des coûts de production du Bitcoin par région en fonction du mix machines, des tarifs d'électricité et des profils d'utilisation.",
+  "variableMeasured": [
+    "Coût moyen global de production du Bitcoin (USD/BTC)",
+    "Coût régional de production du Bitcoin (USD/BTC)",
+    "Relation prix / coût de production"
+  ],
+  "spatialCoverage": "Global",
+  "temporalCoverage": "2010-01-01/ongoing",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://globalhashcostindex.org/api.html",
+      "name": "Documentation API du Global HashCost Index (GHI)"
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <div class="page-shell">

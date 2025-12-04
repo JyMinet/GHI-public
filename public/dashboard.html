@@ -9,7 +9,63 @@
     content="Global HashCost Index – Indicateur ouvert du coût de production du Bitcoin."
   />
   <!-- Styles globaux du site -->
+  <!-- Referencement Institutionnel -->
   <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://globalhashcostindex.org/#organization",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/",
+  "description": "Le Global HashCost Index (GHI) est un standard ouvert visant à mesurer le coût de production du Bitcoin à l'échelle mondiale, à destination des institutions, chercheurs et acteurs de marché.",
+  "foundingDate": "2025",
+  "logo": "https://globalhashcostindex.org/PATH-VERS-VOTRE-LOGO.png",
+  "sameAs": [
+    "https://globalhashcostindex.org/",
+    "https://globalhashcostindex.org/api.html"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://globalhashcostindex.org/#dataset",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/dashboard.html",
+  "description": "Jeu de données agrégé décrivant une estimation du coût global de production du Bitcoin, région par région, à partir de modèles publics et transparents. Le GHI fournit un indicateur institutionnel pour analyser la relation entre prix du Bitcoin et coût de production.",
+  "creator": {
+    "@id": "https://globalhashcostindex.org/#organization"
+  },
+  "inLanguage": "fr",
+  "keywords": [
+    "Bitcoin",
+    "coût de production",
+    "minage",
+    "énergie",
+    "indice",
+    "standard ouvert"
+  ],
+  "measurementTechnique": "Modélisation des coûts de production du Bitcoin par région en fonction du mix machines, des tarifs d'électricité et des profils d'utilisation.",
+  "variableMeasured": [
+    "Coût moyen global de production du Bitcoin (USD/BTC)",
+    "Coût régional de production du Bitcoin (USD/BTC)",
+    "Relation prix / coût de production"
+  ],
+  "spatialCoverage": "Global",
+  "temporalCoverage": "2010-01-01/ongoing",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://globalhashcostindex.org/api.html",
+      "name": "Documentation API du Global HashCost Index (GHI)"
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <div class="page-shell">
@@ -45,7 +101,7 @@
       <a href="#fr-dashboard">FR</a> ·
       <a href="#en-dashboard">EN</a>
     </p>
- 
+  <section class="dashboard-card">
     <h1>Dashboard Global HashCost Index (pré-version) / Global HashCost Index Dashboard (pre-release)</h1>
     <p>
       Cette page présente une version statique du dashboard GHI. Les valeurs ci-dessous sont
@@ -165,6 +221,69 @@
       </div>
     </section>
 
+<section id="fr" class="page-section">
+  <h2>Relation prix / coût global de production (GHI)</h2>
+  <p>
+    Cet indicateur met en regard le <strong>prix observé du Bitcoin</strong> et une
+    <strong>estimation globale du coût moyen de production</strong>, calculée à partir
+    du modèle GHI (sandbox, fake data).
+  </p>
+
+  <div class="ghi-indicator-card">
+    <div class="ghi-indicator-header">
+      <h3 class="ghi-indicator-title">
+        Vue rapide – Prix vs coût de production
+      </h3>
+      <p class="ghi-indicator-meta">
+        <span class="meta-label">Mode :</span>
+        <span class="meta-value">Sandbox (fake data)</span>
+        <span class="meta-sep">•</span>
+        <span class="meta-label">Source :</span>
+        <span class="meta-value">/api/latest.json</span>
+      </p>
+    </div>
+
+    <p>
+      Les valeurs ci-dessous sont chargées en temps réel depuis l’API sandbox GHI.
+      Elles illustrent le niveau de prix du Bitcoin par rapport au coût moyen de
+      production estimé.
+    </p>
+
+    <div class="ghi-quick-indicator">
+      <div class="ghi-quick-metrics">
+        <div class="ghi-quick-metric">
+          <span class="label">Prix BTC (USD)</span>
+          <span class="value" id="ghi-price-btc">–</span>
+        </div>
+        <div class="ghi-quick-metric">
+          <span class="label">Coût moyen (USD/BTC)</span>
+          <span class="value" id="ghi-avg-cost-btc">–</span>
+        </div>
+        <div class="ghi-quick-metric">
+          <span class="label">Coût min / max (USD/BTC)</span>
+          <span class="value" id="ghi-min-max-cost-btc">–</span>
+        </div>
+      </div>
+
+      <div class="ghi-gauge-wrapper">
+        <div class="ghi-gauge-labels">
+          <span>Sous le coût</span>
+          <span>Autour du coût</span>
+          <span>Au-dessus du coût</span>
+        </div>
+        <div class="ghi-gauge-track">
+          <!-- position en % définie par JS via style="left: xx%" -->
+          <div class="ghi-gauge-marker" id="ghi-gauge-marker" style="left: 50%;"></div>
+        </div>
+      </div>
+
+      <p class="ghi-quick-note" id="ghi-quick-note">
+        Chargement des données sandbox…
+      </p>
+    </div>
+  </div>
+</section>
+
     <!-- ======================= SECTION EN ======================= -->
     <section id="en-dashboard" style="margin-top: 2rem;">
       <h2>Sandbox GHI Snapshot (API v1)</h2>
@@ -270,9 +389,73 @@
         Visual placeholder – future historical chart (global production cost).
       </div>
     </section>
+<section id="en" class="page-section">
+  <h2>Price vs Global Production Cost (GHI)</h2>
+  <p>
+    This indicator compares the <strong>observed Bitcoin price</strong> to a
+    <strong>global estimate of the average production cost</strong>, computed
+    from the GHI model (sandbox, fake data).
+  </p>
 
-  
+  <div class="ghi-indicator-card">
+    <div class="ghi-indicator-header">
+      <h3 class="ghi-indicator-title">
+        Quick view – Price vs production cost
+      </h3>
+      <p class="ghi-indicator-meta">
+        <span class="meta-label">Mode:</span>
+        <span class="meta-value">Sandbox (fake data)</span>
+        <span class="meta-sep">•</span>
+        <span class="meta-label">Source:</span>
+        <span class="meta-value">/api/latest.json</span>
+      </p>
+    </div>
 
+    <p>
+      The values below are loaded in real time from the GHI sandbox API.
+      They illustrate where the Bitcoin price stands relative to the estimated
+      average production cost.
+    </p>
+
+    <div class="ghi-quick-indicator">
+<div class="ghi-quick-metrics">
+  <div class="ghi-quick-metric">
+    <span class="label">BTC price (USD)</span>
+    <span class="value" id="ghi-price-btc-en">–</span>
+  </div>
+  <div class="ghi-quick-metric">
+    <span class="label">Avg cost (USD/BTC)</span>
+    <span class="value" id="ghi-avg-cost-btc-en">–</span>
+  </div>
+  <div class="ghi-quick-metric">
+    <span class="label">Min / max cost (USD/BTC)</span>
+    <span class="value" id="ghi-min-max-cost-btc-en">–</span>
+  </div>
+</div>
+
+<div class="ghi-gauge-wrapper">
+  <div class="ghi-gauge-labels">
+    <span>Below cost</span>
+    <span>Near cost</span>
+    <span>Above cost</span>
+  </div>
+  <div class="ghi-gauge-track">
+    <div
+      class="ghi-gauge-marker"
+      id="ghi-gauge-marker-en"
+      style="left: 50%;"
+    ></div>
+  </div>
+</div>
+
+<p class="ghi-quick-note" id="ghi-quick-note-en">
+  Loading sandbox data…
+</p>
+    </div>
+  </div>
+</section>
+
+<script src="dashboard.js?v=2"></script>
 </main>
 
     <footer>
