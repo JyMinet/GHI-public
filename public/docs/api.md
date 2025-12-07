@@ -1,222 +1,263 @@
-# API v1 — Global HashCost Index (GHI)
+API v1 — Global HashCost Index (GHI)
 
-> Version du document / Document version: **0.3.0-sandbox-core**
-
-Ce document décrit l’API **v1** exposée par le moteur GHI en mode **sandbox**.  
-Les données sont synthétiques et destinées uniquement à la démonstration.
-
-This document describes the **v1** API exposed by the GHI engine in **sandbox** mode.  
-Data are synthetic and for demonstration purposes only.
-
-Base URL (sandbox, example only)  
-`https://your-sandbox-domain.example.com`
-
----
-
-## 1. GET `/v1/ghi/snapshot`
-
-### 1.1. Description (FR)
-
-Retourne un **snapshot global** du coût de production du Bitcoin tel que calculé par le moteur GHI (mode sandbox, données factices).  
-La structure de réponse est stable, mais **les valeurs sont purement illustratives**.
-
-- Niveau global (réseau)  
-- Détails par région de minage  
-- Coûts min / moyen / max par BTC
-
-### 1.2. Description (EN)
-
-Returns a **global snapshot** of Bitcoin production costs as computed by the GHI engine (sandbox mode, fake data).  
-The response structure is stable, but **values are purely illustrative**.
-
-- Global network level  
-- Per-region mining details  
-- Min / average / max cost per BTC
-
----
-
-### 1.3. Méthode / Method
-
-- HTTP method: `GET`
-- Path: `/v1/ghi/snapshot`
-- Auth: none (sandbox demo)
-- Rate limiting: to be defined (production only)
-
----
-
-### 1.4. Réponse — Schéma JSON (FR)
-
-```jsonc
-{
-  "as_of": "2025-12-02T21:38:33+00:00",   // horodatage ISO 8601 (UTC)
-  "difficulty": 80000000000000.0,         // difficulté réseau
-  "block_reward_btc": 3.125,              // récompense par bloc (BTC)
-  "hashrate_total_th": 600000000.0,       // hashrate total (TH/s)
-  "network_hashrate_eh": 600.0,           // hashrate total (EH/s, dérivé)
-  "ghi": {
-    "min_cost_btc": 22000.0,              // coût minimum global (USD/BTC)
-    "avg_cost_btc": 25666.6667,           // coût moyen global (USD/BTC)
-    "max_cost_btc": 29000.0               // coût maximum global (USD/BTC)
-  },
-  "regions": [
-    {
-      "region_id": "north_america",       // identifiant de région interne
-      "avg_cost_usd_per_btc": 26000.0,    // coût moyen région (USD/BTC)
-      "min_cost_usd_per_btc": 24000.0,    // coût min région (USD/BTC)
-      "max_cost_usd_per_btc": 28000.0,    // coût max région (USD/BTC)
-
-      // Champs de diagnostic optionnels (sandbox)
-      "hashrate_pct": 0.35,               // part de hashrate (0–1)
-      "energy": {
-        "price_avg_usd_kwh": 0.06,        // prix moyen de l’énergie
-        "price_min_usd_kwh": 0.05,
-        "price_max_usd_kwh": 0.08
-      },
-      "hardware": {
-        "efficiency_avg_w_th": 25.0,
-        "efficiency_min_w_th": 20.0,
-        "efficiency_max_w_th": 30.0
-      }
-    }
-
-    // ... autres régions
-  ]
-}
-
-Notes importantes (FR) :
-	•	Les clés suivantes sont considérées comme partie du contrat public minimal :
-	•	as_of
-	•	difficulty
-	•	block_reward_btc
-	•	network_hashrate_eh
-	•	ghi.min_cost_btc, ghi.avg_cost_btc, ghi.max_cost_btc
-	•	regions[*].region_id
-	•	regions[*].avg_cost_usd_per_btc
-	•	regions[*].min_cost_usd_per_btc
-	•	regions[*].max_cost_usd_per_btc
-	•	Les autres champs (energy, hardware, etc.) sont optionnels et peuvent évoluer sans changement de version majeure tant que le contrat minimal est respecté.
+Documentation officielle – Version 1.0
 
 ⸻
 
-1.5. Response — JSON schema (EN)
+4.1 Overview / Présentation
 
-Minimal public contract (non-normative):
-{
-  "as_of": "string (ISO 8601, UTC)",
-  "difficulty": "number",
-  "block_reward_btc": "number",
-  "network_hashrate_eh": "number",
-  "ghi": {
-    "min_cost_btc": "number",
-    "avg_cost_btc": "number",
-    "max_cost_btc": "number"
-  },
-  "regions": [
-    {
-      "region_id": "string",
-      "avg_cost_usd_per_btc": "number",
-      "min_cost_usd_per_btc": "number",
-      "max_cost_usd_per_btc": "number"
-      // additional diagnostics fields allowed
-    }
-  ]
-}
+FR
 
-Guarantees:
-	•	All fields above are always present.
-	•	Additional fields may be added over time (backward compatible).
-	•	Units are stable: USD/BTC for costs, EH/s for network_hashrate_eh.
+L’API GHI v1.0 fournit un accès simple et stable aux données du coût de production du Bitcoin. Elle expose des endpoints minimaux, robustes, suite à une méthodologie publique et auditable.
+
+EN
+
+The GHI v1.0 API provides a simple and stable interface to Bitcoin production cost data. It exposes minimal and robust endpoints aligned with a fully transparent and auditable methodology.
 
 ⸻
 
-1.6. Exemple de réponse / Example response
-{
-  "as_of": "2025-12-02T21:38:33+00:00",
-  "difficulty": 80000000000000.0,
-  "block_reward_btc": 3.125,
-  "hashrate_total_th": 600000000.0,
-  "network_hashrate_eh": 600.0,
-  "ghi": {
-    "min_cost_btc": 22000.0,
-    "avg_cost_btc": 25666.6667,
-    "max_cost_btc": 29000.0
-  },
-  "regions": [
-    {
-      "region_id": "north_america",
-      "avg_cost_usd_per_btc": 26000.0,
-      "min_cost_usd_per_btc": 24000.0,
-      "max_cost_usd_per_btc": 28000.0,
-      "hashrate_pct": 0.35,
-      "energy": {
-        "price_avg_usd_kwh": 0.06,
-        "price_min_usd_kwh": 0.05,
-        "price_max_usd_kwh": 0.08
-      },
-      "hardware": {
-        "efficiency_avg_w_th": 25.0,
-        "efficiency_min_w_th": 20.0,
-        "efficiency_max_w_th": 30.0
-      }
-    }
-  ]
-}
+4.2 Base URL
 
-2. Endpoints prévus / Planned endpoints
+Production
+https://api.globalhashcostindex.org/v1/ghi
+Local Sandbox (engine demo)
+http://127.0.0.1:8000/v1/ghi
 
-Ces endpoints sont prévus dans la roadmap, mais non encore exposés dans le moteur sandbox actuel.
-They are planned for future releases, but not yet exposed in the current sandbox engine.
-	•	GET /v1/ghi/regions — list all regions with basic metadata.
-	•	GET /v1/ghi/regions/{id} — detailed view for a single region.
-	•	GET /v1/ghi/history — historical snapshots (paginated).
-	•	GET /v1/ghi/stats — derived statistics (spread, over/under production cost, etc.).
+4.3 Authentication / Authentification
 
-Les spécifications détaillées seront ajoutées lorsque ces endpoints seront stabilisés.
-Detailed specifications will be added once these endpoints are stabilized.
+FR
 
+Aucune clé API n’est requise en v1.0.
+Les futures versions pourront introduire des restrictions ou une authentification (API key / OAuth).
 
----
-## Quickstart – Sandbox API v1 (FR/EN)
+EN
 
-### Endpoint principal / Main endpoint
+No API key is required in v1.0.
+Future versions may introduce authentication (API key / OAuth).
 
-- Méthode / Method: `GET`
-- URL (sandbox locale) / URL (local sandbox): `http://127.0.0.1:8000/v1/ghi/snapshot`
-- Format: `application/json`
-
-### Exemple de requête (curl)
-
-```bash
-curl -s http://127.0.0.1:8000/v1/ghi/snapshot
-
-Exemple de réponse (tronquée)
-{
-  "as_of": "2025-12-02T21:38:33+00:00",
-  "network_hashrate_eh": 600.0,
-  "block_reward_btc": 3.125,
-  "difficulty": 80000000000000.0,
-  "ghi": {
-    "min_cost_btc": 22000.0,
-    "avg_cost_btc": 25666.67,
-    "max_cost_btc": 29000.0
-  },
-  "regions": [
-    {
-      "region_id": "north_america",
-      "hashrate_pct": 0.35,
-      "cost": {
-        "min_cost_btc": 24000.0,
-        "avg_cost_btc": 26000.0,
-        "max_cost_btc": 28000.0
-      }
-    }
-    // ...
-  ]
-}
-
-Notes
-	•	Cette API est sandbox : les données sont synthétiques et ne doivent pas être utilisées pour des décisions financières.
-	•	Le moteur réel (core privé) n’est pas exposé dans ce dépôt.
-	•	Pour un usage institutionnel ou une intégration avancée, merci de nous contacter.
 ⸻
 
+4.4 Endpoints Summary (Format compatible)
+
+1. /indicator
+	•	FR : Indicateur global min / avg / max
+	•	EN : Global indicator min / avg / max
+
+2. /snapshot
+	•	FR : Instantané complet (global + régions)
+	•	EN : Full snapshot (global + regions)
+
+3. /regions
+	•	FR : Liste des régions
+	•	EN : List of regions
+
+4. /region/{code}
+	•	FR : Coût min / avg / max d’une région
+	•	EN : Regional min / avg / max
+
+5. /meta
+	•	FR : Métadonnées
+	•	EN : Metadata
+
+6. /ping
+	•	FR : Vérification disponibilité
+	•	EN : Availability check
+
+⸻
+
+4.5 Endpoint: /indicator
+
+GET /indicator
+
+FR
+
+Renvoie le coût de production du Bitcoin à l’échelle mondiale sous forme min / avg / max.
+
+EN
+
+Returns global Bitcoin production cost (min / avg / max).
+
+Example
+{
+  "date": "2025-01-14",
+  "currency": "USD",
+  "cost_min": 17250.38,
+  "cost_avg": 20411.22,
+  "cost_max": 28140.55,
+  "version": "v1.0"
+}
+
+4.6 Endpoint: /snapshot
+
+GET /snapshot
+
+FR
+
+Renvoie un instantané complet du modèle incluant :
+	•	le coût global,
+	•	les données régionales,
+	•	les métadonnées.
+
+EN
+
+Returns a full model snapshot including:
+	•	global cost,
+	•	regional values,
+	•	metadata.
+
+Example
+{
+  "date": "2025-01-14",
+  "global": {
+    "min": 17250.38,
+    "avg": 20411.22,
+    "max": 28140.55
+  },
+  "regions": [
+    {
+      "code": "NA",
+      "name": "North America",
+      "min": 16210.44,
+      "avg": 19830.11,
+      "max": 27220.00
+    },
+    {
+      "code": "EU",
+      "name": "Europe",
+      "min": 18555.12,
+      "avg": 22990.41,
+      "max": 31020.93
+    }
+  ],
+  "version": "v1.0"
+}
+
+4.7 Endpoint: /regions
+
+GET /regions
+
+FR
+
+Renvoie la liste des régions supportées.
+
+EN
+
+Returns the list of supported regions.
+
+Example
+[
+  { "code": "NA", "name": "North America" },
+  { "code": "EU", "name": "Europe" },
+  { "code": "AS", "name": "Asia" },
+  { "code": "ME", "name": "Middle East" },
+  { "code": "AF", "name": "Africa" }
+]
+
+4.8 Endpoint: /region/{code}
+
+GET /region/{code}
+
+FR
+
+Renvoie les valeurs min/avg/max pour une région donnée.
+Renvoie une erreur 404 si le code est invalide.
+
+EN
+
+Returns min/avg/max values for a given region.
+Returns 404 error for invalid region codes.
+
+Example
+{
+  "code": "EU",
+  "name": "Europe",
+  "cost_min": 18555.12,
+  "cost_avg": 22990.41,
+  "cost_max": 31020.93,
+  "currency": "USD",
+  "version": "v1.0"
+}
+
+Error
+{
+  "error": "Region not found",
+  "code": "INVALID_REGION",
+  "status": 404
+}
+
+4.9 Endpoint: /meta
+
+GET /meta
+
+FR
+
+Renvoie les informations techniques de la version courante.
+
+EN
+
+Returns technical metadata for the current version.
+
+Example
+{
+  "version": "v1.0",
+  "model_date": "2025-01-14",
+  "engine": "GHI-Engine 1.0",
+  "status": "stable",
+  "documentation": "https://globalhashcostindex.org/docs/api"
+}
+
+4.10 Endpoint: /ping
+
+GET /ping
+
+FR
+
+Permet de vérifier la disponibilité de l’API.
+
+EN
+
+Used to check API availability.
+
+Example
+{ "status": "ok" }
+
+4.11 Error Handling (Format compatible)
+
+400 — Bad Request
+	•	FR : Requête invalide
+	•	EN : Invalid request
+
+404 — Not Found
+	•	FR : Ressource inconnue
+	•	EN : Resource not found
+
+429 — Too Many Requests
+	•	FR : Trop de requêtes
+	•	EN : Too many requests
+
+500 — Internal Server Error
+	•	FR : Erreur interne
+	•	EN : Internal server error
+
+⸻
+
+4.12 Versioning
+	•	v1.0 : structure stable
+	•	v1.1 : ajout de champs, rétrocompatible
+	•	v2.0 : changements structurels du JSON
+
+⸻
+
+4.13 Rate Limits
+
+FR
+
+Pas de limites strictes en v1.0. Possibilité de restrictions en v1.1.
+
+EN
+
+No strict limits in v1.0. Future versions may introduce rate limiting.
+
+⸻
+
+Fin du fichier api.md officiel (v1.0)
