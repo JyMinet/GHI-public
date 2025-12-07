@@ -970,3 +970,23 @@ table.snapshot-table tbody tr:last-child td {
     flex-direction: column;
   }
 }
+
+.footer-social {
+  margin-top: 40px;
+  padding: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  background: #0f172a; /* le bleu nuit de ton site */
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-social .social-icon svg {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0.85;
+}
+
+.footer-social .social-icon:hover svg {
+  opacity: 1;
+  transform: scale(1.06);
+}

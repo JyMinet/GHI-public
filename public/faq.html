@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global HashCost Index – Titre de la page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Global HashCost Index – Indicateur ouvert du coût de production du Bitcoin."
+  />
+  <!-- Styles globaux du site -->
+  <!-- Referencement Institutionnel -->
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://globalhashcostindex.org/#organization",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/",
+  "description": "Le Global HashCost Index (GHI) est un standard ouvert visant à mesurer le coût de production du Bitcoin à l'échelle mondiale, à destination des institutions, chercheurs et acteurs de marché.",
+  "foundingDate": "2025",
+  "logo": "https://globalhashcostindex.org/PATH-VERS-VOTRE-LOGO.png",
+  "sameAs": [
+    "https://globalhashcostindex.org/",
+    "https://globalhashcostindex.org/api.html"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://globalhashcostindex.org/#dataset",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/dashboard.html",
+  "description": "Jeu de données agrégé décrivant une estimation du coût global de production du Bitcoin, région par région, à partir de modèles publics et transparents. Le GHI fournit un indicateur institutionnel pour analyser la relation entre prix du Bitcoin et coût de production.",
+  "creator": {
+    "@id": "https://globalhashcostindex.org/#organization"
+  },
+  "inLanguage": "fr",
+  "keywords": [
+    "Bitcoin",
+    "coût de production",
+    "minage",
+    "énergie",
+    "indice",
+    "standard ouvert"
+  ],
+  "measurementTechnique": "Modélisation des coûts de production du Bitcoin par région en fonction du mix machines, des tarifs d'électricité et des profils d'utilisation.",
+  "variableMeasured": [
+    "Coût moyen global de production du Bitcoin (USD/BTC)",
+    "Coût régional de production du Bitcoin (USD/BTC)",
+    "Relation prix / coût de production"
+  ],
+  "spatialCoverage": "Global",
+  "temporalCoverage": "2010-01-01/ongoing",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://globalhashcostindex.org/api.html",
+      "name": "Documentation API du Global HashCost Index (GHI)"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p>Open indicator of Bitcoin’s production cost.</p>
+        <p class="text-muted">Version : GHI Standard v1.0</p>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="methodology.html">Méthodologie</a></li>
+          <li><a href="regions.html">Régions</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="engine.html">Moteur</a></li>
+          <li><a href="governance.html">Gouvernance</a></li>
+          <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="legal.html">Mentions légales</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Contenu spécifique à chaque page -->
+    <section class="page faq-page">
+  <header class="page-header">
+    <h1>FAQ – Global HashCost Index (GHI)</h1>
+    <p class="page-subtitle">
+      Questions fréquentes sur le standard GHI, sa méthodologie et ses usages.
+    </p>
+    <p class="page-subtitle" style="font-size:0.85rem; opacity:0.9;">
+      Bilingue FR / EN – French / English
+    </p>
+  </header>
+
+  <section class="faq-intro">
+    <p>
+      Le <strong>Global HashCost Index (GHI)</strong> est un standard ouvert visant à mesurer le
+      coût de production du Bitcoin à l’échelle mondiale. Cette FAQ résume les principales
+      questions qui reviennent chez les chercheurs, institutions, régulateurs et utilisateurs.
+    </p>
+    <p>
+      The <strong>Global HashCost Index (GHI)</strong> is an open standard designed to measure
+      the global cost of Bitcoin production. This FAQ summarizes the main questions raised by
+      researchers, institutions, regulators, and users.
+    </p>
+  </section>
+
+  <section class="faq-layout">
+    <div class="faq-columns">
+      <!-- Colonne FR -->
+      <div class="faq-column">
+        <h2>Français</h2>
+
+        <details class="faq-item" open>
+          <summary>1. Qu’est-ce que le GHI&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Le <strong>GHI (Global HashCost Index)</strong> est un standard ouvert qui estime
+              le <strong>coût de production du Bitcoin</strong> à l’échelle mondiale, en
+              combinant plusieurs sources de données&nbsp;: prix de l’électricité, performances
+              des ASICs, efficacité énergétique, hypothèses régionales, etc.
+            </p>
+            <p>
+              Le GHI ne cherche pas à prédire le prix du marché mais à fournir une
+              <strong>référence transparente et audit-able</strong> sur le coût de minage.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>2. Que mesure exactement le GHI&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Le GHI fournit une estimation du <strong>coût unitaire de production d’un bitcoin</strong>,
+              déclinée en trois niveaux&nbsp;:
+            </p>
+            <ul>
+              <li><strong>GHI-min</strong> : scénario le plus efficient (tarifs bas, machines récentes).</li>
+              <li><strong>GHI-avg</strong> : scénario moyen, représentatif du mix global estimé.</li>
+              <li><strong>GHI-max</strong> : scénario le moins efficient (tarifs élevés, machines plus anciennes).</li>
+            </ul>
+            <p>
+              Ces valeurs sont exprimées en <strong>coût par BTC</strong> et peuvent être dérivées
+              en <strong>coût par TH/s/jour</strong> ou autres unités selon les besoins.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>3. Le GHI est-il un conseil d’investissement&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Non. Le GHI n’est <strong>pas</strong> un conseil en investissement et ne doit pas
+              être interprété comme un signal d’achat ou de vente.
+            </p>
+            <p>
+              Il s’agit d’un <strong>indicateur de coût de production</strong> destiné à la
+              recherche, à l’analyse macroéconomique, à la gestion des risques, à la
+              régulation et à la transparence des marchés.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>4. Quelles sont les sources de données utilisées&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Le GHI combine plusieurs familles de données, documentées dans la
+              méthodologie officielle&nbsp;:
+            </p>
+            <ul>
+              <li>Profils de <strong>prix de l’électricité</strong> par pays/région.</li>
+              <li><strong>Caractéristiques techniques</strong> des ASICs (hashrate, consommation, génération).</li>
+              <li>Hypothèses de <strong>mix de machines</strong> par région.</li>
+              <li>Hypothèses d’<strong>horaires de fonctionnement</strong> (profil de charge, curtailment, etc.).</li>
+              <li>Paramètres réseau Bitcoin (difficulté, hashrate global, récompenses).</li>
+            </ul>
+            <p>
+              Chaque source et hypothèse est détaillée dans le document
+              <a href="docs/methodology.html">Méthodologie &amp; Transparence</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>5. Comment le GHI gère-t-il les différences régionales&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Le modèle GHI segmente le monde en <strong>régions de minage</strong> (pays ou
+              blocs régionaux) et, pour chacune, définit&nbsp;:
+            </p>
+            <ul>
+              <li>Un <strong>profil de prix de l’électricité</strong> (moyenne, structure horaire).</li>
+              <li>Un <strong>mix d’ASICs</strong> (parts relatives de chaque génération).</li>
+              <li>Des <strong>hypothèses de fonctionnement</strong> (taux de charge, optimisation de coûts).</li>
+            </ul>
+            <p>
+              Le <strong>GHI global</strong> est ensuite agrégé en pondérant chaque région
+              selon des hypothèses de part de hashrate.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>6. À quelle fréquence le GHI est-il mis à jour&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              L’objectif cible est une <strong>mise à jour quotidienne</strong> de l’indicateur,
+              basée sur les dernières données disponibles (réseau, prix de l’énergie, etc.).
+            </p>
+            <p>
+              Selon les versions du modèle et la disponibilité des données, certaines
+              composantes peuvent être <strong>mises à jour moins fréquemment</strong> (par
+              exemple, le mix de machines ou certains tarifs régulés).
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>7. Le modèle GHI est-il open source&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Le projet GHI est conçu comme un <strong>standard ouvert</strong>. Cela implique&nbsp;:
+            </p>
+            <ul>
+              <li>Une <strong>méthodologie publique</strong> et détaillée.</li>
+              <li>Un <strong>schéma d’API</strong> documenté.</li>
+              <li>Des <strong>implémentations de référence</strong> publiées progressivement.</li>
+            </ul>
+            <p>
+              Certains composants (par exemple des pipelines de données ou du code
+              d’agrégation spécifique) peuvent être publiés ultérieurement ou sous des
+              licences distinctes, selon la roadmap.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>8. Puis-je utiliser le GHI dans mes rapports ou produits&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Oui, sous réserve de respecter la <strong>licence</strong> du projet et les
+              conditions d’utilisation de l’API.
+            </p>
+            <p>
+              En règle générale, nous demandons au minimum&nbsp;:
+            </p>
+            <ul>
+              <li>Une <strong>attribution claire</strong> au “Global HashCost Index (GHI)”.</li>
+              <li>Le respect de toute <strong>limitation d’usage commercial</strong> précisée dans la licence.</li>
+            </ul>
+            <p>
+              Les détails figurent dans la section <a href="docs/license.html">Licence &amp; Usage</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>9. Le GHI fournit-il une API publique&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              La roadmap prévoit une <strong>API REST</strong> avec plusieurs endpoints, par exemple&nbsp;:
+            </p>
+            <ul>
+              <li><code>/v1/ghi/snapshot</code> : dernier snapshot global (min / avg / max).</li>
+              <li><code>/v1/ghi/timeseries</code> : séries temporelles historiques.</li>
+              <li><code>/v1/ghi/regions</code> : détails régionaux (sous réserve).</li>
+            </ul>
+            <p>
+              Les endpoints exacts, schémas de réponse et politiques d’accès sont décrits
+              dans la <a href="docs/api.html">documentation API</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>10. Quelles sont les limites connues du GHI&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Comme tout modèle, le GHI repose sur des <strong>hypothèses</strong> et des
+              <strong>données imparfaites</strong>. Les principales limites incluent&nbsp;:
+            </p>
+            <ul>
+              <li>Une incertitude sur le <strong>mix réel de machines</strong> par région.</li>
+              <li>Des approximations sur certains <strong>tarifs énergétiques</strong> ou profils horaires.</li>
+              <li>La difficulté à capturer des stratégies complexes d’optimisation du minage.</li>
+            </ul>
+            <p>
+              Ces limites sont explicitement documentées dans la méthodologie pour
+              permettre un usage éclairé de l’indicateur.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>11. Comment puis-je contribuer au projet&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Vous pouvez contribuer de plusieurs façons&nbsp;:
+            </p>
+            <ul>
+              <li>En proposant des <strong>améliorations méthodologiques</strong>.</li>
+              <li>En suggérant des <strong>sources de données</strong> plus complètes ou plus fiables.</li>
+              <li>En ouvrant des <strong>issues</strong> ou des <strong>pull requests</strong> sur le dépôt public.</li>
+            </ul>
+            <p>
+              Les modalités de contribution sont décrites sur la page
+              <a href="docs/governance.html">Gouvernance &amp; Contributions</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>12. Comment contacter l’équipe GHI&nbsp;?</summary>
+          <div class="faq-body">
+            <p>
+              Pour toute question supplémentaire ou besoin institutionnel spécifique,
+              vous pouvez nous contacter à l’adresse&nbsp;:
+              <a href="mailto:ghi.tables185@simplelogin.com">ghi.tables185@simplelogin.com</a>
+              (adresse indicative, à adapter).
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Column EN -->
+      <div class="faq-column">
+        <h2>English</h2>
+
+        <details class="faq-item" open>
+          <summary>1. What is the GHI?</summary>
+          <div class="faq-body">
+            <p>
+              The <strong>GHI (Global HashCost Index)</strong> is an open standard that estimates
+              the <strong>cost of producing Bitcoin</strong> at a global scale by combining multiple
+              data sources: electricity prices, ASIC performance, energy efficiency, regional
+              assumptions, and more.
+            </p>
+            <p>
+              GHI does not try to predict market price; it provides a
+              <strong>transparent and auditable reference</strong> for mining costs.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>2. What exactly does GHI measure?</summary>
+          <div class="faq-body">
+            <p>
+              GHI provides an estimate of the <strong>unit cost to produce one bitcoin</strong>,
+              broken down into three levels:
+            </p>
+            <ul>
+              <li><strong>GHI-min</strong>: most efficient scenario (low tariffs, latest-generation hardware).</li>
+              <li><strong>GHI-avg</strong>: average scenario, representative of the estimated global mix.</li>
+              <li><strong>GHI-max</strong>: least efficient scenario (high tariffs, older machines).</li>
+            </ul>
+            <p>
+              Values are expressed as <strong>cost per BTC</strong> and can be converted to
+              <strong>cost per TH/s/day</strong> or other units if needed.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>3. Is GHI an investment recommendation?</summary>
+          <div class="faq-body">
+            <p>
+              No. GHI is <strong>not</strong> an investment recommendation and must not be
+              interpreted as a buy/sell signal.
+            </p>
+            <p>
+              It is a <strong>production cost indicator</strong> designed for research,
+              macroeconomic analysis, risk management, regulation, and market transparency.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>4. Which data sources are used?</summary>
+          <div class="faq-body">
+            <p>
+              GHI combines several families of data, fully documented in the official
+              methodology:
+            </p>
+            <ul>
+              <li><strong>Electricity price profiles</strong> by country/region.</li>
+              <li><strong>ASIC technical specs</strong> (hashrate, power draw, generation).</li>
+              <li><strong>Regional machine mix</strong> assumptions.</li>
+              <li><strong>Operating hour profiles</strong> (load profile, curtailment, etc.).</li>
+              <li>Bitcoin network parameters (difficulty, global hashrate, rewards).</li>
+            </ul>
+            <p>
+              Each source and assumption is detailed in the
+              <a href="docs/methodology.html">Methodology &amp; Transparency</a> document.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>5. How does GHI handle regional differences?</summary>
+          <div class="faq-body">
+            <p>
+              The GHI model splits the world into <strong>mining regions</strong> (countries or
+              regional blocks) and, for each of them, defines:
+            </p>
+            <ul>
+              <li>A <strong>power price profile</strong> (average level, hourly structure).</li>
+              <li>A <strong>mix of ASICs</strong> (relative share of each generation).</li>
+              <li><strong>Operating assumptions</strong> (load factor, cost-optimization strategies).</li>
+            </ul>
+            <p>
+              The <strong>global GHI</strong> is then aggregated by weighting each region based
+              on estimated hashrate shares.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>6. How often is GHI updated?</summary>
+          <div class="faq-body">
+            <p>
+              The target is a <strong>daily update</strong> of the indicator, based on the
+              latest available data (network, energy, etc.).
+            </p>
+            <p>
+              Depending on model versions and data availability, some components may be
+              updated <strong>less frequently</strong> (for example, machine mix or regulated tariffs).
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>7. Is the GHI model open source?</summary>
+          <div class="faq-body">
+            <p>
+              GHI is designed as an <strong>open standard</strong>. This implies:
+            </p>
+            <ul>
+              <li>A public and detailed <strong>methodology</strong>.</li>
+              <li>A documented <strong>API schema</strong>.</li>
+              <li><strong>Reference implementations</strong> published progressively.</li>
+            </ul>
+            <p>
+              Some components (data pipelines, specific aggregation logic, etc.) may be
+              released later or under separate licenses, according to the roadmap.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>8. Can I use GHI in my reports or products?</summary>
+          <div class="faq-body">
+            <p>
+              Yes, as long as you comply with the project <strong>license</strong> and API
+              terms of use.
+            </p>
+            <p>
+              As a general rule, we expect at least:
+            </p>
+            <ul>
+              <li>Clear <strong>attribution</strong> to “Global HashCost Index (GHI)”.</li>
+              <li>Compliance with any <strong>commercial-use limitations</strong> stated in the license.</li>
+            </ul>
+            <p>
+              Details are provided in the <a href="docs/license.html">License &amp; Usage</a> section.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>9. Does GHI provide a public API?</summary>
+          <div class="faq-body">
+            <p>
+              The roadmap includes a <strong>REST API</strong> with several endpoints, such as:
+            </p>
+            <ul>
+              <li><code>/v1/ghi/snapshot</code>: latest global snapshot (min / avg / max).</li>
+              <li><code>/v1/ghi/timeseries</code>: historical time series.</li>
+              <li><code>/v1/ghi/regions</code>: regional breakdowns (subject to availability).</li>
+            </ul>
+            <p>
+              The exact endpoints, response schemas, and access policies are detailed in the
+              <a href="docs/api.html">API documentation</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>10. What are the known limitations of GHI?</summary>
+          <div class="faq-body">
+            <p>
+              As with any model, GHI relies on <strong>assumptions</strong> and
+              <strong>imperfect data</strong>. Key limitations include:
+            </p>
+            <ul>
+              <li>Uncertainty regarding the <strong>actual machine mix</strong> by region.</li>
+              <li>Approximations on some <strong>power tariffs</strong> or hourly profiles.</li>
+              <li>The difficulty of capturing complex mining optimization strategies.</li>
+            </ul>
+            <p>
+              These limits are explicitly documented in the methodology so that users can
+              apply the indicator in an informed way.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>11. How can I contribute to the project?</summary>
+          <div class="faq-body">
+            <p>
+              You can contribute in several ways:
+            </p>
+            <ul>
+              <li>By proposing <strong>methodological improvements</strong>.</li>
+              <li>By suggesting <strong>better or broader data sources</strong>.</li>
+              <li>By opening <strong>issues</strong> or <strong>pull requests</strong> on the public repository.</li>
+            </ul>
+            <p>
+              Contribution guidelines are available on the
+              <a href="docs/governance.html">Governance &amp; Contributions</a> page.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>12. How can I contact the GHI team?</summary>
+          <div class="faq-body">
+            <p>
+              For any additional questions or specific institutional needs, you can contact us at:
+              <a href="mailto:ghi.tables185@simplelogin.com">ghi.tables185@simplelogin.com</a>
+              (placeholder address, to be adapted).
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</section>
+
+    <footer>
+      <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+      <p>
+        © 2025 GHI – Global HashCost Index.
+        Contenu publié sous licence
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
+          CC BY-NC-SA 4.0
+        </a>.
+      </p>
+    </footer>
+  </div>
+  <footer class="footer-social">
+  <a href="https://github.com/ghi-standard" target="_blank" class="social-icon" aria-label="GitHub">
+    <!-- Logo GitHub -->
+    <svg viewBox="0 0 16 16" width="28" height="28" fill="#ffffff">
+      <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 
+      5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.91-.89-1.15-.89-1.15-.73-.5.06-.49.06-.49.81.06 
+      1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 
+      0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 
+      2.2.82a7.53 7.53 0 0 1 4 0c1.53-1.03 2.2-.82 
+      2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 
+      2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 
+      .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.linkedin.com/company/global-hashcost-index-ghi/" target="_blank" class="social-icon" aria-label="LinkedIn">
+    <!-- Logo LinkedIn -->
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="#ffffff">
+      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 
+      3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 
+      8.99h4.56V24H.22V8.99zM8.62 8.99h4.37v2.05h.06c.61-1.15 
+      2.1-2.37 4.33-2.37C22.75 8.67 24 11.3 24 
+      15.27V24h-4.53v-8.01c0-1.91-.03-4.37-2.66-4.37-2.66 
+      0-3.07 2.08-3.07 4.23V24H9.21V8.99h-.59z"/>
+    </svg>
+  </a>
+</footer>
+</body>
+</html>
