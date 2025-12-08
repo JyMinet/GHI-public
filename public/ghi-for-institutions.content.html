@@ -5,95 +5,193 @@
     <a href="#en-inst">EN</a>
   </div>
 
-  <!-- FR -->
+  <!-- ================= FR ================= -->
   <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version courte FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Télécharger le dossier institutionnel (PDF – version courte)
-    </a>
-    <!-- English -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Download the institutional brief (PDF – short version)
-    </a>
-  </div>
-
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version longue FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Télécharger le dossier institutionnel – Version longue (PDF)
-    </a>
-    <!-- English -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Download institutional dossier – Full version (PDF)
-    </a>
-  </div>
-
+    <h2>GHI pour les institutions – v1.0</h2>
     <p>
-      Le Global HashCost Index fournit un indicateur neutre, transparent et reproductible
-      du coût de production du Bitcoin, utilisable dans des cadres professionnels
-      et réglementaires.
+      Le Global HashCost Index (GHI) est un standard ouvert qui mesure le coût de production
+      du Bitcoin à l’échelle mondiale. Il est conçu dès l’origine pour les besoins des
+      institutions financières, régulateurs, banques centrales, entreprises cotées
+      et cabinets d’audit.
     </p>
 
-    <h3>Cas d’usage</h3>
+    <h3>1. À quoi sert le GHI&nbsp;?</h3>
     <ul>
-      <li>Analyse macro-économique du réseau Bitcoin.</li>
-      <li>Due diligence pour fonds, banques et émetteurs.</li>
-      <li>Suivi du ratio prix / coût de production.</li>
-      <li>Support quantitatif pour les régulateurs.</li>
+      <li>Fournir une référence indépendante du <strong>coût de production du Bitcoin</strong> (min / moyen / max).</li>
+      <li>Permettre la <strong>comparabilité</strong> entre régions, périodes et scénarios de prix de l’énergie.</li>
+      <li>Offrir un <strong>indicateur de risque</strong> complémentaire aux données de marché (prix, volatilité, volumes).</li>
+      <li>Servir de base à la <strong>supervision prudentielle</strong>, aux tests de sensibilité et aux analyses de stress.</li>
     </ul>
 
-    <h3>Intégration</h3>
+    <h3>2. Cas d’usage institutionnels</h3>
+    <ul>
+      <li>
+        <strong>Banques centrales &amp; régulateurs</strong>  
+        <br />— suivi de la soutenabilité économique du mining,  
+        <br />— scénarios macro-énergétiques,  
+        <br />— support à l’analyse de stabilité financière.
+      </li>
+      <li>
+        <strong>Gestionnaires d’actifs &amp; fonds</strong>  
+        <br />— mesure du risque de « capitulation des mineurs »,  
+        <br />— intégration du coût de production dans les modèles de valorisation,  
+        <br />— due diligence sur les produits exposés au Bitcoin.
+      </li>
+      <li>
+        <strong>Entreprises cotées &amp; miners</strong>  
+        <br />— benchmark de leur structure de coûts vs. GHI global / régional,  
+        <br />— support aux disclosures ESG et rapports annuels.
+      </li>
+      <li>
+        <strong>Cabinets d’audit, rating &amp; conseil</strong>  
+        <br />— base neutre pour l’analyse de modèles économiques,  
+        <br />— documentation standardisée pour les comités de risque.</li>
+    </ul>
+
+    <h3>3. Ce que fournit concrètement GHI</h3>
+    <ul>
+      <li><strong>API publique v1.0</strong> – indicateur quotidien et snapshot global structuré  
+        (<a href="api.html">documentation API</a>, <a href="api-quickstart.html">Quickstart</a>).</li>
+      <li><strong>Découpage régional</strong> – profils synthétiques (Amérique du Nord, Europe, Asie hors Chine, …).</li>
+      <li><strong>Méthodologie v1.0.0</strong> – description du modèle économique et des hypothèses  
+        (<a href="methodology.html">page Méthodologie</a>).</li>
+      <li><strong>Transparence &amp; gouvernance</strong> – description du processus de versioning et des limites  
+        (<a href="transparency.html">Transparence</a>, <a href="governance.html">Gouvernance</a>).</li>
+      <li><strong>Notes techniques (Technical Notes v1.1)</strong> – analyses ciblées coût vs prix, énergie, halving  
+        (liens disponibles sur la page <a href="governance.html">Gouvernance</a>).</li>
+    </ul>
+
+    <h3>4. Moteur public vs. moteur privé</h3>
     <p>
-      L’API GHI v1.0 est accessible via HTTP(S), renvoie du JSON simple et peut être
-      intégrée dans des systèmes de risk, de pricing ou de reporting.
+      Le dépôt public <code>ghi-engine</code> expose un <strong>moteur Sandbox</strong> (version
+      <code>v0.4.0-sandbox</code>) qui fournit des données factices mais stables, permettant
+      de tester l’API et d’intégrer le standard sans divulguer les hypothèses internes.
+    </p>
+    <p>
+      L’implémentation complète du moteur (données réelles, calibrations, scripts d’ingestion)
+      est maintenue dans un dépôt privé, avec des procédures d’accès spécifiques pour les
+      autorités et institutions sous NDA.
+    </p>
+    <p>
+      Documentation technique&nbsp;:  
+      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
+        ENGINE_DESIGN.md
+      </a> ·
+      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
+        VERSIONS.md
+      </a>
     </p>
 
-    <ul>
-      <li><a href="api.html">Documentation API (résumé)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">API complète (docs/api.md)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">Méthodologie publique v1.0</a></li>
-    </ul>
+    <h3>5. Comment démarrer&nbsp;?</h3>
+    <ol>
+      <li>Consulter la <a href="methodology.html">Méthodologie v1.0.0</a> et la page <a href="transparency.html">Transparence</a>.</li>
+      <li>Tester l’API via le <a href="api-quickstart.html">Quickstart API GHI v1.0</a> (exemples <code>curl</code> et Python).</li>
+      <li>Intégrer le snapshot GHI dans vos tableaux de bord internes (risk, research, ESG).</li>
+      <li>Le cas échéant, ouvrir une <strong>issue GitHub</strong> ou une Pull Request pour proposer
+          des améliorations ou poser des questions techniques.</li>
+    </ol>
 
-    <h3>Technical Notes (v1.1)</h3>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Coût de production vs prix du Bitcoin</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Sensibilité au prix de l’énergie</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Impact du halving sur le coût de production</a></li>
-</ul>
-
+    <h3>6. Accès institutionnel &amp; audit</h3>
+    <p>
+      Les institutions intéressées par un accès approfondi (audits, scénarios spécifiques,
+      accès encadré au moteur privé) peuvent prendre contact via les canaux officiels indiqués
+      dans la documentation GitHub. Des procédures dédiées (NDA, environnement sécurisé,
+      replays historiques) sont prévues pour les autorités de supervision et partenaires
+      stratégiques.
+    </p>
   </section>
 
-  <!-- EN -->
+  <!-- ================= EN ================= -->
   <section id="en-inst">
-    <h2>GHI for Institutions</h2>
+    <h2>GHI for Institutions – v1.0</h2>
     <p>
-      The Global HashCost Index provides a neutral, transparent and reproducible
-      indicator of Bitcoin production costs, suitable for professional and
-      regulatory use.
+      The Global HashCost Index (GHI) is an open standard measuring Bitcoin production cost
+      at global scale. It is designed from day one for central banks, supervisors, regulated
+      financial institutions, listed companies and audit firms.
     </p>
 
-    <h3>Use cases</h3>
+    <h3>1. What is GHI used for?</h3>
     <ul>
-      <li>Macro-economic analysis of the Bitcoin network.</li>
-      <li>Institutional due diligence (funds, banks, issuers).</li>
-      <li>Monitoring price-to-production-cost ratios.</li>
-      <li>Quantitative input for regulators.</li>
+      <li>Providing an independent reference for the <strong>cost of producing Bitcoin</strong> (min / avg / max).</li>
+      <li>Enabling <strong>comparability</strong> across regions, time periods and energy price scenarios.</li>
+      <li>Offering an additional <strong>risk indicator</strong> alongside market data (price, volatility, volumes).</li>
+      <li>Supporting <strong>prudential supervision</strong>, sensitivity analysis and stress-testing frameworks.</li>
     </ul>
 
-<h2>Technical Notes (v1.1)</h2>
-<p>Documents techniques destinés aux institutions, régulateurs et analystes :</p>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Cost vs Price</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Energy Price Sensitivity</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Halving Impact</a></li>
-</ul>
+    <h3>2. Institutional use cases</h3>
+    <ul>
+      <li>
+        <strong>Central banks &amp; supervisors</strong>  
+        <br />— monitoring the economic sustainability of mining,  
+        <br />— macro-energy scenarios,  
+        <br />— support to financial stability assessments.
+      </li>
+      <li>
+        <strong>Asset managers &amp; funds</strong>  
+        <br />— measuring “miner capitulation” risk,  
+        <br />— integrating production cost into valuation models,  
+        <br />— due diligence on Bitcoin-exposed products.
+      </li>
+      <li>
+        <strong>Listed companies &amp; miners</strong>  
+        <br />— benchmarking their cost structure against global / regional GHI,  
+        <br />— supporting ESG and annual report disclosures.
+      </li>
+      <li>
+        <strong>Audit, rating &amp; advisory firms</strong>  
+        <br />— neutral reference for business model assessment,  
+        <br />— standardized documentation for risk committees.
+      </li>
+    </ul>
 
+    <h3>3. What GHI provides</h3>
+    <ul>
+      <li><strong>Public API v1.0</strong> – daily indicator and structured global snapshot  
+        (<a href="api.html">API documentation</a>, <a href="api-quickstart.html">Quickstart</a>).</li>
+      <li><strong>Regional breakdown</strong> – synthetic profiles (North America, Europe, Asia ex-China, …).</li>
+      <li><strong>Methodology v1.0.0</strong> – economic model and assumptions  
+        (<a href="methodology.html">Methodology page</a>).</li>
+      <li><strong>Transparency &amp; governance</strong> – versioning, change log, limitations  
+        (<a href="transparency.html">Transparency</a>, <a href="governance.html">Governance</a>).</li>
+      <li><strong>Technical Notes v1.1</strong> – focused studies (cost vs. price, energy sensitivity, halving impact)  
+        (links available on the <a href="governance.html">Governance</a> page).</li>
+    </ul>
+
+    <h3>4. Public vs. private engine</h3>
+    <p>
+      The public <code>ghi-engine</code> repository exposes a <strong>Sandbox engine</strong>
+      (<code>v0.4.0-sandbox</code>) returning fake but stable data, allowing institutions to
+      integrate the standard and test the API without disclosing internal assumptions.
+    </p>
+    <p>
+      The full engine implementation (real data, calibration parameters, ingestion pipelines)
+      is maintained in a private repository, with controlled access procedures for authorities
+      and institutional partners under NDA.
+    </p>
+    <p>
+      Technical documentation:  
+      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
+        ENGINE_DESIGN.md
+      </a> ·
+      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
+        VERSIONS.md
+      </a>
+    </p>
+
+    <h3>5. How to get started?</h3>
+    <ol>
+      <li>Review the <a href="methodology.html">Methodology v1.0.0</a> and <a href="transparency.html">Transparency</a> pages.</li>
+      <li>Test the API using the <a href="api-quickstart.html">GHI API v1.0 Quickstart</a> (curl and Python examples).</li>
+      <li>Integrate the GHI snapshot into your internal risk, research or ESG dashboards.</li>
+      <li>Open a <strong>GitHub issue</strong> or Pull Request for questions or contributions.</li>
+    </ol>
+
+    <h3>6. Institutional &amp; audit access</h3>
+    <p>
+      Institutions interested in deeper access (audits, specific scenarios, controlled access
+      to the private engine) can reach out through the official GitHub channels. Dedicated
+      procedures (NDA, secure environment, historical replays) are envisaged for supervisors
+      and strategic partners.
+    </p>
   </section>
-</main>s
+</main>
