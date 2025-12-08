@@ -791,7 +791,7 @@ table.snapshot-table tbody tr:last-child td {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
- 
+ }
   /* Header indicateur GHI – mise en forme plus compacte */
 
 .ghi-indicator-header {
@@ -989,4 +989,56 @@ table.snapshot-table tbody tr:last-child td {
 .footer-social .social-icon:hover svg {
   opacity: 1;
   transform: scale(1.06);
+}
+
+.page-card {
+  background: #f9fafb;
+  color: #0f172a;
+  padding: 2rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.45);
+  max-width: 960px;
+  margin: 2rem auto 3rem;
+}
+
+.page-card h1,
+.page-card h2,
+.page-card h3 {
+  color: #0f172a;
+}
+
+.page-card p,
+.page-card li {
+  line-height: 1.6;
+}
+
+.page-card .lang-switch {
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  color: #64748b;
+}
+
+.page-card .lang-switch a {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.page-card .lang-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Correction lisibilité blocs de code */
+main pre {
+  background: #f4f4f8 !important;   /* gris clair lisible */
+  color: #111 !important;           /* texte noir */
+  padding: 12px 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+}
+
+main code {
+  background: transparent !important;
+  color: #111 !important;
 }

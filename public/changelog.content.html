@@ -1,101 +1,66 @@
 <main>
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr" class="active">FR</a> ·
-    <a href="#en">EN</a>
+    <a href="#fr-changelog">FR</a> ·
+    <a href="#en-changelog">EN</a>
   </div>
 
-  <!-- ===== FR ===== -->
-  <section id="fr" class="page-section">
-    <h2>Changelog GHI</h2>
-    <h2>v0.4.2 – Sandbox API (fake data) en ligne</h2>
+  <!-- FR -->
+  <section id="fr-changelog">
+    <h2>Changelog officiel GHI</h2>
 
-  <h3>FR</h3>
-  <ul>
-    <li>Ajout de la documentation détaillée de l’API sandbox GHI (FR/EN).</li>
-    <li>Publication de la sandbox API statique publique sous <code>/api/*.json</code> (fake data alignées avec le GHI Data Model v1.0).</li>
-    <li>Exemples d’intégration <code>curl</code>, Python et JavaScript.</li>
-  </ul>
-
-    <h3>v0.4.1 – Rafraîchissement du site public</h3>
+    <h3>v0.3.0 – Sandbox Engine + API v1.0</h3>
     <ul>
-      <li>Harmonisation du design sur toutes les pages (layout commun, thème sombre).</li>
-      <li>Navigation bilingue FR / EN générée à partir des fichiers <code>.content.html</code>.</li>
-      <li>Amélioration de la page Dashboard (pré-version) avec exemples plus clairs.</li>
-      <li>Préparation du workflow de release (branches <code>feature/</code> et <code>release/</code>, PR obligatoires vers <code>main</code>).</li>
+      <li>Moteur Sandbox mis à jour (v0.3.0).</li>
+      <li>API officielle GHI v1.0 finalisée.</li>
+      <li>Ajout des tests unitaires + tests API (17/17 OK).</li>
+      <li>Documentation API complète publiée (docs/api.md).</li>
+      <li>Méthodologie publique v1.0 intégrée.</li>
     </ul>
 
-    <h3>v0.4.0 – Sandbox semi-opérationnelle</h3>
+    <h3>v0.2.0 – Refonte du moteur</h3>
     <ul>
-      <li>Ajout d’une API sandbox en “fake data” calquée sur le futur modèle GHI.</li>
-      <li>Documentation API dédiée (page “API GHI – Sandbox”).</li>
-      <li>Structuration des endpoints locaux et distants pour les snapshots et l’historique.</li>
+      <li>Refactor du moteur privé.</li>
+      <li>Infrastructure du loader + aggregator.</li>
     </ul>
 
-    <h3>v0.3.0 – Site institutionnel (bilingue)</h3>
+    <h3>v0.1.0 – Initial release</h3>
     <ul>
-      <li>Création du site globalhashcostindex.org (version introductive).</li>
-      <li>Pages dédiées : Méthodologie, Régions, Gouvernance, GHI for Institutions.</li>
-      <li>Base de documentation publique pour les premiers échanges avec les acteurs institutionnels.</li>
+      <li>Structure du moteur Sandbox.</li>
+      <li>Premiers endpoints de test.</li>
     </ul>
 
-    <h3>v0.2.0 – Modèle GHI (interne)</h3>
-    <ul>
-      <li>Définition du GHI Data Model v1.0 (structures de coûts globaux et régionaux).</li>
-      <li>Premiers scripts Python pour agréger et normaliser les données.</li>
-    </ul>
-
-    <h3>v0.1.0 – Prototype interne</h3>
-    <ul>
-      <li>Premiers calculs de coût global de production du Bitcoin (ordre de grandeur).</li>
-      <li>Tests exploratoires sur la faisabilité d’un indice ouvert et documenté.</li>
-    </ul>
+    <p>
+      Toutes les versions :  
+      <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/releases">
+        github.com/ghi-standard/ghi-engine/releases
+      </a>
+    </p>
   </section>
 
-  <!-- ===== EN ===== -->
-  <section id="en" class="page-section">
-    <h2>GHI Changelog</h2>
-    <h2>v0.4.2 – Sandbox API (fake data) en ligne</h2>
+  <!-- EN -->
+  <section id="en-changelog">
+    <h2>GHI Official Changelog</h2>
 
-  <h3>FR</h3>
-  <ul>
-    <li>Ajout de la documentation détaillée de l’API sandbox GHI (FR/EN).</li>
-    <li>Publication de la sandbox API statique publique sous <code>/api/*.json</code> (fake data alignées avec le GHI Data Model v1.0).</li>
-    <li>Exemples d’intégration <code>curl</code>, Python et JavaScript.</li>
-  </ul>
-
-    <h3>v0.4.1 – Public site refresh</h3>
+    <h3>v0.3.0 – Sandbox Engine + API v1.0</h3>
     <ul>
-      <li>Unified design across all public pages (shared layout, dark theme).</li>
-      <li>Bilingual navigation FR / EN generated from <code>.content.html</code> files.</li>
-      <li>Improved Dashboard (pre-release) page with clearer example data.</li>
-      <li>Release workflow prepared (feature / release branches, mandatory PRs into <code>main</code>).</li>
+      <li>Sandbox Engine updated (v0.3.0).</li>
+      <li>Official GHI API v1.0 finalized.</li>
+      <li>Full test suite (17/17 passing).</li>
+      <li>Full API documentation published (docs/api.md).</li>
+      <li>Public methodology v1.0 integrated.</li>
     </ul>
 
-    <h3>v0.4.0 – Semi-operational sandbox</h3>
+    <h3>v0.2.0 – Engine redesign</h3>
     <ul>
-      <li>Added a “fake data” sandbox API mirroring the future GHI production model.</li>
-      <li>Dedicated API documentation page (“GHI API – Sandbox”).</li>
-      <li>Structured local and remote endpoints for snapshots and historical data.</li>
+      <li>Private engine refactor.</li>
+      <li>Loader + aggregator foundations.</li>
     </ul>
 
-    <h3>v0.3.0 – Institutional public site</h3>
+    <h3>v0.1.0 – Initial release</h3>
     <ul>
-      <li>Launch of globalhashcostindex.org (introductory public version).</li>
-      <li>Dedicated pages: Methodology, Regions, Governance, GHI for Institutions.</li>
-      <li>Base layer of public documentation for early discussions with institutional actors.</li>
-    </ul>
-
-    <h3>v0.2.0 – GHI model (internal)</h3>
-    <ul>
-      <li>Definition of GHI Data Model v1.0 (global and regional cost structures).</li>
-      <li>First Python scripts to aggregate and normalise data.</li>
-    </ul>
-
-    <h3>v0.1.0 – Internal prototype</h3>
-    <ul>
-      <li>First computations of the global Bitcoin production cost (order of magnitude only).</li>
-      <li>Exploratory tests on the feasibility of an open, documented index.</li>
+      <li>Initial Sandbox architecture.</li>
+      <li>First test endpoints.</li>
     </ul>
   </section>
 </main>

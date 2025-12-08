@@ -98,215 +98,55 @@
 
     <!-- Contenu spécifique à chaque page -->
     <main>
-    <p class="lang-switch">
+  <div class="lang-switch">
     Langue / Language :
-    <a href="#fr">FR</a> · <a href="#en">EN</a>
-  </p>
-  <!-- ===== Bloc FR ===== -->
-  <section id="fr" class="page-section">
-    <h2>Gouvernance du modèle GHI</h2>
-    <p class="muted">
-      Cette section décrit la gouvernance du Global HashCost Index (GHI) :
-      rôles, processus de mise à jour et principes de transparence.
-    </p>
+    <a href="#fr-gov">FR</a> ·
+    <a href="#en-gov">EN</a>
+  </div>
 
-    <h3>Rôles</h3>
-    <ul>
-      <li>
-        <strong>Équipe projet</strong> – Maintient le moteur de calcul,
-        la documentation et l’API.
-      </li>
-      <li>
-        <strong>Contributeurs données</strong> – Proposent des sources,
-        des jeux de données et des mises à jour.
-      </li>
-      <li>
-        <strong>Reviewers externes</strong> – Expert·e·s indépendants invité·e·s
-        à relire la méthodologie et les évolutions majeures.
-      </li>
-      <li>
-        <strong>Partenaires institutionnels</strong> – Acteurs intéressés par
-        l’usage, la diffusion ou l’intégration de GHI dans leurs processus
-        (risque, reporting, ESG, gestion de portefeuille, etc.).
-      </li>
-    </ul>
-
-    <h3>Processus de mise à jour</h3>
-    <ol>
-      <li>Collecte de nouvelles données ou propositions de modification.</li>
-      <li>
-        Analyse d’impact (hypothèses, sorties du modèle, couverture régionale,
-        comparabilité temporelle).
-      </li>
-      <li>
-        Rédaction d’une proposition d’évolution (pull request, note
-        méthodologique, mise à jour du changelog).
-      </li>
-      <li>
-        Revue par l’équipe projet et, si nécessaire, par des reviewers
-        externes indépendants.
-      </li>
-      <li>
-        Validation, attribution d’un nouveau numéro de version (GHI vX.Y) et
-        publication de la documentation associée.
-      </li>
-    </ol>
-
-    <h3>Fréquence de révision</h3>
+  <!-- FR -->
+  <section id="fr-gov">
+    <h2>Gouvernance du standard GHI</h2>
     <p>
-      La fréquence exacte des révisions dépendra de la disponibilité des données
-      et des retours des utilisateurs. À titre indicatif :
+      Le Global HashCost Index est un standard ouvert. Sa gouvernance repose sur
+      la transparence, le versionnage et la publication systématique des changements.
     </p>
+
+    <h3>Principes</h3>
     <ul>
-      <li>
-        Une révision méthodologique et des sources de données
-        <strong>au moins trimestrielle</strong> est envisagée.
-      </li>
-      <li>
-        Les recalculs et mises à jour des indicateurs GHI peuvent être plus
-        fréquents (par exemple mensuels, hebdomadaires ou quotidiens),
-        selon les cas d’usage.
-      </li>
+      <li>API, méthodologie et moteur ont chacun leur version.</li>
+      <li>Les changements majeurs créent une nouvelle version majeure (v2.0, v3.0…).</li>
+      <li>Tous les changements passent par des Pull Requests publiques.</li>
     </ul>
 
-    <h3>Transparence et traçabilité</h3>
-    <p>
-      Les évolutions importantes de GHI sont documentées dans un
-      <strong>changelog public</strong> (par exemple sur un dépôt Git), avec
-      pour chaque entrée :
-    </p>
+    <h3>Processus</h3>
     <ul>
-      <li>la version concernée ;</li>
-      <li>la date de publication ;</li>
-      <li>les modifications principales ;</li>
-      <li>l’impact attendu sur les résultats (échelle globale et par région).</li>
+      <li>Proposition : issue ou Pull Request GitHub.</li>
+      <li>Revue : examen technique, méthodologique et d’intégration.</li>
+      <li>Validation : merge + création d’une release GitHub.</li>
     </ul>
 
-    <h3>Documentation publique</h3>
     <p>
-      La documentation de gouvernance et les documents techniques associés
-      sont publiés de manière ouverte. En particulier :
+      Releases officielles :  
+      <a href="https://github.com/ghi-standard/ghi-engine/releases" target="_blank">
+        github.com/ghi-standard/ghi-engine/releases
+      </a>
     </p>
-    <ul>
-      <li>
-        <a href="/docs/ENGINE_TECHNICAL_SUMMARY.pdf" target="_blank" rel="noopener noreferrer">
-          Engine Technical Summary – aperçu technique du moteur GHI
-        </a>
-      </li>
-      <li>
-        <a href="/docs/GOVERNANCE.md" target="_blank" rel="noopener noreferrer">
-          Governance – principes de gouvernance et processus formalisés
-        </a>
-      </li>
-      <li>
-        <a href="/docs/METHODOLOGY.pdf" target="_blank" rel="noopener noreferrer">
-          Méthodologie – description détaillée du modèle GHI
-        </a>
-      </li>
-    </ul>
   </section>
 
-  <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #e5e7eb;" />
-
-  <!-- ===== Bloc EN ===== -->
-  <section id="en" class="page-section">
-    <h2>GHI Model Governance</h2>
-    <p class="muted">
-      This section describes the governance of the Global HashCost Index (GHI):
-      roles, update process, and transparency principles.
-    </p>
-
-    <h3>Roles</h3>
-    <ul>
-      <li>
-        <strong>Project team</strong> – Maintains the computation engine,
-        the documentation, and the API.
-      </li>
-      <li>
-        <strong>Data contributors</strong> – Propose new data sources,
-        datasets, and updates.
-      </li>
-      <li>
-        <strong>External reviewers</strong> – Independent experts invited to
-        review the methodology and major changes.
-      </li>
-      <li>
-        <strong>Institutional partners</strong> – Entities interested in using,
-        distributing, or integrating GHI into their processes (risk, reporting,
-        ESG, portfolio management, etc.).
-      </li>
-    </ul>
-
-    <h3>Update process</h3>
-    <ol>
-      <li>Collection of new data or change proposals.</li>
-      <li>
-        Impact analysis (assumptions, model outputs, regional coverage,
-        temporal comparability).
-      </li>
-      <li>
-        Drafting of a change proposal (pull request, methodology note,
-        changelog entry).
-      </li>
-      <li>
-        Review by the project team and, when appropriate, by independent
-        external reviewers.
-      </li>
-      <li>
-        Validation, assignment of a new version number (GHI vX.Y), and
-        publication of the related documentation.
-      </li>
-    </ol>
-
-    <h3>Revision frequency</h3>
+  <!-- EN -->
+  <section id="en-gov">
+    <h2>GHI Governance</h2>
     <p>
-      The exact revision frequency depends on data availability and user
-      feedback. As an indication:
+      The Global HashCost Index is an open standard. Governance relies on
+      transparency, versioning and public change history.
     </p>
-    <ul>
-      <li>
-        A <strong>methodology and data-source review at least once per quarter</strong>
-        is envisioned.
-      </li>
-      <li>
-        GHI indicator recalculations and updates may occur more frequently
-        (for example monthly, weekly, or daily), depending on use cases.
-      </li>
-    </ul>
 
-    <h3>Transparency and traceability</h3>
-    <p>
-      Major changes to GHI are documented in a <strong>public changelog</strong>
-      (for example in a Git repository), with for each entry:
-    </p>
+    <h3>Principles</h3>
     <ul>
-      <li>the relevant version;</li>
-      <li>the publication date;</li>
-      <li>the main changes;</li>
-      <li>the expected impact on the results (global and by region).</li>
-    </ul>
-
-    <h3>Public documentation</h3>
-    <p>
-      Governance documentation and related technical materials are published
-      openly. In particular:
-    </p>
-    <ul>
-      <li>
-        <a href="/docs/ENGINE_TECHNICAL_SUMMARY.pdf" target="_blank" rel="noopener noreferrer">
-          Engine Technical Summary – technical overview of the GHI engine
-        </a>
-      </li>
-      <li>
-        <a href="/docs/GOVERNANCE.md" target="_blank" rel="noopener noreferrer">
-          Governance – governance principles and formal processes
-        </a>
-      </li>
-      <li>
-        <a href="/docs/METHODOLOGY.pdf" target="_blank" rel="noopener noreferrer">
-          Methodology – detailed description of the GHI model
-        </a>
-      </li>
+      <li>API, methodology and engine each have their own versions.</li>
+      <li>Breaking changes trigger new major versions (v2.0, v3.0…).</li>
+      <li>All changes go through public GitHub Pull Requests.</li>
     </ul>
   </section>
 </main>

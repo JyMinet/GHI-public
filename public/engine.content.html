@@ -1,261 +1,53 @@
-<main class="api-section">
-  <p class="text-muted lang-switch">
+<main>
+  <div class="lang-switch">
     Langue / Language :
-    <a href="#fr">FR</a> · <a href="#en">EN</a>
-  </p>
-  
-  <h2>Moteur de calcul GHI / GHI computation engine</h2>
+    <a href="#fr-engine">FR</a> ·
+    <a href="#en-engine">EN</a>
+  </div>
 
-  <!-- ===================== SECTION FR ===================== -->
-  <section id="fr" class="page-section">
-    <h3>Rôle du moteur GHI</h3>
+  <!-- FR -->
+  <section id="fr-engine">
+    <h2>Moteur GHI – Sandbox v0.3.0</h2>
     <p>
-      Le <strong>moteur GHI</strong> est le composant logiciel qui calcule le Global HashCost Index
-      à partir d’hypothèses régionales, de caractéristiques de machines de minage (ASIC) et de
-      métriques du réseau Bitcoin (difficulté, hashrate, récompense de bloc).
-    </p>
-    <p>
-      Cette page décrit la structure générale du moteur, sans révéler les formules internes ni les
-      paramètres propriétaires. L’objectif est de permettre aux institutions, régulateurs et équipes
-      techniques de comprendre <em>comment</em> le GHI est produit, sans exposer le cœur du modèle.
+      Le moteur public de GHI est un moteur <strong>Sandbox</strong> :  
+      il n’utilise pas les données du moteur privé réel, mais reproduit l’architecture
+      et les formats de sortie du standard.
     </p>
 
-    <h4>Fonctions principales</h4>
+    <h3>Caractéristiques</h3>
     <ul>
-      <li>ingérer les données d’entrée (régions, énergie, machines, réseau) ;</li>
-      <li>appliquer un modèle de coût de production du Bitcoin ;</li>
-      <li>produire des <strong>snapshots GHI</strong> compatibles avec le Data Model v1.0 ;</li>
-      <li>construire un historique exploitable pour les analyses et tableaux de bord.</li>
+      <li>Données de démonstration stables (pas de données réelles).</li>
+      <li>Séparation claire entre moteur public et moteur interne privé.</li>
+      <li>Architecture modulaire : loader → cost engine → aggregator.</li>
+      <li>100% open source (version sandbox).</li>
     </ul>
 
-    <hr />
-
-    <h3>Mode sandbox vs moteur réel</h3>
-
-    <h4>Mode sandbox (public)</h4>
-    <p>
-      L’API publique GHI fonctionne actuellement en <strong>mode sandbox</strong>.
-      Dans ce mode :
-    </p>
-    <ul>
-      <li>les endpoints <code>/v1/ghi/*</code> renvoient des données <em>factices</em> contrôlées ;</li>
-      <li>aucune donnée de production ni paramètre interne n’est exposé ;</li>
-      <li>le but est de permettre les tests d’intégration et la validation des outils.</li>
-    </ul>
-
-    <p>Exemple de configuration (schéma) :</p>
-    <pre class="code-block"><code># app/config.py
-USE_REAL_ENGINE = False  # sandbox public</code></pre>
-
-    <h4>Mode moteur réel (privé)</h4>
-    <p>
-      En <strong>mode moteur réel</strong>, qui n’est pas distribué dans le dépôt public,
-      le calcul du GHI s’appuie sur les briques suivantes :
-    </p>
-    <ul>
-      <li>un module de chargement des données (<code>DataLoader</code>) ;</li>
-      <li>des sources régionales (<code>RegionalSources</code>) ;</li>
-      <li>un catalogue de machines ASIC (<code>ASICFleet</code>) ;</li>
-      <li>un moteur de modèle de coût (<code>CostCalculator</code>) ;</li>
-      <li>un agrégateur de snapshot (<code>SnapshotAggregator</code>) ;</li>
-      <li>une couche de stockage (Parquet, CSV, etc.).</li>
-    </ul>
-    <p>
-      Les formules, coefficients de calibration et jeux de données détaillés restent
-      <strong>confidentiels</strong> et ne sont pas présents dans le code public.
+    <h3>Architecture</h3>
+    <p>Documentation technique :  
+      <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">
+        ENGINE_DESIGN.md
+      </a>
     </p>
 
-    <hr />
-
-    <h3>Architecture générale du moteur</h3>
-    <p>Structure technique (schéma conceptuel) :</p>
-    <pre class="code-block"><code>app/engine/
-  loader/              # chargement &amp; normalisation des entrées
-  regional_sources/    # hypothèses &amp; pondérations régionales
-  machine_sources/     # définition du parc ASIC
-  cost/                # interfaces du modèle de coût
-  aggregator/          # assemblage du snapshot
-  scheduler/           # exécution périodique
-  storage/             # exports (Parquet, CSV, ...)</code></pre>
-
-    <p>Pipeline conceptuel :</p>
-    <pre class="code-block"><code>DataLoader → RegionalSources → ASICFleet → CostCalculator → SnapshotAggregator → Storage</code></pre>
-
-    <h4>Alignement avec le Data Model v1.0</h4>
-    <ul>
-      <li>structure <code>GHI Snapshot</code> (min/avg/max global) ;</li>
-      <li>données <code>Region</code> enrichies (coûts, énergie, machines, métadonnées) ;</li>
-      <li>séries temporelles exposées via les endpoints d’<code>History</code>.</li>
-    </ul>
-
-    <hr />
-
-    <h3>Gouvernance, versioning et audits</h3>
-
-    <h4>Versioning</h4>
-    <ul>
-      <li><code>1.x</code> : compatible Data Model v1.0 ;</li>
-      <li><code>2.x</code> : nouvelles structures d’output ou champs obligatoires.</li>
-    </ul>
-
-    <h4>Auditabilité</h4>
-    <ul>
-      <li>architecture interne documentée ;</li>
-      <li>couples entrées–sorties anonymisés ;</li>
-      <li>replays de snapshots sous NDA.</li>
-    </ul>
-
-    <p class="text-muted">
-      Le code technique réel du moteur n’est pas publié. Des revues sous NDA sont possibles pour
-      certains partenaires institutionnels. L’implémentation complète est maintenue dans un dépôt
-      privé, distinct de ce site et des ressources sandbox publiques.
-    </p>
-
-    <hr />
-
-    <h3>Ressources pour les développeurs</h3>
-    <ul>
-      <li><a href="api.html">Documentation de l’API sandbox</a></li>
-      <li>
-        Pack développeur :
-        <a href="devpack/GHI-Developer-Pack-v0.2.0.zip">GHI-Developer-Pack-v0.2.0.zip</a>
-      </li>
-      <li>
-        Résumé technique du moteur (PDF) :
-        <a href="docs/ENGINE_TECHNICAL_SUMMARY.pdf" target="_blank" rel="noopener noreferrer">
-          ENGINE_TECHNICAL_SUMMARY.pdf
-        </a>
-      </li>
-    </ul>
-
-    <p class="text-muted">
-      Cette page décrit la structure du moteur. Elle ne constitue pas une recommandation d’investissement.
-    </p>
+    <h3>Code source</h3>
+    <pre><code>https://github.com/ghi-standard/ghi-engine</code></pre>
   </section>
 
-  <!-- ===================== SECTION EN ===================== -->
-  <section id="en" class="page-section">
-    <h3>Role of the GHI engine</h3>
+  <!-- EN -->
+  <section id="en-engine">
+    <h2>GHI Engine – Sandbox v0.3.0</h2>
     <p>
-      The <strong>GHI engine</strong> is the software component that computes the Global HashCost Index
-      from regional assumptions, ASIC mining hardware characteristics, and Bitcoin network metrics
-      (difficulty, hashrate, block reward).
-    </p>
-    <p>
-      This page describes the general structure of the engine without disclosing internal formulas
-      or proprietary parameters. The goal is to allow institutions, regulators and technical teams
-      to understand <em>how</em> GHI is produced, without exposing the core model.
+      The public GHI Engine is a <strong>Sandbox engine</strong>:  
+      it does not compute real internal values, but reproduces the architecture
+      and output formats of the standard.
     </p>
 
-    <h4>Main functions</h4>
+    <h3>Features</h3>
     <ul>
-      <li>ingests input data (regions, energy, hardware, network) ;</li>
-      <li>applies a Bitcoin production cost model ;</li>
-      <li>produces <strong>GHI snapshots</strong> compatible with the Data Model v1.0 ;</li>
-      <li>builds a time series usable for dashboards and analytics.</li>
+      <li>Stable demonstration values (not real data).</li>
+      <li>Strict separation between public and private engines.</li>
+      <li>Modular architecture (loader → cost engine → aggregator).</li>
+      <li>Fully open-source (public sandbox).</li>
     </ul>
-
-    <hr />
-
-    <h3>Sandbox mode vs real engine</h3>
-
-    <h4>Sandbox mode (public)</h4>
-    <p>
-      The public GHI API currently runs in <strong>sandbox mode</strong>. In this mode:
-    </p>
-    <ul>
-      <li><code>/v1/ghi/*</code> endpoints return controlled <em>fake data</em> ;</li>
-      <li>no production data nor internal parameters are exposed ;</li>
-      <li>the goal is to enable integration testing and tool validation.</li>
-    </ul>
-
-    <p>Configuration example (conceptual):</p>
-    <pre class="code-block"><code># app/config.py
-USE_REAL_ENGINE = False  # public sandbox mode</code></pre>
-
-    <h4>Real engine mode (private)</h4>
-    <p>
-      In <strong>real engine mode</strong> (not distributed in the public repository), the
-      computation of GHI relies on:
-    </p>
-    <ul>
-      <li>a data loading module (<code>DataLoader</code>) ;</li>
-      <li>regional sources (<code>RegionalSources</code>) ;</li>
-      <li>an ASIC machine catalog (<code>ASICFleet</code>) ;</li>
-      <li>a cost model engine (<code>CostCalculator</code>) ;</li>
-      <li>a snapshot aggregator (<code>SnapshotAggregator</code>) ;</li>
-      <li>a storage layer (Parquet, CSV, etc.).</li>
-    </ul>
-    <p>
-      Detailed formulas, calibration coefficients and datasets remain
-      <strong>confidential</strong> and are not part of the public codebase.
-    </p>
-
-    <hr />
-
-    <h3>Overall engine architecture</h3>
-    <p>Technical structure (conceptual outline):</p>
-    <pre class="code-block"><code>app/engine/
-  loader/              # loading &amp; normalization of inputs
-  regional_sources/    # regional assumptions &amp; weights
-  machine_sources/     # ASIC fleet definition
-  cost/                # cost model interfaces
-  aggregator/          # snapshot assembly
-  scheduler/           # periodic execution
-  storage/             # exports (Parquet, CSV, ...)</code></pre>
-
-    <p>Conceptual pipeline:</p>
-    <pre class="code-block"><code>DataLoader → RegionalSources → ASICFleet → CostCalculator → SnapshotAggregator → Storage</code></pre>
-
-    <h4>Alignment with Data Model v1.0</h4>
-    <ul>
-      <li><code>GHI Snapshot</code> structure (global min/avg/max) ;</li>
-      <li>rich <code>Region</code> payloads (costs, energy, hardware, metadata) ;</li>
-      <li>time series exposed via <code>History</code> endpoints.</li>
-    </ul>
-
-    <hr />
-
-    <h3>Governance, versioning and audits</h3>
-
-    <h4>Versioning</h4>
-    <ul>
-      <li><code>1.x</code>: compatible with Data Model v1.0 ;</li>
-      <li><code>2.x</code>: new output structures or mandatory fields.</li>
-    </ul>
-
-    <h4>Auditability</h4>
-    <ul>
-      <li>documented internal architecture ;</li>
-      <li>anonymized input–output pairs ;</li>
-      <li>snapshot replays under NDA.</li>
-    </ul>
-
-    <p class="text-muted">
-      The real engine code is not published. Under NDA, certain institutional partners may review
-      architecture and anonymized data. The full implementation is maintained in a private
-      repository, separate from this sandbox.
-    </p>
-
-    <hr />
-
-    <h3>Developer resources</h3>
-    <ul>
-      <li><a href="api.html">GHI sandbox API documentation</a></li>
-      <li>
-        Developer pack:
-        <a href="devpack/GHI-Developer-Pack-v0.2.0.zip">GHI-Developer-Pack-v0.2.0.zip</a>
-      </li>
-      <li>
-        Engine technical summary (PDF):
-        <a href="docs/ENGINE_TECHNICAL_SUMMARY.pdf" target="_blank" rel="noopener noreferrer">
-          ENGINE_TECHNICAL_SUMMARY.pdf
-        </a>
-      </li>
-    </ul>
-
-    <p class="text-muted">
-      This page describes the engine structure and does not constitute any investment advice.
-    </p>
   </section>
 </main>

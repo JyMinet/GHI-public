@@ -1,158 +1,31 @@
-<main class="api-section">
-
-  <!-- Switch de langue -->
-  <p class="lang-switch">
+<main>
+  <div class="lang-switch">
     Langue / Language :
-    <a href="#fr" class="active">FR</a> ·
-    <a href="#en">EN</a>
-  </p>
-  <h2>Régions / Regions</h2>
+    <a href="#fr-regions">FR</a> ·
+    <a href="#en-regions">EN</a>
+  </div>
 
-  <!-- ========================================================= -->
-  <!-- ======================= SECTION FR ======================= -->
-  <!-- ========================================================= -->
-  <section id="fr" class="page-section">
+  <!-- FR -->
+  <section id="fr-regions">
+    <h2>Régions / Regions</h2>
 
-    <h3>Régions de minage suivies par GHI</h3>
-    <p>
-      GHI segmente le hashrate mondial en grandes régions de minage, afin de capturer les différences de
-      mix énergétique, de régulation et de coûts. Cette page décrit le découpage utilisé dans la sandbox.
-    </p>
+    <h3>Statut actuel (GHI v1.0)</h3>
+    <p>Pas encore de données régionales publiées dans GHI v1.0.</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Région</th>
-          <th>Description</th>
-          <th>Mix énergétique</th>
-          <th>Granularité</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Amérique du Nord</td>
-          <td>États-Unis, Canada, zones majeures de minage en NA.</td>
-          <td>Mix très variable : gaz, renouvelables, nucléaire.</td>
-          <td>Pays / États.</td>
-        </tr>
-        <tr>
-          <td>Europe</td>
-          <td>UE, Royaume-Uni, Suisse et autres pays européens.</td>
-          <td>Électricité chère en moyenne, forte part nucléaire/renouvelables.</td>
-          <td>Pays / clusters régionaux.</td>
-        </tr>
-        <tr>
-          <td>Asie</td>
-          <td>Asie de l’Est, Centrale, du Sud hors Chine continentale.</td>
-          <td>Mix hétérogène : charbon, hydro, gaz, saisonnalité forte.</td>
-          <td>Sous-régions.</td>
-        </tr>
-        <tr>
-          <td>Amérique latine</td>
-          <td>Zones émergentes de minage en LATAM.</td>
-          <td>Hydro abondante, projets dédiés de minage.</td>
-          <td>Pays ou zones.</td>
-        </tr>
-        <tr>
-          <td>Autres régions</td>
-          <td>Afrique, Moyen-Orient, Océanie.</td>
-          <td>Mix propre à chaque pays, données plus limitées.</td>
-          <td>Granularité globale.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Note méthodologique</h3>
-    <p class="text-muted">
-      Cette segmentation est une version préliminaire utilisée par la sandbox.  
-      Les données finales du modèle GHI pourront affiner ou regrouper certaines zones
-      en fonction des sources disponibles.
-    </p>
-
+    <h3>Objectif GHI v2.0</h3>
+    <ul>
+      <li>Définition de régions globales.</li>
+      <li>Mix énergétique par région.</li>
+      <li>Mix ASIC par région.</li>
+      <li>Coût régional + global pondéré.</li>
+    </ul>
   </section>
 
+  <!-- EN -->
+  <section id="en-regions">
+    <h2>Regions</h2>
 
-  <!-- ========================================================= -->
-  <!-- ======================= SECTION EN ======================= -->
-  <!-- ========================================================= -->
-  <section id="en" class="page-section" style="display:none;">
-
-    <h3>Mining Regions Tracked by GHI</h3>
-    <p>
-      GHI divides the global hashrate into key mining regions, capturing variations in
-      energy mix, regulation and cost. This page describes the segmentation used in the sandbox.
-    </p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Region</th>
-          <th>Description</th>
-          <th>Energy mix</th>
-          <th>Granularity</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>North America</td>
-          <td>USA, Canada and main mining areas.</td>
-          <td>Highly variable: gas, renewables, nuclear.</td>
-          <td>Country / State level.</td>
-        </tr>
-        <tr>
-          <td>Europe</td>
-          <td>EU, UK, Switzerland and other European countries.</td>
-          <td>Higher electricity prices, strong nuclear/renewables share.</td>
-          <td>Country / regional clusters.</td>
-        </tr>
-        <tr>
-          <td>Asia</td>
-          <td>East, Central and South Asia excluding mainland China.</td>
-          <td>Very heterogeneous: coal, hydro, gas, strong seasonality.</td>
-          <td>Sub-regional granularity.</td>
-        </tr>
-        <tr>
-          <td>Latin America</td>
-          <td>Emerging mining zones in LATAM.</td>
-          <td>Abundant hydro, dedicated mining projects.</td>
-          <td>Country or zone level.</td>
-        </tr>
-        <tr>
-          <td>Other regions</td>
-          <td>Africa, Middle East, Oceania.</td>
-          <td>Country-specific mix, often limited data availability.</td>
-          <td>Global granularity for now.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Methodological Note</h3>
-    <p class="text-muted">
-      This segmentation is a preliminary version used by the sandbox.  
-      The final GHI model may refine or regroup regions depending on data availability.
-    </p>
-
+    <h3>Current status (GHI v1.0)</h3>
+    <p>Regional data is not yet published in GHI v1.0.</p>
   </section>
-
-
-  <!-- Script pour le switch de langue -->
-  <script>
-    document.querySelectorAll(".lang-switch a").forEach(link => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        // gérer le visuel des onglets
-        document.querySelectorAll(".lang-switch a")
-          .forEach(a => a.classList.remove("active"));
-        this.classList.add("active");
-
-        // afficher / masquer sections
-        const lang = this.getAttribute("href").replace("#", "");
-
-        document.getElementById("fr").style.display = (lang === "fr") ? "block" : "none";
-        document.getElementById("en").style.display = (lang === "en") ? "block" : "none";
-      });
-    });
-  </script>
-
 </main>
