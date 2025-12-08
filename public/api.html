@@ -83,6 +83,7 @@
           <li><a href="methodology.html">Méthodologie</a></li>
           <li><a href="regions.html">Régions</a></li>
           <li><a href="api.html">API</a></li>
+          <li><a href="api-quickstart.html">Quickstart API</a></li>
           <li><a href="engine.html">Moteur</a></li>
           <li><a href="governance.html">Gouvernance</a></li>
           <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
@@ -106,51 +107,104 @@
 
   <!-- ================= FR ================= -->
   <section id="fr-api">
+
     <h2>API GHI v1.0</h2>
     <p>
-      L’API publique du Global HashCost Index expose deux endpoints stables permettant d’accéder
-      aux coûts mondiaux de production du Bitcoin. Les données actuelles proviennent du moteur
-      Sandbox v0.3.0.
+      L’API publique du Global HashCost Index expose un ensemble de points d’accès
+      stables permettant d’obtenir des coûts mondiaux de production du Bitcoin.
+      Toutes les données actuelles proviennent du <strong>Sandbox Engine v0.4.0</strong>.
     </p>
+
+    <h3>Métadonnées moteur (Sandbox Engine v0.4.0)</h3>
+    <p>
+      Toutes les réponses incluent un bloc de métadonnées permettant d’identifier
+      précisément la version de l’API, la méthodologie et le moteur utilisé :
+    </p>
+    <ul>
+      <li><code>api_version</code> : version de l’API publique, ex. <code>v1.0</code>.</li>
+      <li><code>methodology_version</code> : version de la méthodologie GHI, ex. <code>1.0.0</code>.</li>
+      <li><code>engine_version</code> : version du moteur d’exécution, ex. <code>v0.4.0-sandbox</code>.</li>
+      <li><code>data_origin</code> : origine des données (<code>sandbox</code> pour données factices).</li>
+      <li><code>stability_seed</code> : entier technique assurant la stabilité du jeu de données.</li>
+    </ul>
 
     <h3>Base URL</h3>
     <pre><code>/v1/ghi</code></pre>
 
     <h3>1) GET /v1/ghi/indicator</h3>
-    <p>Renvoie l’indicateur quotidien : min / moyen / max cost (USD).</p>
-
+    <p>Renvoie l’indicateur quotidien : coût minimum, moyen et maximum (USD) avec métadonnées.</p>
     <pre><code>curl "http://127.0.0.1:8000/v1/ghi/indicator"</code></pre>
 
     <h3>2) GET /v1/ghi/snapshot</h3>
     <p>Renvoie un snapshot global structuré au format GHI v1.0.</p>
 
+    <h3>Endpoints hérités (stubs v1.0, utilisés par la suite de tests)</h3>
+    <ul>
+      <li><code>/v1/ghi/history</code> — renvoie une liste d’échantillons historiques.</li>
+      <li><code>/v1/ghi/regions</code> — renvoie une liste de régions disponibles.</li>
+      <li><code>/v1/ghi/regions/{region_id}</code> — renvoie les détails d’une région.</li>
+      <li><code>/v1/ghi/stats</code> — expose des statistiques globales simplifiées.</li>
+    </ul>
+
     <h3>Documentation complète</h3>
     <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">Spécification API (docs/api.md)</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">Moteur GHI</a></li>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
+        Spécification API (docs/api.md)
+      </a></li>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+        Dépôt du moteur GHI
+      </a></li>
     </ul>
   </section>
 
   <!-- ================= EN ================= -->
   <section id="en-api">
+
     <h2>GHI API v1.0</h2>
     <p>
-      The Global HashCost Index public API exposes two stable endpoints giving access to global
-      Bitcoin production costs. Current data comes from the Sandbox Engine v0.3.0.
+      The Global HashCost Index public API provides stable endpoints giving access
+      to global Bitcoin production costs. All current data is powered by the
+      <strong>Sandbox Engine v0.4.0</strong>.
     </p>
+
+    <h3>Engine Metadata (Sandbox Engine v0.4.0)</h3>
+    <p>
+      Every API response includes a metadata block identifying the exact versions
+      used for API, methodology and engine execution:
+    </p>
+    <ul>
+      <li><code>api_version</code>: public API version, e.g. <code>v1.0</code>.</li>
+      <li><code>methodology_version</code>: methodology version, e.g. <code>1.0.0</code>.</li>
+      <li><code>engine_version</code>: execution engine version, e.g. <code>v0.4.0-sandbox</code>.</li>
+      <li><code>data_origin</code>: data source (<code>sandbox</code> means simulated data).</li>
+      <li><code>stability_seed</code>: technical integer ensuring deterministic outputs.</li>
+    </ul>
 
     <h3>Base URL</h3>
     <pre><code>/v1/ghi</code></pre>
 
     <h3>1) GET /v1/ghi/indicator</h3>
-    <p>Returns daily min / avg / max production costs (USD).</p>
+    <p>Returns daily min / avg / max Bitcoin production cost (USD) with metadata.</p>
 
     <h3>2) GET /v1/ghi/snapshot</h3>
-    <p>Returns a structured global snapshot following GHI v1.0 format.</p>
+    <p>Returns a structured snapshot following the GHI v1.0 standard.</p>
+
+    <h3>Legacy endpoints (v1.0 stubs, used by test suite)</h3>
+    <ul>
+      <li><code>/v1/ghi/history</code> — returns a sample historical list.</li>
+      <li><code>/v1/ghi/regions</code> — returns the list of available regions.</li>
+      <li><code>/v1/ghi/regions/{region_id}</code> — returns a region detail.</li>
+      <li><code>/v1/ghi/stats</code> — exposes simplified global statistics.</li>
+    </ul>
 
     <h3>Full documentation</h3>
     <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">API specification</a></li>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
+        API specification
+      </a></li>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+        GHI Engine repository
+      </a></li>
     </ul>
   </section>
 </main>

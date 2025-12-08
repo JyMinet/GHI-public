@@ -3,6 +3,20 @@ Versioning: Semantic Versioning (SemVer)
 Documentation and standards published under CC BY-NC-SA 4.0.
 
 ---
+## v0.4.0 – Sandbox Engine
+
+Date: 2025-12-08
+
+- Ajout de métadonnées standard dans les réponses API:
+  - `api_version = "v1.0"`
+  - `methodology_version = "1.0.0"`
+  - `engine_version = "v0.4.0-sandbox"`
+  - `data_origin = "sandbox"`
+  - `stability_seed = 42`
+- Harmonisation des réponses `/v1/ghi/indicator` et `/v1/ghi/snapshot`.
+- Réintroduction d’endpoints hérités v1 (`/history`, `/regions`, `/regions/{region_id}`, `/stats`)
+  sous forme de stubs minimalistes compatibles avec la suite de tests.
+
 ## v0.3.1-docs — Modèle mathématique (public)
 
 - Ajout du modèle mathématique public du GHI :

@@ -1,0 +1,174 @@
+<main>
+  <div class="lang-switch">
+    Langue / Language :
+    <a href="#fr-api-quickstart">FR</a> ·
+    <a href="#en-api-quickstart">EN</a>
+  </div>
+
+  <!-- ============== FR ============== -->
+  <section id="fr-api-quickstart">
+    <h2>API GHI v1.0 – Guide de démarrage rapide</h2>
+    <p>
+      Cette page présente un guide minimal pour interroger l’API publique du Global HashCost Index (GHI)
+      à l’aide d’outils standards (curl, Python, JavaScript).
+      Toutes les réponses sont fournies par le <strong>Sandbox Engine v0.4.0</strong>
+      et contiennent des données factices mais stables.
+    </p>
+
+    <h3>1. Base URL et endpoints principaux</h3>
+    <p>Les endpoints principaux sont les suivants :</p>
+    <ul>
+      <li><code>GET /v1/ghi/indicator</code> – indicateur quotidien global.</li>
+      <li><code>GET /v1/ghi/snapshot</code> – snapshot global structuré.</li>
+    </ul>
+
+    <h4>Base URL</h4>
+    <pre><code>/v1/ghi</code></pre>
+
+    <h3>2. Exemple avec curl</h3>
+    <p>Requête simple vers l’indicateur quotidien :</p>
+    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/indicator"</code></pre>
+
+    <p>Réponse typique (extrait) :</p>
+    <pre><code>{
+  "date": "2025-12-08",
+  "currency": "USD",
+  "min_cost": 38000.12,
+  "avg_cost": 41000.45,
+  "max_cost": 44000.89,
+  "methodology_version": "1.0.0",
+  "ghi_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42,
+  "api_version": "v1.0"
+}</code></pre>
+
+    <h3>3. Exemple en Python (requests)</h3>
+    <pre><code>import requests
+
+BASE_URL = "http://127.0.0.1:8000"
+
+def get_indicator():
+    url = f"{BASE_URL}/v1/ghi/indicator"
+    resp = requests.get(url, timeout=10)
+    resp.raise_for_status()
+    data = resp.json()
+    print("GHI indicator (USD):")
+    print("  min :", data["min_cost"])
+    print("  avg :", data["avg_cost"])
+    print("  max :", data["max_cost"])
+    print("engine_version:", data.get("engine_version"))
+
+if __name__ == "__main__":
+    get_indicator()</code></pre>
+
+    <h3>4. Exemple en JavaScript (fetch)</h3>
+    <pre><code>&lt;script&gt;
+async function loadIndicator() {
+  const resp = await fetch("http://127.0.0.1:8000/v1/ghi/indicator");
+  if (!resp.ok) {
+    console.error("HTTP error", resp.status);
+    return;
+  }
+  const data = await resp.json();
+  console.log("GHI indicator:", data);
+}
+
+loadIndicator();
+&lt;/script&gt;</code></pre>
+
+    <h3>5. Snapshot global</h3>
+    <p>Le snapshot renvoie une structure GHI v1.0 avec un bloc de données et des métadonnées.</p>
+    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/snapshot"</code></pre>
+
+    <p>Pour plus de détails sur le schéma de réponse, se référer à la
+      <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
+        spécification API complète
+      </a>.
+    </p>
+  </section>
+
+  <!-- ============== EN ============== -->
+  <section id="en-api-quickstart">
+    <h2>GHI API v1.0 – Quickstart Guide</h2>
+    <p>
+      This page provides a minimal quickstart for querying the Global HashCost Index (GHI)
+      public API using standard tools (curl, Python, JavaScript).
+      All responses are powered by the <strong>Sandbox Engine v0.4.0</strong> and contain
+      simulated but stable data.
+    </p>
+
+    <h3>1. Base URL and main endpoints</h3>
+    <p>Main endpoints are:</p>
+    <ul>
+      <li><code>GET /v1/ghi/indicator</code> – daily global indicator.</li>
+      <li><code>GET /v1/ghi/snapshot</code> – structured global snapshot.</li>
+    </ul>
+
+    <h4>Base URL</h4>
+    <pre><code>/v1/ghi</code></pre>
+
+    <h3>2. curl example</h3>
+    <p>Simple request to the daily indicator:</p>
+    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/indicator"</code></pre>
+
+    <p>Typical response (excerpt):</p>
+    <pre><code>{
+  "date": "2025-12-08",
+  "currency": "USD",
+  "min_cost": 38000.12,
+  "avg_cost": 41000.45,
+  "max_cost": 44000.89,
+  "methodology_version": "1.0.0",
+  "ghi_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42,
+  "api_version": "v1.0"
+}</code></pre>
+
+    <h3>3. Python example (requests)</h3>
+    <pre><code>import requests
+
+BASE_URL = "http://127.0.0.1:8000"
+
+def get_indicator():
+    url = f"{BASE_URL}/v1/ghi/indicator"
+    resp = requests.get(url, timeout=10)
+    resp.raise_for_status()
+    data = resp.json()
+    print("GHI indicator (USD):")
+    print("  min :", data["min_cost"])
+    print("  avg :", data["avg_cost"])
+    print("  max :", data["max_cost"])
+    print("engine_version:", data.get("engine_version"))
+
+if __name__ == "__main__":
+    get_indicator()</code></pre>
+
+    <h3>4. JavaScript example (fetch)</h3>
+    <pre><code>&lt;script&gt;
+async function loadIndicator() {
+  const resp = await fetch("http://127.0.0.1:8000/v1/ghi/indicator");
+  if (!resp.ok) {
+    console.error("HTTP error", resp.status);
+    return;
+  }
+  const data = await resp.json();
+  console.log("GHI indicator:", data);
+}
+
+loadIndicator();
+&lt;/script&gt;</code></pre>
+
+    <h3>5. Global snapshot</h3>
+    <p>
+      The snapshot endpoint returns a GHI v1.0 structured payload with both data
+      and metadata. For full response details, refer to the
+      <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
+        full API specification
+      </a>.
+    </p>
+  </section>
+</main>
