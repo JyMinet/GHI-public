@@ -100,102 +100,142 @@
     <main>
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-inst">FR</a> ·
-    <a href="#en-inst">EN</a>
+    <a href="#fr-tn1">FR</a> ·
+    <a href="#en-tn1">EN</a>
   </div>
 
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version courte FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Télécharger le dossier institutionnel (PDF – version courte)
-    </a>
-    <!-- English -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Download the institutional brief (PDF – short version)
-    </a>
-  </div>
+  <!-- ======================== FR ======================== -->
+  <section id="fr-tn1">
+    <h1>Note Technique v1.1 – Coût de production vs prix du Bitcoin</h1>
+    <p class="subtitle">Global HashCost Index – Standard ouvert</p>
 
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version longue FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Télécharger le dossier institutionnel – Version longue (PDF)
-    </a>
-    <!-- English -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Download institutional dossier – Full version (PDF)
-    </a>
-  </div>
-
+    <h2>Résumé</h2>
     <p>
-      Le Global HashCost Index fournit un indicateur neutre, transparent et reproductible
-      du coût de production du Bitcoin, utilisable dans des cadres professionnels
-      et réglementaires.
+      Le GHI mesure le coût mondial de production du Bitcoin.  
+      Il ne prédit pas le prix du Bitcoin.  
+      Les deux notions sont liées économiquement, mais indépendantes structurellement.
     </p>
 
-    <h3>Cas d’usage</h3>
+    <h2>Relation entre coût et prix</h2>
     <ul>
-      <li>Analyse macro-économique du réseau Bitcoin.</li>
-      <li>Due diligence pour fonds, banques et émetteurs.</li>
-      <li>Suivi du ratio prix / coût de production.</li>
-      <li>Support quantitatif pour les régulateurs.</li>
+      <li>Le coût reflète l’état économique du réseau (énergie, difficulté, efficacité).</li>
+      <li>Le prix reflète l’équilibre offre/demande du marché.</li>
+      <li>Ils peuvent diverger durablement.</li>
     </ul>
 
-    <h3>Intégration</h3>
+    <h2>Pourquoi le prix s’éloigne du coût</h2>
+    <ul>
+      <li>Rythme du marché (cycles haussiers/baissiers).</li>
+      <li>Spéculation et comportements macroéconomiques.</li>
+      <li>Décalages entre ajustements de difficulté et prix spot.</li>
+      <li>Entrées/sorties du hashrate (machines neuves, obsolescence).</li>
+    </ul>
+
+    <h2>Schéma simplifié</h2>
+    <pre><code>
+    Prix (marché)
+           ↑
+           |     /\
+           |    /  \   cycles
+           | __/    \___
+           |
+           |--------------------→ temps
+           |   coût global (GHI)
+           |
+    </code></pre>
+
+    <h2>Implications institutionnelles</h2>
+    <ul>
+      <li>Le coût n’est pas un plancher de prix.</li>
+      <li>Le coût n’est pas une valeur fondamentale.</li>
+      <li>Le coût est un indicateur économique du réseau.</li>
+      <li>Il peut signaler tensions, marges ou stress dans le minage.</li>
+    </ul>
+
+    <h2>Limites</h2>
+    <ul>
+      <li>Données globales → pas de granularité géographique (v1.0).</li>
+      <li>Modèle non prédictif par conception.</li>
+      <li>Sensibilité forte au prix de l’énergie.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
     <p>
-      L’API GHI v1.0 est accessible via HTTP(S), renvoie du JSON simple et peut être
-      intégrée dans des systèmes de risk, de pricing ou de reporting.
+      Le GHI mesure un coût global.  
+      Le prix suit la dynamique du marché.  
+      Leur interaction est informative, mais jamais déterministe.
     </p>
 
-    <ul>
-      <li><a href="api.html">Documentation API (résumé)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">API complète (docs/api.md)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">Méthodologie publique v1.0</a></li>
-    </ul>
-
-    <h3>Technical Notes (v1.1)</h3>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Coût de production vs prix du Bitcoin</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Sensibilité au prix de l’énergie</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Impact du halving sur le coût de production</a></li>
-</ul>
-
+    <p><strong>Version :</strong> Technical Note v1.1<br/>
+    <strong>Date :</strong> Décembre 2025</p>
   </section>
 
-  <!-- EN -->
-  <section id="en-inst">
-    <h2>GHI for Institutions</h2>
+  <!-- ======================== EN ======================== -->
+  <section id="en-tn1">
+    <h1>Technical Note v1.1 – Production Cost vs Bitcoin Price</h1>
+    <p class="subtitle">Global HashCost Index – Open Standard</p>
+
+    <h2>Summary</h2>
     <p>
-      The Global HashCost Index provides a neutral, transparent and reproducible
-      indicator of Bitcoin production costs, suitable for professional and
-      regulatory use.
+      The GHI measures the global cost of producing Bitcoin.  
+      It does not predict Bitcoin’s price.  
+      Both concepts are economically related but structurally independent.
     </p>
 
-    <h3>Use cases</h3>
+    <h2>Cost vs Price</h2>
     <ul>
-      <li>Macro-economic analysis of the Bitcoin network.</li>
-      <li>Institutional due diligence (funds, banks, issuers).</li>
-      <li>Monitoring price-to-production-cost ratios.</li>
-      <li>Quantitative input for regulators.</li>
+      <li>Cost reflects the economic state of the network.</li>
+      <li>Price reflects market supply and demand.</li>
+      <li>Divergence is normal and often persistent.</li>
     </ul>
 
-<h2>Technical Notes (v1.1)</h2>
-<p>Documents techniques destinés aux institutions, régulateurs et analystes :</p>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Cost vs Price</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Energy Price Sensitivity</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Halving Impact</a></li>
-</ul>
+    <h2>Why price deviates from cost</h2>
+    <ul>
+      <li>Market cycles (bull / bear).</li>
+      <li>Speculation and macroeconomic flows.</li>
+      <li>Different adjustment speeds (difficulty vs price).</li>
+      <li>Hashrate entry/exit dynamics.</li>
+    </ul>
 
+    <h2>Simplified diagram</h2>
+    <pre><code>
+    Price (market)
+           ↑
+           |     /\
+           |    /  \   cycles
+           | __/    \___
+           |
+           |--------------------→ time
+           |   global cost (GHI)
+           |
+    </code></pre>
+
+    <h2>Institutional implications</h2>
+    <ul>
+      <li>Cost is not a price floor.</li>
+      <li>Cost is not intrinsic value.</li>
+      <li>Cost is a structural economic indicator.</li>
+      <li>It highlights mining stress, margins and trends.</li>
+    </ul>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>Global-only model in v1.0.</li>
+      <li>Non-predictive by design.</li>
+      <li>Sensitive to energy prices.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+      The GHI measures cost.  
+      The market determines price.  
+      Their relationship is informative, never deterministic.
+    </p>
+
+    <p><strong>Version:</strong> Technical Note v1.1<br/>
+    <strong>Date:</strong> December 2025</p>
   </section>
-</main>s
+</main>
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>

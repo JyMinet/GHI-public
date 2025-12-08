@@ -100,102 +100,100 @@
     <main>
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-inst">FR</a> ·
-    <a href="#en-inst">EN</a>
+    <a href="#fr-tn3">FR</a> ·
+    <a href="#en-tn3">EN</a>
   </div>
 
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version courte FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Télécharger le dossier institutionnel (PDF – version courte)
-    </a>
-    <!-- English -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Download the institutional brief (PDF – short version)
-    </a>
-  </div>
+  <!-- =========== FR =========== -->
+  <section id="fr-tn3">
+    <h1>Note Technique v1.1 – Effet du halving sur le coût de production</h1>
+    <p class="subtitle">Analyse neutre de l’impact économique du halving</p>
 
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version longue FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Télécharger le dossier institutionnel – Version longue (PDF)
-    </a>
-    <!-- English -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Download institutional dossier – Full version (PDF)
-    </a>
-  </div>
-
+    <h2>Résumé</h2>
     <p>
-      Le Global HashCost Index fournit un indicateur neutre, transparent et reproductible
-      du coût de production du Bitcoin, utilisable dans des cadres professionnels
-      et réglementaires.
+      Lors d’un halving, la récompense par bloc baisse de 50 %.  
+      Le coût de production par BTC augmente mécaniquement.
     </p>
 
-    <h3>Cas d’usage</h3>
-    <ul>
-      <li>Analyse macro-économique du réseau Bitcoin.</li>
-      <li>Due diligence pour fonds, banques et émetteurs.</li>
-      <li>Suivi du ratio prix / coût de production.</li>
-      <li>Support quantitatif pour les régulateurs.</li>
-    </ul>
-
-    <h3>Intégration</h3>
+    <h2>Mécanisme</h2>
     <p>
-      L’API GHI v1.0 est accessible via HTTP(S), renvoie du JSON simple et peut être
-      intégrée dans des systèmes de risk, de pricing ou de reporting.
+      À difficulté constante, un halving <strong>double</strong> le coût par BTC, toutes choses égales par ailleurs.
     </p>
 
+    <h2>Schéma simplifié</h2>
+    <pre><code>
+    Avant halving :
+      coût par BTC = coût réseau / 6.25 BTC
+
+    Après halving :
+      coût par BTC = coût réseau / 3.125 BTC
+    </code></pre>
+
+    <h2>Effets observables</h2>
     <ul>
-      <li><a href="api.html">Documentation API (résumé)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">API complète (docs/api.md)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">Méthodologie publique v1.0</a></li>
+      <li>Augmentation immédiate du coût min/avg/max.</li>
+      <li>Sortie des mineurs peu efficients.</li>
+      <li>Baisse potentielle du hashrate → ajustement difficulté.</li>
     </ul>
 
-    <h3>Technical Notes (v1.1)</h3>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Coût de production vs prix du Bitcoin</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Sensibilité au prix de l’énergie</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Impact du halving sur le coût de production</a></li>
-</ul>
+    <h2>Implications</h2>
+    <ul>
+      <li>Les coûts réels post-halving dépendent du nouvel équilibre matériel + énergie.</li>
+      <li>Le halving n’est pas un choc de prix, mais un choc de structure interne.</li>
+    </ul>
 
+    <h2>Conclusion</h2>
+    <p>
+      Le halving augmente mécaniquement le coût de production par BTC.  
+      L’ajustement final dépend du hashrate et de la difficulté.
+    </p>
   </section>
 
-  <!-- EN -->
-  <section id="en-inst">
-    <h2>GHI for Institutions</h2>
+  <!-- =========== EN =========== -->
+  <section id="en-tn3">
+    <h1>Technical Note v1.1 – Impact of Halving on Production Cost</h1>
+    <p class="subtitle">Neutral analysis of halving-related cost dynamics</p>
+
+    <h2>Summary</h2>
     <p>
-      The Global HashCost Index provides a neutral, transparent and reproducible
-      indicator of Bitcoin production costs, suitable for professional and
-      regulatory use.
+      During a halving, the block reward drops by 50 %.  
+      Production cost per BTC mechanically increases.
     </p>
 
-    <h3>Use cases</h3>
+    <h2>Mechanism</h2>
+    <p>
+      At constant difficulty, halving <strong>doubles</strong> production cost per BTC.
+    </p>
+
+    <h2>Simplified mechanism</h2>
+    <pre><code>
+    Pre-halving:
+      cost per BTC = network cost / 6.25 BTC
+
+    Post-halving:
+      cost per BTC = network cost / 3.125 BTC
+    </code></pre>
+
+    <h2>Observed effects</h2>
     <ul>
-      <li>Macro-economic analysis of the Bitcoin network.</li>
-      <li>Institutional due diligence (funds, banks, issuers).</li>
-      <li>Monitoring price-to-production-cost ratios.</li>
-      <li>Quantitative input for regulators.</li>
+      <li>Immediate rise of min/avg/max cost.</li>
+      <li>Exit of low-efficiency miners.</li>
+      <li>Difficulty adjustment following hashrate changes.</li>
     </ul>
 
-<h2>Technical Notes (v1.1)</h2>
-<p>Documents techniques destinés aux institutions, régulateurs et analystes :</p>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Cost vs Price</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Energy Price Sensitivity</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Halving Impact</a></li>
-</ul>
+    <h2>Implications</h2>
+    <ul>
+      <li>Real post-halving costs depend on the new hardware + energy equilibrium.</li>
+      <li>Halving is a structural, not speculative, shock.</li>
+    </ul>
 
+    <h2>Conclusion</h2>
+    <p>
+      Halving mechanically increases production cost per BTC.  
+      Final cost depends on difficulty adjustments.
+    </p>
   </section>
-</main>s
+</main>
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>

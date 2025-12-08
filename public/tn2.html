@@ -100,102 +100,104 @@
     <main>
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-inst">FR</a> ·
-    <a href="#en-inst">EN</a>
+    <a href="#fr-tn2">FR</a> ·
+    <a href="#en-tn2">EN</a>
   </div>
 
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version courte FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Télécharger le dossier institutionnel (PDF – version courte)
-    </a>
-    <!-- English -->
-    <a href="docs/GHI_institutions_short_v1.pdf" target="_blank" rel="noopener">
-      📄 Download the institutional brief (PDF – short version)
-    </a>
-  </div>
+  <!-- =========== FR =========== -->
+  <section id="fr-tn2">
+    <h1>Note Technique v1.1 – Sensibilité au prix de l’énergie</h1>
+    <p class="subtitle">Impact des variations de prix sur les coûts min / avg / max</p>
 
-  <!-- FR -->
-  <section id="fr-inst">
-    <h2>GHI for Institutions</h2>
-      <!-- Bloc téléchargement PDF – version longue FR/EN -->
-  <div class="cta-links" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
-    <!-- Français -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Télécharger le dossier institutionnel – Version longue (PDF)
-    </a>
-    <!-- English -->
-    <a href="docs/ghi_institutions_v1.pdf" target="_blank" rel="noopener">
-    Download institutional dossier – Full version (PDF)
-    </a>
-  </div>
-
+    <h2>Résumé</h2>
     <p>
-      Le Global HashCost Index fournit un indicateur neutre, transparent et reproductible
-      du coût de production du Bitcoin, utilisable dans des cadres professionnels
-      et réglementaires.
+      Le coût de production du Bitcoin est fortement dépendant du prix de l’électricité.  
+      Une hausse ou une baisse de l’énergie modifie les trois métriques GHI : min, avg, max.
     </p>
 
-    <h3>Cas d’usage</h3>
+    <h2>Pourquoi l’énergie influence le GHI</h2>
     <ul>
-      <li>Analyse macro-économique du réseau Bitcoin.</li>
-      <li>Due diligence pour fonds, banques et émetteurs.</li>
-      <li>Suivi du ratio prix / coût de production.</li>
-      <li>Support quantitatif pour les régulateurs.</li>
+      <li>L’électricité représente une part majeure du coût OPEX.</li>
+      <li>Les régions à bas coûts impactent le “minimum cost”.</li>
+      <li>Le mix énergétique influence le “avg cost”.</li>
+      <li>Le “maximum cost” reflète les régions inefficaces.</li>
     </ul>
 
-    <h3>Intégration</h3>
+    <h2>Exemple simplifié</h2>
+    <pre><code>
+    Prix énergie ↑ → coût min ↑ (modéré)
+                 → coût avg ↑↑
+                 → coût max ↑↑↑
+    </code></pre>
+
+    <h2>Implications</h2>
+    <ul>
+      <li>Sensibilité élevée en période de crise énergétique.</li>
+      <li>Les mineurs peu efficients sortent plus vite du réseau.</li>
+      <li>Le coût global suit la dynamique énergétique mondiale.</li>
+    </ul>
+
+    <h2>Limites</h2>
+    <ul>
+      <li>Modèle global (régions dans v2.0).</li>
+      <li>Pas de gestion de contrats long terme (PPA).</li>
+      <li>Variabilité locale non intégrée.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
     <p>
-      L’API GHI v1.0 est accessible via HTTP(S), renvoie du JSON simple et peut être
-      intégrée dans des systèmes de risk, de pricing ou de reporting.
+      Le GHI est un indicateur directement sensible aux prix de l’énergie.  
+      En v2.0 (régionalisation), cette sensibilité sera mieux détaillée.
     </p>
-
-    <ul>
-      <li><a href="api.html">Documentation API (résumé)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">API complète (docs/api.md)</a></li>
-      <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">Méthodologie publique v1.0</a></li>
-    </ul>
-
-    <h3>Technical Notes (v1.1)</h3>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Coût de production vs prix du Bitcoin</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Sensibilité au prix de l’énergie</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Impact du halving sur le coût de production</a></li>
-</ul>
-
   </section>
 
-  <!-- EN -->
-  <section id="en-inst">
-    <h2>GHI for Institutions</h2>
+  <!-- =========== EN =========== -->
+  <section id="en-tn2">
+    <h1>Technical Note v1.1 – Energy Price Sensitivity</h1>
+    <p class="subtitle">Impact of energy price variations on min / avg / max cost</p>
+
+    <h2>Summary</h2>
     <p>
-      The Global HashCost Index provides a neutral, transparent and reproducible
-      indicator of Bitcoin production costs, suitable for professional and
-      regulatory use.
+      Bitcoin production cost is highly sensitive to electricity prices.  
+      Increases or decreases affect all three GHI metrics: min, avg, max.
     </p>
 
-    <h3>Use cases</h3>
+    <h2>Why energy affects GHI</h2>
     <ul>
-      <li>Macro-economic analysis of the Bitcoin network.</li>
-      <li>Institutional due diligence (funds, banks, issuers).</li>
-      <li>Monitoring price-to-production-cost ratios.</li>
-      <li>Quantitative input for regulators.</li>
+      <li>Electricity is the dominant OPEX component.</li>
+      <li>Low-cost regions influence “minimum cost”.</li>
+      <li>Energy mix shapes “average cost”.</li>
+      <li>High-cost regions drive “maximum cost”.</li>
     </ul>
 
-<h2>Technical Notes (v1.1)</h2>
-<p>Documents techniques destinés aux institutions, régulateurs et analystes :</p>
-<ul>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Cost vs Price</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Energy Price Sensitivity</a></li>
-  <li><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Halving Impact</a></li>
-</ul>
+    <h2>Simple example</h2>
+    <pre><code>
+    Energy price ↑ → min cost ↑ (moderate)
+                 → avg cost ↑↑
+                 → max cost ↑↑↑
+    </code></pre>
 
+    <h2>Implications</h2>
+    <ul>
+      <li>High sensitivity during energy crises.</li>
+      <li>Low-efficiency miners exit the network faster.</li>
+      <li>Global cost follows global energy dynamics.</li>
+    </ul>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>Global-only model (regionalization in v2.0).</li>
+      <li>No long-term PPA contracts included.</li>
+      <li>Local volatility not included.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+      GHI is directly sensitive to global energy prices.  
+      In v2.0, this sensitivity will be region-specific.
+    </p>
   </section>
-</main>s
+</main>
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>

@@ -1,0 +1,101 @@
+<main>
+  <div class="lang-switch">
+    Langue / Language :
+    <a href="#fr-tn2">FR</a> ·
+    <a href="#en-tn2">EN</a>
+  </div>
+
+  <!-- =========== FR =========== -->
+  <section id="fr-tn2">
+    <h1>Note Technique v1.1 – Sensibilité au prix de l’énergie</h1>
+    <p class="subtitle">Impact des variations de prix sur les coûts min / avg / max</p>
+
+    <h2>Résumé</h2>
+    <p>
+      Le coût de production du Bitcoin est fortement dépendant du prix de l’électricité.  
+      Une hausse ou une baisse de l’énergie modifie les trois métriques GHI : min, avg, max.
+    </p>
+
+    <h2>Pourquoi l’énergie influence le GHI</h2>
+    <ul>
+      <li>L’électricité représente une part majeure du coût OPEX.</li>
+      <li>Les régions à bas coûts impactent le “minimum cost”.</li>
+      <li>Le mix énergétique influence le “avg cost”.</li>
+      <li>Le “maximum cost” reflète les régions inefficaces.</li>
+    </ul>
+
+    <h2>Exemple simplifié</h2>
+    <pre><code>
+    Prix énergie ↑ → coût min ↑ (modéré)
+                 → coût avg ↑↑
+                 → coût max ↑↑↑
+    </code></pre>
+
+    <h2>Implications</h2>
+    <ul>
+      <li>Sensibilité élevée en période de crise énergétique.</li>
+      <li>Les mineurs peu efficients sortent plus vite du réseau.</li>
+      <li>Le coût global suit la dynamique énergétique mondiale.</li>
+    </ul>
+
+    <h2>Limites</h2>
+    <ul>
+      <li>Modèle global (régions dans v2.0).</li>
+      <li>Pas de gestion de contrats long terme (PPA).</li>
+      <li>Variabilité locale non intégrée.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+      Le GHI est un indicateur directement sensible aux prix de l’énergie.  
+      En v2.0 (régionalisation), cette sensibilité sera mieux détaillée.
+    </p>
+  </section>
+
+  <!-- =========== EN =========== -->
+  <section id="en-tn2">
+    <h1>Technical Note v1.1 – Energy Price Sensitivity</h1>
+    <p class="subtitle">Impact of energy price variations on min / avg / max cost</p>
+
+    <h2>Summary</h2>
+    <p>
+      Bitcoin production cost is highly sensitive to electricity prices.  
+      Increases or decreases affect all three GHI metrics: min, avg, max.
+    </p>
+
+    <h2>Why energy affects GHI</h2>
+    <ul>
+      <li>Electricity is the dominant OPEX component.</li>
+      <li>Low-cost regions influence “minimum cost”.</li>
+      <li>Energy mix shapes “average cost”.</li>
+      <li>High-cost regions drive “maximum cost”.</li>
+    </ul>
+
+    <h2>Simple example</h2>
+    <pre><code>
+    Energy price ↑ → min cost ↑ (moderate)
+                 → avg cost ↑↑
+                 → max cost ↑↑↑
+    </code></pre>
+
+    <h2>Implications</h2>
+    <ul>
+      <li>High sensitivity during energy crises.</li>
+      <li>Low-efficiency miners exit the network faster.</li>
+      <li>Global cost follows global energy dynamics.</li>
+    </ul>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li>Global-only model (regionalization in v2.0).</li>
+      <li>No long-term PPA contracts included.</li>
+      <li>Local volatility not included.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+      GHI is directly sensitive to global energy prices.  
+      In v2.0, this sensitivity will be region-specific.
+    </p>
+  </section>
+</main>
