@@ -7,27 +7,26 @@
 
   <!-- FR -->
   <section id="fr-engine">
-    <h2>Moteur GHI – Sandbox v0.3.0</h2>
+    <h2>Moteur GHI – Sandbox v0.4.0</h2>
     <p>
-      Le moteur public de GHI est un moteur <strong>Sandbox</strong> :  
-      il n’utilise pas les données du moteur privé réel, mais reproduit l’architecture
-      et les formats de sortie du standard.
+      Le moteur public GHI est un moteur <strong>Sandbox</strong> :  
+      il reproduit l’architecture réelle du moteur institutionnel, mais avec des
+      données factices stables et documentées.
     </p>
 
     <h3>Caractéristiques</h3>
     <ul>
-      <li>Données de démonstration stables (pas de données réelles).</li>
-      <li>Séparation claire entre moteur public et moteur interne privé.</li>
-      <li>Architecture modulaire : loader → cost engine → aggregator.</li>
-      <li>100% open source (version sandbox).</li>
+      <li>Données de démonstration déterministes.</li>
+      <li>Séparation stricte entre moteur public (open-source) et moteur privé réel.</li>
+      <li>Architecture modulaire : loader → cost engine → aggregator → API.</li>
+      <li>Version explicite : <code>v0.4.0-sandbox</code>.</li>
     </ul>
 
-    <h3>Architecture</h3>
-    <p>Documentation technique :  
-      <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">
-        ENGINE_DESIGN.md
-      </a>
-    </p>
+    <h3>Documentation technique</h3>
+    <ul>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview</a></li>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning Model</a></li>
+    </ul>
 
     <h3>Code source</h3>
     <pre><code>https://github.com/ghi-standard/ghi-engine</code></pre>
@@ -35,19 +34,25 @@
 
   <!-- EN -->
   <section id="en-engine">
-    <h2>GHI Engine – Sandbox v0.3.0</h2>
+    <h2>GHI Engine – Sandbox v0.4.0</h2>
     <p>
       The public GHI Engine is a <strong>Sandbox engine</strong>:  
-      it does not compute real internal values, but reproduces the architecture
-      and output formats of the standard.
+      it mimics the structure of the real institutional engine but uses
+      deterministic demonstration data.
     </p>
 
     <h3>Features</h3>
     <ul>
-      <li>Stable demonstration values (not real data).</li>
+      <li>Deterministic demo values (no real cost computation).</li>
       <li>Strict separation between public and private engines.</li>
-      <li>Modular architecture (loader → cost engine → aggregator).</li>
-      <li>Fully open-source (public sandbox).</li>
+      <li>Modular architecture (loader → cost engine → aggregator → API).</li>
+      <li>Explicit version: <code>v0.4.0-sandbox</code>.</li>
+    </ul>
+
+    <h3>Technical Documentation</h3>
+    <ul>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview</a></li>
+      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning Model</a></li>
     </ul>
   </section>
 </main>
