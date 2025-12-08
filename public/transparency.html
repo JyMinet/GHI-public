@@ -105,155 +105,128 @@
     <a href="#en-transparency">EN</a>
   </div>
 
-  <!-- ================== FR ================== -->
+  <!-- ================= FR ================= -->
   <section id="fr-transparency">
-    <h2>Transparence & documentation</h2>
+    <h2>Transparence et intégrité des données</h2>
     <p>
-      Le Global HashCost Index (GHI) est conçu comme un standard ouvert, dont
-      chaque composant est documenté publiquement : méthodologie, moteur,
-      schémas d’API et historique des versions.
+      Le Global HashCost Index (GHI) est conçu comme un <strong>standard ouvert</strong>.
+      Cette page résume les engagements de transparence, la structure des dépôts publics
+      et les limites actuelles du projet.
     </p>
 
-    <h3>Méthodologie</h3>
-    <p>
-      La méthodologie décrit comment le coût de production du Bitcoin est
-      modélisé (structure de coûts, hypothèses générales, limites).
-    </p>
+    <h3>1. Principes de transparence</h3>
     <ul>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md"
-           target="_blank">
-          Méthodologie publique GHI v1.0
-        </a>
-      </li>
+      <li>Code du moteur accessible dans un dépôt public.</li>
+      <li>Documentation méthodologique versionnée et archivée.</li>
+      <li>API publique documentée, avec schémas de réponse et exemples.</li>
+      <li>Versionnage explicite : GHI, méthodologie, moteur, API.</li>
     </ul>
 
-    <h3>API & schémas</h3>
-    <p>
-      L’API GHI v1.0 expose la structure des données publiées (indicator, snapshot),
-      avec des schémas stables sur toute la série v1.x.
-    </p>
+    <h3>2. Code et dépôts publics</h3>
     <ul>
-      <li><a href="api.html">Résumé de l’API (cette instance)</a></li>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md"
-           target="_blank">
-          Documentation API complète (docs/api.md)
-        </a>
-      </li>
+      <li><strong>ghi-engine</strong> : moteur Sandbox, modèles, tests.</li>
+      <li><strong>GHI-public</strong> : site web, documents PDF, pages HTML.</li>
+    </ul>
+    <p>
+      Les contributions (issues, suggestions) sont encouragées via les dépôts GitHub,
+      dans le respect des licences et du cadre du projet.
+    </p>
+
+    <h3>3. API publique et tests</h3>
+    <ul>
+      <li>Suite de tests automatisés couvrant les endpoints principaux de l’API.</li>
+      <li>Contrôle systématique de la cohérence des champs (min/avg/max, versions, métadonnées).</li>
+      <li>Sandbox Engine v0.4.0 : 17/17 tests unitaires et d’intégration validés.</li>
     </ul>
 
-    <h3>Moteur & code source</h3>
-    <p>
-      Le moteur public actuel utilise un Sandbox Engine (v0.3.0) : les valeurs
-      sont de démonstration, mais les formats et contrats d’API sont définitifs
-      pour GHI v1.0.
-    </p>
+    <h3>4. Données Sandbox et avertissements</h3>
     <ul>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine"
-           target="_blank">
-          Dépôt du moteur GHI (ghi-engine)
-        </a>
-      </li>
+      <li>Les données actuelles sont des <strong>données factices</strong> à but de démonstration.</li>
+      <li>Elles ne doivent pas être utilisées comme estimation officielle du coût réel du Bitcoin.</li>
+      <li>Les futures versions intégreront des données réelles, clairement identifiées comme telles.</li>
     </ul>
 
-    <h3>Versionning & releases</h3>
-    <p>
-      Chaque évolution majeure est publiée via les releases GitHub avec un
-      changelog détaillé.
-    </p>
+    <h3>5. Gouvernance et évolutions</h3>
     <ul>
-      <li><a href="changelog.html">Changelog (vue simplifiée)</a></li>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine/releases"
-           target="_blank">
-          Releases officielles sur GitHub
-        </a>
+      <li>Découplage strict entre :
+        <ul>
+          <li>la méthodologie (GHI v1.0.0),</li>
+          <li>le moteur d’exécution (Sandbox Engine v0.4.0),</li>
+          <li>et la couche de présentation (site, dossiers institutionnels).</li>
+        </ul>
       </li>
+      <li>Chaque évolution majeure fait l’objet d’une nouvelle version documentée
+        (changelog, pages dédiées).</li>
     </ul>
 
-    <h3>Limites & avertissements</h3>
+    <h3>6. Contributions et retours</h3>
     <p>
-      Les informations fournies par GHI sont de nature générale et ne
-      constituent pas une recommandation d’investissement. Les utilisateurs
-      restent responsables de leurs décisions et de leurs propres
-      vérifications.
+      Les institutions, chercheurs et opérateurs industriels intéressés peuvent
+      proposer des retours méthodologiques, des jeux de données ou des pistes
+      d’amélioration via GitHub ou les canaux de contact mentionnés dans les
+      documents officiels.
     </p>
   </section>
 
-  <!-- ================== EN ================== -->
+  <!-- ================= EN ================= -->
   <section id="en-transparency">
-    <h2>Transparency & documentation</h2>
+    <h2>Transparency and data integrity</h2>
     <p>
-      The Global HashCost Index (GHI) is designed as an open standard with
-      publicly documented components: methodology, engine, API schemas and
-      version history.
+      The Global HashCost Index (GHI) is designed as an <strong>open standard</strong>.
+      This page summarizes our transparency commitments, public repositories and
+      current project limitations.
     </p>
 
-    <h3>Methodology</h3>
-    <p>
-      The methodology describes how Bitcoin production costs are modelled
-      (cost structure, general assumptions, limitations).
-    </p>
+    <h3>1. Transparency principles</h3>
     <ul>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md"
-           target="_blank">
-          Public methodology GHI v1.0
-        </a>
-      </li>
+      <li>Engine code available in a public repository.</li>
+      <li>Methodology documentation versioned and archived.</li>
+      <li>Public API documented with response schemas and examples.</li>
+      <li>Explicit versioning for GHI, methodology, engine and API.</li>
     </ul>
 
-    <h3>API & schemas</h3>
-    <p>
-      GHI API v1.0 defines the structure of the published data (indicator,
-      snapshot) with stable contracts across the whole v1.x series.
-    </p>
+    <h3>2. Code and public repositories</h3>
     <ul>
-      <li><a href="api.html">API summary (this instance)</a></li>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md"
-           target="_blank">
-          Full API documentation (docs/api.md)
-        </a>
-      </li>
+      <li><strong>ghi-engine</strong>: sandbox engine, models, tests.</li>
+      <li><strong>GHI-public</strong>: website, PDF documents, HTML pages.</li>
+    </ul>
+    <p>
+      Contributions (issues, suggestions) are welcome through GitHub,
+      within the scope of the project’s licence and governance.
+    </p>
+
+    <h3>3. Public API and tests</h3>
+    <ul>
+      <li>Automated test suite covering the main API endpoints.</li>
+      <li>Systematic checks on field consistency (min/avg/max, versions, metadata).</li>
+      <li>Sandbox Engine v0.4.0: 17/17 unit and integration tests passing.</li>
     </ul>
 
-    <h3>Engine & source code</h3>
-    <p>
-      The current public engine uses a Sandbox Engine (v0.3.0): values are
-      demonstration only, but formats and API contracts are final for GHI v1.0.
-    </p>
+    <h3>4. Sandbox data and disclaimers</h3>
     <ul>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine"
-           target="_blank">
-          GHI Engine repository (ghi-engine)
-        </a>
-      </li>
+      <li>Current outputs are <strong>synthetic sandbox data</strong> for demonstration only.</li>
+      <li>They must not be used as an official estimate of the real Bitcoin production cost.</li>
+      <li>Future releases will integrate real data, clearly flagged as such.</li>
     </ul>
 
-    <h3>Versioning & releases</h3>
-    <p>
-      Every major evolution is published via GitHub releases with a detailed
-      changelog.
-    </p>
+    <h3>5. Governance and evolution</h3>
     <ul>
-      <li><a href="changelog.html">Changelog (simplified view)</a></li>
-      <li>
-        <a href="https://github.com/ghi-standard/ghi-engine/releases"
-           target="_blank">
-          Official GitHub releases
-        </a>
+      <li>Strict separation between:
+        <ul>
+          <li>the methodology (GHI v1.0.0),</li>
+          <li>the execution engine (Sandbox Engine v0.4.0),</li>
+          <li>and the presentation layer (website, institutional material).</li>
+        </ul>
       </li>
+      <li>Each major change is documented via a new version
+        (changelog, dedicated pages).</li>
     </ul>
 
-    <h3>Limitations & disclaimer</h3>
+    <h3>6. Contributions and feedback</h3>
     <p>
-      Information provided by GHI is general and does not constitute investment
-      advice. Users remain responsible for their own decisions and due
-      diligence.
+      Institutions, researchers and industrial operators are invited to provide
+      methodological feedback, datasets or improvement ideas through GitHub or
+      the contact channels mentioned in the official documents.
     </p>
   </section>
 </main>
