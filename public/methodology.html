@@ -97,57 +97,171 @@
     </header>
 
     <!-- Contenu spécifique à chaque page -->
-    <body>
-  <div class="page-shell">
-
     <main>
-      <h1>Global HashCost Index – Méthodologie v1.0</h1>
-      <p class="subtitle">Standard ouvert pour mesurer le coût mondial de production du Bitcoin</p>
-      <section>
-        <h2>Version</h2>
-        <p>Méthodologie : <strong>v1.0.0</strong></p>
-        <p>Version API : <strong>v1.0</strong></p>
-        <p>Version moteur : <strong>v0.3.0 (Sandbox)</strong></p>
-        <p>Documentation complète : 
-          <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
-            methodology_public_v1.md
-          </a>
-        </p>
-      </section>
-
-      <section>
-        <h2>Résumé</h2>
-        <p>La méthodologie GHI v1.0 définit une façon standardisée, transparente et reproductible de mesurer le coût mondial de production du Bitcoin.</p>
-        <ul>
-          <li>Coûts exprimés en USD par BTC</li>
-          <li>Trois métriques : min / avg / max cost</li>
-          <li>Indicateur global journalier</li>
-          <li>Snapshot global (structure longue, multi-jour)</li>
-          <li>Moteur Sandbox utilisé pour stabiliser l’API</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Principes</h2>
-        <ul>
-          <li>Standard de transparence : versionning, API stable</li>
-          <li>Non prédictif : mesure les coûts, pas le prix futur</li>
-          <li>Conçu pour les institutions, analystes & régulateurs</li>
-          <li>Le moteur réel (données mondiales) suivra sans casser l’API</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Documents liés</h2>
-        <ul>
-          <li>Méthodologie publique : <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">methodology_public_v1.md</a></li>
-          <li>Documentation API : <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">api.md</a></li>
-          <li>Release moteur : <a href="https://github.com/ghi-standard/ghi-engine/releases/tag/v0.3.0" target="_blank">v0.3.0</a></li>
-        </ul>
-      </section>
-    </main>
+  <div class="lang-switch">
+    Langue / Language :
+    <a href="#fr-methodology">FR</a> ·
+    <a href="#en-methodology">EN</a>
   </div>
-</body>
+
+  <!-- ========================= -->
+  <!-- FRANÇAIS -->
+  <!-- ========================= -->
+  <section id="fr-methodology">
+    <h1>Méthodologie GHI – Version 1.0</h1>
+    <p class="subtitle">Standard ouvert pour mesurer le coût mondial de production du Bitcoin</p>
+
+    <h2>Versions officielles</h2>
+    <ul>
+      <li>Méthodologie : <strong>v1.0.0</strong></li>
+      <li>API publique : <strong>v1.0</strong></li>
+      <li>Moteur : <strong>v0.3.0 (Sandbox)</strong></li>
+      <li>Documentation complète :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
+          methodology_public_v1.md
+        </a>
+      </li>
+    </ul>
+
+    <h2>Résumé méthodologique</h2>
+    <p>
+      La méthodologie GHI v1.0 définit un cadre uniforme, transparent et reproductible
+      permettant de mesurer le <strong>coût global de production du Bitcoin</strong>.
+    </p>
+    <ul>
+      <li>Coûts exprimés en <strong>USD par BTC</strong></li>
+      <li>Trois métriques fondamentales : <strong>min / avg / max cost</strong></li>
+      <li>Indicateur global journalier à structure fixe</li>
+      <li>Snapshot multi-jour pour analyses institutionnelles</li>
+      <li>Moteur Sandbox utilisé pour stabiliser l’API</li>
+    </ul>
+
+    <h2>Principes fondateurs</h2>
+    <ul>
+      <li><strong>Transparence totale</strong> : versionnage strict, documents publics</li>
+      <li><strong>Neutralité</strong> : aucune dépendance à un mineur, pool ou fabricant</li>
+      <li><strong>Non prédictif</strong> : mesure économique, pas un modèle de prix</li>
+      <li><strong>Reproductibilité</strong> : hypothèses publiées, audit possible</li>
+      <li><strong>Stabilité institutionnelle</strong> : API garantie compatible lors du passage au moteur réel</li>
+    </ul>
+
+    <h2>Architecture méthodologique</h2>
+    <p>La méthodologie GHI repose sur trois étages :</p>
+    <ol>
+      <li><strong>Paramètres réseau</strong> : difficulté, hashrate, récompense de bloc</li>
+      <li><strong>Modélisation des coûts</strong> :
+        <ul>
+          <li>mix ASIC (efficacités, W/TH, amortissements)</li>
+          <li>prix régionaux de l’électricité (pondérés)</li>
+          <li>charges opérationnelles (OPEX)</li>
+        </ul>
+      </li>
+      <li><strong>Agrégation globale</strong> :
+        <ul>
+          <li>coût minimum</li>
+          <li>coût moyen pondéré</li>
+          <li>coût maximum</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>Documents liés</h2>
+    <ul>
+      <li>Méthodologie publique :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
+          methodology_public_v1.md
+        </a>
+      </li>
+      <li>Documentation API :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
+          api.md
+        </a>
+      </li>
+      <li>Release moteur Sandbox :
+        <a href="https://github.com/ghi-standard/ghi-engine/releases/tag/v0.3.0" target="_blank">v0.3.0</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ========================= -->
+  <!-- ENGLISH -->
+  <!-- ========================= -->
+  <section id="en-methodology">
+    <h1>GHI Methodology – Version 1.0</h1>
+    <p class="subtitle">Open standard to measure the global cost of producing Bitcoin</p>
+
+    <h2>Official Versions</h2>
+    <ul>
+      <li>Methodology: <strong>v1.0.0</strong></li>
+      <li>Public API: <strong>v1.0</strong></li>
+      <li>Engine: <strong>v0.3.0 (Sandbox)</strong></li>
+      <li>Full documentation:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
+          methodology_public_v1.md
+        </a>
+      </li>
+    </ul>
+
+    <h2>Overview</h2>
+    <p>
+      GHI v1.0 defines a consistent, transparent and reproducible framework to measure
+      the <strong>global cost of producing Bitcoin</strong>.
+    </p>
+    <ul>
+      <li>Costs expressed in <strong>USD per BTC</strong></li>
+      <li>Three key metrics: <strong>min / avg / max cost</strong></li>
+      <li>Daily global indicator with fixed structure</li>
+      <li>Multi-day snapshot for institutional analysis</li>
+      <li>Sandbox Engine used to stabilise the public API</li>
+    </ul>
+
+    <h2>Core Principles</h2>
+    <ul>
+      <li><strong>Transparency</strong>: strict versioning, public documentation</li>
+      <li><strong>Neutrality</strong>: no dependency on miners, pools or manufacturers</li>
+      <li><strong>Non-predictive</strong>: economic measurement, not a price model</li>
+      <li><strong>Reproducibility</strong>: published assumptions, auditable design</li>
+      <li><strong>Institutional Stability</strong>: API compatibility preserved as real engine is deployed</li>
+    </ul>
+
+    <h2>Methodological Architecture</h2>
+    <p>The methodology follows a three-layer structure:</p>
+    <ol>
+      <li><strong>Network parameters</strong>: difficulty, hashrate, block reward</li>
+      <li><strong>Cost modelling</strong>:
+        <ul>
+          <li>ASIC mix (efficiencies, W/TH, amortisation)</li>
+          <li>regional electricity pricing</li>
+          <li>operational expenditures (OPEX)</li>
+        </ul>
+      </li>
+      <li><strong>Global aggregation</strong>:
+        <ul>
+          <li>minimum cost</li>
+          <li>weighted average cost</li>
+          <li>maximum cost</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>Related Documents</h2>
+    <ul>
+      <li>Public methodology:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
+          methodology_public_v1.md
+        </a>
+      </li>
+      <li>API documentation:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
+          api.md
+        </a>
+      </li>
+      <li>Sandbox Engine release:
+        <a href="https://github.com/ghi-standard/ghi-engine/releases/tag/v0.3.0" target="_blank">v0.3.0</a>
+      </li>
+    </ul>
+  </section>
+</main>
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
