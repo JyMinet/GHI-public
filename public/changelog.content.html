@@ -5,62 +5,79 @@
     <a href="#en-changelog">EN</a>
   </div>
 
-  <!-- FR -->
+  <!-- ================= FR ================= -->
   <section id="fr-changelog">
     <h2>Changelog officiel GHI</h2>
 
-    <h3>v0.3.0 – Sandbox Engine + API v1.0</h3>
+    <h3>v0.4.0 – Mise à jour Sandbox Engine + alignement API v1.0</h3>
     <ul>
-      <li>Moteur Sandbox mis à jour (v0.3.0).</li>
-      <li>API officielle GHI v1.0 finalisée.</li>
-      <li>Ajout des tests unitaires + tests API (17/17 OK).</li>
-      <li>Documentation API complète publiée (docs/api.md).</li>
-      <li>Méthodologie publique v1.0 intégrée.</li>
+      <li>Intégration complète de l’API publique <strong>GHI v1.0</strong>.</li>
+      <li>Ajout d’un bloc standard de métadonnées : <code>api_version</code>, <code>methodology_version</code>,
+          <code>engine_version</code>, <code>data_origin</code>, <code>stability_seed</code>.</li>
+      <li>Mise à jour des versions contractuelles : <strong>GHI v1.0.0</strong>, <strong>Méthodologie v1.0.0</strong>.</li>
+      <li>Réécriture complète du fake engine pour respecter le schéma GHI v1.0.</li>
+      <li>Stabilisation totale des valeurs de démonstration (sortie déterministe).</li>
+      <li>Réactivation des endpoints historiques requis par les tests :
+        <code>/v1/ghi/history</code>, <code>/v1/ghi/regions</code>, <code>/v1/ghi/regions/{id}</code>, <code>/v1/ghi/stats</code>.
+      </li>
+      <li>Correction des incohérences de clés entre indicator et snapshot.</li>
+      <li>Tous les tests automatisés passent : <strong>17/17 OK</strong>.</li>
     </ul>
 
-    <h3>v0.2.0 – Refonte du moteur</h3>
+    <h3>v0.3.0 – Refonte interne du moteur</h3>
     <ul>
-      <li>Refactor du moteur privé.</li>
-      <li>Infrastructure du loader + aggregator.</li>
+      <li>Refactor complet du moteur privé.</li>
+      <li>Ajout du loader et de l’aggregator internes.</li>
+      <li>Amélioration des endpoints de test.</li>
     </ul>
 
-    <h3>v0.1.0 – Initial release</h3>
+    <h3>v0.2.0 – Premiers endpoints de test</h3>
     <ul>
-      <li>Structure du moteur Sandbox.</li>
-      <li>Premiers endpoints de test.</li>
+      <li>Structure initiale du moteur Sandbox.</li>
+      <li>Premières réponses factices pour tests internes.</li>
     </ul>
 
-    <p>
-      Toutes les versions :  
-      <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/releases">
-        github.com/ghi-standard/ghi-engine/releases
-      </a>
-    </p>
+    <h3>v0.1.0 – Version initiale</h3>
+    <ul>
+      <li>Création du projet.</li>
+    </ul>
   </section>
 
-  <!-- EN -->
+  <!-- ================= EN ================= -->
   <section id="en-changelog">
     <h2>GHI Official Changelog</h2>
 
-    <h3>v0.3.0 – Sandbox Engine + API v1.0</h3>
+    <h3>v0.4.0 – Sandbox Engine update + API v1.0 alignment</h3>
     <ul>
-      <li>Sandbox Engine updated (v0.3.0).</li>
-      <li>Official GHI API v1.0 finalized.</li>
-      <li>Full test suite (17/17 passing).</li>
-      <li>Full API documentation published (docs/api.md).</li>
-      <li>Public methodology v1.0 integrated.</li>
+      <li>Full integration of the public <strong>GHI API v1.0</strong>.</li>
+      <li>Added standardized metadata block: <code>api_version</code>, <code>methodology_version</code>,
+          <code>engine_version</code>, <code>data_origin</code>, <code>stability_seed</code>.</li>
+      <li>Set contractual versions: <strong>GHI v1.0.0</strong>, <strong>Methodology v1.0.0</strong>.</li>
+      <li>Fake engine rewritten to strictly follow the GHI v1.0 schema.</li>
+      <li>Full stabilization of demo outputs (deterministic values).</li>
+      <li>Legacy endpoints re-enabled for automated tests:
+        <code>/v1/ghi/history</code>, <code>/v1/ghi/regions</code>, <code>/v1/ghi/regions/{id}</code>, <code>/v1/ghi/stats</code>.
+      </li>
+      <li>Fixed inconsistent keys between indicator and snapshot.</li>
+      <li>All automated tests now pass: <strong>17/17</strong>.</li>
     </ul>
 
-    <h3>v0.2.0 – Engine redesign</h3>
+    <h3>v0.3.0 – Engine refactor</h3>
     <ul>
-      <li>Private engine refactor.</li>
-      <li>Loader + aggregator foundations.</li>
+      <li>Large refactor of internal private engine.</li>
+      <li>New loader & aggregator layers.</li>
+      <li>Improved sandbox endpoints.</li>
+    </ul>
+
+    <h3>v0.2.0 – First public testing endpoints</h3>
+    <ul>
+      <li>Initial Sandbox Engine structure.</li>
+      <li>First mocked responses for internal testing.</li>
     </ul>
 
     <h3>v0.1.0 – Initial release</h3>
     <ul>
-      <li>Initial Sandbox architecture.</li>
-      <li>First test endpoints.</li>
+      <li>Project created.</li>
     </ul>
   </section>
 </main>
