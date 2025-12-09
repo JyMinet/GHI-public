@@ -119,8 +119,9 @@
     <a href="#en-transparency">EN</a>
   </div>
 
-  <!-- ================= FR ================= -->
-  <section id="fr-transparency">
+    <!-- ================= FR ================= -->
+
+      <section id="fr-transparency">
     <h2>Transparence & documentation GHI</h2>
     <p>
       Le <strong>Global HashCost Index (GHI)</strong> est conçu comme un standard ouvert.
@@ -132,126 +133,124 @@
       <li>un historique clair des changements (changelogs, releases GitHub).</li>
     </ul>
 
+
     <h3>1. Ce qui est public</h3>
-    <p>Les éléments suivants sont publiés dans le dépôt <code>ghi-engine</code> et sur ce site :</p>
-    <ul>
-      <li><strong>Méthodologie publique v1.0.0</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
-          docs/methodology_public_v1.md
-        </a>
-      </li>
-      <li><strong>Spécification API GHI v1.0</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
-          docs/api.md
-        </a>
-      </li>
-      <li><strong>Architecture & design du moteur (Sandbox Engine v0.4.0-sandbox)</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ARCHITECTURE.md" target="_blank">
-          docs/ARCHITECTURE.md
-        </a>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
-          docs/ENGINE_DESIGN.md
-        </a>
-      </li>
-      <li><strong>Modèle de versions (API, méthodologie, moteur)</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
-          docs/VERSIONS.md
-        </a>
-      </li>
-      <li><strong>Gouvernance et contribution</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/GOVERNANCE.md" target="_blank">
-          docs/GOVERNANCE.md
-        </a>
-      </li>
-      <li><strong>Technical Notes v1.1 (TN1, TN2, TN3)</strong> – documents PDF destinés aux institutions  
-        <br><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">
-          TN1 – Coût de production vs prix du Bitcoin
-        </a>  
-        <br><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">
-          TN2 – Sensibilité au prix de l’énergie
-        </a>  
-        <br><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">
-          TN3 – Impact du halving sur le coût de production
-        </a>
-      </li>
-      <li><strong>Ce site web</strong> – pages “Méthodologie”, “API”, “Gouvernance”, “GHI pour les institutions”, etc.</li>
-    </ul>
+<p>Les éléments suivants sont publiés dans le dépôt <code>ghi-engine</code> et sur ce site :</p>
+<ul>
+  <li><strong>Méthodologie publique v1.0.0</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank" rel="noopener noreferrer">
+      docs/methodology_public_v1.md
+    </a>
+  </li>
+  <li><strong>Spécification API GHI (v1.x)</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/API_v1.1_Spec.md" target="_blank" rel="noopener noreferrer">
+      docs/API_v1.1_Spec.md
+    </a>
+  </li>
+  <li><strong>Architecture & design du moteur (Sandbox Engine v0.4.2-sandbox)</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank" rel="noopener noreferrer">
+      docs/ENGINE_DESIGN.md
+    </a>
+  </li>
+  <li><strong>Modèle de versions (API, méthodologie, moteur)</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank" rel="noopener noreferrer">
+      docs/VERSIONS.md
+    </a>
+  </li>
+  <li><strong>Gouvernance et contribution</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/GOVERNANCE.md" target="_blank" rel="noopener noreferrer">
+      docs/GOVERNANCE.md
+    </a>
+  </li>
+  <li><strong>Technical Notes v1.1 (TN1, TN2, TN3)</strong> – documents PDF destinés aux institutions  
+    <br><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank" rel="noopener noreferrer">
+      TN1 – Coût de production vs prix du Bitcoin
+    </a>  
+    <br><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank" rel="noopener noreferrer">
+      TN2 – Sensibilité au prix de l’énergie
+    </a>  
+    <br><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank" rel="noopener noreferrer">
+      TN3 – Impact du halving sur le coût de production
+    </a>
+  </li>
+  <li><strong>Ce site web</strong> – pages “Méthodologie”, “API”, “Gouvernance”, “GHI pour les institutions”, etc.</li>
+</ul>
 
-    <h3>2. Moteur public vs moteur privé</h3>
-    <p>
-      Le moteur actuellement déployé côté public est le
-      <strong>Sandbox Engine v0.4.0-sandbox</strong>. Il présente les caractéristiques suivantes :
-    </p>
-    <ul>
-      <li><code>data_origin = "sandbox"</code> dans toutes les réponses d’API ;</li>
-      <li><code>engine_version = "v0.4.0-sandbox"</code> ;</li>
-      <li><code>stability_seed = 42</code> – les données sont <strong>déterministes</strong> ;</li>
-      <li>les valeurs de coûts sont factices et ne doivent <strong>pas</strong> être interprétées comme des coûts réels.</li>
-    </ul>
-    <p>
-      Le <strong>moteur privé réel</strong> (non publié) applique la même structure de données et les mêmes
-      contrats API, mais avec :
-    </p>
-    <ul>
-      <li>des sources de données réelles (flots réseau, données régionales internes, etc.) ;</li>
-      <li>des formules de coût calibrées et non linéaires ;</li>
-      <li>des hypothèses détaillées par région et par type d’ASIC ;</li>
-      <li>des traitements de qualité de données (contrôles, filtres, cohérence temporelle).</li>
-    </ul>
-    <p>
-      Cette séparation garantit à la fois l’<strong>ouverture du standard</strong> et la
-      <strong>confidentialité</strong> des hypothèses internes utilisées dans les environnements de production.
-    </p>
+<h3>2. Moteur public vs moteur privé</h3>
+<p>
+  Le moteur actuellement déployé côté public est le
+  <strong>Sandbox Engine v0.4.2-sandbox</strong>. Il présente les caractéristiques suivantes :
+</p>
+<ul>
+  <li><code>data_origin = "sandbox"</code> dans toutes les réponses d’API ;</li>
+  <li><code>engine_version = "v0.4.2-sandbox"</code> ;</li>
+  <li><code>stability_seed = 42</code> – les données sont <strong>déterministes</strong> ;</li>
+  <li>les valeurs de coûts sont factices et ne doivent <strong>pas</strong> être interprétées comme des coûts réels.</li>
+</ul>
+<p>
+  Le <strong>moteur privé réel</strong> (non publié) applique la même structure de données et les mêmes
+  contrats API, mais avec :
+</p>
+<ul>
+  <li>des sources de données réelles (flots réseau, données régionales internes, etc.) ;</li>
+  <li>des formules de coût calibrées et non linéaires ;</li>
+  <li>des hypothèses détaillées par région et par type d’ASIC ;</li>
+  <li>des traitements de qualité de données (contrôles, filtres, cohérence temporelle).</li>
+</ul>
+<p>
+  Cette séparation garantit à la fois l’<strong>ouverture du standard</strong> et la
+  <strong>confidentialité</strong> des hypothèses internes utilisées dans les environnements de production.
+</p>
 
-    <h3>3. Ce qui reste volontairement non public</h3>
-    <p>
-      Pour des raisons de confidentialité, de sécurité opérationnelle et de protection des données,
-      certains éléments ne sont pas publiés dans le dépôt open source :
-    </p>
-    <ul>
-      <li>les séries complètes de données internes (réseau, énergie, sites miniers) ;</li>
-      <li>les profils détaillés par site, contrat ou contrepartie ;</li>
-      <li>les paramètres de calibration du moteur réel ;</li>
-      <li>les scripts d’ingestion propriétaires et la configuration de l’infrastructure ;</li>
-      <li>les éventuelles données sous NDA (partenaires, régulateurs, institutions).</li>
-    </ul>
-    <p>
-      Le <strong>Data Model v1.0</strong> et l’API publique permettent néanmoins à des tiers
-      de reproduire leur propre version du moteur en utilisant leurs propres hypothèses.
-    </p>
+<h3>3. Ce qui reste volontairement non public</h3>
+<p>
+  Pour des raisons de confidentialité, de sécurité opérationnelle et de protection des données,
+  certains éléments ne sont pas publiés dans le dépôt open source :
+</p>
+<ul>
+  <li>les séries complètes de données internes (réseau, énergie, sites miniers) ;</li>
+  <li>les profils détaillés par site, contrat ou contrepartie ;</li>
+  <li>les paramètres de calibration du moteur réel ;</li>
+  <li>les scripts d’ingestion propriétaires et la configuration de l’infrastructure ;</li>
+  <li>les éventuelles données sous NDA (partenaires, régulateurs, institutions).</li>
+</ul>
+<p>
+  Le <strong>Data Model v1.0</strong> et l’API publique permettent néanmoins à des tiers
+  de reproduire leur propre version du moteur en utilisant leurs propres hypothèses.
+</p>
 
-    <h3>4. Vérifier un résultat GHI (mode public)</h3>
-    <p>
-      Pour vérifier un résultat GHI dans l’API publique :
-    </p>
-    <ol>
-      <li>Appeler l’endpoint  
-        <code>/v1/ghi/indicator</code> ou <code>/v1/ghi/snapshot</code>.</li>
-      <li>Contrôler le bloc de métadonnées retourné :
-        <code>api_version</code>, <code>methodology_version</code>,
-        <code>engine_version</code>, <code>data_origin</code>,
-        <code>stability_seed</code>.</li>
-      <li>Comparer avec les versions indiquées sur les pages “Méthodologie”, “API” et “Changelog”.</li>
-      <li>Le cas échéant, ouvrir une issue GitHub si un comportement inattendu est observé.</li>
-    </ol>
+<h3>4. Vérifier un résultat GHI (mode public)</h3>
+<p>
+  Pour vérifier un résultat GHI dans l’API publique :
+</p>
+<ol>
+  <li>Appeler l’endpoint  
+    <code>/v1/ghi/indicator</code> ou <code>/v1/ghi/snapshot</code>.</li>
+  <li>Contrôler le bloc de métadonnées retourné :
+    <code>api_version</code>, <code>methodology_version</code>,
+    <code>engine_version</code>, <code>data_origin</code>,
+    <code>stability_seed</code>.</li>
+  <li>Comparer avec les versions indiquées sur les pages “Méthodologie”, “API” et “Changelog”.</li>
+  <li>Le cas échéant, ouvrir une issue GitHub si un comportement inattendu est observé.</li>
+</ol>
 
-    <h3>5. Audit & supervision</h3>
-    <p>
-      Pour les régulateurs, superviseurs et institutions travaillant sous NDA,
-      GHI peut fournir, dans des environnements contrôlés :
-    </p>
-    <ul>
-      <li>des exemples d’entrées/sorties anonymisés du moteur réel ;</li>
-      <li>des replays de snapshots historiques ;</li>
-      <li>de la documentation technique complémentaire sur l’architecture interne.</li>
-    </ul>
-    <p>
-      Ces procédures font partie du cadre de <strong>gouvernance et d’audit</strong> du GHI
-      et sont décrites à haut niveau dans les documents “Méthodologie + Transparence”.
-    </p>
+<h3>5. Audit & supervision</h3>
+<p>
+  Pour les régulateurs, superviseurs et institutions travaillant sous NDA,
+  GHI peut fournir, dans des environnements contrôlés :
+</p>
+<ul>
+  <li>des exemples d’entrées/sorties anonymisés du moteur réel ;</li>
+  <li>des replays de snapshots historiques ;</li>
+  <li>de la documentation technique complémentaire sur l’architecture interne.</li>
+</ul>
+<p>
+  Ces procédures font partie du cadre de <strong>gouvernance et d’audit</strong> du GHI
+  et sont décrites à haut niveau dans les documents “Méthodologie + Transparence”.
+</p>
   </section>
 
-  <!-- ================= EN ================= -->
+    <!-- ================= EN ================= -->
   <section id="en-transparency">
     <h2>GHI Transparency & Documentation</h2>
     <p>
@@ -265,124 +264,123 @@
     </ul>
 
     <h3>1. Public information</h3>
-    <p>The following items are public in the <code>ghi-engine</code> repository and on this website:</p>
-    <ul>
-      <li><strong>Public methodology v1.0.0</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
-          docs/methodology_public_v1.md
-        </a>
-      </li>
-      <li><strong>GHI API v1.0 specification</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
-          docs/api.md
-        </a>
-      </li>
-      <li><strong>Engine architecture & design (Sandbox Engine v0.4.0-sandbox)</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ARCHITECTURE.md" target="_blank">
-          docs/ARCHITECTURE.md
-        </a>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
-          docs/ENGINE_DESIGN.md
-        </a>
-      </li>
-      <li><strong>Versioning model (API, methodology, engine)</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
-          docs/VERSIONS.md
-        </a>
-      </li>
-      <li><strong>Governance & contribution</strong>  
-        <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/GOVERNANCE.md" target="_blank">
-          docs/GOVERNANCE.md
-        </a>
-      </li>
-      <li><strong>Technical Notes v1.1 (TN1, TN2, TN3)</strong> – technical PDFs for institutions  
-        <br><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">
-          TN1 – Cost vs Price
-        </a>  
-        <br><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">
-          TN2 – Energy Price Sensitivity
-        </a>  
-        <br><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">
-          TN3 – Halving Impact
-        </a>
-      </li>
-      <li><strong>This website</strong> – “Methodology”, “API”, “Governance”, “GHI for institutions”, etc.</li>
-    </ul>
+<p>The following items are public in the <code>ghi-engine</code> repository and on this website:</p>
+<ul>
+  <li><strong>Public methodology v1.0.0</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank" rel="noopener noreferrer">
+      docs/methodology_public_v1.md
+    </a>
+  </li>
+  <li><strong>GHI API specification (v1.x)</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/API_v1.1_Spec.md" target="_blank" rel="noopener noreferrer">
+      docs/API_v1.1_Spec.md
+    </a>
+  </li>
+  <li><strong>Engine architecture & design (Sandbox Engine v0.4.2-sandbox)</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank" rel="noopener noreferrer">
+      docs/ENGINE_DESIGN.md
+    </a>
+  </li>
+  <li><strong>Versioning model (API, methodology, engine)</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank" rel="noopener noreferrer">
+      docs/VERSIONS.md
+    </a>
+  </li>
+  <li><strong>Governance & contribution</strong>  
+    <br><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/GOVERNANCE.md" target="_blank" rel="noopener noreferrer">
+      docs/GOVERNANCE.md
+    </a>
+  </li>
+  <li><strong>Technical Notes v1.1 (TN1, TN2, TN3)</strong> – technical PDFs for institutions  
+    <br><a href="docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank" rel="noopener noreferrer">
+      TN1 – Cost vs Price
+    </a>  
+    <br><a href="docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank" rel="noopener noreferrer">
+      TN2 – Energy Price Sensitivity
+    </a>  
+    <br><a href="docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank" rel="noopener noreferrer">
+      TN3 – Halving Impact
+    </a>
+  </li>
+  <li><strong>This website</strong> – “Methodology”, “API”, “Governance”, “GHI for institutions”, etc.</li>
+</ul>
 
-    <h3>2. Public vs private engine</h3>
-    <p>
-      The currently deployed public engine is the
-      <strong>Sandbox Engine v0.4.0-sandbox</strong>. Its main properties are:
-    </p>
-    <ul>
-      <li><code>data_origin = "sandbox"</code> in all API responses;</li>
-      <li><code>engine_version = "v0.4.0-sandbox"</code>;</li>
-      <li><code>stability_seed = 42</code> – the data is <strong>deterministic</strong>;</li>
-      <li>cost values are synthetic and must <strong>not</strong> be interpreted as real-world costs.</li>
-    </ul>
-    <p>
-      The <strong>private real engine</strong> (non-public) uses the same data structures and API contracts,
-      but with:
-    </p>
-    <ul>
-      <li>real data sources (network feeds, internal regional datasets, etc.);</li>
-      <li>calibrated, nonlinear cost formulas;</li>
-      <li>detailed assumptions per region and ASIC type;</li>
-      <li>data quality procedures (checks, filters, temporal consistency).</li>
-    </ul>
-    <p>
-      This separation preserves both the <strong>openness of the standard</strong> and the
-      <strong>confidentiality</strong> of internal assumptions used in production deployments.
-    </p>
+<h3>2. Public vs private engine</h3>
+<p>
+  The currently deployed public engine is the
+  <strong>Sandbox Engine v0.4.2-sandbox</strong>. Its main properties are:
+</p>
+<ul>
+  <li><code>data_origin = "sandbox"</code> in all API responses;</li>
+  <li><code>engine_version = "v0.4.2-sandbox"</code>;</li>
+  <li><code>stability_seed = 42</code> – the data is <strong>deterministic</strong>;</li>
+  <li>cost values are synthetic and must <strong>not</strong> be interpreted as real-world costs.</li>
+</ul>
+<p>
+  The <strong>private real engine</strong> (non-public) uses the same data structures and API contracts,
+  but with:
+</p>
+<ul>
+  <li>real data sources (network feeds, internal regional datasets, etc.);</li>
+  <li>calibrated, nonlinear cost formulas;</li>
+  <li>detailed assumptions per region and ASIC type;</li>
+  <li>data quality procedures (checks, filters, temporal consistency).</li>
+</ul>
+<p>
+  This separation preserves both the <strong>openness of the standard</strong> and the
+  <strong>confidentiality</strong> of internal assumptions used in production deployments.
+</p>
 
-    <h3>3. Intentionally non-public components</h3>
-    <p>
-      For confidentiality, operational security and data protection reasons, several components
-      are not exposed in the open-source repository:
-    </p>
-    <ul>
-      <li>full internal datasets (network, energy, mining sites);</li>
-      <li>detailed profiles by site, contract or counterparty;</li>
-      <li>calibration parameters of the real engine;</li>
-      <li>proprietary ingestion scripts and infrastructure configuration;</li>
-      <li>any data under NDA with partners, regulators or institutions.</li>
-    </ul>
-    <p>
-      The <strong>Data Model v1.0</strong> and the public API still allow third parties
-      to build and run their own engine instance using their own assumptions.
-    </p>
+<h3>3. Intentionally non-public components</h3>
+<p>
+  For confidentiality, operational security and data protection reasons, several components
+  are not exposed in the open-source repository:
+</p>
+<ul>
+  <li>full internal datasets (network, energy, mining sites);</li>
+  <li>detailed profiles by site, contract or counterparty;</li>
+  <li>calibration parameters of the real engine;</li>
+  <li>proprietary ingestion scripts and infrastructure configuration;</li>
+  <li>any data under NDA with partners, regulators or institutions.</li>
+</ul>
+<p>
+  The <strong>Data Model v1.0</strong> and the public API still allow third parties
+  to build and run their own engine instance using their own assumptions.
+</p>
 
-    <h3>4. How to verify a GHI result (public mode)</h3>
-    <p>
-      To verify a GHI result from the public API:
-    </p>
-    <ol>
-      <li>Call  
-        <code>/v1/ghi/indicator</code> or <code>/v1/ghi/snapshot</code>.</li>
-      <li>Check the metadata block:
-        <code>api_version</code>, <code>methodology_version</code>,
-        <code>engine_version</code>, <code>data_origin</code>,
-        <code>stability_seed</code>.</li>
-      <li>Compare with the versions stated on the “Methodology”, “API” and “Changelog” pages.</li>
-      <li>If any unexpected behaviour is observed, open a GitHub issue for review.</li>
-    </ol>
+<h3>4. How to verify a GHI result (public mode)</h3>
+<p>
+  To verify a GHI result from the public API:
+</p>
+<ol>
+  <li>Call  
+    <code>/v1/ghi/indicator</code> or <code>/v1/ghi/snapshot</code>.</li>
+  <li>Check the metadata block:
+    <code>api_version</code>, <code>methodology_version</code>,
+    <code>engine_version</code>, <code>data_origin</code>,
+    <code>stability_seed</code>.</li>
+  <li>Compare with the versions stated on the “Methodology”, “API” and “Changelog” pages.</li>
+  <li>If any unexpected behaviour is observed, open a GitHub issue for review.</li>
+</ol>
 
-    <h3>5. Audit & supervisory access</h3>
-    <p>
-      For regulators, supervisors and institutional partners working under NDA,
-      GHI can provide, in controlled environments:
-    </p>
-    <ul>
-      <li>anonymised input–output examples from the real engine;</li>
-      <li>replay of historical snapshots;</li>
-      <li>additional technical documentation on the internal architecture.</li>
-    </ul>
-    <p>
-      These procedures are part of the GHI <strong>governance and audit framework</strong>,
-      and are outlined at a high level in the “Methodology + Transparency” documents.
-    </p>
+<h3>5. Audit & supervisory access</h3>
+<p>
+  For regulators, supervisors and institutional partners working under NDA,
+  GHI can provide, in controlled environments:
+</p>
+<ul>
+  <li>anonymised input–output examples from the real engine;</li>
+  <li>replay of historical snapshots;</li>
+  <li>additional technical documentation on the internal architecture.</li>
+</ul>
+<p>
+  These procedures are part of the GHI <strong>governance and audit framework</strong>,
+  and are outlined at a high level in the “Methodology + Transparency” documents.
+</p>
+
   </section>
 </main>
+
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
