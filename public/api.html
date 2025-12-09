@@ -75,10 +75,15 @@
   <div class="page-shell">
 
     <header>
+  <div class="header-container">
+    <img src="assets/logo-ghi.png" alt="GHI Logo" class="ghi-logo" />
+
       <div class="site-title">
         <h1>Global HashCost Index</h1>
         <p>Open indicator of Bitcoin’s production cost.</p>
-        <p>GHI – Global HashCost Index • API v1.0 • Methodology v1.0 • Engine v0.4.2-sandbox</p>
+          <p>
+            GHI – Global HashCost Index • API {{API_VERSION}} • Methodology {{METHODO_VERSION}} • Engine {{ENGINE_VERSION}}
+          </p>
       </div>
 
       <nav>
@@ -165,7 +170,7 @@
             <td>Nouvelle structure de données unifiée, endpoints supplémentaires, métadonnées enrichies.</td>
             <td><a href="/api/api-v1.1.html">Documentation</a></td>
           </tr>
-          <tr>
+          <tr id="api-v1-0">
             <td>API v1.0</td>
             <td>Supportée (legacy)</td>
             <td>Version historique ; maintenue pour compatibilité des intégrations existantes.</td>
@@ -332,11 +337,11 @@
             <td>Unified response format, enriched metadata, additional endpoints.</td>
             <td><a href="/api/api-v1.1.html">Documentation</a></td>
           </tr>
-          <tr>
+          <tr id="api-v1-0-en">
             <td>API v1.0</td>
             <td>Supported (legacy)</td>
             <td>Historical version maintained for migration needs.</td>
-            <td><a href="/api.html#api-v1-0">Documentation</a></td>
+            <td><a href="/api.html#api-v1-0-en">Documentation</a></td>
           </tr>
         </tbody>
       </table>

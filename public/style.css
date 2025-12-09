@@ -1042,3 +1042,27 @@ main code {
   background: transparent !important;
   color: #111 !important;
 }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ghi-logo {
+  height: 60px;
+  width: auto;
+  opacity: 0.95;
+}
+
+@media (max-width: 700px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ghi-logo {
+    height: 50px;
+    margin-bottom: 10px;
+  }
+}
