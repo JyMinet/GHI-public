@@ -1,40 +1,43 @@
 #!/usr/bin/env python3
 import os
+import pathlib
+import shutil
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PUBLIC = os.path.join(BASE_DIR, "public")
+ROOT = pathlib.Path(__file__).resolve().parent
+PUBLIC = ROOT / "public"
 
-layout_path = os.path.join(PUBLIC, "layout.html")
+def build_page(content_path: pathlib.Path):
+    """Compile a .content.html → .html using the layout."""
+    layout_path = PUBLIC / "layout.html"
+    output_path = content_path.with_suffix("").with_suffix(".html")
 
-# Charger layout.html
-with open(layout_path, "r", encoding="utf-8") as f:
-    layout = f.read()
+    with open(layout_path, "r", encoding="utf-8") as f:
+        layout = f.read()
 
-# Repérer le marqueur de contenu
-PLACEHOLDER = "<!-- PAGE_CONTENT -->"
+    with open(content_path, "r", encoding="utf-8") as f:
+        content = f.read()
 
-# Lister tous les fichiers *.content.html dans public/
-content_files = [
-    f for f in os.listdir(PUBLIC)
-    if f.endswith(".content.html")
-]
+    html = layout.replace("{{content}}", content)
 
-print("📄 Pages détectées :", content_files)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-for content_file in content_files:
-    page_name = content_file.replace(".content.html", ".html")
+    print(f"[OK] Built {output_path.relative_to(PUBLIC)}")
 
-    print(f"⚙ Génération : {page_name}")
 
-    # Charger le contenu spécifique
-    with open(os.path.join(PUBLIC, content_file), "r", encoding="utf-8") as f:
-        content_html = f.read()
+def build_all():
+    """
+    Build all pages in 'public/' AND in ALL subfolders.
+    Previously the script only handled the root 'public/' folder.
+    """
+    print("Building pages...")
 
-    # Injecter dans layout
-    final_page = layout.replace(PLACEHOLDER, content_html)
+    # Parcourt public + sous-dossiers
+    for path in PUBLIC.rglob("*.content.html"):
+        build_page(path)
 
-    # Sauvegarder dans un fichier final
-    with open(os.path.join(PUBLIC, page_name), "w", encoding="utf-8") as f:
-        f.write(final_page)
+    print("Done.")
 
-print("✔ Toutes les pages ont été générées avec succès !")
+
+if __name__ == "__main__":
+    build_all()
