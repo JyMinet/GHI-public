@@ -1,0 +1,147 @@
+<div class="page-section">
+
+  <h1>GHI Public API v1.1</h1>
+  <p class="subtitle">
+    Open, synthetic and fully documented API – version 1.1 (EN/FR).
+  </p>
+
+  <hr />
+
+  <!-- ========================================= -->
+  <!-- ENGLISH VERSION                            -->
+  <!-- ========================================= -->
+  <h2>1. Overview (EN)</h2>
+  <p>
+    API v1.1 introduces a unified response format, improved snapshot structure,
+    global statistics, and three new endpoints: <code>/metadata</code>,
+    <code>/network</code>, and <code>/forecast</code>.
+    It remains fully compatible with the GHI v1.0 public standard.
+  </p>
+
+  <h3>Main improvements:</h3>
+  <ul>
+    <li>Unified metadata in all responses: <code>version</code>, <code>timestamp_utc</code>, <code>engine_sandbox_version</code></li>
+    <li>Global cost statistics (min/avg/max)</li>
+    <li>Normalized regional structure</li>
+    <li>New endpoints</li>
+  </ul>
+
+  <hr />
+
+  <h2>2. Endpoints</h2>
+
+  <table>
+    <tr><th>Endpoint</th><th>Description</th></tr>
+    <tr><td><code>/v1/ghi/snapshot</code></td><td>Synthetic regional production costs</td></tr>
+    <tr><td><code>/v1/ghi/history</code></td><td>Historical cost values</td></tr>
+    <tr><td><code>/v1/ghi/regions</code></td><td>List of regions</td></tr>
+    <tr><td><code>/v1/ghi/metadata</code></td><td>Available endpoints</td></tr>
+    <tr><td><code>/v1/ghi/network</code></td><td>Bitcoin network synthetic metrics</td></tr>
+    <tr><td><code>/v1/ghi/forecast</code></td><td>Cost forecast</td></tr>
+  </table>
+
+  <hr />
+
+  <h2>3. Snapshot Example</h2>
+
+  <pre><code class="json">
+{
+  "version": "1.1",
+  "timestamp_utc": "2025-01-01T12:00:00Z",
+  "engine_sandbox_version": "0.4.0-sandbox",
+  "region_count": 3,
+  "regions": [
+    {
+      "id": "us",
+      "name": "United States",
+      "min_cost_usd": 38000,
+      "avg_cost_usd": 42000,
+      "max_cost_usd": 50000,
+      "currency": "USD"
+    }
+  ],
+  "global_min_cost_usd": 35000,
+  "global_avg_cost_usd": 42000,
+  "global_max_cost_usd": 52000
+}
+  </code></pre>
+
+  <hr />
+
+  <h2>4. Technical Specification</h2>
+  <p>
+    Full bilingual specification is available here:<br />
+    <a href="/docs/API_v1.1_Spec.html">API v1.1 Technical Specification</a>
+  </p>
+
+  <hr />
+
+
+  <!-- ========================================= -->
+  <!-- VERSION FRANÇAISE                          -->
+  <!-- ========================================= -->
+  <h2>1. Vue d’ensemble (FR)</h2>
+  <p>
+    L’API v1.1 améliore la normalisation des réponses, introduit des statistiques
+    globales et ajoute trois nouveaux endpoints (<code>/metadata</code>,
+    <code>/network</code>, <code>/forecast</code>). Elle reste conforme au standard
+    public GHI v1.0.
+  </p>
+
+  <h3>Principales évolutions :</h3>
+  <ul>
+    <li>Métadonnées unifiées</li>
+    <li>Statistiques globales consolidées</li>
+    <li>Structure régionale normalisée</li>
+    <li>Nouveaux endpoints</li>
+  </ul>
+
+  <hr />
+
+  <h2>2. Endpoints</h2>
+
+  <table>
+    <tr><th>Endpoint</th><th>Description</th></tr>
+    <tr><td><code>/v1/ghi/snapshot</code></td><td>Coûts de production par région</td></tr>
+    <tr><td><code>/v1/ghi/history</code></td><td>Historique synthétique</td></tr>
+    <tr><td><code>/v1/ghi/regions</code></td><td>Liste des régions</td></tr>
+    <tr><td><code>/v1/ghi/metadata</code></td><td>Liste des endpoints</td></tr>
+    <tr><td><code>/v1/ghi/network</code></td><td>Indicateurs réseau Bitcoin</td></tr>
+    <tr><td><code>/v1/ghi/forecast</code></td><td>Prévision synthétique</td></tr>
+  </table>
+
+  <hr />
+
+  <h2>3. Exemple Snapshot</h2>
+
+  <pre><code class="json">
+{
+  "version": "1.1",
+  "timestamp_utc": "2025-01-01T12:00:00Z",
+  "engine_sandbox_version": "0.4.0-sandbox",
+  "region_count": 3,
+  "regions": [
+    {
+      "id": "us",
+      "name": "United States",
+      "min_cost_usd": 38000,
+      "avg_cost_usd": 42000,
+      "max_cost_usd": 50000,
+      "currency": "USD"
+    }
+  ],
+  "global_min_cost_usd": 35000,
+  "global_avg_cost_usd": 42000,
+  "global_max_cost_usd": 52000
+}
+  </code></pre>
+
+  <hr />
+
+  <h2>4. Spécification technique</h2>
+  <p>
+    La spécification bilingue complète est disponible ici :<br />
+    <a href="/docs/API_v1.1_Spec.html">Spécification technique API v1.1</a>
+  </p>
+
+</div>
