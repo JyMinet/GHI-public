@@ -7,153 +7,280 @@
 
   <!-- ================= FR ================= -->
   <section id="fr-regions">
-    <h2>Régions GHI v1.0</h2>
+    <h2>Modèle régional GHI v1.0</h2>
     <p>
-      Le <strong>Global HashCost Index (GHI)</strong> segmente le monde en grandes
-      <strong>macro-régions</strong> de minage. Dans la version publique
-      <strong>Sandbox Engine v0.4.0</strong>, ces régions sont
-      <strong>synthétiques</strong> : elles reproduisent la structure du modèle,
-      mais ne reflètent pas des estimations réelles de hashrate ou de coûts.
+      Le <strong>Global HashCost Index (GHI)</strong> s’appuie sur un modèle
+      régionalisé pour décrire le coût de production du Bitcoin par grandes zones
+      géographiques. La version publique actuelle utilise le
+      <strong>Sandbox Engine v0.4.0</strong>, qui fournit des données factices mais
+      <strong>stables</strong> pour le prototypage et les tests d’intégration.
     </p>
 
-    <h3>1. Liste des régions Sandbox v0.4.0</h3>
-    <p>Les régions actuellement exposées par l’API publique sont les suivantes&nbsp;:</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Région</th>
-          <th>Code interne</th>
-          <th>Description</th>
-          <th>Remarques</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Amérique du Nord</strong></td>
-          <td><code>north_america</code></td>
-          <td>Bloc géographique regroupant les principaux hubs de minage nord-américains.</td>
-          <td>Profils machines et tarifs électriques entièrement synthétiques.</td>
-        </tr>
-        <tr>
-          <td><strong>Europe</strong></td>
-          <td><code>europe</code></td>
-          <td>Zone agrégée UE / Europe élargie, avec un mix énergétique simplifié.</td>
-          <td>Hypothèses tarifaires et mix machines illustratifs.</td>
-        </tr>
-        <tr>
-          <td><strong>Asie hors Chine</strong></td>
-          <td><code>asia_no_china</code></td>
-          <td>Zone couvrant les principaux pays asiatiques hors Chine continentale.</td>
-          <td>Répartition de hashrate <em>fictive</em>, uniquement pour la démonstration.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p style="margin-top:1rem;">
-      Dans le dépôt public, ces profils régionaux sont décrits dans le module
-      <code>app/engine/regional_sources</code> du moteur GHI&nbsp;:
-      définitions de <code>RegionalProfile</code>, hypothèses de hashrate,
-      mix machines et tarifs énergétiques <strong>fictifs</strong>.
-    </p>
-
-    <h3>2. Principes méthodologiques par région</h3>
+    <h3>1. Rôle des régions</h3>
     <ul>
-      <li>Chaque région reçoit une part de hashrate estimée (somme ≈ 100&nbsp;% en sandbox).</li>
-      <li>Un mix d’ASICs synthétiques est défini (efficacité moyenne en J/TH, puissance installée).</li>
-      <li>Un profil tarifaire moyen est appliqué (USD/MWh, base + scénarios bas / central / haut).</li>
-      <li>Les coûts <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>
-        sont calculés par région, puis agrégés au niveau mondial.</li>
+      <li>Fournir une <strong>décomposition géographique</strong> du coût de production.</li>
+      <li>Permettre des comparaisons entre grandes zones (coûts relatifs, sensibilité énergie).</li>
+      <li>Préparer l’extension future vers des <strong>sous-régions</strong> plus fines.</li>
     </ul>
 
     <p>
-      Les détails méthodologiques complets se trouvent dans&nbsp;:
-      <a href="methodology.html">Méthodologie GHI v1.0.0</a> et
-      <a href="transparency.html">Transparence</a>.
+      Dans GHI v1.0, trois grandes régions synthétiques sont utilisées :
+    </p>
+    <ul>
+      <li><strong>Amérique du Nord</strong> (<code>north_america</code>)</li>
+      <li><strong>Europe</strong> (<code>europe</code>)</li>
+      <li><strong>Asie (hors Chine)</strong> (<code>asia_no_china</code>)</li>
+    </ul>
+
+    <h3>2. Structure des données régionales</h3>
+    <p>
+      Chaque région est décrite par un ensemble d’hypothèses synthétiques, compatibles
+      avec le <strong>Data Model v1.0</strong> de GHI :
+    </p>
+    <ul>
+      <li><strong>Part de hashrate</strong> estimée (<em>hashrate_share</em>).</li>
+      <li><strong>Mix de machines ASIC</strong> (efficacité moyenne en J/TH).</li>
+      <li><strong>Mix tarifaire énergie</strong> (plancher / central / plafond).</li>
+      <li><strong>Facteur de charge</strong> (profil d’utilisation des fermes de minage).</li>
+      <li><strong>Coût min / moyen / max</strong> (USD/BTC) dérivé de ces hypothèses.</li>
+    </ul>
+
+    <p>
+      Dans le dépôt public, ces valeurs sont <strong>purement illustratives</strong> :
+      elles ne reflètent pas les coûts de production réels et servent uniquement
+      à stabiliser les réponses de l’API.
     </p>
 
-    <h3>3. Évolutions prévues (v2.0)</h3>
+    <h3>3. Région : Amérique du Nord</h3>
+    <p>
+      L’agrégat <strong>Amérique du Nord</strong> couvre principalement les activités
+      de minage industrielles situées au Canada et aux États-Unis. Dans le moteur
+      public :
+    </p>
     <ul>
-      <li>Segmentation plus fine (sous-régions, pays, hubs de minage spécifiques).</li>
-      <li>Intégration de données réelles multisources (hashrate, prix de l’énergie, énergie utilisée).</li>
-      <li>Possibilité de publier des <em>profils régionaux détaillés</em> sous NDA pour les institutions.</li>
-      <li>Ajout de métriques CO₂ et de scénarios réglementaires par région.</li>
+      <li>les hypothèses de <strong>mix machines</strong> privilégient des ASICs récents,</li>
+      <li>les <strong>tarifs énergétiques</strong> sont modélisés à partir de contrats
+        industriels synthétiques,</li>
+      <li>la <strong>part de hashrate</strong> est fixée à une valeur stable et normalisée.</li>
+    </ul>
+    <p>
+      Le moteur Sandbox agrège ces éléments pour produire un coût de production
+      min / moyen / max fictif pour la région.
+    </p>
+
+    <h3>4. Région : Europe</h3>
+    <p>
+      L’agrégat <strong>Europe</strong> représente un ensemble diversifié de juridictions
+      énergétiques. Dans la version publique :
+    </p>
+    <ul>
+      <li>les coûts d’électricité supposés sont <strong>plus élevés</strong> en moyenne
+        que dans d’autres régions,</li>
+      <li>le mix machines reste synthétique, avec une efficience légèrement inférieure
+        aux meilleurs parcs industriels mondiaux,</li>
+      <li>les profils horaires intègrent une simplification heures pleines / creuses.</li>
+    </ul>
+    <p>
+      Là encore, les valeurs chiffrées de la Sandbox sont déterministes mais non
+      représentatives du marché réel.
+    </p>
+
+    <h3>5. Région : Asie (hors Chine)</h3>
+    <p>
+      L’agrégat <strong>Asie (hors Chine)</strong> couvre un ensemble hétérogène
+      de pays. Dans le modèle public :
+    </p>
+    <ul>
+      <li>les hypothèses de prix de l’énergie reflètent un <strong>panier synthétique</strong>
+        de contrats industriels,</li>
+      <li>le mix machines introduit une combinaison d’ASICs récents et plus anciens,</li>
+      <li>la part de hashrate est une constante normalisée, uniquement utilisée
+        pour produire des exemples de résultats régionaux.</li>
+    </ul>
+
+    <h3>6. Agrégation vers le GHI mondial</h3>
+    <p>
+      Le GHI mondial est obtenu en agrégeant les coûts régionaux à l’aide de
+      pondérations (parts de hashrate). Pour la Sandbox :
+    </p>
+    <ul>
+      <li>les <strong>pondérations</strong> sont fixes et normalisées,</li>
+      <li>le résultat global produit une bande de coûts
+        <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>
+        strictement déterministe.</li>
+    </ul>
+
+    <h3>7. Limites et évolutions prévues</h3>
+    <ul>
+      <li>Données Sandbox : <strong>non représentatives</strong> des coûts réels.</li>
+      <li>Régions agrégées (pas de ventilation par pays ou État / province).</li>
+      <li>Tarifs énergétiques synthétiques, sans connexion directe à des contrats réels.</li>
+    </ul>
+    <p>Évolutions prévues (famille v2.x) :</p>
+    <ul>
+      <li>segmentations <strong>sous-régionales</strong> (ex. Texas, Québec) dans le moteur privé,</li>
+      <li>intégration optionnelle de <strong>métriques CO₂</strong> et de fiscalité énergétique,</li>
+      <li>scénarios avancés de sensibilité prix / énergie par région.</li>
+    </ul>
+
+    <h3>8. Documentation associée</h3>
+    <ul>
+      <li>
+        Design moteur (anglais) :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
+          docs/ENGINE_DESIGN.md
+        </a>
+      </li>
+      <li>
+        Modèle de versioning :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
+          docs/VERSIONS.md
+        </a>
+      </li>
+      <li>
+        Spécification API GHI :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
+          docs/api.md
+        </a>
+      </li>
     </ul>
   </section>
 
   <!-- ================= EN ================= -->
   <section id="en-regions">
-    <h2>GHI Regions v1.0</h2>
+    <h2>GHI Regional Model v1.0</h2>
     <p>
-      The <strong>Global HashCost Index (GHI)</strong> splits the world into large
-      <strong>mining macro-regions</strong>. In the public
-      <strong>Sandbox Engine v0.4.0</strong>, these regions are
-      <strong>synthetic</strong>: they reproduce the model structure but do not
-      represent real hashrate or cost estimates.
+      The <strong>Global HashCost Index (GHI)</strong> relies on a regional model
+      to describe Bitcoin production costs across major geographic areas. The
+      current public implementation uses the <strong>Sandbox Engine v0.4.0</strong>,
+      which serves <strong>synthetic but stable</strong> data for prototyping and
+      integration testing.
     </p>
 
-    <h3>1. Sandbox regions (v0.4.0)</h3>
-    <p>The regions currently exposed by the public API are:</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Region</th>
-          <th>Internal code</th>
-          <th>Description</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>North America</strong></td>
-          <td><code>north_america</code></td>
-          <td>Aggregated view of the main North American mining hubs.</td>
-          <td>Machine and tariff profiles are fully synthetic.</td>
-        </tr>
-        <tr>
-          <td><strong>Europe</strong></td>
-          <td><code>europe</code></td>
-          <td>Aggregated EU / wider Europe region with a simplified energy mix.</td>
-          <td>Illustrative assumptions for both tariffs and ASIC fleet.</td>
-        </tr>
-        <tr>
-          <td><strong>Asia ex-China</strong></td>
-          <td><code>asia_no_china</code></td>
-          <td>Zone covering key Asian countries excluding mainland China.</td>
-          <td><em>Fictional</em> hashrate allocation, for demo purposes only.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p style="margin-top:1rem;">
-      In the public engine repository, these regional profiles are defined in
-      <code>app/engine/regional_sources</code>, through
-      <code>RegionalProfile</code> objects, synthetic hashrate weights,
-      ASIC mixes and energy tariffs.
-    </p>
-
-    <h3>2. Methodological principles per region</h3>
+    <h3>1. Purpose of regions</h3>
     <ul>
-      <li>Each region receives an estimated hashrate share (summing to ≈ 100% in sandbox mode).</li>
-      <li>A synthetic ASIC mix is defined (average J/TH efficiency, installed power).</li>
-      <li>An average electricity price profile is applied (USD/MWh, low / central / high scenarios).</li>
-      <li>Regional <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>
-        are computed and then aggregated at global level.</li>
+      <li>Provide a <strong>geographical breakdown</strong> of production costs.</li>
+      <li>Enable comparisons between large areas (relative costs, energy sensitivity).</li>
+      <li>Prepare the future extension to more granular <strong>sub-regions</strong>.</li>
     </ul>
 
     <p>
-      Full methodological details are provided in
-      <a href="methodology.html">Methodology v1.0.0</a> and
-      <a href="transparency.html">Transparency</a>.
+      In GHI v1.0, three synthetic regions are used:
+    </p>
+    <ul>
+      <li><strong>North America</strong> (<code>north_america</code>)</li>
+      <li><strong>Europe</strong> (<code>europe</code>)</li>
+      <li><strong>Asia (ex-China)</strong> (<code>asia_no_china</code>)</li>
+    </ul>
+
+    <h3>2. Regional data structure</h3>
+    <p>
+      Each region is described using a set of synthetic assumptions, aligned with
+      the <strong>GHI Data Model v1.0</strong>:
+    </p>
+    <ul>
+      <li><strong>Estimated hashrate share</strong> (<em>hashrate_share</em>).</li>
+      <li><strong>ASIC fleet mix</strong> (average efficiency in J/TH).</li>
+      <li><strong>Energy tariff mix</strong> (floor / central / ceiling scenarios).</li>
+      <li><strong>Load factor</strong> (utilization profile of mining facilities).</li>
+      <li><strong>Min / avg / max cost</strong> (USD/BTC) derived from these inputs.</li>
+    </ul>
+
+    <p>
+      In the public repository, all these values are <strong>purely illustrative</strong>:
+      they are not meant to represent real-world production costs and only exist
+      to stabilise the API responses.
     </p>
 
-    <h3>3. Planned extensions (v2.0)</h3>
+    <h3>3. Region: North America</h3>
+    <p>
+      The <strong>North America</strong> aggregate mainly covers industrial mining
+      activity in Canada and the United States. In the public engine:
+    </p>
     <ul>
-      <li>Finer segmentation (sub-regions, countries, specific mining hubs).</li>
-      <li>Integration of real multi-source data (hashrate, energy prices, energy mix).</li>
-      <li>Optional <em>detailed regional profiles</em> under NDA for institutional users.</li>
-      <li>Add CO₂ metrics and regulatory scenarios per region.</li>
+      <li>the <strong>machine mix</strong> leans toward more recent ASICs,</li>
+      <li><strong>energy tariffs</strong> are modelled as synthetic industrial contracts,</li>
+      <li>the <strong>hashrate share</strong> is a fixed, normalised constant.</li>
+    </ul>
+    <p>
+      The Sandbox Engine combines these elements to produce a fictional min / avg / max
+      cost of production for the region.
+    </p>
+
+    <h3>4. Region: Europe</h3>
+    <p>
+      The <strong>Europe</strong> aggregate represents a diverse set of energy
+      jurisdictions. In the public model:
+    </p>
+    <ul>
+      <li>assumed electricity prices are <strong>higher on average</strong> than in
+        other regions,</li>
+      <li>the machine mix is synthetic, with slightly lower efficiency than the
+        most advanced industrial parks worldwide,</li>
+      <li>hourly profiles are simplified into basic peak / off-peak patterns.</li>
+    </ul>
+    <p>
+      Again, the numerical values provided by the Sandbox are deterministic but
+      not representative of the actual market.
+    </p>
+
+    <h3>5. Region: Asia (ex-China)</h3>
+    <p>
+      The <strong>Asia (ex-China)</strong> aggregate covers a heterogeneous group of
+      countries. In the public model:
+    </p>
+    <ul>
+      <li>energy price assumptions reflect a <strong>synthetic basket</strong> of
+        industrial contracts,</li>
+      <li>the machine mix combines both recent and older ASIC generations,</li>
+      <li>the hashrate share is a normalised constant, used only to generate
+        example regional outputs.</li>
+    </ul>
+
+    <h3>6. Aggregation into the global GHI</h3>
+    <p>
+      The global GHI is derived by aggregating regional costs using hashrate-based
+      weights. For the Sandbox Engine:
+    </p>
+    <ul>
+      <li><strong>weights</strong> are fixed and normalised,</li>
+      <li>the global output is a deterministic band:
+        <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>.</li>
+    </ul>
+
+    <h3>7. Limitations and roadmap</h3>
+    <ul>
+      <li>Sandbox data is <strong>not representative</strong> of real production costs.</li>
+      <li>Regions are aggregates (no country- or state-level breakdown yet).</li>
+      <li>Energy tariffs are synthetic and not linked to any specific contract.</li>
+    </ul>
+    <p>Planned evolutions (v2.x family):</p>
+    <ul>
+      <li>more granular <strong>sub-regions</strong> (e.g. Texas, Québec) in the private engine,</li>
+      <li>optional integration of <strong>CO₂ metrics</strong> and energy-related taxes,</li>
+      <li>advanced price / energy sensitivity scenarios per region.</li>
+    </ul>
+
+    <h3>8. Related documentation</h3>
+    <ul>
+      <li>
+        Engine design (EN):
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
+          docs/ENGINE_DESIGN.md
+        </a>
+      </li>
+      <li>
+        Versioning model:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
+          docs/VERSIONS.md
+        </a>
+      </li>
+      <li>
+        GHI API specification:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
+          docs/api.md
+        </a>
+      </li>
     </ul>
   </section>
 </main>
