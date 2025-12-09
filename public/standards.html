@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global HashCost Index – Titre de la page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Global HashCost Index – Indicateur ouvert du coût de production du Bitcoin."
+  />
+  <!-- Styles globaux du site -->
+  <!-- Referencement Institutionnel -->
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://globalhashcostindex.org/#organization",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/",
+  "description": "Le Global HashCost Index (GHI) est un standard ouvert visant à mesurer le coût de production du Bitcoin à l'échelle mondiale, à destination des institutions, chercheurs et acteurs de marché.",
+  "foundingDate": "2025",
+  "logo": "https://globalhashcostindex.org/PATH-VERS-VOTRE-LOGO.png",
+  "sameAs": [
+    "https://globalhashcostindex.org/",
+    "https://globalhashcostindex.org/api.html"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://globalhashcostindex.org/#dataset",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/dashboard.html",
+  "description": "Jeu de données agrégé décrivant une estimation du coût global de production du Bitcoin, région par région, à partir de modèles publics et transparents. Le GHI fournit un indicateur institutionnel pour analyser la relation entre prix du Bitcoin et coût de production.",
+  "creator": {
+    "@id": "https://globalhashcostindex.org/#organization"
+  },
+  "inLanguage": "fr",
+  "keywords": [
+    "Bitcoin",
+    "coût de production",
+    "minage",
+    "énergie",
+    "indice",
+    "standard ouvert"
+  ],
+  "measurementTechnique": "Modélisation des coûts de production du Bitcoin par région en fonction du mix machines, des tarifs d'électricité et des profils d'utilisation.",
+  "variableMeasured": [
+    "Coût moyen global de production du Bitcoin (USD/BTC)",
+    "Coût régional de production du Bitcoin (USD/BTC)",
+    "Relation prix / coût de production"
+  ],
+  "spatialCoverage": "Global",
+  "temporalCoverage": "2010-01-01/ongoing",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://globalhashcostindex.org/api.html",
+      "name": "Documentation API du Global HashCost Index (GHI)"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p>Open indicator of Bitcoin’s production cost.</p>
+        <p>GHI – Global HashCost Index • API v1.0 • Méthodologie v1.0 • Engine v0.4.0-sandbox</p>
+      </div>
+
+      <nav>
+        <ul>
+<li><a href="index.html">Accueil</a></li>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="regions.html">Régions</a></li>
+<li><a href="methodology.html">Méthodologie</a></li>
+<li><a href="transparency.html">Transparence</a></li>
+
+<!-- Technique -->
+<li><a href="api.html">API</a></li>
+<li><a href="api-quickstart.html">Quickstart API</a></li>
+<li><a href="api-reference.html">API Reference</a></li>
+<li><a href="engine.html">Moteur</a></li>
+<li><a href="standards.html">Standards</a></li>
+<li><a href="changelog.html">Changelog</a></li>
+
+<!-- Institutions -->
+<li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
+<li><a href="governance.html">Gouvernance</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+
+<!-- À propos -->
+<li><a href="about.html">À propos</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="legal.html">Mentions légales</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Contenu spécifique à chaque page -->
+    <main>
+  <div class="lang-switch">
+    Langue / Language :
+    <a href="#fr-standards">FR</a> ·
+    <a href="#en-standards">EN</a>
+  </div>
+
+  <!-- ================= FR ================= -->
+  <section id="fr-standards">
+    <h2>Standards techniques GHI v1.0</h2>
+    <p>
+      Cette page centralise les principaux documents techniques du
+      <strong>Global HashCost Index (GHI)</strong> pour la version
+      <strong>v1.0</strong>. Elle est destinée aux équipes techniques,
+      aux analystes et aux institutions qui souhaitent intégrer ou auditer le standard.
+    </p>
+
+    <h3>1. Standard GHI et modèle de données</h3>
+    <p>Le cœur du standard GHI v1.0 repose sur deux documents :</p>
+    <ul>
+      <li>
+        <strong>GHI Technical Standard v1.0</strong> – description formelle du standard
+        (structures, contrats, logique générale) :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/standard/GHI-Technical-Standard-v1.0.md">
+          standard/GHI-Technical-Standard-v1.0.md
+        </a>
+      </li>
+      <li>
+        <strong>GHI Data Model v1.0</strong> – schéma de données officiel (Snapshot, Region, HistoryPoint, etc.) :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/standard/GHI-Data-Model-v1.0.md">
+          standard/GHI-Data-Model-v1.0.md
+        </a>
+      </li>
+    </ul>
+
+    <h3>2. Méthodologie et transparence</h3>
+    <p>Les principes économiques et la transparence du modèle sont documentés via :</p>
+    <ul>
+      <li>
+        <strong>Méthodologie GHI v1.0.0</strong> – synthèse publique (FR/EN) :<br />
+        <a href="methodology.html">methodology.html</a>
+      </li>
+      <li>
+        <strong>Transparence v1.0</strong> – périmètre, limites et gouvernance de la transparence :<br />
+        <a href="transparency.html">transparency.html</a>
+      </li>
+      <li>
+        <strong>Public Methodology v1.0</strong> – version détaillée (anglais, dépôt moteur) :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md">
+          ghi-engine/docs/methodology_public_v1.md
+        </a>
+      </li>
+    </ul>
+
+    <h3>3. API publique GHI v1.0</h3>
+    <p>Les intégrateurs peuvent s’appuyer sur les ressources suivantes :</p>
+    <ul>
+      <li>
+        <strong>Page API (vue d’ensemble)</strong> :<br />
+        <a href="api.html">api.html</a>
+      </li>
+      <li>
+        <strong>API Quickstart v1.0</strong> – exemples immédiats d’appels :<br />
+        <a href="api-quickstart.html">api-quickstart.html</a>
+      </li>
+      <li>
+        <strong>API Reference v1.0</strong> – détail des endpoints publics :<br />
+        <a href="api-reference.html">api-reference.html</a>
+      </li>
+      <li>
+        <strong>API Specification (format technique)</strong> – dépôt moteur :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
+          ghi-engine/docs/api.md
+        </a>
+      </li>
+    </ul>
+
+    <h3>4. Moteur GHI (Engine) – conception et versions</h3>
+    <p>Le moteur GHI est documenté au niveau conception et versionning :</p>
+    <ul>
+      <li>
+        <strong>Engine Design Overview (Sandbox Engine v0.4.0)</strong> :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">
+          ghi-engine/docs/ENGINE_DESIGN.md
+        </a>
+      </li>
+      <li>
+        <strong>Versioning Model (API / méthodologie / moteur)</strong> :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">
+          ghi-engine/docs/VERSIONS.md
+        </a>
+      </li>
+      <li>
+        <strong>Dépot moteur public (sandbox)</strong> :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+          github.com/ghi-standard/ghi-engine
+        </a>
+      </li>
+    </ul>
+
+    <h3>5. Régions et modèle régional</h3>
+    <p>Le modèle régional est présenté dans les pages dédiées :</p>
+    <ul>
+      <li>
+        <strong>Régions GHI v1.0</strong> – grands ensembles géographiques et principes de pondération :<br />
+        <a href="regions.html">regions.html</a>
+      </li>
+      <li>
+        <strong>Gouvernance et process de mise à jour</strong> :<br />
+        <a href="governance.html">governance.html</a>
+      </li>
+    </ul>
+
+    <h3>6. Documents institutionnels</h3>
+    <p>Pour les institutions, régulateurs et grands acteurs :</p>
+    <ul>
+      <li>
+        <strong>Whitepaper GHI v1.0 (EN/FR)</strong> – version bilingue en Markdown :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/WHITEPAPER_GHI_v1.0.md">
+          public/docs/WHITEPAPER_GHI_v1.0.md
+        </a>
+      </li>
+      <li>
+        <strong>GHI Institutional Pack – Slide Deck v1.0</strong> (20 slides, EN/FR) :<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/GHI_Institutional_Pack_SlideDeck_v1.0.md">
+          public/docs/GHI_Institutional_Pack_SlideDeck_v1.0.md
+        </a>
+      </li>
+      <li>
+        <strong>Page “GHI pour les institutions”</strong> – vue d’ensemble, positionnement et liens clés :<br />
+        <a href="ghi-for-institutions.html">ghi-for-institutions.html</a>
+      </li>
+    </ul>
+
+    <h3>7. Périmètre de la version 1.0 et évolutions</h3>
+    <p>
+      La version <strong>GHI v1.0</strong> constitue la première base stable du standard
+      (data model, API publique, méthodologie, moteur sandbox). Toute évolution
+      majeure (v2.x, v3.x, etc.) fera l’objet :
+    </p>
+    <ul>
+      <li>d’une mise à jour de la documentation dans les dépôts publics ;</li>
+      <li>d’un versionnage explicite des composants (API, méthodologie, moteur) ;</li>
+      <li>d’un historique traçable via les Pull Requests et changelogs publics.</li>
+    </ul>
+  </section>
+
+  <!-- ================= EN ================= -->
+  <section id="en-standards">
+    <h2>GHI Technical Standards Hub – v1.0</h2>
+    <p>
+      This page centralises the main technical documents for the
+      <strong>Global HashCost Index (GHI)</strong> version <strong>v1.0</strong>.
+      It is intended for technical teams, analysts and institutions that want to
+      integrate or audit the standard.
+    </p>
+
+    <h3>1. GHI Standard and Data Model</h3>
+    <p>The core of the GHI v1.0 standard is defined by two documents:</p>
+    <ul>
+      <li>
+        <strong>GHI Technical Standard v1.0</strong> – formal description of the standard
+        (structures, contracts, high-level logic):<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/standard/GHI-Technical-Standard-v1.0.md">
+          standard/GHI-Technical-Standard-v1.0.md
+        </a>
+      </li>
+      <li>
+        <strong>GHI Data Model v1.0</strong> – official data schema (Snapshot, Region, HistoryPoint, etc.):<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/standard/GHI-Data-Model-v1.0.md">
+          standard/GHI-Data-Model-v1.0.md
+        </a>
+      </li>
+    </ul>
+
+    <h3>2. Methodology and Transparency</h3>
+    <p>The economic principles and transparency framework are documented through:</p>
+    <ul>
+      <li>
+        <strong>GHI Methodology v1.0.0</strong> – public overview (FR/EN):<br />
+        <a href="methodology.html">methodology.html</a>
+      </li>
+      <li>
+        <strong>Transparency v1.0</strong> – scope, limits and governance of transparency:<br />
+        <a href="transparency.html">transparency.html</a>
+      </li>
+      <li>
+        <strong>Public Methodology v1.0</strong> – detailed reference (English, engine repo):<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md">
+          ghi-engine/docs/methodology_public_v1.md
+        </a>
+      </li>
+    </ul>
+
+    <h3>3. GHI Public API v1.0</h3>
+    <p>API integrators can rely on the following resources:</p>
+    <ul>
+      <li>
+        <strong>API overview page</strong>:<br />
+        <a href="api.html">api.html</a>
+      </li>
+      <li>
+        <strong>API Quickstart v1.0</strong> – ready-to-use call examples:<br />
+        <a href="api-quickstart.html">api-quickstart.html</a>
+      </li>
+      <li>
+        <strong>API Reference v1.0</strong> – endpoint details and parameters:<br />
+        <a href="api-reference.html">api-reference.html</a>
+      </li>
+      <li>
+        <strong>API Specification (technical format)</strong> – engine repository:<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
+          ghi-engine/docs/api.md
+        </a>
+      </li>
+    </ul>
+
+    <h3>4. GHI Engine – design and versioning</h3>
+    <p>The GHI Engine is documented at design and versioning level:</p>
+    <ul>
+      <li>
+        <strong>Engine Design Overview (Sandbox Engine v0.4.0)</strong>:<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">
+          ghi-engine/docs/ENGINE_DESIGN.md
+        </a>
+      </li>
+      <li>
+        <strong>Versioning Model (API / Methodology / Engine)</strong>:<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">
+          ghi-engine/docs/VERSIONS.md
+        </a>
+      </li>
+      <li>
+        <strong>Public engine repository (sandbox)</strong>:<br />
+        <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+          github.com/ghi-standard/ghi-engine
+        </a>
+      </li>
+    </ul>
+
+    <h3>5. Regions and regional model</h3>
+    <p>The regional model is presented in the dedicated pages:</p>
+    <ul>
+      <li>
+        <strong>GHI Regions v1.0</strong> – major geographic areas and weighting principles:<br />
+        <a href="regions.html">regions.html</a>
+      </li>
+      <li>
+        <strong>Governance and update process</strong>:<br />
+        <a href="governance.html">governance.html</a>
+      </li>
+    </ul>
+
+    <h3>6. Institutional documents</h3>
+    <p>For institutions, supervisors and large actors:</p>
+    <ul>
+      <li>
+        <strong>GHI Whitepaper v1.0 (EN/FR)</strong> – bilingual Markdown version:<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/WHITEPAPER_GHI_v1.0.md">
+          public/docs/WHITEPAPER_GHI_v1.0.md
+        </a>
+      </li>
+      <li>
+        <strong>GHI Institutional Pack – Slide Deck v1.0</strong> (20 slides, EN/FR):<br />
+        <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/GHI_Institutional_Pack_SlideDeck_v1.0.md">
+          public/docs/GHI_Institutional_Pack_SlideDeck_v1.0.md
+        </a>
+      </li>
+      <li>
+        <strong>“GHI for Institutions” page</strong> – positioning and key links:<br />
+        <a href="ghi-for-institutions.html">ghi-for-institutions.html</a>
+      </li>
+    </ul>
+
+    <h3>7. Scope of version 1.0 and future evolution</h3>
+    <p>
+      The <strong>GHI v1.0</strong> release is the first stable baseline of the standard
+      (data model, public API, methodology, sandbox engine). Any major evolution
+      (v2.x, v3.x, etc.) will involve:
+    </p>
+    <ul>
+      <li>updated documentation in the public repositories;</li>
+      <li>explicit versioning of each component (API, methodology, engine);</li>
+      <li>a fully traceable history via public Pull Requests and changelogs.</li>
+    </ul>
+  </section>
+</main>
+
+    <footer>
+      <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+      <p>
+        © 2025 GHI – Global HashCost Index.
+        Contenu publié sous licence
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
+          CC BY-NC-SA 4.0
+        </a>.
+      </p>
+    </footer>
+  </div>
+  <footer class="footer-social">
+  <a href="https://github.com/ghi-standard" target="_blank" class="social-icon" aria-label="GitHub">
+    <!-- Logo GitHub -->
+    <svg viewBox="0 0 16 16" width="28" height="28" fill="#ffffff">
+      <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 
+      5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.91-.89-1.15-.89-1.15-.73-.5.06-.49.06-.49.81.06 
+      1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 
+      0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 
+      2.2.82a7.53 7.53 0 0 1 4 0c1.53-1.03 2.2-.82 
+      2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 
+      2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 
+      .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.linkedin.com/company/global-hashcost-index-ghi/" target="_blank" class="social-icon" aria-label="LinkedIn">
+    <!-- Logo LinkedIn -->
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="#ffffff">
+      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 
+      3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 
+      8.99h4.56V24H.22V8.99zM8.62 8.99h4.37v2.05h.06c.61-1.15 
+      2.1-2.37 4.33-2.37C22.75 8.67 24 11.3 24 
+      15.27V24h-4.53v-8.01c0-1.91-.03-4.37-2.66-4.37-2.66 
+      0-3.07 2.08-3.07 4.23V24H9.21V8.99h-.59z"/>
+    </svg>
+  </a>
+</footer>
+</body>
+</html>
