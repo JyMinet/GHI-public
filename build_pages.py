@@ -1,43 +1,80 @@
 #!/usr/bin/env python3
-import os
-import pathlib
-import shutil
+"""
+GHI – Simple static builder
 
-ROOT = pathlib.Path(__file__).resolve().parent
-PUBLIC = ROOT / "public"
+- Prend public/layout.html comme template global.
+- Cherche tous les fichiers *.content.html dans public/ (récursif).
+- Remplace le placeholder <!-- PAGE_CONTENT --> par le contenu.
+- Remplace le token {{ROOT}} par un préfixe relatif en fonction de la profondeur :
+    - fichier à la racine      -> ROOT = ""
+    - fichier dans /api/       -> ROOT = "../"
+    - fichier dans /x/y/       -> ROOT = "../../"
+- Écrit le fichier .html correspondant (même chemin, sans .content).
+"""
 
-def build_page(content_path: pathlib.Path):
-    """Compile a .content.html → .html using the layout."""
-    layout_path = PUBLIC / "layout.html"
-    output_path = content_path.with_suffix("").with_suffix(".html")
+from pathlib import Path
 
-    with open(layout_path, "r", encoding="utf-8") as f:
-        layout = f.read()
+ROOT_DIR = Path(__file__).resolve().parent
+PUBLIC_DIR = ROOT_DIR / "public"
+LAYOUT_PATH = PUBLIC_DIR / "layout.html"
 
-    with open(content_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    html = layout.replace("{{content}}", content)
-
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(html)
-
-    print(f"[OK] Built {output_path.relative_to(PUBLIC)}")
+PLACEHOLDER = "<!-- PAGE_CONTENT -->"
+ROOT_TOKEN = "{{ROOT}}"
 
 
-def build_all():
+def compute_root_prefix(content_path: Path) -> str:
     """
-    Build all pages in 'public/' AND in ALL subfolders.
-    Previously the script only handled the root 'public/' folder.
+    Calcule le préfixe relatif (../) en fonction de la profondeur
+    du fichier par rapport à public/.
     """
-    print("Building pages...")
+    rel = content_path.relative_to(PUBLIC_DIR)  # ex: "api/api-v1.1.content.html"
+    # nombre de sous-dossiers = nb de parties - 1 (le fichier lui-même)
+    depth = max(len(rel.parts) - 1, 0)
+    return "../" * depth
 
-    # Parcourt public + sous-dossiers
-    for path in PUBLIC.rglob("*.content.html"):
-        build_page(path)
 
-    print("Done.")
+def build_page(content_path: Path) -> None:
+    """
+    Génère le .html correspondant à un fichier *.content.html.
+    """
+    layout_html = LAYOUT_PATH.read_text(encoding="utf-8")
+    page_content = content_path.read_text(encoding="utf-8")
+
+    root_prefix = compute_root_prefix(content_path)
+
+    # Remplacement du token ROOT puis du contenu de page
+    final_html = (
+        layout_html
+        .replace(ROOT_TOKEN, root_prefix)
+        .replace(PLACEHOLDER, page_content)
+    )
+
+    rel = content_path.relative_to(PUBLIC_DIR)
+    # ex: "api/api-v1.1.content.html" -> "api/api-v1.1.html"
+    out_name = rel.name.replace(".content.html", ".html")
+    out_path = PUBLIC_DIR / rel.parent / out_name
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(final_html, encoding="utf-8")
+    print(f"[GHI build] Built {out_path.relative_to(PUBLIC_DIR)}")
+
+
+def main() -> None:
+    if not LAYOUT_PATH.exists():
+        raise SystemExit(f"Layout not found: {LAYOUT_PATH}")
+
+    # Recherche récursive de tous les *.content.html sous public/
+    content_files = sorted(PUBLIC_DIR.rglob("*.content.html"))
+
+    if not content_files:
+        print("[GHI build] No *.content.html files found.")
+        return
+
+    print(f"[GHI build] Using layout: {LAYOUT_PATH}")
+    for content_path in content_files:
+        build_page(content_path)
+
+    print("[GHI build] Done.")
 
 
 if __name__ == "__main__":
-    build_all()
+    main()
