@@ -1066,3 +1066,10 @@ main code {
     margin-bottom: 10px;
   }
 }
+
+.logo-ghi {
+  height: 42px;
+  width: auto;
+  margin-right: 18px;
+  vertical-align: middle;
+}
