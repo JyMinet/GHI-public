@@ -1,261 +1,123 @@
 <main>
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-inst">FR</a> ·
-    <a href="#en-inst">EN</a>
+    <a href="#fr-gov">FR</a> ·
+    <a href="#en-gov">EN</a>
   </div>
 
-  <!-- ================= FR ================= -->
-  <section id="fr-inst">
-    <h2>GHI pour les institutions – v1.0</h2>
+  <!-- ==================================================== -->
+  <!-- ======================= FR ========================= -->
+  <!-- ==================================================== -->
+
+  <section id="fr-gov">
+    <h2>Gouvernance du standard GHI</h2>
     <p>
-      Le Global HashCost Index (GHI) est un standard ouvert qui mesure le coût de production
-      du Bitcoin à l’échelle mondiale. Il est conçu dès l’origine pour les besoins des
-      institutions financières, régulateurs, banques centrales, entreprises cotées
-      et cabinets d’audit.
+      Le Global HashCost Index est un standard ouvert. Sa gouvernance repose sur
+      la transparence, le versionnage et la publication systématique des évolutions.
     </p>
 
-    <h3>1. À quoi sert le GHI&nbsp;?</h3>
+    <h3>Principes</h3>
     <ul>
-      <li>Fournir une référence indépendante du <strong>coût de production du Bitcoin</strong> (min / moyen / max).</li>
-      <li>Permettre la <strong>comparabilité</strong> entre régions, périodes et scénarios de prix de l’énergie.</li>
-      <li>Offrir un <strong>indicateur de risque</strong> complémentaire aux données de marché (prix, volatilité, volumes).</li>
-      <li>Servir de base à la <strong>supervision prudentielle</strong>, aux tests de sensibilité et aux analyses de stress.</li>
+      <li>L’API, la méthodologie et le moteur possèdent chacun leur version indépendante.</li>
+      <li>Tout changement majeur crée une nouvelle version majeure (v2.0, v3.0…).</li>
+      <li>Toutes les modifications passent par des Pull Requests publiques GitHub.</li>
     </ul>
 
-    <h3>2. Cas d’usage institutionnels</h3>
+    <h3>Processus officiel</h3>
     <ul>
-      <li>
-        <strong>Banques centrales &amp; régulateurs</strong>  
-        <br />— suivi de la soutenabilité économique du mining,  
-        <br />— scénarios macro-énergétiques,  
-        <br />— support à l’analyse de stabilité financière.
-      </li>
-      <li>
-        <strong>Gestionnaires d’actifs &amp; fonds</strong>  
-        <br />— mesure du risque de « capitulation des mineurs »,  
-        <br />— intégration du coût de production dans les modèles de valorisation,  
-        <br />— due diligence sur les produits exposés au Bitcoin.
-      </li>
-      <li>
-        <strong>Entreprises cotées &amp; miners</strong>  
-        <br />— benchmark de leur structure de coûts vs. GHI global / régional,  
-        <br />— support aux disclosures ESG et rapports annuels.
-      </li>
-      <li>
-        <strong>Cabinets d’audit, rating &amp; conseil</strong>  
-        <br />— base neutre pour l’analyse de modèles économiques,  
-        <br />— documentation standardisée pour les comités de risque.</li>
+      <li><strong>Proposition</strong> : création d’une issue ou Pull Request GitHub.</li>
+      <li><strong>Revue</strong> : examen technique, méthodologique et d’intégration.</li>
+      <li><strong>Validation</strong> : merge + création d’une release officielle.</li>
     </ul>
 
-    <h3>3. Ce que fournit concrètement GHI</h3>
-    <ul>
-      <li><strong>API publique v1.0</strong> – indicateur quotidien et snapshot global structuré  
-        (<a href="api.html">documentation API</a>, <a href="api-quickstart.html">Quickstart</a>).</li>
-      <li><strong>Découpage régional</strong> – profils synthétiques (Amérique du Nord, Europe, Asie hors Chine, …).</li>
-      <li><strong>Méthodologie v1.0.0</strong> – description du modèle économique et des hypothèses  
-        (<a href="methodology.html">page Méthodologie</a>).</li>
-      <li><strong>Transparence &amp; gouvernance</strong> – description du processus de versioning et des limites  
-        (<a href="transparency.html">Transparence</a>, <a href="governance.html">Gouvernance</a>).</li>
-      <li><strong>Notes techniques (Technical Notes v1.1)</strong> – analyses ciblées coût vs prix, énergie, halving  
-        (liens disponibles sur la page <a href="governance.html">Gouvernance</a>).</li>
-    </ul>
-
-    <h3>4. Moteur public vs. moteur privé</h3>
-    <p>
-      Le dépôt public <code>ghi-engine</code> expose un <strong>moteur Sandbox</strong> (version
-      <code>v0.4.0-sandbox</code>) qui fournit des données factices mais stables, permettant
-      de tester l’API et d’intégrer le standard sans divulguer les hypothèses internes.
-    </p>
-    <p>
-      L’implémentation complète du moteur (données réelles, calibrations, scripts d’ingestion)
-      est maintenue dans un dépôt privé, avec des procédures d’accès spécifiques pour les
-      autorités et institutions sous NDA.
-    </p>
-    <p>
-      Documentation technique&nbsp;:  
-      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
-        ENGINE_DESIGN.md
-      </a> ·
-      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
-        VERSIONS.md
-      </a>
-    </p>
-
-        <h3>Whitepaper GHI v1.0</h3>
-    <p>
-      Le document de référence complet (bilingue EN/FR) est publié au format Markdown
-      sur GitHub :
-    </p>
+    <h3>Documentation technique</h3>
     <ul>
       <li>
-        <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/WHITEPAPER_GHI_v1.0.md"
-           target="_blank">
-          WHITEPAPER_GHI_v1.0.md (EN/FR)
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md"
+           target="_blank" rel="noopener noreferrer">
+          Engine Design Overview
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md"
+           target="_blank" rel="noopener noreferrer">
+          Versioning Model
         </a>
       </li>
     </ul>
 
-    <h3>5. Comment démarrer&nbsp;?</h3>
-    <ol>
-      <li>Consulter la <a href="methodology.html">Méthodologie v1.0.0</a> et la page <a href="transparency.html">Transparence</a>.</li>
-      <li>Tester l’API via le <a href="api-quickstart.html">Quickstart API GHI v1.0</a> (exemples <code>curl</code> et Python).</li>
-      <li>Intégrer le snapshot GHI dans vos tableaux de bord internes (risk, research, ESG).</li>
-      <li>Le cas échéant, ouvrir une <strong>issue GitHub</strong> ou une Pull Request pour proposer
-          des améliorations ou poser des questions techniques.</li>
-    </ol>
+    <h3>Technical Notes (v1.1)</h3>
+    <ul>
+      <li><a href="{{ROOT}}docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Coût de production vs prix du Bitcoin</a></li>
+      <li><a href="{{ROOT}}docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Sensibilité au prix de l’énergie</a></li>
+      <li><a href="{{ROOT}}docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Impact du halving sur le coût de production</a></li>
+    </ul>
 
-<!-- ==================== FR ==================== -->
-<h3>Pack Institutionnel GHI v1.0</h3>
-<p>Documents destinés aux institutions, aux analystes et aux acteurs réglementaires :</p>
-<ul>
-  <li>
-    <strong>Pack Institutionnel GHI v1.0 – Présentation (20 slides)</strong><br>
-    • Version GitHub :  
-    <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/GHI_Institutional_Pack_v1.0.md"
-       target="_blank">
-      Consulter sur GitHub
-    </a><br>
-    • Lien direct (.md) :  
-    <a href="docs/GHI_Institutional_Pack_v1.0.md" target="_blank">
-      Télécharger le fichier .md
-    </a>
-  </li>
-</ul>
-
-    <h3>6. Accès institutionnel &amp; audit</h3>
     <p>
-      Les institutions intéressées par un accès approfondi (audits, scénarios spécifiques,
-      accès encadré au moteur privé) peuvent prendre contact via les canaux officiels indiqués
-      dans la documentation GitHub. Des procédures dédiées (NDA, environnement sécurisé,
-      replays historiques) sont prévues pour les autorités de supervision et partenaires
-      stratégiques.
+      Releases officielles :  
+      <a href="https://github.com/ghi-standard/ghi-engine/releases"
+         target="_blank" rel="noopener noreferrer">
+        github.com/ghi-standard/ghi-engine/releases
+      </a>
     </p>
   </section>
 
-  <!-- ================= EN ================= -->
-  <section id="en-inst">
-    <h2>GHI for Institutions – v1.0</h2>
+  <!-- ==================================================== -->
+  <!-- ======================= EN ========================= -->
+  <!-- ==================================================== -->
+
+  <section id="en-gov">
+    <h2>GHI Governance</h2>
     <p>
-      The Global HashCost Index (GHI) is an open standard measuring Bitcoin production cost
-      at global scale. It is designed from day one for central banks, supervisors, regulated
-      financial institutions, listed companies and audit firms.
+      The Global HashCost Index is an open standard. Governance relies on
+      transparency, versioning, and a fully public development workflow.
     </p>
 
-    <h3>1. What is GHI used for?</h3>
+    <h3>Principles</h3>
     <ul>
-      <li>Providing an independent reference for the <strong>cost of producing Bitcoin</strong> (min / avg / max).</li>
-      <li>Enabling <strong>comparability</strong> across regions, time periods and energy price scenarios.</li>
-      <li>Offering an additional <strong>risk indicator</strong> alongside market data (price, volatility, volumes).</li>
-      <li>Supporting <strong>prudential supervision</strong>, sensitivity analysis and stress-testing frameworks.</li>
+      <li>The API, methodology and engine each maintain their own version.</li>
+      <li>Breaking changes require a new major version (v2.0, v3.0…).</li>
+      <li>All modifications go through public GitHub Pull Requests.</li>
     </ul>
 
-    <h3>2. Institutional use cases</h3>
+    <h3>Official process</h3>
     <ul>
-      <li>
-        <strong>Central banks &amp; supervisors</strong>  
-        <br />— monitoring the economic sustainability of mining,  
-        <br />— macro-energy scenarios,  
-        <br />— support to financial stability assessments.
-      </li>
-      <li>
-        <strong>Asset managers &amp; funds</strong>  
-        <br />— measuring “miner capitulation” risk,  
-        <br />— integrating production cost into valuation models,  
-        <br />— due diligence on Bitcoin-exposed products.
-      </li>
-      <li>
-        <strong>Listed companies &amp; miners</strong>  
-        <br />— benchmarking their cost structure against global / regional GHI,  
-        <br />— supporting ESG and annual report disclosures.
-      </li>
-      <li>
-        <strong>Audit, rating &amp; advisory firms</strong>  
-        <br />— neutral reference for business model assessment,  
-        <br />— standardized documentation for risk committees.
-      </li>
+      <li><strong>Proposal</strong>: GitHub issue or Pull Request.</li>
+      <li><strong>Review</strong>: technical, methodological and integration checks.</li>
+      <li><strong>Validation</strong>: merge + creation of an official release.</li>
     </ul>
 
-    <h3>3. What GHI provides</h3>
-    <ul>
-      <li><strong>Public API v1.0</strong> – daily indicator and structured global snapshot  
-        (<a href="api.html">API documentation</a>, <a href="api-quickstart.html">Quickstart</a>).</li>
-      <li><strong>Regional breakdown</strong> – synthetic profiles (North America, Europe, Asia ex-China, …).</li>
-      <li><strong>Methodology v1.0.0</strong> – economic model and assumptions  
-        (<a href="methodology.html">Methodology page</a>).</li>
-      <li><strong>Transparency &amp; governance</strong> – versioning, change log, limitations  
-        (<a href="transparency.html">Transparency</a>, <a href="governance.html">Governance</a>).</li>
-      <li><strong>Technical Notes v1.1</strong> – focused studies (cost vs. price, energy sensitivity, halving impact)  
-        (links available on the <a href="governance.html">Governance</a> page).</li>
-    </ul>
-
-    <h3>4. Public vs. private engine</h3>
-    <p>
-      The public <code>ghi-engine</code> repository exposes a <strong>Sandbox engine</strong>
-      (<code>v0.4.0-sandbox</code>) returning fake but stable data, allowing institutions to
-      integrate the standard and test the API without disclosing internal assumptions.
-    </p>
-    <p>
-      The full engine implementation (real data, calibration parameters, ingestion pipelines)
-      is maintained in a private repository, with controlled access procedures for authorities
-      and institutional partners under NDA.
-    </p>
-    <p>
-      Technical documentation:  
-      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
-        ENGINE_DESIGN.md
-      </a> ·
-      <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
-        VERSIONS.md
-      </a>
-    </p>
-
-        <h3>Whitepaper GHI v1.0</h3>
-    <p>
-      Le document de référence complet (bilingue EN/FR) est publié au format Markdown
-      sur GitHub :
-    </p>
+    <h3>Technical Documentation</h3>
     <ul>
       <li>
-        <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/WHITEPAPER_GHI_v1.0.md"
-           target="_blank">
-          WHITEPAPER_GHI_v1.0.md (EN/FR)
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md"
+           target="_blank" rel="noopener noreferrer">
+          Engine Design Overview
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md"
+           target="_blank" rel="noopener noreferrer">
+          Versioning Model
         </a>
       </li>
     </ul>
 
-<!-- ==================== EN ==================== -->
-<h3>GHI Institutional Pack v1.0</h3>
-<p>Technical and institutional material designed for regulators, analysts and institutional partners:</p>
-<ul>
-  <li>
-    <strong>GHI Institutional Pack v1.0 – 20-slide presentation</strong><br>
-    • GitHub version:  
-    <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/GHI_Institutional_Pack_v1.0.md"
-       target="_blank">
-      View on GitHub
-    </a><br>
-    • Direct link (.md):  
-    <a href="docs/GHI_Institutional_Pack_v1.0.md" target="_blank">
-      Download .md file
-    </a>
-  </li>
-</ul>
+    <h3>Technical Notes (v1.1)</h3>
+    <p>Institution-grade documents for analysts and regulators:</p>
+    <ul>
+      <li><a href="{{ROOT}}docs/TECHNICAL NOTE v1.1 – TN1.pdf" target="_blank">TN1 – Cost vs Price</a></li>
+      <li><a href="{{ROOT}}docs/TECHNICAL NOTE v1.1 – TN2.pdf" target="_blank">TN2 – Energy Price Sensitivity</a></li>
+      <li><a href="{{ROOT}}docs/TECHNICAL NOTE v1.1 – TN3.pdf" target="_blank">TN3 – Halving Impact</a></li>
+    </ul>
 
-    <h3>5. How to get started?</h3>
-    <ol>
-      <li>Review the <a href="methodology.html">Methodology v1.0.0</a> and <a href="transparency.html">Transparency</a> pages.</li>
-      <li>Test the API using the <a href="api-quickstart.html">GHI API v1.0 Quickstart</a> (curl and Python examples).</li>
-      <li>Integrate the GHI snapshot into your internal risk, research or ESG dashboards.</li>
-      <li>Open a <strong>GitHub issue</strong> or Pull Request for questions or contributions.</li>
-    </ol>
-
-    <h3>6. Institutional &amp; audit access</h3>
     <p>
-      Institutions interested in deeper access (audits, specific scenarios, controlled access
-      to the private engine) can reach out through the official GitHub channels. Dedicated
-      procedures (NDA, secure environment, historical replays) are envisaged for supervisors
-      and strategic partners.
+      Official releases:  
+      <a href="https://github.com/ghi-standard/ghi-engine/releases"
+         target="_blank" rel="noopener noreferrer">
+        github.com/ghi-standard/ghi-engine/releases
+      </a>
     </p>
   </section>
+
 </main>
