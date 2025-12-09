@@ -1,168 +1,279 @@
-# ENGINE DESIGN CHANGES – Sandbox Engine v0.4.2  
-Global HashCost Index (GHI)
+# GHI Sandbox Engine – Design Changes v0.4.2
+
+Engine: `ghi-engine`  
+Version: **v0.4.2-sandbox**  
+API: **GHI Public API v1.1**  
+Date: 2025-12-09  
+Maintainer: GHI Engineering
 
 ---
 
-## EN — Executive Summary
+## 0. French executive summary (FR)
 
-The **Sandbox Engine v0.4.2** introduces a refined and institution-grade version of the synthetic
-production-cost model used by the GHI sandbox environment.  
-This release preserves full backward compatibility with v0.4.0 while delivering:
+La version **v0.4.2-sandbox** du moteur GHI introduit :
 
-- improved regional cost profiles (US / EU / CN),
-- realistic and stable global aggregates,
-- harmonized response formats aligned with **API v1.1**,
-- revised timestamps and metadata for consistency,
-- simplified and predictable historical time series,
-- enhanced internal stability for downstream testing.
+- la nouvelle API publique **v1.1** (router unique, structure de réponse unifiée, nouveaux endpoints),
+- une mise à jour complète des données synthétiques du sandbox (snapshot, historique, réseau, forecast),
+- une normalisation de la structure des régions pour satisfaire les tests de conformité,
+- l’abandon du router API v1.0 au profit d’un unique router v1.1 (avec compatibilité de structure pour les usages historiques),
+- des tests unitaires et d’intégration alignés sur ces nouveaux contrats.
 
-The objective of v0.4.2 is not to simulate real-world mining economics, but to provide a **clean,
-predictable, and institutional sandbox**, suitable for testing API clients, ETL pipelines, data validation
-frameworks, and compliance integrations.
+Il n’y a **pas de breaking change** pour l’API v1.1 publiée : les modifications sont internes au moteur et aux données de démonstration.
 
 ---
 
-## EN — Technical Changes (v0.4.0 → v0.4.2)
+## 1. Scope of v0.4.2
 
-### 1. Engine Metadata
-- `engine_sandbox_version` updated to **"0.4.2-sandbox"**  
-- Harmonized metadata structure across all endpoints  
-- Unified timestamp format (ISO 8601 with Z)
+This document captures **engine-level changes** between:
 
-### 2. Region Definitions
-The sandbox continues to expose the three reference regions:
+- `v0.4.0-sandbox` → `v0.4.2-sandbox`
 
-- **US — United States**  
-- **EU — Europe**  
-- **CN — China**
+It does **not** redefine the full public API specification.  
+For the normative API contract, refer to:
 
-No additional regions are introduced to preserve stability and backward compatibility.
+- `docs/API_v1.1_Spec.md` in `ghi-engine`,
+- the public website `api/api-v1.1.html`.
 
-### 3. Updated Production-Cost Values
-Each region now features a realistic synthetic profile with credible spreads:
+The focus here is:
 
-| Region | Min (USD) | Avg (USD) | Max (USD) |
-|--------|-----------|-----------|-----------|
-| US     | 38,000    | 44,000    | 52,000    |
-| EU     | 41,000    | 48,000    | 57,000    |
-| CN     | 34,000    | 40,000    | 47,000    |
-
-Global aggregates (min/avg/max) are recomputed dynamically.
-
-### 4. Updated History Series
-- Rolling 7-day synthetic series  
-- Variations of ±2% to ±5% per day  
-- Harmonized currency & schema
-
-### 5. Updated Network & Forecast (Beta)
-- hashrate: static value for now (554 EH/s)  
-- difficulty: fixed synthetic representation  
-- avg_fee_usd: stable synthetic representation  
-- forecast: constant baseline value (62,300 USD) for reproducibility
+- internal routing & versioning,
+- synthetic data models,
+- region structure and validation,
+- test coverage and non-regression guarantees.
 
 ---
 
-## EN — API Alignment (v1.1)
+## 2. API routing & versioning
 
-All engine outputs are aligned with **API v1.1**, including:
+### 2.1. Single v1.1 router
 
-- unified metadata (`version`, `timestamp_utc`, `engine_sandbox_version`)
-- region_count
-- consistent response schemas
-- stable currency representation ("USD")
-- global aggregates in `/snapshot`
-- standardised 7-point historical series
+Previous situation (v0.4.0-sandbox):
 
-No breaking change is introduced.
+- Two routers coexisted:
+  - `v1.0` router (legacy),
+  - `v1.1` router (initial draft, not finalised).
 
----
+New situation (v0.4.2-sandbox):
 
-## EN — Compatibility Notes
+- The engine exposes **only one router**, bound to the **v1.1** contract:
 
-- Fully backward compatible with v0.4.0  
-- API clients built on API v1.0 remain functional  
-- No fields removed  
-- No region renamed  
-- No structure modified in a breaking manner  
-- Behaviour remains deterministic for reproducibility
+  - Module: `app/api/v1_1.py`
+  - Router tag: `["GHI v1.1"]`
+  - Mounted on: `/v1/ghi/*`
 
----
+Rationale:
 
-# ------------------------------------------------------------------------------
+- reduce complexity,
+- ensure that *all* tests validate the same public contract,
+- avoid drift between legacy and “draft” routers.
 
-# FR — Résumé exécutif
+### 2.2. Version metadata
 
-Le **Sandbox Engine v0.4.2** propose une version révisée, professionnelle et stable du modèle
-synthétique utilisé par le GHI pour son environnement sandbox.  
-Cette version conserve **100% de compatibilité** avec v0.4.0 tout en offrant :
+The base metadata helper now consistently injects:
 
-- des profils régionaux plus réalistes (US / EU / CN),
-- une cohérence parfaite avec l’API v1.1,
-- une harmonisation des métadonnées et formats,
-- des séries historiques propres et reproductibles,
-- une meilleure stabilité pour les clients institutionnels.
+- `version` – API version (currently `"1.1"`),
+- `timestamp_utc` – ISO 8601 with `Z` suffix,
+- `engine_sandbox_version` – engine version string (now `"0.4.2-sandbox"`).
 
-L’objectif n’est pas d’imiter le minage réel, mais de fournir un **moteur sandbox propre, crédible,
-prévisible**, idéal pour les tests institutionnels et les intégrations automatisées.
+All v1.1 endpoints reuse this helper, ensuring a unified response envelope.
 
 ---
 
-## FR — Changements Techniques (v0.4.0 → v0.4.2)
+## 3. Region model and synthetic data
 
-### 1. Métadonnées
-- `engine_sandbox_version = "0.4.2-sandbox"`  
-- Format de timestamp unifié (ISO 8601 / Z)  
-- Métadonnées identiques sur tous les endpoints
+### 3.1. Region models
 
-### 2. Régions
-Aucune nouvelle région.  
-Les trois régions restent :
+`RegionInfo` and `RegionCost` Pydantic models have been aligned with the v1.1 spec:
 
-- **US – États-Unis**  
-- **EU – Europe**  
-- **CN – Chine**
+- `RegionInfo`:
+  - `id: str`
+  - `name: str`
 
-### 3. Mise à jour des coûts synthétiques
-| Région | Min (USD) | Avg (USD) | Max (USD) |
-|--------|-----------|-----------|-----------|
-| US     | 38 000    | 44 000    | 52 000    |
-| EU     | 41 000    | 48 000    | 57 000    |
-| CN     | 34 000    | 40 000    | 47 000    |
+- `RegionCost`:
+  - `region_id: str` (primary key for region linkage)
+  - `currency: str = "USD"`
+  - `min_cost_usd: float`
+  - `avg_cost_usd: float`
+  - `max_cost_usd: float`
 
-### 4. Séries temporelles
-- Série historique 7 jours  
-- Variation de ±2% à ±5%  
-- Format strict : `min_cost_usd`, `avg_cost_usd`, `max_cost_usd`, `date`
+Internal note:
 
-### 5. Réseau & Prévision
-- hashrate : valeur fixe  
-- difficulty : valeur synthétique  
-- avg_fee_usd : valeur stable  
-- forecast : 62 300 USD constant  
-(afin d’assurer la reproductibilité)
+- In the sandbox, the `region_id` is treated as the **canonical key**;  
+  any legacy `id`/`name` usage has been removed to satisfy CI tests and the v1.1 reference structure.
+
+### 3.2. Synthetic snapshot data
+
+The synthetic cost dataset has been refreshed to:
+
+- reflect more recent orders of magnitude,
+- provide coherent min/avg/max spreads across regions,
+- be consistent between `snapshot` and `history` endpoints.
+
+Function:
+
+- `_sandbox_region_costs()` → `List[RegionCost]`
+
+Regions provided:
+
+- `"us"` – United States,
+- `"eu"` – Europe,
+- `"cn"` – China.
+
+Each region includes:
+
+- `min_cost_usd` – low bound,
+- `avg_cost_usd` – central synthetic cost,
+- `max_cost_usd` – high bound.
+
+### 3.3. Global statistics computation
+
+Helper:
+
+- `_compute_global_stats(costs: List[RegionCost]) -> dict`
+
+Responsibilities:
+
+- `global_min_cost_usd` – min over regions,
+- `global_avg_cost_usd` – average of regional averages,
+- `global_max_cost_usd` – max over regions.
+
+The computation is used only in v1.1 and is **synthetic by design** (no real-market data).
 
 ---
 
-## FR — Alignement API v1.1
+## 4. Endpoints behaviour (v1.1)
 
-Le moteur est désormais 100% aligné avec l’API v1.1 :
+### 4.1. `/v1/ghi/snapshot`
 
-- métadonnées unifiées  
-- global aggregates dans `/snapshot`  
-- séries historiques normalisées  
-- formats stricts  
-- compatibilité ascendante garantie  
+Response model: `SnapshotResponse`
+
+Provides:
+
+- base metadata (version, timestamp, engine_sandbox_version),
+- `region_count`,
+- list of `RegionCost` objects,
+- global statistics:
+  - `global_min_cost_usd`,
+  - `global_avg_cost_usd`,
+  - `global_max_cost_usd`.
+
+Changes vs v0.4.0:
+
+- unified structure (no v1.0/v1.1 divergence),
+- fully typed region IDs,
+- explicit global statistics.
+
+### 4.2. `/v1/ghi/history`
+
+Response model: `HistoryResponse`
+
+Sandbox behaviour:
+
+- returns **7 synthetic daily points** for a given `region_id` (or `"global"`),
+- each point: `date`, `min_cost_usd`, `avg_cost_usd`, `max_cost_usd`.
+
+Changes vs v0.4.0:
+
+- simplified generator logic,
+- values aligned with the snapshot average (no incoherent gaps),
+- tests updated to reflect the v1.1 structure.
+
+### 4.3. `/v1/ghi/regions`
+
+New in v1.1, response model: `RegionsResponse`
+
+- lists all sandbox regions (`RegionInfo`),
+- exposes `region_count`.
+
+### 4.4. `/v1/ghi/metadata`
+
+Response model: `MetadataResponse`
+
+- exposes:
+  - `version`,
+  - `timestamp_utc`,
+  - `engine_sandbox_version`,
+  - `available_endpoints` (static list).
+
+### 4.5. `/v1/ghi/network`
+
+Response model: `NetworkResponse`
+
+- synthetic network metrics:
+  - `hashrate_eh`,
+  - `difficulty`,
+  - `avg_fee_usd`.
+
+Note: metrics are placeholders and **not** derived from real chain data.
+
+### 4.6. `/v1/ghi/forecast`
+
+Response model: `ForecastResponse`
+
+- returns:
+  - `forecast_days` (input, default 7),
+  - `predicted_avg_cost_usd` (constant synthetic value for now).
 
 ---
 
-## FR — Notes de compatibilité
+## 5. Compatibility & breaking changes
 
-- Compatibilité totale avec v0.4.0  
-- Aucun champ supprimé  
-- Aucune rupture de schéma  
-- Les clients utilisant API v1.0 continuent de fonctionner  
-- Le comportement reste déterministe
+### 5.1. Public API
+
+- The **v1.1 contract** is stable and covered by tests.
+- There is **no breaking change** for existing v1.1 clients between `v0.4.0-sandbox` and `v0.4.2-sandbox`.
+
+### 5.2. Internal / legacy
+
+- The legacy v1.0 router has been removed from the engine:
+  - any remaining v1.0 usage must migrate to v1.1.
+- Sandbox data remains **synthetic**; real-data integration will be handled in a future engine release.
 
 ---
 
-# End of document.
+## 6. Testing
+
+Test files updated:
+
+- `tests/test_snapshot.py`
+- `tests/test_api_sandbox.py`
+
+Guarantees:
+
+- 100% success on the v1.1 endpoints:
+  - structure and field presence,
+  - region list and region IDs,
+  - global stats,
+  - metadata fields.
+
+Local command:
+
+```bash
+cd ghi-engine
+source venv/bin/activate
+pytest -q
+# 18 passed (as of v0.4.2-sandbox)
+7. Known limitations (sandbox)
+	•	All values are synthetic and may change in future sandbox releases.
+	•	Region list is deliberately small (us, eu, cn) to keep the demo readable.
+	•	Forecast and network endpoints are flagged as beta:
+	•	No statistical validity,
+	•	Used only to illustrate potential future data payloads.
+
+⸻
+
+8. Next steps (engine roadmap)
+
+Planned directions beyond v0.4.2-sandbox:
+	1.	Data realism
+	•	Plugging real hashprice / energy-cost proxies for selected regions.
+	2.	Regional granularity
+	•	Expanding beyond us/eu/cn to specific regulatory / energy regions.
+	3.	Scenario / stress testing
+	•	Adding scenario endpoints (price shocks, halving scenarios, regulation constraints).
+	4.	Performance & scaling
+	•	Benchmarks on precomputed vs on-demand synthetic aggregates.
+
+⸻
+
+End of document.
