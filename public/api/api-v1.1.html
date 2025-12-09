@@ -124,29 +124,27 @@
 
     <h2>GHI Public API v1.1</h2>
     <p>
-      API synthétique et entièrement documentée – version <strong>1.1</strong> (FR/EN).
-      Elle reste compatible avec les usages v1.0, tout en introduisant un format
-      de réponse unifié et de nouveaux endpoints.
+      API synthétique et entièrement documentée – version <strong>1.1</strong> (FR/EN).  
+      Elle reste compatible avec les usages v1.0, tout en introduisant un format de réponse
+      unifié et de nouveaux endpoints.
     </p>
 
     <h3>1. Aperçu (FR)</h3>
     <p>
-      L’API v1.1 améliore la structure du snapshot, ajoute des statistiques
-      globales et introduit trois nouveaux endpoints : <code>/metadata</code>,
-      <code>/network</code> et <code>/forecast</code>. Toutes les données
-      proviennent du <strong>Sandbox Engine v0.4.0</strong>.
+      L’API v1.1 améliore la structure du snapshot, ajoute des statistiques globales
+      et introduit trois nouveaux endpoints : <code>/metadata</code>,
+      <code>/network</code> et <code>/forecast</code>.  
+      Toutes les données proviennent du <strong>Sandbox Engine v0.4.2</strong>.
     </p>
 
     <h4>Principales améliorations</h4>
     <ul>
-      <li>
-        Métadonnées unifiées dans toutes les réponses :
-        <code>version</code>, <code>timestamp_utc</code>,
-        <code>engine_sandbox_version</code>.
+      <li>Métadonnées unifiées dans toutes les réponses :  
+        <code>version</code>, <code>timestamp_utc</code>, <code>engine_version</code>.
       </li>
-      <li>Statistiques globales de coût (min / avg / max).</li>
+      <li>Statistiques globales (min / avg / max).</li>
       <li>Structure normalisée des régions.</li>
-      <li>Nouveaux endpoints de métadonnées et de réseau.</li>
+      <li>Nouveaux endpoints de métadonnées et réseau.</li>
     </ul>
 
     <h3>2. Endpoints</h3>
@@ -161,37 +159,37 @@
       <tbody>
         <tr>
           <td><code>/v1/ghi/snapshot</code></td>
-          <td>Coûts de production régionaux (min/avg/max) + statistiques globales.</td>
+          <td>Coûts de production régionaux + statistiques globales.</td>
         </tr>
         <tr>
           <td><code>/v1/ghi/history</code></td>
-          <td>Série temporelle synthétique des coûts (min/avg/max).</td>
+          <td>Série temporelle synthétique.</td>
         </tr>
         <tr>
           <td><code>/v1/ghi/regions</code></td>
-          <td>Liste des régions disponibles (id + nom).</td>
+          <td>Liste des régions disponibles.</td>
         </tr>
         <tr>
           <td><code>/v1/ghi/metadata</code></td>
-          <td>Métadonnées globales de l’API et du moteur.</td>
+          <td>Métadonnées globales.</td>
         </tr>
         <tr>
           <td><code>/v1/ghi/network</code></td>
-          <td>Métriques réseau synthétiques (hashrate, difficulty, avg fee).</td>
+          <td>Métriques réseau synthétiques.</td>
         </tr>
         <tr>
           <td><code>/v1/ghi/forecast</code></td>
-          <td>Prévision synthétique du coût moyen de production.</td>
+          <td>Prévision synthétique du coût moyen.</td>
         </tr>
       </tbody>
     </table>
 
-    <h3>3. Structure de réponse – exemple de snapshot</h3>
+    <h3>3. Structure exemple</h3>
 
-    <pre><code>{
+<pre><code>{
   "version": "1.1",
   "timestamp_utc": "2025-12-09T12:00:00Z",
-  "engine_sandbox_version": "0.4.0-sandbox",
+  "engine_version": "0.4.2-sandbox",
   "region_count": 3,
   "regions": [
     {
@@ -208,23 +206,22 @@
 }</code></pre>
 
     <h3>4. Métadonnées communes</h3>
-    <p>Toutes les réponses v1.1 partagent les mêmes champs de métadonnées :</p>
     <ul>
-      <li><code>version</code> – version de l’API (<code>"1.1"</code>).</li>
-      <li><code>timestamp_utc</code> – horodatage ISO 8601 UTC.</li>
-      <li><code>engine_sandbox_version</code> – ex. <code>"0.4.0-sandbox"</code>.</li>
+      <li><code>version</code> — version de l’API</li>
+      <li><code>timestamp_utc</code> — ISO 8601 UTC</li>
+      <li><code>engine_version</code> — version du moteur sandbox</li>
     </ul>
 
     <h3>5. Documentation technique</h3>
     <ul>
       <li>
         <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/public/docs/API_v1.1_Spec.md">
-          Spécification API v1.1 (Markdown)
+          Spécification API v1.1 (GitHub Markdown)
         </a>
       </li>
       <li>
         <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
-          Dépôt du moteur GHI
+          Dépôt GHI Engine sur GitHub
         </a>
       </li>
     </ul>
@@ -235,102 +232,63 @@
 
     <h2>GHI Public API v1.1</h2>
     <p>
-      Open, synthetic and fully documented API – version <strong>1.1</strong> (EN/FR).
-      It keeps v1.0 compatibility while introducing a unified response format
-      and new endpoints.
+      Open, synthetic and fully documented API — version <strong>1.1</strong> (EN/FR).  
+      Backward-compatible with v1.0 while introducing a unified response format and new endpoints.
     </p>
 
     <h3>1. Overview (EN)</h3>
     <p>
-      API v1.1 improves the snapshot structure, adds global cost statistics and
-      introduces three new endpoints: <code>/metadata</code>, <code>/network</code>
-      and <code>/forecast</code>. All data is powered by the
-      <strong>Sandbox Engine v0.4.0</strong>.
+      API v1.1 improves snapshot structure, adds global cost statistics and introduces:
+      <code>/metadata</code>, <code>/network</code>, <code>/forecast</code>.  
+      All data powered by <strong>Sandbox Engine v0.4.2</strong>.
     </p>
 
     <h4>Main improvements</h4>
     <ul>
-      <li>
-        Unified metadata in every response:
-        <code>version</code>, <code>timestamp_utc</code>,
-        <code>engine_sandbox_version</code>.
-      </li>
+      <li>Unified metadata fields.</li>
       <li>Global min / avg / max production cost.</li>
-      <li>Normalized regional structure.</li>
-      <li>New metadata and network endpoints.</li>
+      <li>Normalized regional layout.</li>
+      <li>New metadata & network endpoints.</li>
     </ul>
 
     <h3>2. Endpoints</h3>
 
     <table class="table-api">
       <thead>
-        <tr>
-          <th>Endpoint</th>
-          <th>Description</th>
-        </tr>
+        <tr><th>Endpoint</th><th>Description</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><code>/v1/ghi/snapshot</code></td>
-          <td>Synthetic regional production costs (min/avg/max) + global stats.</td>
-        </tr>
-        <tr>
-          <td><code>/v1/ghi/history</code></td>
-          <td>Synthetic historical cost series (min/avg/max).</td>
-        </tr>
-        <tr>
-          <td><code>/v1/ghi/regions</code></td>
-          <td>List of available regions (id + name).</td>
-        </tr>
-        <tr>
-          <td><code>/v1/ghi/metadata</code></td>
-          <td>Global API and engine metadata.</td>
-        </tr>
-        <tr>
-          <td><code>/v1/ghi/network</code></td>
-          <td>Synthetic network metrics (hashrate, difficulty, avg fee).</td>
-        </tr>
-        <tr>
-          <td><code>/v1/ghi/forecast</code></td>
-          <td>Synthetic forecast of the average production cost.</td>
-        </tr>
+        <tr><td><code>/v1/ghi/snapshot</code></td><td>Regional costs + global stats.</td></tr>
+        <tr><td><code>/v1/ghi/history</code></td><td>Historical cost series.</td></tr>
+        <tr><td><code>/v1/ghi/regions</code></td><td>Available regions.</td></tr>
+        <tr><td><code>/v1/ghi/metadata</code></td><td>API & engine metadata.</td></tr>
+        <tr><td><code>/v1/ghi/network</code></td><td>Network metrics.</td></tr>
+        <tr><td><code>/v1/ghi/forecast</code></td><td>Cost forecast.</td></tr>
       </tbody>
     </table>
 
-    <h3>3. Snapshot response structure (example)</h3>
+    <h3>3. Snapshot structure</h3>
 
-    <pre><code>{
+<pre><code>{
   "version": "1.1",
   "timestamp_utc": "2025-12-09T12:00:00Z",
-  "engine_sandbox_version": "0.4.0-sandbox",
+  "engine_version": "0.4.2-sandbox",
   "region_count": 3,
-  "regions": [
-    {
-      "region_id": "us",
-      "currency": "USD",
-      "min_cost_usd": 38000.0,
-      "avg_cost_usd": 42000.0,
-      "max_cost_usd": 50000.0
-    }
-  ],
-  "global_min_cost_usd": 35000.0,
-  "global_avg_cost_usd": 42000.0,
-  "global_max_cost_usd": 52000.0
+  "regions": [...]
 }</code></pre>
 
     <h3>4. Common metadata</h3>
-    <p>Every v1.1 response shares the same metadata fields:</p>
     <ul>
-      <li><code>version</code> – API version (<code>"1.1"</code>).</li>
-      <li><code>timestamp_utc</code> – ISO 8601 UTC timestamp.</li>
-      <li><code>engine_sandbox_version</code> – e.g. <code>"0.4.0-sandbox"</code>.</li>
+      <li><code>version</code></li>
+      <li><code>timestamp_utc</code></li>
+      <li><code>engine_version</code></li>
     </ul>
 
     <h3>5. Technical documentation</h3>
     <ul>
       <li>
         <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/public/docs/API_v1.1_Spec.md">
-          API v1.1 specification (Markdown)
+          API v1.1 Specification (GitHub)
         </a>
       </li>
       <li>
@@ -339,6 +297,7 @@
         </a>
       </li>
     </ul>
+
   </section>
 </main>
 

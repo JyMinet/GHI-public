@@ -170,7 +170,7 @@ data = r.json()
 
 print("Global avg cost:", data["global_avg_cost_usd"])
 </code></pre>
-      <p>S’intègre dans n’importe quel pipeline Python, ETL, airflow, backtests, etc.</p>
+      <p>S’intègre dans n’importe quel pipeline Python, ETL, Airflow, backtests, etc.</p>
     </div>
 
     <div class="card">
@@ -195,7 +195,12 @@ fetch(url)
   "timestamp_utc": "...",
   "region_id": "us",
   "points": [
-    {"date": "2025-12-01", "min_cost_usd": 41000, "avg_cost_usd": 45000, "max_cost_usd": 49500}
+    {
+      "date": "2025-12-01",
+      "min_cost_usd": 41000,
+      "avg_cost_usd": 45000,
+      "max_cost_usd": 49500
+    }
   ]
 }</code></pre>
     </div>
@@ -205,7 +210,19 @@ fetch(url)
       <ul>
         <li><a href="{{ROOT}}api/api-v1.1.html">API v1.1 – Documentation complète</a></li>
         <li><a href="{{ROOT}}api-reference.html">API Reference</a></li>
-        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">Moteur GHI (GitHub)</a></li>
+        <li><a href="{{ROOT}}api.html">Vue d’ensemble de l’API</a></li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+            GHI Engine (GitHub)
+          </a>
+        </li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/API_v1.1_Spec.md">
+            Spécification API v1.1 (GitHub Markdown)
+          </a>
+        </li>
       </ul>
     </div>
   </section>
@@ -250,6 +267,7 @@ fetch(url)
 
 BASE = "https://globalhashcostindex.org/api/v1/ghi"
 data = requests.get(f"{BASE}/snapshot").json()
+
 print("Global avg cost:", data["global_avg_cost_usd"])
 </code></pre>
     </div>
@@ -267,6 +285,7 @@ print("Global avg cost:", data["global_avg_cost_usd"])
       <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=us"</code></pre>
 
       <pre><code>{
+  "version": "1.1",
   "region_id": "us",
   "points": [
     {"date": "2025-12-01", "avg_cost_usd": 45000}
@@ -279,7 +298,19 @@ print("Global avg cost:", data["global_avg_cost_usd"])
       <ul>
         <li><a href="{{ROOT}}api/api-v1.1.html">API v1.1 – Full documentation</a></li>
         <li><a href="{{ROOT}}api-reference.html">API Reference</a></li>
-        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">GHI Engine (GitHub)</a></li>
+        <li><a href="{{ROOT}}api.html">API overview</a></li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+            GHI Engine (GitHub)
+          </a>
+        </li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/API_v1.1_Spec.md">
+            API v1.1 specification (GitHub Markdown)
+          </a>
+        </li>
       </ul>
     </div>
 
