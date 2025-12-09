@@ -1,480 +1,370 @@
 <main>
+
   <div class="lang-switch">
     Langue / Language :
     <a href="#fr-api-ref">FR</a> ·
     <a href="#en-api-ref">EN</a>
   </div>
 
-  <!-- ================= FR ================= -->
+  <!-- ========================================================= -->
+  <!-- ========================= FR ============================= -->
+  <!-- ========================================================= -->
+
   <section id="fr-api-ref">
-    <h2>API GHI v1.0 – Référence détaillée</h2>
-    <p>
-      Cette page décrit la référence de l’API publique du
-      <strong>Global HashCost Index (GHI)</strong>, version <strong>v1.0</strong>.
-      Toutes les réponses sont générées par le <strong>Sandbox Engine v0.4.0-sandbox</strong>,
-      qui fournit des données factices mais stables pour la démonstration et les tests
-      d’intégration.
-    </p>
+    <h2>API Reference – Version 1.1</h2>
 
-    <h3>1. Base URL et version</h3>
-    <p>
-      L’API GHI v1.0 est exposée sous un préfixe de base, suivi des endpoints
-      stables de la version 1&nbsp;:
-    </p>
-    <pre><code>Base path : /v1/ghi</code></pre>
-    <p>
-      Exemples d’URL complètes (selon l’environnement de déploiement) :
-    </p>
-    <pre><code>https://sandbox.globalhashcostindex.org/v1/ghi/indicator
-https://sandbox.globalhashcostindex.org/v1/ghi/snapshot</code></pre>
-    <p>
-      Les chemins documentés ci-dessous sont indépendants du nom de domaine
-      et restent valables tant que l’API publique GHI v1.0 est active.
-    </p>
+    <div class="card">
+      <h3>1. Présentation générale</h3>
+      <p>
+        Cette page fournit la référence technique complète de l’API GHI v1.1.  
+        Toutes les structures, paramètres, réponses et exemples sont documentés dans un format homogène destiné aux environnements institutionnels.
+      </p>
+      <p>
+        Les données proviennent du <strong>Sandbox Engine</strong>.  
+        Les mêmes structures seront utilisées dans les éditions premium (versions institutionnelles enrichies).
+      </p>
+    </div>
 
-    <h3>2. Formats et en-têtes</h3>
-    <ul>
-      <li><strong>Format de réponse</strong> : JSON UTF-8.</li>
-      <li><strong>En-tête recommandé</strong> : <code>Accept: application/json</code>.</li>
-      <li><strong>Authentification</strong> : aucune dans le Sandbox public v0.4.0.
-        Des mécanismes d’accès restreint (clé API, OAuth2, etc.) pourront être
-        introduits dans des déploiements institutionnels dédiés.</li>
-    </ul>
+    <!-- ENDPOINT SUMMARY -->
+    <div class="card">
+      <h3>2. Liste des endpoints</h3>
 
-    <h3>3. Métadonnées de version (réponses)</h3>
-    <p>
-      Toutes les réponses GHI v1.0 incluent un bloc de métadonnées permettant
-      d’identifier précisément la version de l’API, la méthodologie et le moteur
-      utilisés&nbsp;:
-    </p>
-    <pre><code>{
-  "api_version": "v1.0",
-  "methodology_version": "1.0.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
-}</code></pre>
-    <ul>
-      <li><code>api_version</code> : version de l’API publique (v1.0).</li>
-      <li><code>methodology_version</code> : version de la méthodologie GHI (1.0.0).</li>
-      <li><code>engine_version</code> : version du moteur utilisé (Sandbox Engine v0.4.0-sandbox).</li>
-      <li><code>data_origin</code> : nature de la source de données
-        (ici <code>"sandbox"</code> pour indiquer qu’il s’agit d’un jeu synthétique).</li>
-      <li><code>stability_seed</code> : identifiant technique garantissant la
-        stabilité du jeu de données factices.</li>
-    </ul>
+      <table class="table-api">
+        <thead>
+          <tr><th>Endpoint</th><th>Méthode</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/v1/ghi/snapshot</code></td>
+            <td>GET</td>
+            <td>Coûts min/avg/max par région + données globales</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/history</code></td>
+            <td>GET</td>
+            <td>Séries temporelles synthétiques</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/regions</code></td>
+            <td>GET</td>
+            <td>Liste des régions GHI disponibles</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/metadata</code></td>
+            <td>GET</td>
+            <td>Métadonnées globales (API + moteur)</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/network</code></td>
+            <td>GET</td>
+            <td>Métriques réseau synthétiques (exp. : hashrate)</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/forecast</code></td>
+            <td>GET</td>
+            <td>Prévision synthétique du coût moyen</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <h3>4. Endpoint&nbsp;: GET /v1/ghi/indicator</h3>
+    <!-- METADATA -->
+    <div class="card">
+      <h3>3. Métadonnées communes (toutes réponses)</h3>
 
-    <h4>4.1. Description</h4>
-    <p>
-      Renvoie l’indicateur quotidien global du coût de production du Bitcoin,
-      sous la forme d’un triplet <strong>min / avg / max</strong> pour une date donnée.
-      Dans le Sandbox v0.4.0, les valeurs sont générées de manière déterministe
-      mais ne reflètent pas les coûts réels.
-    </p>
-
-    <h4>4.2. Requête</h4>
-    <pre><code>GET /v1/ghi/indicator HTTP/1.1
-Host: sandbox.globalhashcostindex.org
-Accept: application/json</code></pre>
-
-    <h4>4.3. Paramètres de requête</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Paramètre</th>
-          <th>Type</th>
-          <th>Obligatoire</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>date</code></td>
-          <td>string (YYYY-MM-DD)</td>
-          <td>Non</td>
-          <td>
-            Date de l’indicateur souhaité. Si omis, le Sandbox renvoie la
-            dernière date disponible pour le jeu de données factices.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h4>4.4. Exemple avec <code>curl</code></h4>
-    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/indicator"</code></pre>
-
-    <h4>4.5. Exemple de réponse (simplifiée)</h4>
-    <pre><code>{
-  "date": "2025-12-08",
-  "currency": "USD",
-  "min_cost": 38000.12,
-  "avg_cost": 41000.45,
-  "max_cost": 44000.89,
-  "api_version": "v1.0",
-  "methodology_version": "1.0.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
-}</code></pre>
-    <p>
-      Dans le Sandbox Engine v0.4.0, le champ <code>currency</code> est
-      systématiquement égal à <code>"USD"</code>.
-    </p>
-
-    <h4>4.6. Codes de réponse</h4>
-    <ul>
-      <li><strong>200 OK</strong> : indicateur retourné avec succès.</li>
-      <li><strong>400 Bad Request</strong> : paramètres invalides (ex. format de date incorrect).</li>
-      <li><strong>404 Not Found</strong> : aucune donnée disponible pour la date demandée
-        (peut dépendre de la configuration du Sandbox).</li>
-      <li><strong>500 Internal Server Error</strong> : erreur interne inattendue.</li>
-    </ul>
-
-    <h4>4.7. Exemple d’erreur JSON</h4>
-    <pre><code>{
-  "detail": "Invalid date format, expected YYYY-MM-DD.",
-  "api_version": "v1.0"
+      <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-09T12:00:00Z",
+  "engine_sandbox_version": "0.4.0-sandbox"
 }</code></pre>
 
-    <h3>5. Endpoint&nbsp;: GET /v1/ghi/snapshot</h3>
+      <p>
+        Ces champs sont présents dans <strong>toutes</strong> les réponses.  
+        Ils permettent de tracer les requêtes, monitorer la stabilité des versions, et auditer les pipelines de données.
+      </p>
+    </div>
 
-    <h4>5.1. Description</h4>
-    <p>
-      Renvoie un <strong>snapshot structuré</strong> du coût de production du Bitcoin,
-      comprenant un indicateur global et un détail par région, conformément au
-      <em>GHI Data Model v1.0</em>. Le contenu précis des objets (champs régionaux,
-      énergie, machines, etc.) est défini dans la spécification de données.
-    </p>
+    <!-- SNAPSHOT -->
+    <div class="card">
+      <h3>4. Endpoint : /v1/ghi/snapshot</h3>
 
-    <h4>5.2. Requête</h4>
-    <pre><code>GET /v1/ghi/snapshot HTTP/1.1
-Host: sandbox.globalhashcostindex.org
-Accept: application/json</code></pre>
+      <p>
+        Fournit les coûts actuels de production du Bitcoin par région, avec les statistiques globales :
+      </p>
 
-    <h4>5.3. Paramètres de requête</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Paramètre</th>
-          <th>Type</th>
-          <th>Obligatoire</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>date</code></td>
-          <td>string (YYYY-MM-DD)</td>
-          <td>Non</td>
-          <td>
-            Date du snapshot souhaité. Si omis, le Sandbox renvoie la dernière
-            date disponible pour le jeu de données factices.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h4>5.4. Exemple avec <code>curl</code></h4>
-    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/snapshot"</code></pre>
-
-    <h4>5.5. Exemple de réponse (structure générale)</h4>
-    <pre><code>{
-  "date": "2025-12-08",
-  "currency": "USD",
-  "indicator": {
-    "min_cost": 38000.12,
-    "avg_cost": 41000.45,
-    "max_cost": 44000.89
-  },
+      <h4>Structure de réponse</h4>
+      <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "...",
+  "engine_sandbox_version": "0.4.0-sandbox",
+  "region_count": 3,
   "regions": [
     {
-      "region_id": "north_america",
-      "name": "North America",
-      "hashrate_pct": 0.35,
-      "min_cost": 39000.10,
-      "avg_cost": 41500.25,
-      "max_cost": 44500.90
-      // ... autres champs définis dans le Data Model v1.0
+      "region_id": "us",
+      "currency": "USD",
+      "min_cost_usd": 38000.0,
+      "avg_cost_usd": 42000.0,
+      "max_cost_usd": 50000.0
     }
-    // ... autres régions
   ],
-  "api_version": "v1.0",
-  "methodology_version": "1.0.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
+  "global_min_cost_usd": 35000.0,
+  "global_avg_cost_usd": 42000.0,
+  "global_max_cost_usd": 52000.0
 }</code></pre>
-    <p>
-      La structure complète des objets <code>regions</code> (coût, énergie,
-      machines, métadonnées) est définie dans le
-      <strong>GHI Data Model v1.0</strong>. Le Sandbox Engine respecte ce
-      modèle, mais avec des valeurs purement synthétiques.
-    </p>
 
-    <h4>5.6. Codes de réponse</h4>
-    <ul>
-      <li><strong>200 OK</strong> : snapshot renvoyé avec succès.</li>
-      <li><strong>400 Bad Request</strong> : paramètres invalides.</li>
-      <li><strong>404 Not Found</strong> : aucune donnée disponible pour la date demandée.</li>
-      <li><strong>500 Internal Server Error</strong> : erreur interne inattendue.</li>
-    </ul>
+      <h4>Notes institutionnelles</h4>
+      <ul>
+        <li>Format strictement stable entre toutes les versions mineures (1.x).</li>
+        <li>Les régions sont garanties nominalement stables.</li>
+      </ul>
+    </div>
 
-    <h3>6. Gestion des versions et compatibilité</h3>
-    <ul>
-      <li>L’API GHI v1.0 est conçue pour rester <strong>stable</strong> :
-        les endpoints, les noms de champs et les types principaux ne
-        changent pas sans nouvelle version majeure.</li>
-      <li>Les évolutions mineures (ex. champs supplémentaires non obligatoires)
-        peuvent être introduites avec des numéros de patch, en conservant la
-        compatibilité ascendante.</li>
-      <li>Les futures versions (v2.x, v3.x, …) seront exposées sur d’autres
-        préfixes (<code>/v2/ghi</code>, etc.) afin de ne pas casser les
-        intégrations existantes.</li>
-    </ul>
+    <!-- HISTORY -->
+    <div class="card">
+      <h3>5. Endpoint : /v1/ghi/history</h3>
 
-    <h3>7. Références</h3>
-    <ul>
-      <li><a href="standard/GHI-Data-Model-v1.0.md" target="_blank">
-        GHI Data Model v1.0</a></li>
-      <li><a href="standard/GHI-Technical-Standard-v1.0.md" target="_blank">
-        GHI Technical Standard v1.0</a></li>
-      <li><a href="api-quickstart.html">
-        Guide de démarrage rapide API GHI v1.0</a></li>
-    </ul>
+      <h4>Paramètres</h4>
+      <table class="table-api">
+        <thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>region_id</code></td>
+            <td>string</td>
+            <td>ID de région (ex : "us") ou "global"</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Structure de réponse</h4>
+      <pre><code>{
+  "region_id": "global",
+  "points": [
+    {
+      "date": "2025-12-01",
+      "min_cost_usd": 41000.0,
+      "avg_cost_usd": 45000.0,
+      "max_cost_usd": 49500.0
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <!-- REGIONS -->
+    <div class="card">
+      <h3>6. Endpoint : /v1/ghi/regions</h3>
+
+      <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "...",
+  "regions": [
+    {"id": "us", "name": "United States"},
+    {"id": "eu", "name": "Europe"},
+    {"id": "cn", "name": "China"}
+  ],
+  "region_count": 3
+}</code></pre>
+    </div>
+
+    <!-- METADATA ENDPOINT -->
+    <div class="card">
+      <h3>7. Endpoint : /v1/ghi/metadata</h3>
+
+      <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "...",
+  "engine_sandbox_version": "0.4.0-sandbox",
+  "available_endpoints": [
+    "/v1/ghi/snapshot",
+    "/v1/ghi/history",
+    "/v1/ghi/regions",
+    "/v1/ghi/metadata",
+    "/v1/ghi/network",
+    "/v1/ghi/forecast"
+  ]
+}</code></pre>
+    </div>
+
+    <!-- NETWORK -->
+    <div class="card">
+      <h3>8. Endpoint : /v1/ghi/network</h3>
+
+      <pre><code>{
+  "hashrate_eh": 554.0,
+  "difficulty": 8.9e13,
+  "avg_fee_usd": 4.2
+}</code></pre>
+    </div>
+
+    <!-- FORECAST -->
+    <div class="card">
+      <h3>9. Endpoint : /v1/ghi/forecast</h3>
+
+      <h4>Paramètres</h4>
+      <table class="table-api">
+        <thead><tr><th>Nom</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>forecast_days</code></td>
+            <td>int</td>
+            <td>Fenêtre de prévision (défaut : 7 jours)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Exemple</h4>
+      <pre><code>{
+  "forecast_days": 7,
+  "predicted_avg_cost_usd": 62300.0
+}</code></pre>
+    </div>
+
   </section>
 
-  <!-- ================= EN ================= -->
+  <!-- ========================================================= -->
+  <!-- ========================= EN ============================= -->
+  <!-- ========================================================= -->
+
   <section id="en-api-ref">
-    <h2>GHI API v1.0 – Detailed Reference</h2>
-    <p>
-      This page describes the public API reference for the
-      <strong>Global HashCost Index (GHI)</strong>, version <strong>v1.0</strong>.
-      All responses are produced by the <strong>Sandbox Engine v0.4.0-sandbox</strong>,
-      which serves synthetic but stable data for demonstration and integration tests.
-    </p>
+    <h2>API Reference – Version 1.1</h2>
 
-    <h3>1. Base URL and version</h3>
-    <p>
-      The GHI v1.0 API is exposed under a stable base path, followed by the
-      versioned endpoints:
-    </p>
-    <pre><code>Base path: /v1/ghi</code></pre>
-    <p>Examples of full URLs (deployment-dependent):</p>
-    <pre><code>https://sandbox.globalhashcostindex.org/v1/ghi/indicator
-https://sandbox.globalhashcostindex.org/v1/ghi/snapshot</code></pre>
-    <p>
-      The paths documented below are independent from the hostname and remain
-      valid as long as the GHI public API v1.0 is active.
-    </p>
+    <div class="card">
+      <h3>1. Overview</h3>
+      <p>
+        This page provides the complete technical reference for the GHI API v1.1.
+        All response structures, parameters, and examples are documented in a uniform, institutional-grade format.
+      </p>
+    </div>
 
-    <h3>2. Formats and headers</h3>
-    <ul>
-      <li><strong>Response format</strong>: JSON UTF-8.</li>
-      <li><strong>Recommended header</strong>: <code>Accept: application/json</code>.</li>
-      <li><strong>Authentication</strong>: none for the public Sandbox v0.4.0.
-        Restricted-access deployments (API keys, OAuth2, etc.) may be used in
-        institutional environments.</li>
-    </ul>
+    <div class="card">
+      <h3>2. Endpoint list</h3>
+      <table class="table-api">
+        <thead>
+          <tr><th>Endpoint</th><th>Method</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/v1/ghi/snapshot</code></td>
+            <td>GET</td>
+            <td>Min/avg/max production costs per region + globals</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/history</code></td>
+            <td>GET</td>
+            <td>Synthetic historical time series</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/regions</code></td>
+            <td>GET</td>
+            <td>Available GHI regions</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/metadata</code></td>
+            <td>GET</td>
+            <td>API + engine metadata</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/network</code></td>
+            <td>GET</td>
+            <td>Synthetic network metrics</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/forecast</code></td>
+            <td>GET</td>
+            <td>Synthetic cost forecast</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <h3>3. Version metadata (responses)</h3>
-    <p>
-      All GHI v1.0 responses include a metadata block identifying the API,
-      methodology and engine versions used:
-    </p>
-    <pre><code>{
-  "api_version": "v1.0",
-  "methodology_version": "1.0.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
+    <!-- Metadata EN -->
+    <div class="card">
+      <h3>3. Common metadata</h3>
+      <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "...",
+  "engine_sandbox_version": "0.4.0-sandbox"
 }</code></pre>
-    <ul>
-      <li><code>api_version</code>: public API version (v1.0).</li>
-      <li><code>methodology_version</code>: GHI methodology version (1.0.0).</li>
-      <li><code>engine_version</code>: engine version in use (Sandbox Engine v0.4.0-sandbox).</li>
-      <li><code>data_origin</code>: nature of the data source (here <code>"sandbox"</code>
-        to indicate synthetic data).</li>
-      <li><code>stability_seed</code>: technical identifier ensuring stability of
-        the synthetic dataset.</li>
-    </ul>
+    </div>
 
-    <h3>4. Endpoint: GET /v1/ghi/indicator</h3>
-
-    <h4>4.1. Description</h4>
-    <p>
-      Returns the daily global indicator of Bitcoin production cost, as a
-      <strong>min / avg / max</strong> triplet for a given date. In Sandbox
-      v0.4.0, values are deterministic but do not reflect real-world costs.
-    </p>
-
-    <h4>4.2. Request</h4>
-    <pre><code>GET /v1/ghi/indicator HTTP/1.1
-Host: sandbox.globalhashcostindex.org
-Accept: application/json</code></pre>
-
-    <h4>4.3. Query parameters</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>date</code></td>
-          <td>string (YYYY-MM-DD)</td>
-          <td>No</td>
-          <td>
-            Target date for the indicator. If omitted, the Sandbox returns the
-            last available date in the synthetic dataset.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h4>4.4. Example using <code>curl</code></h4>
-    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/indicator"</code></pre>
-
-    <h4>4.5. Example response (simplified)</h4>
-    <pre><code>{
-  "date": "2025-12-08",
-  "currency": "USD",
-  "min_cost": 38000.12,
-  "avg_cost": 41000.45,
-  "max_cost": 44000.89,
-  "api_version": "v1.0",
-  "methodology_version": "1.0.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
-}</code></pre>
-    <p>
-      In Sandbox Engine v0.4.0, the <code>currency</code> field is always set
-      to <code>"USD"</code>.
-    </p>
-
-    <h4>4.6. Response codes</h4>
-    <ul>
-      <li><strong>200 OK</strong>: indicator successfully returned.</li>
-      <li><strong>400 Bad Request</strong>: invalid parameters (e.g. wrong date format).</li>
-      <li><strong>404 Not Found</strong>: no data available for the requested date
-        (behaviour may depend on Sandbox configuration).</li>
-      <li><strong>500 Internal Server Error</strong>: unexpected internal error.</li>
-    </ul>
-
-    <h4>4.7. Error JSON example</h4>
-    <pre><code>{
-  "detail": "Invalid date format, expected YYYY-MM-DD.",
-  "api_version": "v1.0"
-}</code></pre>
-
-    <h3>5. Endpoint: GET /v1/ghi/snapshot</h3>
-
-    <h4>5.1. Description</h4>
-    <p>
-      Returns a <strong>structured snapshot</strong> of Bitcoin production costs,
-      including a global indicator and a regional breakdown, as defined in the
-      <em>GHI Data Model v1.0</em>. The exact content of regional objects
-      (cost, energy, hardware, metadata, etc.) is defined in the data model
-      specification.
-    </p>
-
-    <h4>5.2. Request</h4>
-    <pre><code>GET /v1/ghi/snapshot HTTP/1.1
-Host: sandbox.globalhashcostindex.org
-Accept: application/json</code></pre>
-
-    <h4>5.3. Query parameters</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>date</code></td>
-          <td>string (YYYY-MM-DD)</td>
-          <td>No</td>
-          <td>
-            Target date for the snapshot. If omitted, the Sandbox returns the
-            last available date in the synthetic dataset.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h4>5.4. Example using <code>curl</code></h4>
-    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/snapshot"</code></pre>
-
-    <h4>5.5. Example response (overall structure)</h4>
-    <pre><code>{
-  "date": "2025-12-08",
-  "currency": "USD",
-  "indicator": {
-    "min_cost": 38000.12,
-    "avg_cost": 41000.45,
-    "max_cost": 44000.89
-  },
+    <!-- Snapshot EN -->
+    <div class="card">
+      <h3>4. Endpoint: /v1/ghi/snapshot</h3>
+      <p>Current production-cost metrics per region, including global statistics.</p>
+      <pre><code>{
+  "region_count": 3,
   "regions": [
     {
-      "region_id": "north_america",
-      "name": "North America",
-      "hashrate_pct": 0.35,
-      "min_cost": 39000.10,
-      "avg_cost": 41500.25,
-      "max_cost": 44500.90
-      // ... additional fields as defined in Data Model v1.0
+      "region_id": "us",
+      "min_cost_usd": 38000.0,
+      "avg_cost_usd": 42000.0,
+      "max_cost_usd": 50000.0
     }
-    // ... other regions
-  ],
-  "api_version": "v1.0",
-  "methodology_version": "1.0.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
+  ]
 }</code></pre>
-    <p>
-      The full structure of <code>regions</code> objects (cost, energy,
-      hardware, metadata) is defined in <strong>GHI Data Model v1.0</strong>.
-      The Sandbox Engine follows this model but uses synthetic values only.
-    </p>
+    </div>
 
-    <h4>5.6. Response codes</h4>
-    <ul>
-      <li><strong>200 OK</strong>: snapshot successfully returned.</li>
-      <li><strong>400 Bad Request</strong>: invalid parameters.</li>
-      <li><strong>404 Not Found</strong>: no data available for the requested date.</li>
-      <li><strong>500 Internal Server Error</strong>: unexpected internal error.</li>
-    </ul>
+    <!-- History EN -->
+    <div class="card">
+      <h3>5. Endpoint: /v1/ghi/history</h3>
+      <pre><code>{
+  "region_id": "global",
+  "points": [
+    {
+      "date": "2025-12-01",
+      "min_cost_usd": 41000.0,
+      "avg_cost_usd": 45000.0,
+      "max_cost_usd": 49500.0
+    }
+  ]
+}</code></pre>
+    </div>
 
-    <h3>6. Versioning and compatibility</h3>
-    <ul>
-      <li>The GHI v1.0 API is designed to remain <strong>stable</strong>:
-        endpoints, field names and main types will not change without a new
-        major version.</li>
-      <li>Minor evolutions (e.g. additional optional fields) may be introduced
-        using patch numbers while preserving backward compatibility.</li>
-      <li>Future versions (v2.x, v3.x, …) will be exposed on separate prefixes
-        (<code>/v2/ghi</code>, etc.) to avoid breaking existing integrations.</li>
-    </ul>
+    <!-- Regions EN -->
+    <div class="card">
+      <h3>6. Endpoint: /v1/ghi/regions</h3>
+      <pre><code>{
+  "regions": [
+    {"id": "us", "name": "United States"},
+    {"id": "eu", "name": "Europe"},
+    {"id": "cn", "name": "China"}
+  ]
+}</code></pre>
+    </div>
 
-    <h3>7. References</h3>
-    <ul>
-      <li><a href="standard/GHI-Data-Model-v1.0.md" target="_blank">
-        GHI Data Model v1.0</a></li>
-      <li><a href="standard/GHI-Technical-Standard-v1.0.md" target="_blank">
-        GHI Technical Standard v1.0</a></li>
-      <li><a href="api-quickstart.html">
-        GHI API v1.0 – Quickstart Guide</a></li>
-    </ul>
+    <!-- Metadata EN -->
+    <div class="card">
+      <h3>7. Endpoint: /v1/ghi/metadata</h3>
+      <pre><code>{
+  "available_endpoints": [
+    "/v1/ghi/snapshot",
+    "/v1/ghi/history",
+    "/v1/ghi/regions",
+    "/v1/ghi/metadata",
+    "/v1/ghi/network",
+    "/v1/ghi/forecast"
+  ]
+}</code></pre>
+    </div>
+
+    <!-- Network EN -->
+    <div class="card">
+      <h3>8. Endpoint: /v1/ghi/network</h3>
+      <pre><code>{
+  "hashrate_eh": 554.0,
+  "difficulty": 8.9e13,
+  "avg_fee_usd": 4.2
+}</code></pre>
+    </div>
+
+    <!-- Forecast EN -->
+    <div class="card">
+      <h3>9. Endpoint: /v1/ghi/forecast</h3>
+      <pre><code>{
+  "forecast_days": 7,
+  "predicted_avg_cost_usd": 62300.0
+}</code></pre>
+    </div>
+
   </section>
+
 </main>
