@@ -1,58 +1,209 @@
 <main>
+
   <div class="lang-switch">
     Langue / Language :
     <a href="#fr-engine">FR</a> ·
     <a href="#en-engine">EN</a>
   </div>
 
-  <!-- FR -->
+  <!-- ========================================================= -->
+  <!-- ======================== FR ============================= -->
+  <!-- ========================================================= -->
+
   <section id="fr-engine">
-    <h2>Moteur GHI – Sandbox v0.4.0</h2>
-    <p>
-      Le moteur public GHI est un moteur <strong>Sandbox</strong> :  
-      il reproduit l’architecture réelle du moteur institutionnel, mais avec des
-      données factices stables et documentées.
-    </p>
+    <h2>Sandbox Engine v0.4.2 – Moteur de démonstration GHI</h2>
 
-    <h3>Caractéristiques</h3>
-    <ul>
-      <li>Données de démonstration déterministes.</li>
-      <li>Séparation stricte entre moteur public (open-source) et moteur privé réel.</li>
-      <li>Architecture modulaire : loader → cost engine → aggregator → API.</li>
-      <li>Version explicite : <code>v0.4.0-sandbox</code>.</li>
-    </ul>
+    <div class="card">
+      <h3>1. Rôle du Sandbox Engine</h3>
+      <p>
+        Le <strong>Sandbox Engine v0.4.2</strong> est le moteur de démonstration utilisé pour
+        exposer l’API publique GHI. Il ne calcule pas les coûts réels de production,
+        mais fournit un comportement <strong>stable, déterministe et reproductible</strong>
+        pour les intégrations techniques, les POC et les tests automatiques.
+      </p>
+      <p>
+        Le moteur “sandbox” est séparé du futur moteur de production institutionnel.
+        Il illustre la structure des réponses, le modèle de données et le cycle de version.
+      </p>
 
-    <h3>Documentation technique</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning Model</a></li>
-    </ul>
+      <h3>Principales caractéristiques</h3>
+      <ul>
+        <li>Modèle de données aligné sur l’API publique v1.1.</li>
+        <li>Régions synthétiques : <code>us</code>, <code>eu</code>, <code>cn</code>.</li>
+        <li>Statistiques globales (min / avg / max) calculées à partir des régions.</li>
+        <li>Historique synthétique minimal pour les tests d’intégration.</li>
+        <li>Métriques réseau et forecast exposées en mode “beta”.</li>
+        <li>Séparation stricte entre moteur public et moteur interne.</li>
+        <li>Architecture modulaire : loader → cost engine → aggregator → API.</li>
+        <li>Support complet de l’API publique v1.1 (snapshot, history, regions, metadata, network, forecast).</li>
+        <li>Version explicite : <code>v0.4.2-sandbox</code>.</li>
+      </ul>
+    </div>
 
-    <h3>Code source</h3>
-    <pre><code>https://github.com/ghi-standard/ghi-engine</code></pre>
+    <div class="card">
+      <h3>2. Endpoints couverts par le moteur sandbox</h3>
+      <p>
+        Le moteur alimente les endpoints suivants, en version <strong>v1.1</strong> :
+      </p>
+      <ul>
+        <li><code>/v1/ghi/snapshot</code> – Coût de production synthétique par région + statistiques globales.</li>
+        <li><code>/v1/ghi/history</code> – Historique synthétique (quelques points temporels pour tests).</li>
+        <li><code>/v1/ghi/regions</code> – Liste des régions supportées par le modèle sandbox.</li>
+        <li><code>/v1/ghi/metadata</code> – Métadonnées sur l’API et la version du moteur.</li>
+        <li><code>/v1/ghi/network</code> – Métriques réseau synthétiques (beta).</li>
+        <li><code>/v1/ghi/forecast</code> – Prévision simple du coût moyen (beta).</li>
+      </ul>
+      <p>
+        Toutes les réponses incluent les champs standardisés <code>version</code>,
+        <code>timestamp_utc</code>, <code>engine_sandbox_version</code>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>3. Données synthétiques et limites</h3>
+      <p>
+        Le Sandbox Engine n’a <strong>aucune vocation d’estimation réelle</strong> du coût de production.
+        Les chiffres sont volontairement simplifiés :
+      </p>
+      <ul>
+        <li>Valeurs codées en dur dans le code (sans accès à des sources externes).</li>
+        <li>Pas de raccordement à des tarifs d’électricité réels ni à des mix machines.</li>
+        <li>Historique généré à partir de règles simples (tendance, variation contrôlée).</li>
+      </ul>
+      <p>
+        L’objectif est de fournir un environnement <strong>prévisible</strong> pour :
+      </p>
+      <ul>
+        <li>intégrer l’API GHI dans des systèmes existants ;</li>
+        <li>écrire des tests automatiques robustes ;</li>
+        <li>préparer l’arrivée de futures données institutionnelles réelles.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>4. Gouvernance et évolutions</h3>
+      <p>
+        La version <strong>v0.4.2-sandbox</strong> est alignée sur :
+      </p>
+      <ul>
+        <li>l’API publique <strong>v1.1</strong> (structure de réponses unifiée) ;</li>
+        <li>le modèle de régions et de métadonnées décrit dans la documentation technique ;</li>
+        <li>les tests automatiques publics présents sur le dépôt GitHub <code>ghi-engine</code>.</li>
+      </ul>
+      <p>
+        Les futures versions du moteur (v0.5.x, v1.0.0, …) suivront une gouvernance publiquement documentée
+        dans les fichiers <code>ENGINE_DESIGN.md</code> et <code>VERSIONS.md</code>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>5. Documentation technique</h3>
+      <ul>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Conception du moteur (ENGINE_DESIGN.md)</a></li>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Modèle de versionnement (VERSIONS.md)</a></li>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">Dépôt GitHub <code>ghi-engine</code></a></li>
+      </ul>
+    </div>
   </section>
 
-  <!-- EN -->
+  <!-- ========================================================= -->
+  <!-- ======================== EN ============================= -->
+  <!-- ========================================================= -->
+
   <section id="en-engine">
-    <h2>GHI Engine – Sandbox v0.4.0</h2>
-    <p>
-      The public GHI Engine is a <strong>Sandbox engine</strong>:  
-      it mimics the structure of the real institutional engine but uses
-      deterministic demonstration data.
-    </p>
+    <h2>Sandbox Engine v0.4.2 – GHI Demo Engine</h2>
 
-    <h3>Features</h3>
-    <ul>
-      <li>Deterministic demo values (no real cost computation).</li>
-      <li>Strict separation between public and private engines.</li>
-      <li>Modular architecture (loader → cost engine → aggregator → API).</li>
-      <li>Explicit version: <code>v0.4.0-sandbox</code>.</li>
-    </ul>
+    <div class="card">
+      <h3>1. Role of the Sandbox Engine</h3>
+      <p>
+        <strong>Sandbox Engine v0.4.2</strong> is the demo engine powering the public GHI API.
+        It does not compute real-world production costs; instead, it provides a
+        <strong>stable, deterministic and reproducible</strong> behaviour for technical integrations,
+        POCs and automated tests.
+      </p>
+      <p>
+        The sandbox engine is kept separate from the future institutional production engine.
+        It illustrates the response structure, data model, and version lifecycle.
+      </p>
 
-    <h3>Technical Documentation</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning Model</a></li>
-    </ul>
+      <h3>Key characteristics</h3>
+      <ul>
+        <li>Data model aligned with public API v1.1.</li>
+        <li>Synthetic regions: <code>us</code>, <code>eu</code>, <code>cn</code>.</li>
+        <li>Global statistics (min / avg / max) computed from regional values.</li>
+        <li>Minimal synthetic history for integration testing.</li>
+        <li>Network metrics and forecast endpoints exposed in “beta” mode.</li>
+        <li>Strict separation between public and private engines.</li>
+        <li>Modular architecture (loader → cost engine → aggregator → API).</li>
+        <li>Full support of public API v1.1 (snapshot, history, regions, metadata, network, forecast).</li>
+        <li>Explicit version: <code>v0.4.2-sandbox</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>2. Endpoints powered by the sandbox engine</h3>
+      <p>
+        The engine feeds the following <strong>v1.1</strong> endpoints:
+      </p>
+      <ul>
+        <li><code>/v1/ghi/snapshot</code> – Synthetic production costs per region + global statistics.</li>
+        <li><code>/v1/ghi/history</code> – Synthetic time series (few points for tests).</li>
+        <li><code>/v1/ghi/regions</code> – Regions supported by the sandbox model.</li>
+        <li><code>/v1/ghi/metadata</code> – API and engine metadata.</li>
+        <li><code>/v1/ghi/network</code> – Synthetic network metrics (beta).</li>
+        <li><code>/v1/ghi/forecast</code> – Simple average-cost forecast (beta).</li>
+      </ul>
+      <p>
+        All responses include standardized fields <code>version</code>,
+        <code>timestamp_utc</code>, and <code>engine_sandbox_version</code>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>3. Synthetic data & limitations</h3>
+      <p>
+        The sandbox engine has <strong>no ambition to reflect real production costs</strong>.
+        Numbers are deliberately simplified:
+      </p>
+      <ul>
+        <li>Values are hard-coded in the source code (no external data sources).</li>
+        <li>No real electricity tariffs, ASIC fleet or regional energy mix.</li>
+        <li>History is generated from simple rules (trend + controlled variation).</li>
+      </ul>
+      <p>
+        The goal is to provide a <strong>predictable</strong> environment for:
+      </p>
+      <ul>
+        <li>integrating the GHI API into existing systems;</li>
+        <li>writing robust automated tests;</li>
+        <li>preparing the arrival of future institutional-grade data.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>4. Governance & evolution</h3>
+      <p>
+        <strong>v0.4.2-sandbox</strong> is aligned with:
+      </p>
+      <ul>
+        <li>public API <strong>v1.1</strong> (unified response format);</li>
+        <li>regional and metadata models defined in the technical documentation;</li>
+        <li>public automated tests in the <code>ghi-engine</code> GitHub repository.</li>
+      </ul>
+      <p>
+        Future engine versions (v0.5.x, v1.0.0, …) will follow a documented governance
+        model described in <code>ENGINE_DESIGN.md</code> and <code>VERSIONS.md</code>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>5. Technical documentation</h3>
+      <ul>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview (ENGINE_DESIGN.md)</a></li>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning model (VERSIONS.md)</a></li>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">GitHub repository <code>ghi-engine</code></a></li>
+      </ul>
+    </div>
   </section>
+
 </main>
