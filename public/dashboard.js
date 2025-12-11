@@ -1,6 +1,5 @@
 // public/dashboard.js
-// Quick view – GHI sandbox indicator (FR + EN)
-// Lit /api/latest.json et met à jour les blocs FR/EN.
+// GHI Dashboard – Price vs Cost indicator (FR + EN)
 
 (function () {
   const API_URL = "/api/latest.json";
@@ -26,6 +25,11 @@
     },
   };
 
+  function sideReady(side) {
+    const dom = els[side];
+    return dom && dom.price && dom.avgCost && dom.minMax && dom.gaugeMarker && dom.quickNote;
+  }
+
   function formatUSD(value) {
     if (typeof value !== "number" || !isFinite(value)) {
       return "–";
@@ -43,11 +47,11 @@
   }
 
   function updateSide(side, price, costAvg, costMin, costMax) {
-    const dom = els[side];
-    if (!dom || !dom.price || !dom.avgCost || !dom.minMax) {
+    if (!sideReady(side)) {
       return;
     }
 
+    const dom = els[side];
     const priceNum = parseNumber(price);
     const avgNum = parseNumber(costAvg);
     const minNum = parseNumber(costMin);
@@ -68,9 +72,7 @@
     dom.avgCost.textContent = formatUSD(avgNum);
     dom.minMax.textContent = `${formatUSD(minNum)} / ${formatUSD(maxNum)}`;
 
-    // Ratio prix / coût moyen
     const ratio = priceNum / avgNum;
-
     let position;
     if (ratio <= 0.5) {
       position = 0;
@@ -80,44 +82,39 @@
       position = ((ratio - 0.5) / 1.0) * 100;
     }
 
-    if (dom.gaugeMarker) {
-      dom.gaugeMarker.style.left = `${position}%`;
+    dom.gaugeMarker.style.left = `${position}%`;
+    dom.gaugeMarker.classList.remove(
+      "ghi-zone-below",
+      "ghi-zone-near",
+      "ghi-zone-above"
+    );
 
-      dom.gaugeMarker.classList.remove(
-        "ghi-zone-below",
-        "ghi-zone-near",
-        "ghi-zone-above"
-      );
-
-      if (ratio < 0.9) {
-        dom.gaugeMarker.classList.add("ghi-zone-below");
-      } else if (ratio <= 1.2) {
-        dom.gaugeMarker.classList.add("ghi-zone-near");
-      } else {
-        dom.gaugeMarker.classList.add("ghi-zone-above");
-      }
+    if (ratio < 0.9) {
+      dom.gaugeMarker.classList.add("ghi-zone-below");
+    } else if (ratio <= 1.2) {
+      dom.gaugeMarker.classList.add("ghi-zone-near");
+    } else {
+      dom.gaugeMarker.classList.add("ghi-zone-above");
     }
 
-    if (dom.quickNote) {
-      let note;
-      if (ratio < 0.9) {
-        note =
-          side === "fr"
-            ? "Prix significativement sous le coût moyen estimé."
-            : "Price significantly below estimated average cost.";
-      } else if (ratio <= 1.2) {
-        note =
-          side === "fr"
-            ? "Prix dans la zone proche du coût moyen estimé."
-            : "Price in the area around estimated average cost.";
-      } else {
-        note =
-          side === "fr"
-            ? "Prix significativement au-dessus du coût moyen estimé."
-            : "Price significantly above estimated average cost.";
-      }
-      dom.quickNote.textContent = note;
+    let note;
+    if (ratio < 0.9) {
+      note =
+        side === "fr"
+          ? "Prix significativement sous le coût moyen estimé."
+          : "Price significantly below estimated average cost.";
+    } else if (ratio <= 1.2) {
+      note =
+        side === "fr"
+          ? "Prix dans la zone proche du coût moyen estimé."
+          : "Price in the area around estimated average cost.";
+    } else {
+      note =
+        side === "fr"
+          ? "Prix significativement au-dessus du coût moyen estimé."
+          : "Price significantly above estimated average cost.";
     }
+    dom.quickNote.textContent = note;
   }
 
   function updateFromData(data) {
@@ -127,10 +124,8 @@
     }
 
     const snapshot = data.snapshot;
-    const network = data.network;
-
-    if (!snapshot || !network) {
-      showError("Missing snapshot or network fields in /api/latest.json.");
+    if (!snapshot) {
+      showError("Missing snapshot in /api/latest.json.");
       return;
     }
 
@@ -165,7 +160,6 @@
 
   function showError(message) {
     const msg = "[GHI sandbox] " + message;
-
     if (els.fr.quickNote) {
       els.fr.quickNote.textContent = msg;
     }
@@ -177,16 +171,13 @@
 
   async function load() {
     if (
-      !document.getElementById("fr-dashboard") ||
+      !document.getElementById("fr-dashboard") &&
       !document.getElementById("en-dashboard")
     ) {
       return;
     }
 
-    if (
-      !Object.values(els.fr).every(Boolean) ||
-      !Object.values(els.en).every(Boolean)
-    ) {
+    if (!sideReady("fr") && !sideReady("en")) {
       showError("Dashboard DOM elements missing.");
       return;
     }
