@@ -104,7 +104,7 @@ No deleted field. No renamed field.
 ------------------------------------------------------------
 5. Version mapping
 ------------------------------------------------------------
-API v1.1 ↔ Engine Sandbox v0.4.2  
+API v1.1 ↔ Engine Sandbox v0.4.3  
 API v1.1 ↔ Public Documentation Bundle v1.1  
 Standard GHI remains v1.0 (no structural change).
 
@@ -172,7 +172,7 @@ Tous les ajouts sont optionnels.
 ------------------------------------------------------------
 5. Mapping des versions
 ------------------------------------------------------------
-API v1.1 ↔ Moteur Sandbox v0.4.2  
+API v1.1 ↔ Moteur Sandbox v0.4.3  
 API v1.1 ↔ Documentation publique v1.1  
 Standard GHI : toujours v1.0.
 
