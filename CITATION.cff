@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Global HashCost Index (GHI) Standard"
+version: "1.1.0"
+date-released: "2025-12-12"
+type: software
+
+authors:
+  - family-names: "Minet"
+    given-names: "Jeoffrey"
+
+repository-code: "https://github.com/ghi-standard/GHI-public"
+url: "https://globalhashcostindex.org"
+license: "MIT"
+
+abstract: >
+  The Global HashCost Index (GHI) is an open standard providing a
+  reproducible estimation of Bitcoin production costs at global and
+  regional levels, designed for institutional and academic use.
