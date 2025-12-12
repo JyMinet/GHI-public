@@ -123,7 +123,159 @@
     <a href="#fr-methodology">FR</a> ·
     <a href="#en-methodology">EN</a>
   </div>
+  <!-- ================= EN ================= -->
+  <section id="en-methodology">
+    <h2>GHI Methodology v1.0.0</h2>
+    <p>
+      This page describes the core principles of the
+      <strong>Global HashCost Index (GHI)</strong> methodology, version
+      <strong>v1.0.0</strong>. The currently deployed engine is the
+      <strong>Sandbox Engine v0.4.0-sandbox</strong>, which provides synthetic but
+      deterministic data for prototyping and integration testing.
+    </p>
 
+    <h3>1. GHI objective</h3>
+    <ul>
+      <li>Provide an open, reproducible measure of the <strong>Bitcoin production cost</strong>.</li>
+      <li>Offer both a <strong>global</strong> metric and <strong>regional</strong> breakdowns.</li>
+      <li>Document all assumptions and model versions clearly.</li>
+    </ul>
+
+    <h3>2. Scope and definitions</h3>
+    <ul>
+      <li><strong>Production cost</strong>: direct energy cost to mine 1 BTC,
+        expressed in USD/BTC (excluding CAPEX and financing costs).</li>
+      <li><strong>Region</strong>: coherent geographical aggregate
+        (e.g. North America, Europe, Asia ex-China).</li>
+      <li><strong>Machine mix</strong>: representative combination of ASICs
+        (efficiency in J/TH, installed power).</li>
+      <li><strong>Tariff mix</strong>: assumptions on electricity prices
+        (base load, peak/off-peak, industrial contracts).</li>
+    </ul>
+
+    <h3>3. Data architecture</h3>
+    <p>The v1.0.0 methodology uses three layers:</p>
+    <ol>
+      <li><strong>Network sources</strong>: difficulty, hashrate, block subsidy,
+        BTC price (specialized public data providers).</li>
+      <li><strong>Regional sources</strong>: machine profiles, electricity tariffs,
+        load factors, hourly patterns.</li>
+      <li><strong>Aggregation layer</strong>: regional computations then global GHI aggregation.</li>
+    </ol>
+
+    <h3>4. Cost model (simplified)</h3>
+    <p>For a given region <code>R</code>, the unit energy cost is derived from:</p>
+    <ul>
+      <li>Installed power (MW) from the ASIC fleet.</li>
+      <li>Average efficiency (J/TH).</li>
+      <li>Global network hashrate and regional hashrate share.</li>
+      <li>Average electricity price (USD/MWh).</li>
+    </ul>
+    <p>Conceptual scheme:</p>
+    <pre><code>energy_per_BTC_R   = (total_energy_R / BTC_mined_R)
+energy_cost_BTC_R = energy_per_BTC_R × avg_electricity_price_R</code></pre>
+    <p>
+      The <strong>min / avg / max</strong> values are produced by applying
+      low / central / high scenarios on:
+    </p>
+    <ul>
+      <li>machine efficiency (older vs newer ASICs);</li>
+      <li>electricity tariffs (floor / median / ceiling);</li>
+      <li>utilization profile (load factor).</li>
+    </ul>
+
+    <h3>5. Global aggregation (world GHI)</h3>
+    <p>
+      Once regional costs are computed, the global GHI is produced via weighted aggregation:
+    </p>
+    <ul>
+      <li>weights based on estimated regional hashrate shares;</li>
+      <li>resulting global band: <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>.</li>
+    </ul>
+
+    <h3>6. Versions and stability</h3>
+    <ul>
+      <li><strong>GHI_VERSION</strong>: <code>1.0.0</code></li>
+      <li><strong>METHODOLOGY_VERSION</strong>: <code>1.0.0</code></li>
+      <li><strong>Sandbox Engine</strong>: <code>v0.4.0-sandbox</code></li>
+    </ul>
+    <p>
+      The Sandbox Engine v0.4.0-sandbox produces a <strong>deterministic</strong> dataset:
+      identical API calls always return the same values, to ease testing and third-party validation.
+    </p>
+
+    <h3>7. Current model limitations (v1.0.0)</h3>
+    <p>
+      Version 1.0.0 of the GHI relies on simplified public assumptions.
+      A number of limitations are known and explicitly acknowledged:
+    </p>
+    <ul>
+      <li>Sandbox data is <strong>not representative</strong> of actual production costs.</li>
+      <li>Simplified regional assumptions (aggregated machine and tariff profiles).</li>
+      <li>No segmentation by type of miner (industrial vs retail) yet.</li>
+      <li>Non-energy costs (CAPEX, non-energy OPEX) are not included.</li>
+      <li>Limited sub-regional granularity (no fine-grained breakdown by state, province or energy zone yet).</li>
+      <li>No explicit modelling of advanced intra-day dynamic pricing (time-of-use schemes).</li>
+      <li>Proprietary real-world mining site data is not exposed in the public engine.</li>
+    </ul>
+    <p>
+      These components are handled inside the private engine and may be progressively
+      reflected in the public version as transparency and confidentiality standards allow.
+    </p>
+
+    <h3>8. Academic alignment and comparability</h3>
+    <p>
+      The GHI is broadly aligned with existing work on Bitcoin production costs, including:
+    </p>
+    <ul>
+      <li>sector indices on electricity consumption and production costs;</li>
+      <li>industry and analyst reports on mining profitability;</li>
+      <li>academic studies on the marginal cost of Bitcoin production;</li>
+      <li>financial “marginal cost of production” models.</li>
+    </ul>
+    <p>The GHI differentiates itself through three structural features:</p>
+    <ol>
+      <li>a versioned public standard (API v1.0, methodology 1.0.0);</li>
+      <li>a strict separation between public (sandbox) and private (real) engines;</li>
+      <li>a global multi-region model with min / avg / max aggregation.</li>
+    </ol>
+
+    <h3>9. Data Model structure and simplified formula</h3>
+    <p>
+      The <strong>Data Model v1.0</strong> organises each engine output into three components:
+    </p>
+    <ul>
+      <li><strong>Global Snapshot</strong> – global min / avg / max band;</li>
+      <li><strong>Regions</strong> – regional costs and associated metadata;</li>
+      <li><strong>History</strong> – normalised time-series.</li>
+    </ul>
+    <p>
+      The simplified public formula:
+    </p>
+    <pre><code>cost_btc = energy_cost_usd / BTC_mined_per_day</code></pre>
+    <p>
+      is a <strong>linear approximation</strong> of the internal model.
+      The private engine uses a calibrated nonlinear form that includes, among others:
+    </p>
+    <ul>
+      <li>ASIC generation distribution;</li>
+      <li>efficiency corrections;</li>
+      <li>real energy performance per region;</li>
+      <li>Bitcoin network weighting factors (difficulty, hashrate, potential orphan blocks);</li>
+      <li>instantaneous stability factors.</li>
+    </ul>
+
+    <h3>10. Methodology roadmap</h3>
+    <ul>
+      <li>v1.x: refine regional assumptions, strengthen public data coverage,
+        extend Data Model documentation.</li>
+      <li>v2.0: integrate multi-source real data, publish detailed regional documentation,
+        increase transparency on private assumptions.</li>
+      <li>v2.x: advanced scenarios (energy mix, stress tests, price sensitivity,
+        CO₂ metrics and energy taxation).</li>
+    </ul>
+  </section>
+  
   <!-- ================= FR ================= -->
   <section id="fr-methodology">
     <h2>Méthodologie GHI v1.0.0</h2>
@@ -284,158 +436,7 @@ coût_énergie_BTC_R = énergie_par_BTC_R × prix_moyen_électricité_R</code></
     </ul>
   </section>
 
-  <!-- ================= EN ================= -->
-  <section id="en-methodology">
-    <h2>GHI Methodology v1.0.0</h2>
-    <p>
-      This page describes the core principles of the
-      <strong>Global HashCost Index (GHI)</strong> methodology, version
-      <strong>v1.0.0</strong>. The currently deployed engine is the
-      <strong>Sandbox Engine v0.4.0-sandbox</strong>, which provides synthetic but
-      deterministic data for prototyping and integration testing.
-    </p>
 
-    <h3>1. GHI objective</h3>
-    <ul>
-      <li>Provide an open, reproducible measure of the <strong>Bitcoin production cost</strong>.</li>
-      <li>Offer both a <strong>global</strong> metric and <strong>regional</strong> breakdowns.</li>
-      <li>Document all assumptions and model versions clearly.</li>
-    </ul>
-
-    <h3>2. Scope and definitions</h3>
-    <ul>
-      <li><strong>Production cost</strong>: direct energy cost to mine 1 BTC,
-        expressed in USD/BTC (excluding CAPEX and financing costs).</li>
-      <li><strong>Region</strong>: coherent geographical aggregate
-        (e.g. North America, Europe, Asia ex-China).</li>
-      <li><strong>Machine mix</strong>: representative combination of ASICs
-        (efficiency in J/TH, installed power).</li>
-      <li><strong>Tariff mix</strong>: assumptions on electricity prices
-        (base load, peak/off-peak, industrial contracts).</li>
-    </ul>
-
-    <h3>3. Data architecture</h3>
-    <p>The v1.0.0 methodology uses three layers:</p>
-    <ol>
-      <li><strong>Network sources</strong>: difficulty, hashrate, block subsidy,
-        BTC price (specialized public data providers).</li>
-      <li><strong>Regional sources</strong>: machine profiles, electricity tariffs,
-        load factors, hourly patterns.</li>
-      <li><strong>Aggregation layer</strong>: regional computations then global GHI aggregation.</li>
-    </ol>
-
-    <h3>4. Cost model (simplified)</h3>
-    <p>For a given region <code>R</code>, the unit energy cost is derived from:</p>
-    <ul>
-      <li>Installed power (MW) from the ASIC fleet.</li>
-      <li>Average efficiency (J/TH).</li>
-      <li>Global network hashrate and regional hashrate share.</li>
-      <li>Average electricity price (USD/MWh).</li>
-    </ul>
-    <p>Conceptual scheme:</p>
-    <pre><code>energy_per_BTC_R   = (total_energy_R / BTC_mined_R)
-energy_cost_BTC_R = energy_per_BTC_R × avg_electricity_price_R</code></pre>
-    <p>
-      The <strong>min / avg / max</strong> values are produced by applying
-      low / central / high scenarios on:
-    </p>
-    <ul>
-      <li>machine efficiency (older vs newer ASICs);</li>
-      <li>electricity tariffs (floor / median / ceiling);</li>
-      <li>utilization profile (load factor).</li>
-    </ul>
-
-    <h3>5. Global aggregation (world GHI)</h3>
-    <p>
-      Once regional costs are computed, the global GHI is produced via weighted aggregation:
-    </p>
-    <ul>
-      <li>weights based on estimated regional hashrate shares;</li>
-      <li>resulting global band: <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>.</li>
-    </ul>
-
-    <h3>6. Versions and stability</h3>
-    <ul>
-      <li><strong>GHI_VERSION</strong>: <code>1.0.0</code></li>
-      <li><strong>METHODOLOGY_VERSION</strong>: <code>1.0.0</code></li>
-      <li><strong>Sandbox Engine</strong>: <code>v0.4.0-sandbox</code></li>
-    </ul>
-    <p>
-      The Sandbox Engine v0.4.0-sandbox produces a <strong>deterministic</strong> dataset:
-      identical API calls always return the same values, to ease testing and third-party validation.
-    </p>
-
-    <h3>7. Current model limitations (v1.0.0)</h3>
-    <p>
-      Version 1.0.0 of the GHI relies on simplified public assumptions.
-      A number of limitations are known and explicitly acknowledged:
-    </p>
-    <ul>
-      <li>Sandbox data is <strong>not representative</strong> of actual production costs.</li>
-      <li>Simplified regional assumptions (aggregated machine and tariff profiles).</li>
-      <li>No segmentation by type of miner (industrial vs retail) yet.</li>
-      <li>Non-energy costs (CAPEX, non-energy OPEX) are not included.</li>
-      <li>Limited sub-regional granularity (no fine-grained breakdown by state, province or energy zone yet).</li>
-      <li>No explicit modelling of advanced intra-day dynamic pricing (time-of-use schemes).</li>
-      <li>Proprietary real-world mining site data is not exposed in the public engine.</li>
-    </ul>
-    <p>
-      These components are handled inside the private engine and may be progressively
-      reflected in the public version as transparency and confidentiality standards allow.
-    </p>
-
-    <h3>8. Academic alignment and comparability</h3>
-    <p>
-      The GHI is broadly aligned with existing work on Bitcoin production costs, including:
-    </p>
-    <ul>
-      <li>sector indices on electricity consumption and production costs;</li>
-      <li>industry and analyst reports on mining profitability;</li>
-      <li>academic studies on the marginal cost of Bitcoin production;</li>
-      <li>financial “marginal cost of production” models.</li>
-    </ul>
-    <p>The GHI differentiates itself through three structural features:</p>
-    <ol>
-      <li>a versioned public standard (API v1.0, methodology 1.0.0);</li>
-      <li>a strict separation between public (sandbox) and private (real) engines;</li>
-      <li>a global multi-region model with min / avg / max aggregation.</li>
-    </ol>
-
-    <h3>9. Data Model structure and simplified formula</h3>
-    <p>
-      The <strong>Data Model v1.0</strong> organises each engine output into three components:
-    </p>
-    <ul>
-      <li><strong>Global Snapshot</strong> – global min / avg / max band;</li>
-      <li><strong>Regions</strong> – regional costs and associated metadata;</li>
-      <li><strong>History</strong> – normalised time-series.</li>
-    </ul>
-    <p>
-      The simplified public formula:
-    </p>
-    <pre><code>cost_btc = energy_cost_usd / BTC_mined_per_day</code></pre>
-    <p>
-      is a <strong>linear approximation</strong> of the internal model.
-      The private engine uses a calibrated nonlinear form that includes, among others:
-    </p>
-    <ul>
-      <li>ASIC generation distribution;</li>
-      <li>efficiency corrections;</li>
-      <li>real energy performance per region;</li>
-      <li>Bitcoin network weighting factors (difficulty, hashrate, potential orphan blocks);</li>
-      <li>instantaneous stability factors.</li>
-    </ul>
-
-    <h3>10. Methodology roadmap</h3>
-    <ul>
-      <li>v1.x: refine regional assumptions, strengthen public data coverage,
-        extend Data Model documentation.</li>
-      <li>v2.0: integrate multi-source real data, publish detailed regional documentation,
-        increase transparency on private assumptions.</li>
-      <li>v2.x: advanced scenarios (energy mix, stress tests, price sensitivity,
-        CO₂ metrics and energy taxation).</li>
-    </ul>
-  </section>
 </main>
 
     <footer>
