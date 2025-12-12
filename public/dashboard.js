@@ -5,22 +5,22 @@
     return document.getElementById(id);
   }
 
-  const dom = {
-    fr: {
-      price: $("ghi-price-btc-fr"),
-      avg: $("ghi-avg-cost-btc-fr"),
-      minmax: $("ghi-min-max-cost-btc-fr"),
-      marker: $("ghi-gauge-marker-fr"),
-      note: $("ghi-quick-note-fr"),
-    },
-    en: {
-      price: $("ghi-price-btc-en"),
-      avg: $("ghi-avg-cost-btc-en"),
-      minmax: $("ghi-min-max-cost-btc-en"),
-      marker: $("ghi-gauge-marker-en"),
-      note: $("ghi-quick-note-en"),
-    },
-  };
+const dom = {
+  fr: {
+    price: $("ghi-price-btc"),
+    avg: $("ghi-avg-cost-btc"),
+    minmax: $("ghi-min-max-cost-btc"),
+    marker: $("ghi-gauge-marker"),
+    note: $("ghi-quick-note"),
+  },
+  en: {
+    price: $("ghi-price-btc-en"),
+    avg: $("ghi-avg-cost-btc-en"),
+    minmax: $("ghi-min-max-cost-btc-en"),
+    marker: $("ghi-gauge-marker-en"),
+    note: $("ghi-quick-note-en"),
+  },
+};
 
   // Si on n'est pas sur la page dashboard, on sort proprement
   if (!dom.fr.price && !dom.en.price) {
