@@ -1,31 +1,36 @@
 (function () {
-  const API_URL = "/api/latest.json";
+  const LATEST_URL = "/api/latest.json";
+  const HISTORY_URL = "/v1/ghi/history?region_id=global";
 
   function $(id) {
     return document.getElementById(id);
   }
 
-const dom = {
-  fr: {
-    price: $("ghi-price-btc"),
-    avg: $("ghi-avg-cost-btc"),
-    minmax: $("ghi-min-max-cost-btc"),
-    marker: $("ghi-gauge-marker"),
-    note: $("ghi-quick-note"),
-  },
-  en: {
-    price: $("ghi-price-btc-en"),
-    avg: $("ghi-avg-cost-btc-en"),
-    minmax: $("ghi-min-max-cost-btc-en"),
-    marker: $("ghi-gauge-marker-en"),
-    note: $("ghi-quick-note-en"),
-  },
-};
+  const dom = {
+    fr: {
+      price: $("ghi-price-btc"),
+      avg: $("ghi-avg-cost-btc"),
+      minmax: $("ghi-min-max-cost-btc"),
+      marker: $("ghi-gauge-marker"),
+      note: $("ghi-quick-note"),
+      regionsTbody: $("ghi-regions-rows-fr"),
+      historyBox: $("ghi-history-fr"),
+    },
+    en: {
+      price: $("ghi-price-btc-en"),
+      avg: $("ghi-avg-cost-btc-en"),
+      minmax: $("ghi-min-max-cost-btc-en"),
+      marker: $("ghi-gauge-marker-en"),
+      note: $("ghi-quick-note-en"),
+      regionsTbody: $("ghi-regions-rows-en"),
+      historyBox: $("ghi-history-en"),
+    },
+  };
 
-  // Si on n'est pas sur la page dashboard, on sort proprement
-  if (!dom.fr.price && !dom.en.price) {
-    return;
-  }
+  // Pas sur la page dashboard -> sortie propre
+  const onDashboard =
+    !!(dom.fr.price || dom.en.price || dom.fr.regionsTbody || dom.en.regionsTbody);
+  if (!onDashboard) return;
 
   function formatUSD(value) {
     if (!Number.isFinite(value)) return "–";
@@ -33,7 +38,7 @@ const dom = {
       "$" +
       value
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") // espaces insécables
+        .replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0")
     );
   }
 
@@ -85,69 +90,140 @@ const dom = {
 
     ["fr", "en"].forEach((lang) => {
       const note = dom[lang].note;
-      if (note) {
-        note.textContent = "[GHI sandbox] " + message;
-      }
+      if (note) note.textContent = "[GHI sandbox] " + message;
     });
   }
 
-  function applySnapshot(price, cost, minCost, maxCost, premiumPct) {
+  function applyIndicator(price, cost, premiumPct) {
+    const minCost = Math.round(cost * 0.91);
+    const maxCost = Math.round(cost * 1.09);
     const gaugePos = clamp(50 + premiumPct, 0, 100);
 
     ["fr", "en"].forEach((lang) => {
       const view = dom[lang];
-      if (!view) return;
 
       if (view.price) view.price.textContent = formatUSD(price);
       if (view.avg) view.avg.textContent = formatUSD(cost);
-      if (view.minmax)
-        view.minmax.textContent =
-          formatUSD(minCost) + " / " + formatUSD(maxCost);
+      if (view.minmax) {
+        view.minmax.textContent = formatUSD(minCost) + " / " + formatUSD(maxCost);
+      }
       if (view.marker) view.marker.style.left = gaugePos.toFixed(1) + "%";
 
       setNote(lang, premiumPct);
     });
   }
 
-  async function loadIndicator() {
+  function renderRegionsTable(lang, regions) {
+    const tbody = dom[lang].regionsTbody;
+    if (!tbody) return;
+
+    if (!Array.isArray(regions) || regions.length === 0) {
+      tbody.innerHTML =
+        `<tr><td colspan="6">${lang === "fr" ? "Aucune donnée." : "No data."}</td></tr>`;
+      return;
+    }
+
+    const rows = regions
+      .slice()
+      .sort(
+        (a, b) =>
+          Number(b.share_of_hashrate_pct) - Number(a.share_of_hashrate_pct)
+      )
+      .map((r) => {
+        const name = String(r.name || r.code || "–");
+        const cost = Number(r.hashcost_usd);
+        const share = Number(r.share_of_hashrate_pct);
+
+        return `
+          <tr>
+            <td>${name}</td>
+            <td>–</td>
+            <td>${formatUSD(cost)}</td>
+            <td>–</td>
+            <td>${Number.isFinite(share) ? share.toFixed(1) + " %" : "–"}</td>
+            <td>latest.json</td>
+          </tr>
+        `;
+      })
+      .join("");
+
+    tbody.innerHTML = rows;
+  }
+
+  async function loadLatest() {
+    const resp = await fetch(LATEST_URL, { cache: "no-store" });
+    if (!resp.ok) throw new Error("HTTP " + resp.status + " on " + LATEST_URL);
+
+    const data = await resp.json();
+    if (!data || typeof data !== "object") {
+      throw new Error("Invalid JSON structure (expected object).");
+    }
+
+    const price = Number(data.spot_price_usd);
+    const cost = Number(data.global_hashcost_usd);
+    const premium = Number(data.premium_vs_cost_pct);
+
+    if (!Number.isFinite(price) || !Number.isFinite(cost) || !Number.isFinite(premium)) {
+      throw new Error(
+        "Missing or invalid numeric fields in latest.json (spot_price_usd / global_hashcost_usd / premium_vs_cost_pct)."
+      );
+    }
+
+    applyIndicator(price, cost, premium);
+
+    renderRegionsTable("fr", data.regions);
+    renderRegionsTable("en", data.regions);
+  }
+
+  async function loadHistory() {
+    async function setHistory(lang, html) {
+      const el = dom[lang].historyBox;
+      if (el) el.innerHTML = html;
+    }
+
+    // si le conteneur n’existe pas, pas besoin de fetch
+    const hasBox = !!(dom.fr.historyBox || dom.en.historyBox);
+    if (!hasBox) return;
+
     try {
-      const response = await fetch(API_URL, {
-        cache: "no-store",
-      });
+      const resp = await fetch(HISTORY_URL, { cache: "no-store" });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
 
-      if (!response.ok) {
-        throw new Error("HTTP " + response.status + " on " + API_URL);
+      const payload = await resp.json();
+      const points = Array.isArray(payload.points) ? payload.points : [];
+
+      if (points.length === 0) {
+        await setHistory("fr", "Historique indisponible.");
+        await setHistory("en", "History unavailable.");
+        return;
       }
 
-      const data = await response.json();
-      console.debug("[GHI sandbox] /api/latest.json payload:", data);
+      const last = points.slice(-10).map((p) => {
+        const d = String(p.date || "–");
+        const avg = formatUSD(Number(p.avg_cost_usd));
+        return `<li><strong>${d}</strong> — ${avg}</li>`;
+      }).join("");
 
-      if (!data || typeof data !== "object") {
-        throw new Error("Invalid JSON structure (expected object).");
-      }
+      await setHistory("fr", `<ul>${last}</ul>`);
+      await setHistory("en", `<ul>${last}</ul>`);
+    } catch (e) {
+      await setHistory("fr", `Historique non chargé (source: <code>${HISTORY_URL}</code>).`);
+      await setHistory("en", `History not loaded (source: <code>${HISTORY_URL}</code>).`);
+    }
+  }
 
-      const price = Number(data.spot_price_usd);
-      const cost = Number(data.global_hashcost_usd);
-      const premium = Number(data.premium_vs_cost_pct);
-
-      if (!Number.isFinite(price) || !Number.isFinite(cost)) {
-        throw new Error(
-          "Missing or invalid numeric fields 'spot_price_usd' / 'global_hashcost_usd'."
-        );
-      }
-
-      const minCost = Math.round(cost * 0.91);
-      const maxCost = Math.round(cost * 1.09);
-
-      applySnapshot(price, cost, minCost, maxCost, premium);
+  async function boot() {
+    try {
+      await loadLatest();
+      await loadHistory();
     } catch (err) {
       showError(err && err.message ? err.message : String(err));
     }
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", loadIndicator);
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    loadIndicator();
+    boot();
   }
 })();
