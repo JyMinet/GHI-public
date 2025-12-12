@@ -6,22 +6,21 @@
     <a href="#en-quickstart">EN</a>
   </div>
 
-  <!-- ========================================================= -->
   <!-- ========================= FR ============================= -->
-  <!-- ========================================================= -->
 
   <section id="fr-quickstart">
-    <h2>API Quickstart – Version 1.1</h2>
+    <h2>API Quickstart</h2>
 
     <div class="card">
       <h3>1. Introduction</h3>
       <p>
-        Cette page offre un démarrage rapide pour utiliser l’API GHI v1.1.  
-        Tous les appels sont accessibles sans authentification dans l’édition Sandbox.  
-        Les éditions institutionnelles (API clés, données enrichies, SLA) seront annoncées prochainement.
+        Cette page offre un démarrage rapide pour utiliser l’API GHI.
+        Tous les appels sont accessibles sans authentification dans l’édition Sandbox.
+        Les éditions institutionnelles (clés API, données enrichies, SLA)
+        seront annoncées ultérieurement.
       </p>
       <p>
-        Les exemples ci-dessous montrent comment interroger les endpoints 
+        Les exemples ci-dessous montrent comment interroger les endpoints
         <strong>snapshot</strong>, <strong>history</strong> et <strong>regions</strong>.
       </p>
     </div>
@@ -91,19 +90,19 @@ fetch(url)
 }</code></pre>
     </div>
 
-<h3 id="fr-metadata">4. Endpoint /metadata</h3>
-<p>
-  L’endpoint <code>GET /v1/ghi/metadata</code> renvoie des informations structurées
-  sur la version de l’API et du moteur sandbox.
-</p>
+    <h3 id="fr-metadata">7. Endpoint /metadata</h3>
+    <p>
+      L’endpoint <code>GET /v1/ghi/metadata</code> renvoie des informations structurées
+      sur l’API et le moteur sandbox.
+    </p>
 
-<pre>
+    <pre>
 GET https://globalhashcostindex.org/api/v1/ghi/metadata
 </pre>
 
-<p>Exemple de réponse (simplifiée) :</p>
+    <p>Exemple de réponse (simplifiée) :</p>
 
-<pre>
+    <pre>
 {
   "version": "1.1",
   "timestamp_utc": "2025-12-10T09:30:00Z",
@@ -115,9 +114,9 @@ GET https://globalhashcostindex.org/api/v1/ghi/metadata
 </pre>
 
     <div class="card">
-      <h3>7. Ressources utiles</h3>
+      <h3>8. Ressources utiles</h3>
       <ul>
-        <li><a href="api/api-v1.1.html">API v1.1 – Documentation complète</a></li>
+        <li><a href="api/api-v1.1.html">API – Documentation complète</a></li>
         <li><a href="api-reference.html">API Reference</a></li>
         <li><a href="api.html">Vue d’ensemble de l’API</a></li>
 
@@ -129,26 +128,25 @@ GET https://globalhashcostindex.org/api/v1/ghi/metadata
 
         <li>
           <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md">
-            Spécification API v1.1 (GitHub Markdown)
+            Spécification API (GitHub Markdown)
           </a>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ========================================================= -->
   <!-- ========================= EN ============================= -->
-  <!-- ========================================================= -->
 
   <section id="en-quickstart">
-    <h2>API Quickstart – Version 1.1</h2>
+    <h2>API Quickstart</h2>
 
     <div class="card">
       <h3>1. Introduction</h3>
       <p>
-        This page provides a fast onboarding guide for GHI API v1.1.  
-        All endpoints are publicly accessible in the Sandbox edition.  
-        Institutional editions (API keys, enriched datasets, SLA) will be announced soon.
+        This page provides a fast onboarding guide for the GHI API.
+        All endpoints are publicly accessible in the Sandbox edition.
+        Institutional editions (API keys, enriched datasets, SLA)
+        will be announced later.
       </p>
     </div>
 
@@ -202,19 +200,19 @@ print("Global avg cost:", data["global_avg_cost_usd"])
 }</code></pre>
     </div>
 
-<h3 id="en-metadata">4. /metadata endpoint</h3>
-<p>
-  The <code>GET /v1/ghi/metadata</code> endpoint returns structured information
-  about the API and the sandbox engine.
-</p>
+    <h3 id="en-metadata">7. /metadata endpoint</h3>
+    <p>
+      The <code>GET /v1/ghi/metadata</code> endpoint returns structured information
+      about the API and the sandbox engine.
+    </p>
 
-<pre>
+    <pre>
 GET https://globalhashcostindex.org/api/v1/ghi/metadata
 </pre>
 
-<p>Example response (simplified):</p>
+    <p>Example response (simplified):</p>
 
-<pre>
+    <pre>
 {
   "version": "1.1",
   "timestamp_utc": "2025-12-10T09:30:00Z",
@@ -226,9 +224,9 @@ GET https://globalhashcostindex.org/api/v1/ghi/metadata
 </pre>
 
     <div class="card">
-      <h3>7. Resources</h3>
+      <h3>8. Resources</h3>
       <ul>
-        <li><a href="api/api-v1.1.html">API v1.1 – Full documentation</a></li>
+        <li><a href="api/api-v1.1.html">API – Full documentation</a></li>
         <li><a href="api-reference.html">API Reference</a></li>
         <li><a href="api.html">API overview</a></li>
 
@@ -240,12 +238,11 @@ GET https://globalhashcostindex.org/api/v1/ghi/metadata
 
         <li>
           <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md">
-            API v1.1 specification (GitHub Markdown)
+            API specification (GitHub Markdown)
           </a>
         </li>
       </ul>
     </div>
-
   </section>
 
 </main>

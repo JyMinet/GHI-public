@@ -1,268 +1,279 @@
-<main class="dashboard-main">
-  <p class="lang-switch">
+<main>
+  <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-dashboard">FR</a> ·
-    <a href="#en-dashboard">EN</a>
-  </p>
+    <a href="#fr-regions">FR</a> ·
+    <a href="#en-regions">EN</a>
+  </div>
 
-  <section class="dashboard-card">
-    <h1>
-      Dashboard Global HashCost Index (pré-version) /
-      Global HashCost Index Dashboard (pre-release)
-    </h1>
+  <!-- ================= FR ================= -->
+  <section id="fr-regions">
+    <h2>Modèle régional GHI</h2>
+    <p>
+      Le <strong>Global HashCost Index (GHI)</strong> s’appuie sur un modèle
+      régionalisé pour décrire le coût de production du Bitcoin par grandes zones
+      géographiques. La version publique actuelle repose sur un moteur Sandbox,
+      qui fournit des données factices mais <strong>stables</strong> pour le
+      prototypage et les tests d’intégration.
+    </p>
+
+    <h3>1. Rôle des régions</h3>
+    <ul>
+      <li>Fournir une <strong>décomposition géographique</strong> du coût de production.</li>
+      <li>Permettre des comparaisons entre grandes zones (coûts relatifs, sensibilité énergie).</li>
+      <li>Préparer l’extension future vers des <strong>sous-régions</strong> plus fines.</li>
+    </ul>
 
     <p>
-      Cette page présente une version <strong>Dashboard V2.3</strong> du GHI,
-      alignée avec la <strong>roadmap publique v1.2 / v1.3</strong>.
-      Les données affichées proviennent de l’API sandbox GHI (API v1.1).
+      Trois grandes régions synthétiques sont utilisées dans le modèle public :
+    </p>
+    <ul>
+      <li><strong>Amérique du Nord</strong> (<code>north_america</code>)</li>
+      <li><strong>Europe</strong> (<code>europe</code>)</li>
+      <li><strong>Asie (hors Chine)</strong> (<code>asia_no_china</code>)</li>
+    </ul>
+
+    <h3>2. Structure des données régionales</h3>
+    <p>
+      Chaque région est décrite par un ensemble d’hypothèses synthétiques,
+      compatibles avec le modèle de données GHI :
+    </p>
+    <ul>
+      <li><strong>Part de hashrate</strong> estimée (<em>hashrate_share</em>).</li>
+      <li><strong>Mix de machines ASIC</strong> (efficacité moyenne en J/TH).</li>
+      <li><strong>Mix tarifaire énergie</strong> (plancher / central / plafond).</li>
+      <li><strong>Facteur de charge</strong> (profil d’utilisation des fermes de minage).</li>
+      <li><strong>Coût min / moyen / max</strong> (USD/BTC) dérivé de ces hypothèses.</li>
+    </ul>
+
+    <p>
+      Dans le dépôt public, ces valeurs sont <strong>purement illustratives</strong> :
+      elles ne reflètent pas les coûts de production réels et servent uniquement
+      à stabiliser les réponses de l’API.
     </p>
 
-    <p class="text-muted">
-      This page shows <strong>Dashboard V2.3</strong>, aligned with the
-      <strong>public roadmap v1.2 / v1.3</strong>. Data is loaded from the
-      GHI sandbox API (API v1.1).
+    <h3>3. Région : Amérique du Nord</h3>
+    <p>
+      L’agrégat <strong>Amérique du Nord</strong> couvre principalement les activités
+      de minage industrielles situées au Canada et aux États-Unis.
+    </p>
+    <ul>
+      <li>hypothèses de <strong>mix machines</strong> privilégiant des ASICs récents,</li>
+      <li><strong>tarifs énergétiques</strong> modélisés à partir de contrats industriels synthétiques,</li>
+      <li><strong>part de hashrate</strong> fixée à une valeur stable et normalisée.</li>
+    </ul>
+    <p>
+      Le moteur Sandbox agrège ces éléments pour produire un coût de production
+      min / moyen / max fictif pour la région.
     </p>
 
-    <!-- ======================= SECTION FR ======================= -->
-    <section id="fr-dashboard">
-      <h2>Sandbox GHI Snapshot (API v1.1)</h2>
+    <h3>4. Région : Europe</h3>
+    <p>
+      L’agrégat <strong>Europe</strong> représente un ensemble diversifié de
+      juridictions énergétiques.
+    </p>
+    <ul>
+      <li>coûts d’électricité supposés <strong>plus élevés</strong> en moyenne,</li>
+      <li>mix machines synthétique avec une efficience légèrement inférieure
+        aux meilleurs parcs industriels mondiaux,</li>
+      <li>profils horaires simplifiés heures pleines / creuses.</li>
+    </ul>
+    <p>
+      Les valeurs chiffrées de la Sandbox sont déterministes mais non
+      représentatives du marché réel.
+    </p>
 
-      <h3>Snapshot global – structure</h3>
-      <p>
-        Structure de référence pour un snapshot global (coût min / moyen / max,
-        date, version du modèle).
-      </p>
+    <h3>5. Région : Asie (hors Chine)</h3>
+    <p>
+      L’agrégat <strong>Asie (hors Chine)</strong> couvre un ensemble hétérogène
+      de pays.
+    </p>
+    <ul>
+      <li>hypothèses de prix de l’énergie basées sur un
+        <strong>panier synthétique</strong> de contrats industriels,</li>
+      <li>mix machines combinant ASICs récents et plus anciens,</li>
+      <li>part de hashrate constante, utilisée uniquement
+        pour produire des exemples de résultats régionaux.</li>
+    </ul>
 
-      <div class="table-wrapper">
-        <table class="snapshot-table">
-          <thead>
-            <tr>
-              <th>Date de référence</th>
-              <th>Coût min (USD/BTC)</th>
-              <th>Coût moyen (USD/BTC)</th>
-              <th>Coût max (USD/BTC)</th>
-              <th>Version du modèle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2025-01-01</td>
-              <td>20&nbsp;000</td>
-              <td>28&nbsp;000</td>
-              <td>36&nbsp;000</td>
-              <td>GHI v1.0</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h3>6. Agrégation vers le GHI mondial</h3>
+    <p>
+      Le GHI mondial est obtenu en agrégeant les coûts régionaux à l’aide de
+      pondérations (parts de hashrate).
+    </p>
+    <ul>
+      <li><strong>pondérations</strong> fixes et normalisées,</li>
+      <li>résultat global sous forme d’une bande de coûts
+        <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>
+        strictement déterministe.</li>
+    </ul>
 
-      <h3>Coût de production par région – (dynamique)</h3>
-      <p>
-        Données chargées depuis <code>/api/latest.json</code> (sandbox).
-      </p>
+    <h3>7. Limites et évolutions prévues</h3>
+    <ul>
+      <li>Données Sandbox : <strong>non représentatives</strong> des coûts réels.</li>
+      <li>Régions agrégées (pas de ventilation par pays ou État / province).</li>
+      <li>Tarifs énergétiques synthétiques, sans connexion directe à des contrats réels.</li>
+    </ul>
+    <p>Évolutions prévues (famille v2.x) :</p>
+    <ul>
+      <li>segmentations <strong>sous-régionales</strong> (ex. Texas, Québec) dans le moteur privé,</li>
+      <li>intégration optionnelle de <strong>métriques CO₂</strong> et de fiscalité énergétique,</li>
+      <li>scénarios avancés de sensibilité prix / énergie par région.</li>
+    </ul>
 
-      <div class="table-wrapper">
-        <table class="snapshot-table">
-          <thead>
-            <tr>
-              <th>Région</th>
-              <th>Coût min</th>
-              <th>Coût moyen</th>
-              <th>Coût max</th>
-              <th>Part du hashrate</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody id="ghi-regions-rows-fr">
-            <tr>
-              <td colspan="6">Chargement…</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h3>8. Documentation associée</h3>
+    <ul>
+      <li>
+        Design moteur (anglais) :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
+          docs/ENGINE_DESIGN.md
+        </a>
+      </li>
+      <li>
+        Modèle de versioning :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
+          docs/VERSIONS.md
+        </a>
+      </li>
+      <li>
+        Spécification API GHI :
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
+          docs/api.md
+        </a>
+      </li>
+    </ul>
+  </section>
 
-      <h3>Historique global – (beta)</h3>
-      <p>
-        Tentative de chargement depuis
-        <code>/v1/ghi/history?region_id=global</code>.
-        Un fallback est affiché si la source est indisponible.
-      </p>
+  <!-- ================= EN ================= -->
+  <section id="en-regions">
+    <h2>GHI Regional Model</h2>
+    <p>
+      The <strong>Global HashCost Index (GHI)</strong> relies on a regional model
+      to describe Bitcoin production costs across major geographic areas.
+      The current public implementation uses a Sandbox engine that provides
+      <strong>synthetic but stable</strong> data for prototyping and integration testing.
+    </p>
 
-      <div class="ghi-placeholder" id="ghi-history-fr">
-        Chargement de l’historique…
-      </div>
+    <h3>1. Purpose of regions</h3>
+    <ul>
+      <li>Provide a <strong>geographical breakdown</strong> of production costs.</li>
+      <li>Enable comparisons between large areas (relative costs, energy sensitivity).</li>
+      <li>Prepare the future extension to more granular <strong>sub-regions</strong>.</li>
+    </ul>
 
-      <!-- Indicateur FR -->
-      <section id="fr" class="page-section">
-        <h2>Relation prix / coût global de production (GHI)</h2>
+    <p>
+      Three synthetic regions are used in the public model:
+    </p>
+    <ul>
+      <li><strong>North America</strong> (<code>north_america</code>)</li>
+      <li><strong>Europe</strong> (<code>europe</code>)</li>
+      <li><strong>Asia (ex-China)</strong> (<code>asia_no_china</code>)</li>
+    </ul>
 
-        <div class="ghi-indicator-card">
-          <div class="ghi-indicator-header">
-            <h3 class="ghi-indicator-title">
-              Vue rapide – Prix vs coût de production
-            </h3>
-            <p class="ghi-indicator-meta">
-              <span class="meta-label">Mode :</span>
-              <span class="meta-value">Sandbox</span>
-              <span class="meta-sep">•</span>
-              <span class="meta-label">Source :</span>
-              <span class="meta-value">/api/latest.json</span>
-            </p>
-          </div>
+    <h3>2. Regional data structure</h3>
+    <p>
+      Each region is described using a set of synthetic assumptions aligned
+      with the GHI data model:
+    </p>
+    <ul>
+      <li><strong>Estimated hashrate share</strong> (<em>hashrate_share</em>).</li>
+      <li><strong>ASIC fleet mix</strong> (average efficiency in J/TH).</li>
+      <li><strong>Energy tariff mix</strong> (floor / central / ceiling scenarios).</li>
+      <li><strong>Load factor</strong> (utilization profile of mining facilities).</li>
+      <li><strong>Min / avg / max cost</strong> (USD/BTC) derived from these inputs.</li>
+    </ul>
 
-          <div class="ghi-quick-indicator">
-            <div class="ghi-quick-metrics">
-              <div class="ghi-quick-metric">
-                <span class="label">Prix BTC (USD)</span>
-                <span class="value" id="ghi-price-btc">–</span>
-              </div>
-              <div class="ghi-quick-metric">
-                <span class="label">Coût moyen (USD/BTC)</span>
-                <span class="value" id="ghi-avg-cost-btc">–</span>
-              </div>
-              <div class="ghi-quick-metric">
-                <span class="label">Coût min / max</span>
-                <span class="value" id="ghi-min-max-cost-btc">–</span>
-              </div>
-            </div>
+    <p>
+      All public values are <strong>purely illustrative</strong> and do not represent
+      real-world production costs. They only exist to stabilise API responses.
+    </p>
 
-            <div class="ghi-gauge-wrapper">
-              <div class="ghi-gauge-labels">
-                <span>Sous le coût</span>
-                <span>Autour du coût</span>
-                <span>Au-dessus du coût</span>
-              </div>
-              <div class="ghi-gauge-track">
-                <div
-                  class="ghi-gauge-marker"
-                  id="ghi-gauge-marker"
-                  style="left: 50%;"
-                ></div>
-              </div>
-            </div>
+    <h3>3. Region: North America</h3>
+    <p>
+      The <strong>North America</strong> aggregate mainly covers industrial mining
+      activity in Canada and the United States.
+    </p>
+    <ul>
+      <li>machine mix leaning toward more recent ASICs,</li>
+      <li>energy tariffs modelled as synthetic industrial contracts,</li>
+      <li>hashrate share set as a fixed, normalised constant.</li>
+    </ul>
+    <p>
+      The Sandbox engine combines these elements to produce a fictional
+      min / avg / max production cost for the region.
+    </p>
 
-            <p class="ghi-quick-note" id="ghi-quick-note">
-              Chargement des données sandbox…
-            </p>
-          </div>
-        </div>
-      </section>
-    </section>
+    <h3>4. Region: Europe</h3>
+    <p>
+      The <strong>Europe</strong> aggregate represents a diverse set of energy
+      jurisdictions.
+    </p>
+    <ul>
+      <li>assumed electricity prices are <strong>higher on average</strong>,</li>
+      <li>machine mix is synthetic with slightly lower efficiency than the most
+        advanced industrial parks worldwide,</li>
+      <li>hourly profiles are simplified into basic peak / off-peak patterns.</li>
+    </ul>
+    <p>
+      Numerical values provided by the Sandbox are deterministic but not
+      representative of the actual market.
+    </p>
 
-    <!-- ======================= SECTION EN ======================= -->
-    <section id="en-dashboard" style="margin-top: 3rem;">
-      <h2>Sandbox GHI Snapshot (API v1.1)</h2>
+    <h3>5. Region: Asia (ex-China)</h3>
+    <p>
+      The <strong>Asia (ex-China)</strong> aggregate covers a heterogeneous group
+      of countries.
+    </p>
+    <ul>
+      <li>energy price assumptions reflect a <strong>synthetic basket</strong> of
+        industrial contracts,</li>
+      <li>machine mix combines both recent and older ASIC generations,</li>
+      <li>hashrate share is a normalised constant used only to generate example outputs.</li>
+    </ul>
 
-      <h3>Global snapshot – structure</h3>
+    <h3>6. Aggregation into the global GHI</h3>
+    <p>
+      The global GHI is derived by aggregating regional costs using hashrate-based
+      weights.
+    </p>
+    <ul>
+      <li><strong>weights</strong> are fixed and normalised,</li>
+      <li>global output is a deterministic band:
+        <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>.</li>
+    </ul>
 
-      <div class="table-wrapper">
-        <table class="snapshot-table">
-          <thead>
-            <tr>
-              <th>Reference date</th>
-              <th>Min cost (USD/BTC)</th>
-              <th>Avg cost (USD/BTC)</th>
-              <th>Max cost (USD/BTC)</th>
-              <th>Model version</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2025-01-01</td>
-              <td>20&nbsp;000</td>
-              <td>28&nbsp;000</td>
-              <td>36&nbsp;000</td>
-              <td>GHI v1.0</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h3>7. Limitations and roadmap</h3>
+    <ul>
+      <li>Sandbox data is <strong>not representative</strong> of real production costs.</li>
+      <li>Regions are aggregates (no country- or state-level breakdown yet).</li>
+      <li>Energy tariffs are synthetic and not linked to any specific contract.</li>
+    </ul>
+    <p>Planned evolutions (v2.x family):</p>
+    <ul>
+      <li>more granular <strong>sub-regions</strong> (e.g. Texas, Québec) in the private engine,</li>
+      <li>optional integration of <strong>CO₂ metrics</strong> and energy-related taxes,</li>
+      <li>advanced price / energy sensitivity scenarios per region.</li>
+    </ul>
 
-      <h3>Production cost by region – (dynamic)</h3>
-      <p>
-        Loaded from <code>/api/latest.json</code> (sandbox).
-      </p>
-
-      <div class="table-wrapper">
-        <table class="snapshot-table">
-          <thead>
-            <tr>
-              <th>Region</th>
-              <th>Min cost</th>
-              <th>Avg cost</th>
-              <th>Max cost</th>
-              <th>Hashrate share</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody id="ghi-regions-rows-en">
-            <tr>
-              <td colspan="6">Loading…</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Global history – (beta)</h3>
-      <p>
-        Attempted load from
-        <code>/v1/ghi/history?region_id=global</code>.
-      </p>
-
-      <div class="ghi-placeholder" id="ghi-history-en">
-        Loading history…
-      </div>
-
-      <!-- Indicator EN -->
-      <section id="en" class="page-section">
-        <h2>Price vs Global Production Cost (GHI)</h2>
-
-        <div class="ghi-indicator-card">
-          <div class="ghi-indicator-header">
-            <h3 class="ghi-indicator-title">
-              Quick view – Price vs production cost
-            </h3>
-          </div>
-
-          <div class="ghi-quick-indicator">
-            <div class="ghi-quick-metrics">
-              <div class="ghi-quick-metric">
-                <span class="label">BTC price (USD)</span>
-                <span class="value" id="ghi-price-btc-en">–</span>
-              </div>
-              <div class="ghi-quick-metric">
-                <span class="label">Avg cost (USD/BTC)</span>
-                <span class="value" id="ghi-avg-cost-btc-en">–</span>
-              </div>
-              <div class="ghi-quick-metric">
-                <span class="label">Min / max cost</span>
-                <span class="value" id="ghi-min-max-cost-btc-en">–</span>
-              </div>
-            </div>
-
-            <div class="ghi-gauge-wrapper">
-              <div class="ghi-gauge-labels">
-                <span>Below cost</span>
-                <span>Near cost</span>
-                <span>Above cost</span>
-              </div>
-              <div class="ghi-gauge-track">
-                <div
-                  class="ghi-gauge-marker"
-                  id="ghi-gauge-marker-en"
-                  style="left: 50%;"
-                ></div>
-              </div>
-            </div>
-
-            <p class="ghi-quick-note" id="ghi-quick-note-en">
-              Loading sandbox data…
-            </p>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <script src="dashboard.js?v=5"></script>
+    <h3>8. Related documentation</h3>
+    <ul>
+      <li>
+        Engine design (EN):
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md" target="_blank">
+          docs/ENGINE_DESIGN.md
+        </a>
+      </li>
+      <li>
+        Versioning model:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md" target="_blank">
+          docs/VERSIONS.md
+        </a>
+      </li>
+      <li>
+        GHI API specification:
+        <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">
+          docs/api.md
+        </a>
+      </li>
+    </ul>
   </section>
 </main>

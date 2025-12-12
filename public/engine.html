@@ -130,7 +130,7 @@
   <!-- ========================================================= -->
 
   <section id="fr-engine">
-    <h2>Sandbox Engine v0.4.2 – Moteur de démonstration GHI</h2>
+    <h2>Sandbox Engine – Moteur de démonstration GHI</h2>
 
     <div class="card">
       <h3>1. Rôle du moteur GHI</h3>
@@ -141,7 +141,7 @@
       </p>
       <p>
         Toutes les valeurs sont <strong>générées de manière déterministe</strong>,
-        sans consommation de données réelles.  
+        sans consommation de données réelles.
         Il s’agit d’un outil d’intégration technique et pédagogique.
       </p>
       <p class="note">
@@ -151,21 +151,20 @@
     </div>
 
     <div class="card">
-      <h3>2. Version courante : Sandbox Engine v0.4.2</h3>
+      <h3>2. Environnement Sandbox</h3>
 
       <ul>
-        <li><strong>Engine :</strong> <code>v0.4.2-sandbox</code></li>
-        <li><strong>API principale :</strong> <code>API v1.1</code></li>
-        <li><strong>Méthodologie :</strong> <code>v1.0.0</code></li>
+        <li>moteur synthétique à données déterministes ;</li>
+        <li>alignement avec la structure officielle de l’API GHI ;</li>
+        <li>schémas de données stables pour l’intégration et les tests.</li>
       </ul>
 
       <h4>Caractéristiques essentielles</h4>
       <ul>
-        <li>Alignement complet avec la <strong>spécification API v1.1</strong></li>
-        <li>Structure normalisée des régions pour <code>/regions</code> &amp; <code>/snapshot</code></li>
-        <li>Endpoints supplémentaires : <code>/metadata</code>, <code>/network</code>, <code>/forecast</code></li>
-        <li>Données cohérentes et reproductibles</li>
-        <li>100% des tests CI du dépôt <code>ghi-engine</code> passent</li>
+        <li>structure normalisée des régions pour <code>/regions</code> et <code>/snapshot</code> ;</li>
+        <li>endpoints complémentaires : <code>/metadata</code>, <code>/network</code>, <code>/forecast</code> ;</li>
+        <li>données cohérentes et reproductibles ;</li>
+        <li>tests automatisés continus sur le dépôt <code>ghi-engine</code>.</li>
       </ul>
     </div>
 
@@ -174,16 +173,16 @@
       <p>Le moteur se compose de modules clairs et isolés :</p>
 
       <ul>
-        <li><strong>Générateur réseau :</strong> hashrate, difficulté, frais moyens</li>
-        <li><strong>Coûts régionaux :</strong> min / avg / max synthétiques</li>
-        <li><strong>Statistiques globales :</strong> agrégation régionale</li>
-        <li><strong>Adaptateur API :</strong> formate les réponses</li>
-        <li><strong>Métadonnées :</strong> version &amp; horodatage injectés dans chaque réponse</li>
+        <li><strong>Générateur réseau</strong> : hashrate, difficulté, frais moyens ;</li>
+        <li><strong>Coûts régionaux</strong> : min / avg / max synthétiques ;</li>
+        <li><strong>Statistiques globales</strong> : agrégation régionale ;</li>
+        <li><strong>Adaptateur API</strong> : formatage des réponses ;</li>
+        <li><strong>Métadonnées</strong> : versionnement et horodatage injectés dans chaque réponse.</li>
       </ul>
 
       <p>
-        Architecture conçue pour être facilement lue dans le code Python/FastAPI
-        du dépôt GitHub.
+        L’architecture est conçue pour être facilement lisible et auditable
+        dans le code Python/FastAPI du dépôt GitHub.
       </p>
     </div>
 
@@ -197,7 +196,7 @@
         <tbody>
           <tr>
             <td><code>/v1/ghi/snapshot</code></td>
-            <td>Coûts régionaux + statistiques globales</td>
+            <td>Coûts régionaux et statistiques globales</td>
             <td>Stable</td>
           </tr>
           <tr>
@@ -212,7 +211,7 @@
           </tr>
           <tr>
             <td><code>/v1/ghi/metadata</code></td>
-            <td>Métadonnées API + moteur</td>
+            <td>Métadonnées API et moteur</td>
             <td>Stable</td>
           </tr>
           <tr>
@@ -229,11 +228,12 @@
       </table>
 
       <p class="note">
-        Pour les schémas complets, voir :<br />
+        Pour les schémas contractuels complets, voir :<br />
         → <a href="api/api-v1.1.html">Documentation API v1.1</a><br />
-        → <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md" target="_blank" rel="noopener noreferrer">
-            Spécification technique GitHub
-          </a>
+        → <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md"
+             target="_blank" rel="noopener noreferrer">
+          Spécification technique API (GitHub)
+        </a>
       </p>
     </div>
 
@@ -241,24 +241,24 @@
       <h3>5. Garanties institutionnelles</h3>
       <ul>
         <li><strong>Déterminisme total</strong></li>
-        <li><strong>Versionnement explicite</strong></li>
         <li><strong>Stabilité de schéma</strong></li>
-        <li><strong>Transparence du code</strong> (GitHub)</li>
+        <li><strong>Traçabilité des métadonnées</strong></li>
+        <li><strong>Transparence du code</strong> (open source)</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>6. Roadmap</h3>
       <ul>
-        <li>Intégration progressive de données réelles</li>
-        <li>Segmentation plus fine par sous-régions</li>
-        <li>Temporalité plus riche (halvings, chocs, saisonnalité)</li>
-        <li>Indicateurs avancés pour institutions et chercheurs</li>
+        <li>intégration progressive de données réelles ;</li>
+        <li>segmentation plus fine par sous-régions ;</li>
+        <li>modélisation temporelle enrichie (halvings, chocs, saisonnalité) ;</li>
+        <li>indicateurs avancés pour institutions et chercheurs.</li>
       </ul>
 
       <p>
-        Documentation des évolutions :  
-        <a href="changelog.html">Changelog</a>.
+        Les évolutions sont documentées dans le
+        <a href="changelog.html">changelog</a>.
       </p>
     </div>
 
@@ -266,11 +266,13 @@
       <h3>7. Ressources liées</h3>
       <ul>
         <li><a href="api/api-v1.1.html">Documentation API v1.1</a></li>
-        <li><a href="api.html">API Overview</a></li>
+        <li><a href="api.html">Vue d’ensemble de l’API</a></li>
         <li><a href="api-quickstart.html">API Quickstart</a></li>
-        <li><a href="https://github.com/ghi-standard/ghi-engine" target="_blank" rel="noopener noreferrer">
-              Dépôt GitHub du moteur
-            </a>
+        <li>
+          <a href="https://github.com/ghi-standard/ghi-engine"
+             target="_blank" rel="noopener noreferrer">
+            Dépôt GitHub du moteur
+          </a>
         </li>
         <li><a href="changelog.html">Changelog</a></li>
       </ul>
@@ -282,7 +284,7 @@
   <!-- ========================================================= -->
 
   <section id="en-engine">
-    <h2>Sandbox Engine v0.4.2 – GHI Demonstration Engine</h2>
+    <h2>Sandbox Engine – GHI Demonstration Engine</h2>
 
     <div class="card">
       <h3>1. Engine purpose</h3>
@@ -292,31 +294,29 @@
         to exercise the public API in a stable environment.
       </p>
       <p>
-        All values are <strong>deterministically generated</strong> so that technical
-        users and institutions can rely on reproducible results.
+        All values are <strong>deterministically generated</strong>, allowing
+        reproducible results for technical and institutional users.
       </p>
       <p class="note">
-        <strong>Important:</strong> this engine is for demonstration and technical
-        integration only, not financial decision-making.
+        <strong>Important:</strong> this engine is intended for demonstration and
+        technical integration only, not for financial decision-making.
       </p>
     </div>
 
     <div class="card">
-      <h3>2. Current version: Sandbox Engine v0.4.2</h3>
-
+      <h3>2. Sandbox environment</h3>
       <ul>
-        <li><strong>Engine:</strong> <code>v0.4.2-sandbox</code></li>
-        <li><strong>Main API:</strong> <code>API v1.1</code></li>
-        <li><strong>Methodology:</strong> <code>v1.0.0</code></li>
+        <li>synthetic deterministic engine;</li>
+        <li>alignment with the official GHI API structure;</li>
+        <li>stable schemas for integration and testing.</li>
       </ul>
 
       <h4>Main properties</h4>
       <ul>
-        <li>Full alignment with <strong>API v1.1 specification</strong></li>
-        <li>Normalized regional structure</li>
-        <li>New endpoints: <code>/metadata</code>, <code>/network</code>, <code>/forecast</code></li>
-        <li>Consistent synthetic production-cost data</li>
-        <li>All automated tests in <code>ghi-engine</code> pass</li>
+        <li>normalised regional structure;</li>
+        <li>additional endpoints: <code>/metadata</code>, <code>/network</code>, <code>/forecast</code>;</li>
+        <li>consistent synthetic production-cost outputs;</li>
+        <li>continuous automated testing in the <code>ghi-engine</code> repository.</li>
       </ul>
     </div>
 
@@ -339,10 +339,10 @@
           <tr><th>Endpoint</th><th>Description</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>/v1/ghi/snapshot</code></td><td>Regional costs + global stats</td><td>Stable</td></tr>
+          <tr><td><code>/v1/ghi/snapshot</code></td><td>Regional costs and global stats</td><td>Stable</td></tr>
           <tr><td><code>/v1/ghi/history</code></td><td>Synthetic historical series</td><td>Stable</td></tr>
           <tr><td><code>/v1/ghi/regions</code></td><td>Available regions</td><td>Stable</td></tr>
-          <tr><td><code>/v1/ghi/metadata</code></td><td>API &amp; engine metadata</td><td>Stable</td></tr>
+          <tr><td><code>/v1/ghi/metadata</code></td><td>API and engine metadata</td><td>Stable</td></tr>
           <tr><td><code>/v1/ghi/network</code></td><td>Synthetic metrics</td><td>Beta</td></tr>
           <tr><td><code>/v1/ghi/forecast</code></td><td>Synthetic forecast</td><td>Beta</td></tr>
         </tbody>
@@ -350,9 +350,10 @@
 
       <p class="note">
         → <a href="api/api-v1.1.html">API v1.1 documentation</a><br />
-        → <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md" target="_blank" rel="noopener noreferrer">
-            API v1.1 Specification on GitHub
-          </a>
+        → <a href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md"
+             target="_blank" rel="noopener noreferrer">
+          API specification (GitHub)
+        </a>
       </p>
     </div>
 
@@ -360,8 +361,8 @@
       <h3>5. Institutional guarantees</h3>
       <ul>
         <li><strong>Determinism</strong></li>
-        <li><strong>Explicit versioning</strong></li>
         <li><strong>Schema stability</strong></li>
+        <li><strong>Metadata traceability</strong></li>
         <li><strong>Open-source transparency</strong></li>
       </ul>
     </div>
@@ -369,10 +370,10 @@
     <div class="card">
       <h3>6. Roadmap</h3>
       <ul>
-        <li>Real-data integration</li>
-        <li>Regional deep segmentation</li>
-        <li>Temporal modelling (seasonality, shocks, halvings)</li>
-        <li>Advanced indicators</li>
+        <li>real-data integration;</li>
+        <li>deeper regional segmentation;</li>
+        <li>enhanced temporal modelling;</li>
+        <li>advanced indicators.</li>
       </ul>
     </div>
 
@@ -382,7 +383,12 @@
         <li><a href="api/api-v1.1.html">API v1.1 documentation</a></li>
         <li><a href="api.html">API overview</a></li>
         <li><a href="api-quickstart.html">API Quickstart</a></li>
-        <li><a href="https://github.com/ghi-standard/ghi-engine" target="_blank" rel="noopener noreferrer">Engine GitHub Repository</a></li>
+        <li>
+          <a href="https://github.com/ghi-standard/ghi-engine"
+             target="_blank" rel="noopener noreferrer">
+            Engine GitHub repository
+          </a>
+        </li>
         <li><a href="changelog.html">GHI Changelog</a></li>
       </ul>
     </div>

@@ -2,369 +2,247 @@
 
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-api-ref">FR</a> ·
-    <a href="#en-api-ref">EN</a>
+    <a href="#fr-quickstart">FR</a> ·
+    <a href="#en-quickstart">EN</a>
   </div>
 
-  <!-- ========================================================= -->
   <!-- ========================= FR ============================= -->
-  <!-- ========================================================= -->
 
-  <section id="fr-api-ref">
-    <h2>API Reference – Version 1.1</h2>
+  <section id="fr-quickstart">
+    <h2>API Quickstart</h2>
 
     <div class="card">
-      <h3>1. Présentation générale</h3>
+      <h3>1. Introduction</h3>
       <p>
-        Cette page fournit la référence technique complète de l’API GHI v1.1.  
-        Toutes les structures, paramètres, réponses et exemples sont documentés dans un format homogène destiné aux environnements institutionnels.
+        Cette page offre un démarrage rapide pour utiliser l’API GHI.
+        Tous les appels sont accessibles sans authentification dans l’édition Sandbox.
+        Les éditions institutionnelles (clés API, données enrichies, SLA)
+        seront annoncées ultérieurement.
       </p>
       <p>
-        Les données proviennent du <strong>Sandbox Engine</strong>.  
-        Les mêmes structures seront utilisées dans les éditions premium (versions institutionnelles enrichies).
-      </p>
-    </div>
-
-    <!-- ENDPOINT SUMMARY -->
-    <div class="card">
-      <h3>2. Liste des endpoints</h3>
-
-      <table class="table-api">
-        <thead>
-          <tr><th>Endpoint</th><th>Méthode</th><th>Usage</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>/v1/ghi/snapshot</code></td>
-            <td>GET</td>
-            <td>Coûts min/avg/max par région + données globales</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/history</code></td>
-            <td>GET</td>
-            <td>Séries temporelles synthétiques</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/regions</code></td>
-            <td>GET</td>
-            <td>Liste des régions GHI disponibles</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/metadata</code></td>
-            <td>GET</td>
-            <td>Métadonnées globales (API + moteur)</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/network</code></td>
-            <td>GET</td>
-            <td>Métriques réseau synthétiques (exp. : hashrate)</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/forecast</code></td>
-            <td>GET</td>
-            <td>Prévision synthétique du coût moyen</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- METADATA -->
-    <div class="card">
-      <h3>3. Métadonnées communes (toutes réponses)</h3>
-
-      <pre><code>{
-  "version": "1.1",
-  "timestamp_utc": "2025-12-09T12:00:00Z",
-  "engine_sandbox_version": "0.4.0-sandbox"
-}</code></pre>
-
-      <p>
-        Ces champs sont présents dans <strong>toutes</strong> les réponses.  
-        Ils permettent de tracer les requêtes, monitorer la stabilité des versions, et auditer les pipelines de données.
+        Les exemples ci-dessous montrent comment interroger les endpoints
+        <strong>snapshot</strong>, <strong>history</strong> et <strong>regions</strong>.
       </p>
     </div>
 
-    <!-- SNAPSHOT -->
     <div class="card">
-      <h3>4. Endpoint : /v1/ghi/snapshot</h3>
+      <h3>2. URL de base</h3>
+      <pre><code>https://globalhashcostindex.org/api/v1/ghi/</code></pre>
+      <p>Tous les appels API utilisent ce préfixe.</p>
+    </div>
 
-      <p>
-        Fournit les coûts actuels de production du Bitcoin par région, avec les statistiques globales :
-      </p>
+    <div class="card">
+      <h3>3. Appels immédiats (cURL)</h3>
 
-      <h4>Structure de réponse</h4>
+      <h4>Snapshot (coût global + régional)</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/snapshot</code></pre>
+
+      <h4>Historique (global)</h4>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=global"</code></pre>
+
+      <h4>Liste des régions</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/regions</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>4. Exemple Python (requests)</h3>
+      <pre><code>import requests
+
+BASE = "https://globalhashcostindex.org/api/v1/ghi"
+
+r = requests.get(f"{BASE}/snapshot")
+data = r.json()
+
+print("Global avg cost:", data["global_avg_cost_usd"])
+</code></pre>
+      <p>S’intègre dans n’importe quel pipeline Python, ETL, Airflow, backtests, etc.</p>
+    </div>
+
+    <div class="card">
+      <h3>5. Exemple JavaScript (fetch)</h3>
+      <pre><code>const url = "https://globalhashcostindex.org/api/v1/ghi/snapshot";
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    console.log("Global avg cost:", data.global_avg_cost_usd);
+  });
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>6. Exemple pour données historiques</h3>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=us"</code></pre>
+
+      <p>Réponse typique :</p>
       <pre><code>{
   "version": "1.1",
   "timestamp_utc": "...",
-  "engine_sandbox_version": "0.4.0-sandbox",
-  "region_count": 3,
-  "regions": [
+  "region_id": "us",
+  "points": [
     {
-      "region_id": "us",
-      "currency": "USD",
-      "min_cost_usd": 38000.0,
-      "avg_cost_usd": 42000.0,
-      "max_cost_usd": 50000.0
+      "date": "2025-12-01",
+      "min_cost_usd": 41000,
+      "avg_cost_usd": 45000,
+      "max_cost_usd": 49500
     }
-  ],
-  "global_min_cost_usd": 35000.0,
-  "global_avg_cost_usd": 42000.0,
-  "global_max_cost_usd": 52000.0
+  ]
 }</code></pre>
+    </div>
 
-      <h4>Notes institutionnelles</h4>
+    <h3 id="fr-metadata">7. Endpoint /metadata</h3>
+    <p>
+      L’endpoint <code>GET /v1/ghi/metadata</code> renvoie des informations structurées
+      sur l’API et le moteur sandbox.
+    </p>
+
+    <pre>
+GET https://globalhashcostindex.org/api/v1/ghi/metadata
+</pre>
+
+    <p>Exemple de réponse (simplifiée) :</p>
+
+    <pre>
+{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-10T09:30:00Z",
+  "engine_version": "0.4.3-sandbox",
+  "environment": "sandbox",
+  "api_current": "1.1",
+  "api_supported": ["1.0", "1.1"]
+}
+</pre>
+
+    <div class="card">
+      <h3>8. Ressources utiles</h3>
       <ul>
-        <li>Format strictement stable entre toutes les versions mineures (1.x).</li>
-        <li>Les régions sont garanties nominalement stables.</li>
+        <li><a href="api/api-v1.1.html">API – Documentation complète</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="api.html">Vue d’ensemble de l’API</a></li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+            GHI Engine (GitHub)
+          </a>
+        </li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md">
+            Spécification API (GitHub Markdown)
+          </a>
+        </li>
       </ul>
     </div>
-
-    <!-- HISTORY -->
-    <div class="card">
-      <h3>5. Endpoint : /v1/ghi/history</h3>
-
-      <h4>Paramètres</h4>
-      <table class="table-api">
-        <thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><code>region_id</code></td>
-            <td>string</td>
-            <td>ID de région (ex : "us") ou "global"</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Structure de réponse</h4>
-      <pre><code>{
-  "region_id": "global",
-  "points": [
-    {
-      "date": "2025-12-01",
-      "min_cost_usd": 41000.0,
-      "avg_cost_usd": 45000.0,
-      "max_cost_usd": 49500.0
-    }
-  ]
-}</code></pre>
-    </div>
-
-    <!-- REGIONS -->
-    <div class="card">
-      <h3>6. Endpoint : /v1/ghi/regions</h3>
-
-      <pre><code>{
-  "version": "1.1",
-  "timestamp_utc": "...",
-  "regions": [
-    {"id": "us", "name": "United States"},
-    {"id": "eu", "name": "Europe"},
-    {"id": "cn", "name": "China"}
-  ],
-  "region_count": 3
-}</code></pre>
-    </div>
-
-    <!-- METADATA ENDPOINT -->
-    <div class="card">
-      <h3>7. Endpoint : /v1/ghi/metadata</h3>
-
-      <pre><code>{
-  "version": "1.1",
-  "timestamp_utc": "...",
-  "engine_sandbox_version": "0.4.0-sandbox",
-  "available_endpoints": [
-    "/v1/ghi/snapshot",
-    "/v1/ghi/history",
-    "/v1/ghi/regions",
-    "/v1/ghi/metadata",
-    "/v1/ghi/network",
-    "/v1/ghi/forecast"
-  ]
-}</code></pre>
-    </div>
-
-    <!-- NETWORK -->
-    <div class="card">
-      <h3>8. Endpoint : /v1/ghi/network</h3>
-
-      <pre><code>{
-  "hashrate_eh": 554.0,
-  "difficulty": 8.9e13,
-  "avg_fee_usd": 4.2
-}</code></pre>
-    </div>
-
-    <!-- FORECAST -->
-    <div class="card">
-      <h3>9. Endpoint : /v1/ghi/forecast</h3>
-
-      <h4>Paramètres</h4>
-      <table class="table-api">
-        <thead><tr><th>Nom</th><th>Type</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><code>forecast_days</code></td>
-            <td>int</td>
-            <td>Fenêtre de prévision (défaut : 7 jours)</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Exemple</h4>
-      <pre><code>{
-  "forecast_days": 7,
-  "predicted_avg_cost_usd": 62300.0
-}</code></pre>
-    </div>
-
   </section>
 
-  <!-- ========================================================= -->
   <!-- ========================= EN ============================= -->
-  <!-- ========================================================= -->
 
-  <section id="en-api-ref">
-    <h2>API Reference – Version 1.1</h2>
+  <section id="en-quickstart">
+    <h2>API Quickstart</h2>
 
     <div class="card">
-      <h3>1. Overview</h3>
+      <h3>1. Introduction</h3>
       <p>
-        This page provides the complete technical reference for the GHI API v1.1.
-        All response structures, parameters, and examples are documented in a uniform, institutional-grade format.
+        This page provides a fast onboarding guide for the GHI API.
+        All endpoints are publicly accessible in the Sandbox edition.
+        Institutional editions (API keys, enriched datasets, SLA)
+        will be announced later.
       </p>
     </div>
 
     <div class="card">
-      <h3>2. Endpoint list</h3>
-      <table class="table-api">
-        <thead>
-          <tr><th>Endpoint</th><th>Method</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>/v1/ghi/snapshot</code></td>
-            <td>GET</td>
-            <td>Min/avg/max production costs per region + globals</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/history</code></td>
-            <td>GET</td>
-            <td>Synthetic historical time series</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/regions</code></td>
-            <td>GET</td>
-            <td>Available GHI regions</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/metadata</code></td>
-            <td>GET</td>
-            <td>API + engine metadata</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/network</code></td>
-            <td>GET</td>
-            <td>Synthetic network metrics</td>
-          </tr>
-          <tr>
-            <td><code>/v1/ghi/forecast</code></td>
-            <td>GET</td>
-            <td>Synthetic cost forecast</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3>2. Base URL</h3>
+      <pre><code>https://globalhashcostindex.org/api/v1/ghi/</code></pre>
     </div>
 
-    <!-- Metadata EN -->
     <div class="card">
-      <h3>3. Common metadata</h3>
+      <h3>3. Immediate calls (cURL)</h3>
+
+      <h4>Snapshot</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/snapshot</code></pre>
+
+      <h4>History</h4>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=global"</code></pre>
+
+      <h4>Regions</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/regions</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>4. Python example</h3>
+      <pre><code>import requests
+
+BASE = "https://globalhashcostindex.org/api/v1/ghi"
+data = requests.get(f"{BASE}/snapshot").json()
+
+print("Global avg cost:", data["global_avg_cost_usd"])
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>5. JavaScript example</h3>
+      <pre><code>fetch("https://globalhashcostindex.org/api/v1/ghi/snapshot")
+  .then(res => res.json())
+  .then(data => console.log("Global avg cost:", data.global_avg_cost_usd));
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>6. History example</h3>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=us"</code></pre>
+
       <pre><code>{
   "version": "1.1",
-  "timestamp_utc": "...",
-  "engine_sandbox_version": "0.4.0-sandbox"
-}</code></pre>
-    </div>
-
-    <!-- Snapshot EN -->
-    <div class="card">
-      <h3>4. Endpoint: /v1/ghi/snapshot</h3>
-      <p>Current production-cost metrics per region, including global statistics.</p>
-      <pre><code>{
-  "region_count": 3,
-  "regions": [
-    {
-      "region_id": "us",
-      "min_cost_usd": 38000.0,
-      "avg_cost_usd": 42000.0,
-      "max_cost_usd": 50000.0
-    }
-  ]
-}</code></pre>
-    </div>
-
-    <!-- History EN -->
-    <div class="card">
-      <h3>5. Endpoint: /v1/ghi/history</h3>
-      <pre><code>{
-  "region_id": "global",
+  "region_id": "us",
   "points": [
-    {
-      "date": "2025-12-01",
-      "min_cost_usd": 41000.0,
-      "avg_cost_usd": 45000.0,
-      "max_cost_usd": 49500.0
-    }
+    {"date": "2025-12-01", "avg_cost_usd": 45000}
   ]
 }</code></pre>
     </div>
 
-    <!-- Regions EN -->
-    <div class="card">
-      <h3>6. Endpoint: /v1/ghi/regions</h3>
-      <pre><code>{
-  "regions": [
-    {"id": "us", "name": "United States"},
-    {"id": "eu", "name": "Europe"},
-    {"id": "cn", "name": "China"}
-  ]
-}</code></pre>
-    </div>
+    <h3 id="en-metadata">7. /metadata endpoint</h3>
+    <p>
+      The <code>GET /v1/ghi/metadata</code> endpoint returns structured information
+      about the API and the sandbox engine.
+    </p>
 
-    <!-- Metadata EN -->
-    <div class="card">
-      <h3>7. Endpoint: /v1/ghi/metadata</h3>
-      <pre><code>{
-  "available_endpoints": [
-    "/v1/ghi/snapshot",
-    "/v1/ghi/history",
-    "/v1/ghi/regions",
-    "/v1/ghi/metadata",
-    "/v1/ghi/network",
-    "/v1/ghi/forecast"
-  ]
-}</code></pre>
-    </div>
+    <pre>
+GET https://globalhashcostindex.org/api/v1/ghi/metadata
+</pre>
 
-    <!-- Network EN -->
-    <div class="card">
-      <h3>8. Endpoint: /v1/ghi/network</h3>
-      <pre><code>{
-  "hashrate_eh": 554.0,
-  "difficulty": 8.9e13,
-  "avg_fee_usd": 4.2
-}</code></pre>
-    </div>
+    <p>Example response (simplified):</p>
 
-    <!-- Forecast EN -->
-    <div class="card">
-      <h3>9. Endpoint: /v1/ghi/forecast</h3>
-      <pre><code>{
-  "forecast_days": 7,
-  "predicted_avg_cost_usd": 62300.0
-}</code></pre>
-    </div>
+    <pre>
+{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-10T09:30:00Z",
+  "engine_version": "0.4.3-sandbox",
+  "environment": "sandbox",
+  "api_current": "1.1",
+  "api_supported": ["1.0", "1.1"]
+}
+</pre>
 
+    <div class="card">
+      <h3>8. Resources</h3>
+      <ul>
+        <li><a href="api/api-v1.1.html">API – Full documentation</a></li>
+        <li><a href="api-reference.html">API Reference</a></li>
+        <li><a href="api.html">API overview</a></li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
+            GHI Engine (GitHub)
+          </a>
+        </li>
+
+        <li>
+          <a target="_blank" href="https://github.com/ghi-standard/GHI-public/blob/main/public/docs/API_v1.1_Spec.md">
+            API specification (GitHub Markdown)
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
 
 </main>
