@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global HashCost Index – Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Global HashCost Index – Open indicator of Bitcoin's global production cost."
+  />
+
+  <!-- Global style -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Institutional metadata -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://globalhashcostindex.org/#organization",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/",
+  "description": "The Global HashCost Index (GHI) is an open standard designed to measure the global cost of Bitcoin production. It is intended for institutions, researchers and market analysts.",
+  "foundingDate": "2025",
+  "logo": "https://globalhashcostindex.org/PATH-TO-YOUR-LOGO.png",
+  "sameAs": [
+    "https://globalhashcostindex.org/",
+    "https://globalhashcostindex.org/api.html"
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://globalhashcostindex.org/#dataset",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/dashboard.html",
+  "description": "Aggregated dataset describing an estimation of Bitcoin's global production cost, region by region, using transparent and public models. The GHI provides an institutional-grade indicator to analyze the relationship between Bitcoin price and production cost.",
+  "creator": {
+    "@id": "https://globalhashcostindex.org/#organization"
+  },
+  "inLanguage": "en",
+  "keywords": [
+    "Bitcoin",
+    "production cost",
+    "mining",
+    "energy",
+    "index",
+    "open standard"
+  ],
+  "measurementTechnique": "Modeling regional Bitcoin production costs based on ASIC mix, electricity tariffs and usage profiles.",
+  "variableMeasured": [
+    "Global average Bitcoin production cost (USD/BTC)",
+    "Regional Bitcoin production cost (USD/BTC)",
+    "Bitcoin price vs production cost relationship"
+  ],
+  "spatialCoverage": "Global",
+  "temporalCoverage": "2010-01-01/ongoing",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://globalhashcostindex.org/api.html",
+      "name": "GHI API Documentation"
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+  <div class="page-shell">
+
+<header>
+  <div class="header-container">
+    <div class="header-logo-wrapper">
+      <img src="img/logo.png" alt="GHI logo" class="ghi-logo" />
+    </div>
+
+    <div class="site-title">
+      <h1>Global HashCost Index</h1>
+      <p>Open indicator of Bitcoin’s production cost.</p>
+      <p>
+        GHI – Global HashCost Index • API v1.1 • Methodology v1.0 • Engine v0.4.3-sandbox
+      </p>
+    </div>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="regions.html">Regions</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="transparency.html">Transparency</a></li>
+
+      <li><a href="api.html">API</a></li>
+      <li><a href="api-quickstart.html">API Quickstart</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="api/api-v1.1.html">API v1.1</a></li>
+      <li><a href="engine.html">Engine</a></li>
+      <li><a href="standards.html">Standards</a></li>
+      <li><a href="changelog.html">Changelog</a></li>
+
+      <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
+      <li><a href="governance.html">Governance</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+
+      <li><a href="about.html">About</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="legal.html">Legal Notice</a></li>
+    </ul>
+  </nav>
+</header>
+
+    <!-- Per-page content -->
+    <!-- anti-fan.content.html -->
+<section class="content anti-fan" id="anti-faq">
+
+  <h1>Anti-FAN — Ce que GHI n’est PAS</h1>
+
+  <p class="lead">
+This page is not here to convince you.
+It is here to prevent GHI from being misunderstood, misused, or oversimplified.
+</p>
+
+  <p class="lead">
+    Cette page existe pour éviter les mauvais usages. GHI est un indice macro, pas un oracle.
+    Si vous cherchez une vérité opérationnelle, un signal de trading ou une arme politique, vous êtes au mauvais endroit.
+  </p>
+
+  <hr />
+
+  <!-- 1) NOT A TRADING SIGNAL -->
+  <h2>GHI n’est pas un signal d’achat / vente</h2>
+  <p>
+    GHI ne dit pas « acheter » ou « vendre ». Il mesure un <strong>coût de production estimé</strong> (min/avg/max) à l’échelle
+    macro-régionale. Le prix de marché peut rester longtemps sous ou au-dessus de ce coût, notamment lors de phases de capitulation,
+    de chocs de liquidité, ou de changements de régime macroéconomique.
+  </p>
+  <ul>
+    <li><strong>À éviter :</strong> “BTC est sous le coût moyen = bottom garanti.”</li>
+    <li><strong>À faire :</strong> utiliser GHI comme <em>contexte</em> (pression économique, soutenabilité, stress potentiel).</li>
+  </ul>
+
+  <!-- 2) NOT A FLOOR PRICE -->
+  <h2>GHI n’est pas un « plancher de prix »</h2>
+  <p>
+    Le coût de production n’est pas un support magique. Les mineurs peuvent continuer à produire à perte (financement externe,
+    trésorerie, stratégies de survie) ou au contraire capituler brutalement. Le marché est une machine à exagérer, pas à respecter
+    gentiment les modèles.
+  </p>
+  <ul>
+    <li><strong>À éviter :</strong> confondre “coût” et “valeur”.</li>
+    <li><strong>À faire :</strong> surveiller les zones de friction (quand le prix flirte durablement avec min/avg/max).</li>
+  </ul>
+
+  <hr />
+
+  <!-- 3) MINER VIEW -->
+  <h2>GHI n’est pas le P&amp;L d’une ferme minière</h2>
+  <p>
+    Un site de minage réel vit dans une jungle de contrats et d’optimisations : PPA, hedges, effacement, crédits,
+    récupération de chaleur, fiscalité, CAPEX financé, coût du capital, maintenance, contraintes réseau, etc.
+    GHI, lui, modélise une <strong>photo standardisée</strong> à l’échelle d’une région.
+  </p>
+  <ul>
+    <li><strong>Conséquence :</strong> une ferme peut être rentable même si GHI indique un coût “élevé” dans la région.</li>
+    <li><strong>Inversement :</strong> une ferme peut être fragile même si la région semble “bon marché”.</li>
+  </ul>
+
+  <h3>Ce que dirait une ferme minière</h3>
+  <blockquote>
+    “GHI est un thermomètre macro. Très utile. Mais si vous l’utilisez pour juger mon site, vous allez vous tromper.”
+  </blockquote>
+
+  <hr />
+
+  <!-- 4) NOT A REGULATORY TOOL -->
+  <h2>GHI n’est pas un outil réglementaire « prêt à sanctionner »</h2>
+  <p>
+    Un indice public et simple peut être tentant à instrumentaliser. Mais GHI n’est pas conçu pour produire des conclusions
+    normatives du type “c’est bien / c’est mal” ou “il faut interdire ici / autoriser là”.
+    Il décrit une économie de production, pas une morale.
+  </p>
+  <ul>
+    <li><strong>À éviter :</strong> transformer un chiffre macro en verdict politique.</li>
+    <li><strong>À faire :</strong> citer la méthodologie, les hypothèses et les limites lorsque l’on utilise l’indice.</li>
+  </ul>
+
+  <hr />
+
+  <!-- 5) COMPETITOR VIEW -->
+  <h2>GHI n’est pas un benchmark universel de “la crypto”</h2>
+  <p>
+    GHI est centré sur Bitcoin et sa réalité industrielle. Comparer directement GHI à un réseau PoS (ou hybride) est un
+    faux parallèle : les structures de coûts et de sécurité sont différentes.
+  </p>
+
+  <h3>Ce que dirait un concurrent de Bitcoin</h3>
+  <blockquote>
+    “Vous mesurez très bien un sujet Bitcoin… mais vous ne mesurez pas ‘la crypto’. Et au passage, vous légitimez Bitcoin.”
+  </blockquote>
+
+  <p>
+    Et c’est justement l’idée : GHI n’est pas “crypto-agnostique”. Il est <strong>clair</strong> sur son périmètre
+    pour rester rigoureux.
+  </p>
+
+  <hr />
+
+  <!-- 6) TRADER VIEW -->
+  <h2>GHI n’est pas fait pour le timing court terme</h2>
+  <p>
+    Les mouvements court terme répondent à des dynamiques différentes : liquidations, options, flux ETF, politique monétaire,
+    dollar, corrélations, chocs exogènes. GHI, lui, évolue sur des horizons plus structurels.
+  </p>
+
+  <h3>Ce que dirait un trader</h3>
+  <blockquote>
+    “Super indicateur de contexte. Mauvais outil de timing.”
+  </blockquote>
+
+  <ul>
+    <li><strong>À éviter :</strong> “GHI monte = je short / GHI baisse = je long.”</li>
+    <li><strong>À faire :</strong> l’intégrer dans un cadre plus large (macro, on-chain, dérivés, structure de marché).</li>
+  </ul>
+
+  <hr />
+
+  <!-- 7) WHAT IT IS -->
+  <h2>Alors, GHI sert à quoi ?</h2>
+  <p>
+    GHI sert à <strong>standardiser</strong> une lecture historiquement opaque : le coût de production de Bitcoin, avec un cadre
+    reproductible, documenté, et comparable dans le temps et l’espace (via des hypothèses explicites).
+  </p>
+
+  <ul>
+    <li><strong>Pour les institutions :</strong> une base méthodologique neutre, auditables et transparente.</li>
+    <li><strong>Pour les analystes :</strong> un indicateur de structure économique (stress, soutenabilité, zones de friction).</li>
+    <li><strong>Pour le public :</strong> un repère macro, à condition de ne pas l’utiliser comme une boule de cristal.</li>
+  </ul>
+
+  <hr />
+
+  <!-- 8) PRINCIPLE -->
+  <h2>Principe de lecture (à coller sur votre écran)</h2>
+  <div class="callout">
+    <p>
+      <strong>GHI = indice de structure économique du réseau Bitcoin.</strong><br />
+      Pas une vérité opérationnelle. Pas un signal de trading. Pas un jugement de valeur.
+    </p>
+  </div>
+
+  <hr />
+
+  <!-- 9) DISCLAIMER -->
+  <h2>Disclaimer</h2>
+  <p>
+    GHI est un standard ouvert et une estimation fondée sur des hypothèses publiques. Les résultats dépendent des données disponibles,
+    de leur qualité et des modèles choisis. Aucune information publiée par GHI ne constitue un conseil financier, juridique,
+    énergétique ou réglementaire.
+  </p>
+
+</section>
+
+    <footer>
+      <p>© Global HashCost Index – Open model. No investment advice.</p>
+      <p>
+        © 2025 GHI – Global HashCost Index.
+        Content published under
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
+          CC BY-NC-SA 4.0.
+        </a>
+      </p>
+    </footer>
+  </div>
+
+  <footer class="footer-social">
+    <a href="https://github.com/ghi-standard" target="_blank" class="social-icon" aria-label="GitHub">
+      <svg viewBox="0 0 16 16" width="28" height="28" fill="#ffffff">
+        <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 
+        5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.91-.89-1.15-.89-1.15-.73-.5.06-.49.06-.49.81.06 
+        1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 
+        0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 
+        2.2.82a7.53 7.53 0 0 1 4 0c1.53-1.03 2.2-.82 
+        2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 
+        2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 
+        .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+    </a>
+
+    <a href="https://www.linkedin.com/company/global-hashcost-index-ghi/" target="_blank" class="social-icon" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#ffffff">
+        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 
+        3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 
+        8.99h4.56V24H.22V8.99zM8.62 8.99h4.37v2.05h.06c.61-1.15 
+        2.1-2.37 4.33-2.37C22.75 8.67 24 11.3 24 
+        15.27V24h-4.53v-8.01c0-1.91-.03-4.37-2.66-4.37-2.66 
+        0-3.07 2.08-3.07 4.23V24H9.21V8.99h-.59z"/>
+      </svg>
+    </a>
+  </footer>
+</body>
+</html>
