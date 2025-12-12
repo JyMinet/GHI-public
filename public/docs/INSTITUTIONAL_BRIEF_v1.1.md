@@ -1,7 +1,7 @@
 # Global HashCost Index (GHI)
 ## Institutional Brief — Public Standard v1.1
 
----
+* * *
 
 ## 1. Executive Summary
 ## Executive Summary (Public Standard v1.1)
@@ -33,7 +33,7 @@ L’objectif long terme est de maintenir un standard public stable (API versionn
 
 Ce document présente la méthodologie v1.1, le modèle de données public et l’interface API v1.1, ainsi que les limites connues et les disclaimers légaux.
 
----
+* * *
 
 ## 2. What is GHI / What GHI is NOT
 
@@ -51,7 +51,7 @@ Ce document présente la méthodologie v1.1, le modèle de données public et l�
 - A profitability calculator.
 - A substitute for proprietary mining data.
 
----
+* * *
 
 # 3. Methodology Overview (v1.1)
 
@@ -65,7 +65,7 @@ GHI estimates the **direct energy cost** required to mine one Bitcoin, excluding
 
 Costs are expressed in **USD / BTC**.
 
----
+* * *
 
 ## 3.2 Regional Cost Model (Simplified)
 
@@ -73,7 +73,7 @@ For a given region **R**:
 energy_per_BTC_R = total_energy_consumption_R / BTC_mined_R
 cost_BTC_R       = energy_per_BTC_R × avg_electricity_price_R
 
----
+* * *
 Each region produces:
 - `min_cost`
 - `avg_cost`
@@ -81,7 +81,7 @@ Each region produces:
 
 based on scenario assumptions.
 
----
+* * *
 
 ## 3.3 Scenarios (min / avg / max)
 
@@ -90,7 +90,7 @@ Scenarios are derived from variations on:
 - electricity tariffs (floor / median / ceiling),
 - utilization and load factors.
 
----
+* * *
 
 # 4. Global Aggregation Model
 
@@ -104,7 +104,7 @@ This ensures:
 - comparability across regions,
 - transparency of assumptions.
 
----
+* * *
 
 # 5. Data Model Structure (v1.1)
 
@@ -125,7 +125,7 @@ Each API output is structured around three blocks:
 - Versioned methodology
 - Comparable historical frames
 
----
+* * *
 
 # 6. API v1.1 Overview
 
@@ -146,7 +146,7 @@ The public API v1.1 exposes:
 - Technical integration,
 - Methodological validation.
 
----
+* * *
 
 # 7. Governance & Versioning
 
@@ -160,7 +160,7 @@ The public API v1.1 exposes:
 
 Only the public engine is exposed through the GHI standard.
 
----
+* * *
 
 # 8. Legal Disclaimer
 
@@ -177,7 +177,7 @@ GHI, its contributors and maintainers **do not provide financial, investment, le
 
 Use of the GHI implies full acceptance of these limitations.
 
----
+* * *
 
 ## Français
 
@@ -192,7 +192,7 @@ Le GHI, ses contributeurs et mainteneurs **ne fournissent aucun conseil financie
 
 L’utilisation du GHI implique l’acceptation pleine et entière de ces limitations.
 
----
+* * *
 
 # 9. Roadmap (Methodology)
 
@@ -200,7 +200,7 @@ L’utilisation du GHI implique l’acceptation pleine et entière de ces limita
 - **v2.0**: integration of multi-source real data, enhanced regional transparency.
 - **v2.x**: advanced scenarios (energy mix, stress testing, CO₂ metrics).
 
----
+* * *
 
 # 10. Contact & Contribution
 
