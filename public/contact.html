@@ -117,77 +117,87 @@
 </header>
 
     <!-- Per-page content -->
-    <main>
-  <div class="lang-switch">
-    Langue / Language :
-    <a href="#fr-faq">FR</a> ·
-    <a href="#en-faq">EN</a>
+    <body>
+
+<main class="contact-card">
+  <h2>Contact</h2>
+
+  <div class="contact-alert contact-ok" id="ok" role="status" aria-live="polite">
+    Message sent. Thank you.
+  </div>
+  <div class="contact-alert contact-err" id="err" role="status" aria-live="polite">
+    Sending failed. Please try again later.
   </div>
 
-  <!-- ======================= FR ======================= -->
-  <section id="fr-faq">
-    <h2>FAQ – Global HashCost Index</h2>
+  <form id="contactForm" class="contact-form"
+        action="https://formspree.io/f/FORM_ID"
+        method="POST">
 
-    <h3>1. Le GHI prédit-il le prix du Bitcoin&nbsp;?</h3>
-    <p>
-      Non. Le GHI mesure un coût de production estimé, pas un prix futur.
-      Il décrit la structure économique du réseau, pas sa valorisation de marché.
+    <div class="contact-row">
+      <label class="contact-field">
+        <span>Name</span>
+        <input name="name" type="text" autocomplete="name" required>
+      </label>
+
+      <label class="contact-field">
+        <span>Email</span>
+        <input name="email" type="email" autocomplete="email" required>
+      </label>
+    </div>
+
+    <label class="contact-field">
+      <span>Subject</span>
+      <input name="subject" type="text" required>
+    </label>
+
+    <label class="contact-field">
+      <span>Message</span>
+      <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <!-- Anti-bot honeypot (must remain hidden) -->
+    <input name="_gotcha" type="text" class="contact-hp" tabindex="-1" autocomplete="off">
+
+    <button class="contact-button" type="submit">Send</button>
+
+    <p class="contact-privacy">
+      By sending this message, you agree that the submitted information will be used solely to respond to your request.
     </p>
-
-    <h3>2. Les données affichées sont-elles réelles&nbsp;?</h3>
-    <p>
-      La version publique repose sur un moteur Sandbox.
-      Les valeurs chiffrées sont illustratives, mais les structures d’API
-      et la méthodologie correspondent au standard officiel GHI.
-    </p>
-
-    <h3>3. Puis-je utiliser GHI dans un rapport institutionnel&nbsp;?</h3>
-    <p>
-      Oui. Il est recommandé de mentionner explicitement
-      la version de l’API, de la méthodologie et du moteur utilisées,
-      ainsi que la source&nbsp;: <em>Global HashCost Index (GHI) – documentation officielle</em>.
-    </p>
-
-    <h3>4. Comment accéder à l’API&nbsp;?</h3>
-    <p>
-      Consulte la page <a href="api.html">API</a> et le
-      <a href="api-quickstart.html">Quickstart</a>,
-      ou la documentation complète disponible sur GitHub.
-    </p>
-  </section>
-
-  <!-- ======================= EN ======================= -->
-  <section id="en-faq">
-    <h2>FAQ – Global HashCost Index</h2>
-
-    <h3>1. Does GHI predict Bitcoin’s price?</h3>
-    <p>
-      No. GHI estimates production costs, not future prices.
-      It is an economic indicator of the network, not a pricing model.
-    </p>
-
-    <h3>2. Are the displayed data points real?</h3>
-    <p>
-      The public version relies on a Sandbox engine.
-      Numerical values are illustrative, while the API structures
-      and methodology follow the official GHI standard.
-    </p>
-
-    <h3>3. Can GHI be used in institutional reports?</h3>
-    <p>
-      Yes. It is recommended to explicitly state
-      the API, methodology and engine versions used,
-      and to cite the source as the official GHI documentation.
-    </p>
-
-    <h3>4. How can I access the API?</h3>
-    <p>
-      See the <a href="api.html">API</a> page and the
-      <a href="api-quickstart.html">API Quickstart</a>,
-      or consult the full documentation on GitHub.
-    </p>
-  </section>
+  </form>
 </main>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const ok = document.getElementById("ok");
+  const err = document.getElementById("err");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Reset messages
+    ok.style.display = "none";
+    err.style.display = "none";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        ok.style.display = "block";
+      } else {
+        err.style.display = "block";
+      }
+    } catch (error) {
+      err.style.display = "block";
+    }
+  });
+</script>
+
+</body>
 
    <footer class="footer-social">
 

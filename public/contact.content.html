@@ -1,0 +1,81 @@
+<body>
+
+<main class="contact-card">
+  <h2>Contact</h2>
+
+  <div class="contact-alert contact-ok" id="ok" role="status" aria-live="polite">
+    Message sent. Thank you.
+  </div>
+  <div class="contact-alert contact-err" id="err" role="status" aria-live="polite">
+    Sending failed. Please try again later.
+  </div>
+
+  <form id="contactForm" class="contact-form"
+        action="https://formspree.io/f/FORM_ID"
+        method="POST">
+
+    <div class="contact-row">
+      <label class="contact-field">
+        <span>Name</span>
+        <input name="name" type="text" autocomplete="name" required>
+      </label>
+
+      <label class="contact-field">
+        <span>Email</span>
+        <input name="email" type="email" autocomplete="email" required>
+      </label>
+    </div>
+
+    <label class="contact-field">
+      <span>Subject</span>
+      <input name="subject" type="text" required>
+    </label>
+
+    <label class="contact-field">
+      <span>Message</span>
+      <textarea name="message" rows="6" required></textarea>
+    </label>
+
+    <!-- Anti-bot honeypot (must remain hidden) -->
+    <input name="_gotcha" type="text" class="contact-hp" tabindex="-1" autocomplete="off">
+
+    <button class="contact-button" type="submit">Send</button>
+
+    <p class="contact-privacy">
+      By sending this message, you agree that the submitted information will be used solely to respond to your request.
+    </p>
+  </form>
+</main>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const ok = document.getElementById("ok");
+  const err = document.getElementById("err");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Reset messages
+    ok.style.display = "none";
+    err.style.display = "none";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        ok.style.display = "block";
+      } else {
+        err.style.display = "block";
+      }
+    } catch (error) {
+      err.style.display = "block";
+    }
+  });
+</script>
+
+</body>

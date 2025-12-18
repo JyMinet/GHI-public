@@ -1104,3 +1104,81 @@ header {
 .header-container {
   margin-bottom: 10px;
 }
+
+.footer-social {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social .social-icon:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.footer-social .social-icon svg {
+  display: block;
+}
+
+/* Contact: fix layout + remove "extra box" */
+.contact-form { margin-top: 14px; display: grid; gap: 14px; }
+.contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.contact-field { display: grid; gap: 6px; }
+.contact-field span { font-size: 0.85rem; color: var(--text-muted); }
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  outline: none;
+  background: #fff;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+/* Alerts hidden by default */
+.contact-alert { display: none; margin-top: 12px; padding: 10px 12px; border-radius: 12px; font-size: 0.9rem; }
+.contact-ok { background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; }
+.contact-err { background:#fef2f2; border:1px solid #fecaca; color:#991b1b; }
+
+/* Honeypot MUST be hidden */
+.contact-hp { display: none !important; }
+
+/* Button */
+.contact-button {
+  justify-self: start;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact-button:hover { background: var(--accent-hover); }
+
+.contact-privacy { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+
+@media (max-width: 700px) {
+  .contact-row { grid-template-columns: 1fr; }
+}
