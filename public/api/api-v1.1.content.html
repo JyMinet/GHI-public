@@ -1,51 +1,71 @@
-<section class="page-section" id="api-v1-1">
-  <h1>API v1.1 — Reference (Sandbox)</h1>
-
-  <p class="text-muted">
-    FR/EN — This page documents the <strong>GHI Sandbox API v1.1</strong>. The sandbox is designed to be stable for integrators.
-    Responses may contain demo values.
-  </p>
-
-  <div class="ghi-callout">
-    <p><strong>Status:</strong> Sandbox • <strong>Base URL:</strong> <code>https://&lt;your-domain&gt;/v1/ghi</code> (or <code>http://127.0.0.1:8000/v1/ghi</code> locally)</p>
-    <p><strong>Format:</strong> JSON • <strong>Auth:</strong> none (sandbox) • <strong>Rate limit:</strong> best-effort</p>
+<main class="api-section">
+  <div class="lang-switch">
+    Langue / Language :
+    <a href="#fr-api-v1-1">FR</a> ·
+    <a href="#en-api-v1-1">EN</a>
   </div>
 
-  <h2>Quickstart</h2>
-  <div class="table-wrapper">
-    <table class="snapshot-table">
-      <thead>
-        <tr>
-          <th>Goal</th>
-          <th>Command</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Fetch snapshot</td>
-          <td><code>curl -s http://127.0.0.1:8000/v1/ghi/snapshot | jq</code></td>
-        </tr>
-        <tr>
-          <td>List regions</td>
-          <td><code>curl -s http://127.0.0.1:8000/v1/ghi/regions | jq</code></td>
-        </tr>
-        <tr>
-          <td>Region detail</td>
-          <td><code>curl -s http://127.0.0.1:8000/v1/ghi/regions/us | jq</code></td>
-        </tr>
-        <tr>
-          <td>Global history</td>
-          <td><code>curl -s "http://127.0.0.1:8000/v1/ghi/history?region_id=global" | jq</code></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- ========================================================= -->
+  <!-- ======================== FR ============================= -->
+  <!-- ========================================================= -->
+  <section class="page-section" id="fr-api-v1-1">
+    <h1>API v1.1 — Référence (Sandbox)</h1>
 
-  <h2>Endpoints</h2>
+    <p class="text-muted">
+      Cette page documente l’<strong>API Sandbox GHI v1.1</strong>.
+      Le mode Sandbox est conçu pour offrir une structure stable aux intégrateurs.
+      Les réponses peuvent contenir des valeurs de démonstration.
+    </p>
 
-  <h3><code>GET /v1/ghi/snapshot</code></h3>
-  <p>Returns the latest global snapshot (min/avg/max production cost, plus metadata).</p>
-  <pre><code>{
+    <div class="ghi-callout">
+      <p>
+        <strong>Statut :</strong> Sandbox •
+        <strong>URL de base :</strong>
+        <code>https://&lt;votre-domaine&gt;/v1/ghi</code>
+        (ou <code>http://127.0.0.1:8000/v1/ghi</code> en local)
+      </p>
+      <p>
+        <strong>Format :</strong> JSON •
+        <strong>Authentification :</strong> aucune (sandbox) •
+        <strong>Limite de débit :</strong> best-effort
+      </p>
+    </div>
+
+    <h2>Démarrage rapide</h2>
+    <div class="table-wrapper">
+      <table class="snapshot-table">
+        <thead>
+          <tr>
+            <th>Objectif</th>
+            <th>Commande</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Récupérer le snapshot</td>
+            <td><code>curl -s http://127.0.0.1:8000/v1/ghi/snapshot | jq</code></td>
+          </tr>
+          <tr>
+            <td>Liste des régions</td>
+            <td><code>curl -s http://127.0.0.1:8000/v1/ghi/regions | jq</code></td>
+          </tr>
+          <tr>
+            <td>Détail d’une région</td>
+            <td><code>curl -s http://127.0.0.1:8000/v1/ghi/regions/us | jq</code></td>
+          </tr>
+          <tr>
+            <td>Historique global</td>
+            <td><code>curl -s "http://127.0.0.1:8000/v1/ghi/history?region_id=global" | jq</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Endpoints</h2>
+
+    <h3><code>GET /v1/ghi/snapshot</code></h3>
+    <p>Retourne le dernier snapshot global (coût min / moyen / max + métadonnées).</p>
+    <pre><code>{
   "timestamp_utc": "2025-12-11T19:56:27.777989Z",
   "engine_sandbox_version": "0.4.3-sandbox",
   "version": "1.1",
@@ -54,9 +74,9 @@
   "global_max_cost_usd": 53000.0
 }</code></pre>
 
-  <h3><code>GET /v1/ghi/regions</code></h3>
-  <p>Returns the region registry exposed by the sandbox.</p>
-  <pre><code>{
+    <h3><code>GET /v1/ghi/regions</code></h3>
+    <p>Retourne le registre des régions exposées par le Sandbox.</p>
+    <pre><code>{
   "version": "1.1",
   "timestamp_utc": "2025-12-11T19:56:27.777989Z",
   "region_count": 3,
@@ -67,9 +87,9 @@
   ]
 }</code></pre>
 
-  <h3><code>GET /v1/ghi/regions/{id}</code></h3>
-  <p>Returns details for one region. The payload is intended to be stable for dashboard integrations.</p>
-  <pre><code>{
+    <h3><code>GET /v1/ghi/regions/{id}</code></h3>
+    <p>Retourne les détails d’une région. La structure est conçue pour rester stable pour les intégrations dashboard.</p>
+    <pre><code>{
   "version": "1.1",
   "timestamp_utc": "2025-12-11T19:56:27.777989Z",
   "region_id": "us",
@@ -80,9 +100,9 @@
   "hashrate_share_pct": 32.0
 }</code></pre>
 
-  <h3><code>GET /v1/ghi/history?region_id=global</code></h3>
-  <p>Returns time-series points for the requested region. The sandbox guarantees increasing dates in <code>points[]</code>.</p>
-  <pre><code>{
+    <h3><code>GET /v1/ghi/history?region_id=global</code></h3>
+    <p>Retourne une série temporelle. Le Sandbox garantit un ordre chronologique strict dans <code>points[]</code>.</p>
+    <pre><code>{
   "version": "1.1",
   "timestamp_utc": "2025-12-11T19:56:27.781785Z",
   "engine_sandbox_version": "0.4.3-sandbox",
@@ -93,10 +113,128 @@
   ]
 }</code></pre>
 
-  <h2>Notes for integrators</h2>
-  <ul>
-    <li>All timestamps are UTC and ISO-8601.</li>
-    <li>Numeric fields are floats; clients should round for display.</li>
-    <li>Sandbox may return demo values; stability of structure matters more than accuracy here.</li>
-  </ul>
-</section>
+    <h2>Notes pour les intégrateurs</h2>
+    <ul>
+      <li>Tous les timestamps sont en UTC et ISO-8601.</li>
+      <li>Les champs numériques sont des flottants ; un arrondi côté client est recommandé.</li>
+      <li>Les valeurs peuvent être synthétiques ; la stabilité de la structure prime sur la précision.</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <!-- ========================================================= -->
+  <!-- ======================== EN ============================= -->
+  <!-- ========================================================= -->
+  <section class="page-section" id="en-api-v1-1">
+    <h1>API v1.1 — Reference (Sandbox)</h1>
+
+    <p class="text-muted">
+      This page documents the <strong>GHI Sandbox API v1.1</strong>. The sandbox is designed to be stable for integrators.
+      Responses may contain demo values.
+    </p>
+
+    <div class="ghi-callout">
+      <p>
+        <strong>Status:</strong> Sandbox •
+        <strong>Base URL:</strong>
+        <code>https://&lt;your-domain&gt;/v1/ghi</code>
+        (or <code>http://127.0.0.1:8000/v1/ghi</code> locally)
+      </p>
+      <p>
+        <strong>Format:</strong> JSON •
+        <strong>Auth:</strong> none (sandbox) •
+        <strong>Rate limit:</strong> best-effort
+      </p>
+    </div>
+
+    <h2>Quickstart</h2>
+    <div class="table-wrapper">
+      <table class="snapshot-table">
+        <thead>
+          <tr>
+            <th>Goal</th>
+            <th>Command</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fetch snapshot</td>
+            <td><code>curl -s http://127.0.0.1:8000/v1/ghi/snapshot | jq</code></td>
+          </tr>
+          <tr>
+            <td>List regions</td>
+            <td><code>curl -s http://127.0.0.1:8000/v1/ghi/regions | jq</code></td>
+          </tr>
+          <tr>
+            <td>Region detail</td>
+            <td><code>curl -s http://127.0.0.1:8000/v1/ghi/regions/us | jq</code></td>
+          </tr>
+          <tr>
+            <td>Global history</td>
+            <td><code>curl -s "http://127.0.0.1:8000/v1/ghi/history?region_id=global" | jq</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Endpoints</h2>
+
+    <h3><code>GET /v1/ghi/snapshot</code></h3>
+    <p>Returns the latest global snapshot (min / avg / max production cost, plus metadata).</p>
+    <pre><code>{
+  "timestamp_utc": "2025-12-11T19:56:27.777989Z",
+  "engine_sandbox_version": "0.4.3-sandbox",
+  "version": "1.1",
+  "global_min_cost_usd": 36000.0,
+  "global_avg_cost_usd": 43000.0,
+  "global_max_cost_usd": 53000.0
+}</code></pre>
+
+    <h3><code>GET /v1/ghi/regions</code></h3>
+    <p>Returns the region registry exposed by the sandbox.</p>
+    <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-11T19:56:27.777989Z",
+  "region_count": 3,
+  "regions": [
+    { "id": "us", "name": "United States" },
+    { "id": "eu", "name": "Europe" },
+    { "id": "cn", "name": "China" }
+  ]
+}</code></pre>
+
+    <h3><code>GET /v1/ghi/regions/{id}</code></h3>
+    <p>Returns details for one region. The payload is intended to be stable for dashboard integrations.</p>
+    <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-11T19:56:27.777989Z",
+  "region_id": "us",
+  "name": "United States",
+  "min_cost_usd": 38000.0,
+  "avg_cost_usd": 45000.0,
+  "max_cost_usd": 56000.0,
+  "hashrate_share_pct": 32.0
+}</code></pre>
+
+    <h3><code>GET /v1/ghi/history?region_id=global</code></h3>
+    <p>Returns time-series points for the requested region. The sandbox guarantees increasing dates in <code>points[]</code>.</p>
+    <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-11T19:56:27.781785Z",
+  "engine_sandbox_version": "0.4.3-sandbox",
+  "region_id": "global",
+  "points": [
+    { "date": "2025-12-01", "min_cost_usd": 35000.0, "avg_cost_usd": 41200.0, "max_cost_usd": 49500.0, "currency": "USD" },
+    { "date": "2025-12-02", "min_cost_usd": 35200.0, "avg_cost_usd": 41500.0, "max_cost_usd": 49800.0, "currency": "USD" }
+  ]
+}</code></pre>
+
+    <h2>Notes for integrators</h2>
+    <ul>
+      <li>All timestamps are UTC and ISO-8601.</li>
+      <li>Numeric fields are floats; clients should round for display.</li>
+      <li>Sandbox may return demo values; structural stability matters more than accuracy here.</li>
+    </ul>
+  </section>
+</main>
