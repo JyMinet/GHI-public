@@ -1,0 +1,4 @@
+- Latest available RAW inputs: **2025-12-15**
+- Latest snapshot_id: **2025-12-15-r212432**
+- Current state: **data gap after 2025-12-15** (RAW ingestion not producing daily files)
+- Policy: snapshots are **immutable**; missing days will be filled **only** when RAW inputs are recovered (no retroactive rewriting).
