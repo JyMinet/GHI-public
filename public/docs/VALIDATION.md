@@ -130,6 +130,80 @@ Validation efforts may cover, but are not limited to, the following dimensions:
 
 ⸻
 
+4.5 Sandbox-specific behaviour
+
+FR  
+Dans l’environnement Sandbox, les snapshots peuvent être strictement identiques
+sur plusieurs exécutions ou dates consécutives.
+
+Ce comportement est intentionnel et fait partie du périmètre de validation :
+	•	Il garantit la reproductibilité
+	•	Il permet de tester l’absence de réécriture
+	•	Il valide la discipline de publication indépendamment des données sources
+
+La variabilité des valeurs n’est pas un objectif de validation en mode Sandbox.
+
+EN  
+In the Sandbox environment, snapshots may be strictly identical
+across multiple executions or consecutive dates.
+
+This behaviour is intentional and part of the validation scope:
+	•	It guarantees reproducibility
+	•	It allows detection of retroactive rewriting
+	•	It validates publication discipline independently of source data
+
+Value variability is not a validation objective in Sandbox mode.
+
+---
+
+### Sandbox snapshot continuity and freeze behaviour
+
+**FR**
+
+Entre le 15 décembre 2025 et les dates suivantes, aucun nouveau snapshot quotidien n’a été publié.
+Ce comportement est volontaire et conforme au mode *Sandbox* du standard GHI.
+
+Le pipeline de génération des snapshots repose sur la disponibilité de jeux de données RAW
+(réseau, énergie, matériel, géographie).  
+En l’absence de nouvelles entrées RAW, le moteur Sandbox applique une règle de *freeze* stricte :
+
+- aucun snapshot n’est généré,
+- aucun index n’est modifié,
+- aucune donnée n’est interpolée ou simulée.
+
+Ce mécanisme garantit :
+- l’absence de dérive silencieuse,
+- l’intégrité temporelle de la série,
+- la non-production de données économiquement interprétables en environnement Sandbox.
+
+L’absence de snapshots sur une période donnée **ne constitue pas une interruption du standard**,
+mais un état explicite et traçable du pipeline, documenté et vérifiable via les journaux publics
+et l’index des snapshots.
+
+---
+
+**EN**
+
+Between December 15, 2025 and subsequent dates, no new daily snapshots were published.
+This behaviour is intentional and fully consistent with the GHI *Sandbox* mode.
+
+The snapshot generation pipeline depends on the availability of RAW datasets
+(network, energy, hardware, geography).  
+When no new RAW inputs are available, the Sandbox engine applies a strict *freeze* rule:
+
+- no snapshot is generated,
+- no index entry is added or modified,
+- no data is interpolated or synthetically extended.
+
+This mechanism ensures:
+- absence of silent data drift,
+- temporal integrity of the published series,
+- prevention of economically interpretable outputs in Sandbox mode.
+
+The absence of snapshots over a given period **does not represent a disruption of the standard**,
+but an explicit, traceable pipeline state, documented and verifiable through public logs
+and the snapshot index.
+
 5. Validation process / Processus de validation
 
 FR
