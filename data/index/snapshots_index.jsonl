@@ -27,3 +27,5 @@
 {"snapshot_id":"2025-12-21","sha256":"01875d595f1c2986adddd8726df933f19e0b1ab8f2c1038ecc9ffa7c4df92c3c","indexed_at":"2025-12-21T21:08:21Z","schema_version":"1.0"}
 {"snapshot_id":"2025-12-22","sha256":"d86be6fcbe15f29655a81f322af0dca5c0d7251c30d47518cb1093227b8187f1","indexed_at":"2025-12-21T21:11:26Z","schema_version":"1.0"}
 {"snapshot_id":"2025-12-15-r034948","sha256":"d8d3a5863c95db3a92220a081bb412f6773148086372b6f7949cad3d858878bf","indexed_at":"2025-12-22T03:49:48Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r040416","sha256":"634aa7ec0be7e6bfd5a04d3d93fb90d45bfe19153053ec6271b9ba06a23db040","indexed_at":"2025-12-22T04:04:16Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r041319","sha256":"89b342c90733be28d769b668a63509f1e32512980296b20f8d9fb360e7c4dc25","indexed_at":"2025-12-22T04:13:19Z","schema_version":"1.0"}
