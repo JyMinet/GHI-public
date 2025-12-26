@@ -14,10 +14,38 @@
     <h2>Changelog – Global HashCost Index (GHI)</h2>
 
     <p>
-      Cette page résume les principales évolutions du standard GHI, de l’API publique
-      et du moteur sandbox. Elle est destinée aux équipes techniques, aux intégrateurs
-      et aux partenaires institutionnels.
+      Cette page résume les principales évolutions du standard GHI, de l’API publique,
+      du moteur sandbox <strong>et du cadre de gouvernance</strong>. Elle est destinée aux équipes
+      techniques, aux intégrateurs et aux parties prenantes externes.
     </p>
+
+  <!-- Gouvernance v0.1 -->
+<div class="card">
+  <h3>2025-12-26 – Gouvernance v0.1 (fondation)</h3>
+  <p>
+    Cette entrée établit le cadre initial de gouvernance du projet GHI.
+  </p>
+  <ul>
+    <li>Formalisation du document <strong>« GHI — Scope & Governance Principles (v0.1) »</strong>.</li>
+    <li>Confirmation d’un modèle <strong>piloté par le fondateur</strong>, avec la transparence radicale comme principal mécanisme de confiance.</li>
+    <li>Définition explicite du périmètre et du non-périmètre du standard.</li>
+    <li>Mise en place d’une discipline de changement :
+      <ul>
+        <li>versionnement sémantique ;</li>
+        <li>changelog public ;</li>
+        <li>journal de décisions documenté ;</li>
+        <li>processus formalisé de gestion des changements.</li>
+      </ul>
+    </li>
+    <li>Clarification des déclencheurs futurs de formalisation de la gouvernance
+      (usage externe, financement, arbitrage).</li>
+  </ul>
+  <p>
+    Cette version n’introduit aucun changement méthodologique,
+    de données ou d’API.  
+    Couche gouvernance uniquement.
+  </p>
+</div>
 
     <!-- v0.4.2-sandbox / API v1.1 -->
     <div class="card">
@@ -46,7 +74,7 @@
         <li><strong>Compatibilité</strong> :
           <ul>
             <li>aucun breaking change pour les intégrations v1.1 existantes ;</li>
-            <li>API v1.0 maintenue en mode “legacy” (documentation disponible, mais non recommandée pour de nouveaux projets).</li>
+            <li>API v1.0 maintenue en mode “legacy”.</li>
           </ul>
         </li>
       </ul>
@@ -56,40 +84,25 @@
     <div class="card">
       <h3>2025-01-XX – Sandbox Engine v0.4.0 & API v1.0 (baseline publique)</h3>
       <p>
-        Première mise à disposition publique du standard GHI avec :
+        Première mise à disposition publique du standard GHI.
       </p>
       <ul>
         <li><strong>Standard GHI v1.0</strong> (modèle de données, méthodologie, transparence).</li>
-        <li><strong>Sandbox Engine v0.4.0-sandbox</strong> :
-          <ul>
-            <li>premier moteur de démonstration avec régions synthétiques ;</li>
-            <li>exposition des endpoints <code>/v1/ghi/snapshot</code>, <code>/v1/ghi/history</code> ;</li>
-            <li>métadonnées de base.</li>
-          </ul>
-        </li>
-        <li><strong>API publique v1.0</strong> :
-          <ul>
-            <li>structure initiale des réponses ;</li>
-            <li>premier jeu de tests automatisés.</li>
-          </ul>
-        </li>
-        <li><strong>Site GHI-public</strong> :
-          <ul>
-            <li>publication des pages standards : Accueil, Dashboard, Méthodologie, Transparence, Institutions, etc.</li>
-          </ul>
-        </li>
+        <li><strong>Sandbox Engine v0.4.0-sandbox</strong>.</li>
+        <li><strong>API publique v1.0</strong>.</li>
+        <li><strong>Site GHI-public</strong> (pages fondatrices).</li>
       </ul>
       <p>
-        Cette version sert de baseline historique pour les évolutions ultérieures du standard.
+        Cette version sert de référence historique.
       </p>
     </div>
 
     <div class="card">
-      <h3>Politique de versionning</h3>
+      <h3>Politique de versionnement</h3>
       <ul>
-        <li>Les versions d’API suivent le schéma <code>MAJEUR.MINOR</code> (ex. v1.1).</li>
-        <li>Le moteur sandbox suit sa propre numérotation <code>v0.x.y-sandbox</code>.</li>
-        <li>Les changements majeurs sont documentés publiquement (site + GitHub).</li>
+        <li>Les versions d’API suivent <code>MAJEUR.MINOR</code>.</li>
+        <li>Le moteur sandbox suit <code>v0.x.y-sandbox</code>.</li>
+        <li>La gouvernance et la méthodologie sont versionnées et documentées publiquement.</li>
       </ul>
     </div>
 
@@ -103,9 +116,36 @@
     <h2>Changelog – Global HashCost Index (GHI)</h2>
 
     <p>
-      This page summarizes the main changes to the GHI standard, public API
-      and sandbox engine. It targets technical teams, integrators and institutional partners.
+      This page summarizes the main changes to the GHI standard, public API,
+      sandbox engine <strong>and governance framework</strong>.
     </p>
+
+<!-- Governance v0.1 -->
+<div class="card">
+  <h3>2025-12-26 – Governance v0.1 (foundation)</h3>
+  <p>
+    This entry establishes the initial governance framework of the GHI project.
+  </p>
+  <ul>
+    <li>Formalization of <strong>“GHI — Scope & Governance Principles (v0.1)”</strong>.</li>
+    <li>Confirmation of a <strong>founder-led</strong> model with radical transparency as the primary trust mechanism.</li>
+    <li>Explicit definition of scope and non-scope.</li>
+    <li>Introduction of change discipline:
+      <ul>
+        <li>semantic versioning;</li>
+        <li>public changelog;</li>
+        <li>documented decision log;</li>
+        <li>formal change process.</li>
+      </ul>
+    </li>
+    <li>Clarification of future governance formalization triggers
+      (external usage, funding, dispute resolution).</li>
+  </ul>
+  <p>
+    This version introduces no methodological, data or API changes.
+    Governance layer only.
+  </p>
+</div>
 
     <!-- v0.4.2-sandbox / API v1.1 -->
     <div class="card">
@@ -115,28 +155,10 @@
         and <strong>Sandbox Engine v0.4.2</strong>.
       </p>
       <ul>
-        <li><strong>Public API v1.1</strong> declared as active and stable version.</li>
-        <li><strong>Sandbox Engine v0.4.2-sandbox</strong>:
-          <ul>
-            <li>single v1.1 router for all <code>/v1/ghi/*</code> endpoints;</li>
-            <li>refreshed synthetic data for <code>/snapshot</code> and <code>/history</code>;</li>
-            <li>unified metadata: <code>version</code>, <code>timestamp_utc</code>, <code>engine_sandbox_version</code>;</li>
-            <li>full support of v1.1 endpoints: snapshot, history, regions, metadata, network, forecast.</li>
-          </ul>
-        </li>
-        <li><strong>Public documentation</strong>:
-          <ul>
-            <li>new <strong>API v1.1</strong> page: <code>api/api-v1.1.html</code>;</li>
-            <li>updated <strong>Engine</strong> page for Sandbox v0.4.2;</li>
-            <li>public technical note: <code>ENGINE_DESIGN_CHANGES_v0.4.2.md</code>.</li>
-          </ul>
-        </li>
-        <li><strong>Compatibility</strong>:
-          <ul>
-            <li>no breaking changes for existing v1.1 integrations;</li>
-            <li>API v1.0 kept as “legacy” (documented, but not recommended for new projects).</li>
-          </ul>
-        </li>
+        <li><strong>Public API v1.1</strong> declared as active and stable.</li>
+        <li><strong>Sandbox Engine v0.4.2-sandbox</strong>.</li>
+        <li><strong>Public documentation updates</strong>.</li>
+        <li><strong>No breaking changes</strong>.</li>
       </ul>
     </div>
 
@@ -144,40 +166,25 @@
     <div class="card">
       <h3>2025-01-XX – Sandbox Engine v0.4.0 & API v1.0 (public baseline)</h3>
       <p>
-        First public availability of the GHI standard, including:
+        First public availability of the GHI standard.
       </p>
       <ul>
-        <li><strong>GHI Standard v1.0</strong> (data model, methodology, transparency).</li>
-        <li><strong>Sandbox Engine v0.4.0-sandbox</strong>:
-          <ul>
-            <li>initial demo engine with synthetic regions;</li>
-            <li>exposed <code>/v1/ghi/snapshot</code> and <code>/v1/ghi/history</code> endpoints;</li>
-            <li>basic metadata.</li>
-          </ul>
-        </li>
-        <li><strong>Public API v1.0</strong>:
-          <ul>
-            <li>initial response structure;</li>
-            <li>first automated test suite.</li>
-          </ul>
-        </li>
-        <li><strong>GHI-public website</strong>:
-          <ul>
-            <li>initial publication of core pages: Home, Dashboard, Methodology, Transparency, Institutions, etc.</li>
-          </ul>
-        </li>
+        <li>GHI Standard v1.0.</li>
+        <li>Sandbox Engine v0.4.0-sandbox.</li>
+        <li>Public API v1.0.</li>
+        <li>Initial GHI-public website.</li>
       </ul>
       <p>
-        This version acts as the historical baseline for future standard releases.
+        This version acts as the historical baseline.
       </p>
     </div>
 
     <div class="card">
       <h3>Versioning policy</h3>
       <ul>
-        <li>API versions follow <code>MAJOR.MINOR</code> (e.g. v1.1).</li>
-        <li>The sandbox engine uses its own <code>v0.x.y-sandbox</code> numbering.</li>
-        <li>Major changes are documented publicly (website + GitHub).</li>
+        <li>API versions follow <code>MAJOR.MINOR</code>.</li>
+        <li>Sandbox engine follows <code>v0.x.y-sandbox</code>.</li>
+        <li>Governance and methodology changes are publicly documented.</li>
       </ul>
     </div>
 

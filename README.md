@@ -81,7 +81,7 @@ Vous êtes autorisé à partager et adapter le contenu de ce dépôt à des fins
 
 This repository follows the official governance model of the Global HashCost Index (GHI).
 
-- [Governance](GOVERNANCE.md)
+- [Governance](public/docs/governance/GOVERNANCE.md)
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)

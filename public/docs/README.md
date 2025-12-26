@@ -13,3 +13,11 @@ Global HashCost Index (GHI).
 
 ## Generation
 See pandoc command in repository documentation.
+
+## Scope
+
+GHI defines a transparent and reproducible methodology to estimate
+Bitcoin production cost.
+
+It does not provide investment advice, trading signals,
+price predictions or regulatory benchmarks.
