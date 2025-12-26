@@ -132,7 +132,15 @@
 
     <h2>Changelog officiel GHI</h2>
 
-    <!-- ================= VERSION GOVERNANCE 0.1 ================= -->
+    <p>
+      Cette page présente une timeline lisible des principales évolutions du projet GHI
+      (site, moteur, API et gouvernance). La source de vérité normative reste le fichier
+      <strong>CHANGELOG.md</strong> du dépôt GitHub.
+    </p>
+
+    <!-- ================= GOVERNANCE ================= -->
+    <h3>Gouvernance</h3>
+
     <div class="card">
       <h3>vGovernance 0.1 — Cadre de gouvernance (founder-led)</h3>
       <p>
@@ -140,7 +148,7 @@
         sans modification fonctionnelle du site, du moteur ou de l’API.
       </p>
       <ul>
-        <li>Publication du document <strong>“GHI — Scope & Governance Principles (v0.1)”</strong>.</li>
+        <li>Publication du document <strong>“GHI — Scope &amp; Governance Principles (v0.1)”</strong>.</li>
         <li>Confirmation d’un modèle <strong>piloté par le fondateur</strong>, avec la transparence et l’auditabilité comme mécanismes centraux de confiance.</li>
         <li>Définition explicite du périmètre et du non-périmètre de GHI.</li>
         <li>Mise en place de la discipline de changement :
@@ -159,9 +167,11 @@
       </p>
     </div>
 
-    <!-- ================= VERSION 1.0.5 ================= -->
+    <!-- ================= SITE ================= -->
+    <h3>Site &amp; visualisation</h3>
+
     <div class="card">
-      <h3>v1.0.5 — Dashboard & indicateur prix / coût</h3>
+      <h3>v1.0.5 — Dashboard &amp; indicateur prix / coût</h3>
       <ul>
         <li>Connexion complète de l’indicateur “prix / coût” à l’API sandbox (<code>/v1/ghi/indicator</code>).</li>
         <li>Affichage dynamique : prix BTC, coût min / moyen / max, zone GHI et position du marqueur.</li>
@@ -170,7 +180,6 @@
       </ul>
     </div>
 
-    <!-- ================= VERSION 1.0.0 ================= -->
     <div class="card">
       <h3>v1.0.0 — Mise en ligne du site public GHI</h3>
       <ul>
@@ -182,7 +191,9 @@
       </ul>
     </div>
 
-    <!-- ================= VERSION 0.4.2 ================= -->
+    <!-- ================= ENGINE / API ================= -->
+    <h3>Moteur &amp; API</h3>
+
     <div class="card">
       <h3 id="v0-4-2">v0.4.2 — Évolution majeure du moteur Sandbox</h3>
       <p>
@@ -190,6 +201,7 @@
         une structure API unifiée et une stabilité renforcée.
         La mise à jour est entièrement rétrocompatible.
       </p>
+
       <h4>Principales évolutions</h4>
       <ul>
         <li>Structure API unifiée et métadonnées enrichies.</li>
@@ -198,37 +210,43 @@
         <li>Stabilité renforcée et compatibilité CI.</li>
         <li>Documentation mise à jour.</li>
       </ul>
+
+      <h4>Statut</h4>
+      <ul>
+        <li>Sandbox Engine : actif</li>
+        <li>API publique : stable</li>
+        <li>API historique : legacy</li>
+      </ul>
     </div>
 
-    <!-- ================= VERSION 0.4.0 ================= -->
     <div class="card">
       <h3>v0.4.0 — Stabilisation du moteur Sandbox</h3>
       <ul>
         <li>Intégration complète de l’API publique initiale.</li>
         <li>Ajout du bloc standard de métadonnées.</li>
         <li>Stabilisation complète des sorties de démonstration.</li>
+        <li>Correctifs sur les incohérences de schéma.</li>
+        <li>Tests automatisés validés.</li>
       </ul>
     </div>
 
-    <!-- ================= VERSION 0.3.0 ================= -->
     <div class="card">
       <h3>v0.3.0 — Refonte interne du moteur</h3>
       <ul>
         <li>Refactorisation majeure du moteur.</li>
         <li>Ajout des modules loader et aggregator.</li>
+        <li>Amélioration générale de l’implémentation Sandbox.</li>
       </ul>
     </div>
 
-    <!-- ================= VERSION 0.2.0 ================= -->
     <div class="card">
       <h3>v0.2.0 — Premiers endpoints de test</h3>
       <ul>
         <li>Structure initiale du moteur Sandbox.</li>
-        <li>Premières réponses factices.</li>
+        <li>Premières réponses factices pour validation.</li>
       </ul>
     </div>
 
-    <!-- ================= VERSION 0.1.0 ================= -->
     <div class="card">
       <h3>v0.1.0 — Création du projet</h3>
       <ul>
@@ -245,7 +263,15 @@
 
     <h2>GHI Official Changelog</h2>
 
-    <!-- ================= GOVERNANCE VERSION 0.1 ================= -->
+    <p>
+      This page provides a readable timeline of major GHI milestones (website, engine,
+      API and governance). The authoritative source of truth remains the repository’s
+      <strong>CHANGELOG.md</strong>.
+    </p>
+
+    <!-- ================= GOVERNANCE ================= -->
+    <h3>Governance</h3>
+
     <div class="card">
       <h3>vGovernance 0.1 — Governance framework (founder-led)</h3>
       <p>
@@ -253,7 +279,7 @@
         without introducing functional changes to the website, engine or API.
       </p>
       <ul>
-        <li>Publication of <strong>“GHI — Scope & Governance Principles (v0.1)”</strong>.</li>
+        <li>Publication of <strong>“GHI — Scope &amp; Governance Principles (v0.1)”</strong>.</li>
         <li>Confirmation of a <strong>founder-led</strong> model with transparency and auditability as core trust mechanisms.</li>
         <li>Explicit definition of scope and non-scope.</li>
         <li>Introduction of change discipline:
@@ -271,35 +297,90 @@
       </p>
     </div>
 
-    <!-- ================= VERSION 1.0.5 ================= -->
+    <!-- ================= SITE ================= -->
+    <h3>Website &amp; visualisation</h3>
+
     <div class="card">
-      <h3>v1.0.5 — Dashboard & price / cost indicator</h3>
+      <h3>v1.0.5 — Dashboard &amp; price / cost indicator</h3>
       <ul>
-        <li>Full integration of the “price vs cost” indicator with the sandbox API.</li>
-        <li>Dynamic rendering of BTC price and cost bands.</li>
-        <li>Dashboard refactor for visual and technical consistency.</li>
-        <li>Cleanup of legacy static data.</li>
+        <li>Full integration of the “price vs cost” indicator with the sandbox API (<code>/v1/ghi/indicator</code>).</li>
+        <li>Dynamic rendering: BTC price, min / avg / max cost bands, GHI zone and marker position.</li>
+        <li>Dashboard refactor (FR/EN) for visual and technical consistency.</li>
+        <li>Cleanup of legacy static example data.</li>
       </ul>
     </div>
 
-    <!-- ================= VERSION 1.0.0 ================= -->
     <div class="card">
       <h3>v1.0.0 — Public release of the GHI website</h3>
       <ul>
-        <li>Public launch of the GHI website.</li>
-        <li>Main public pages published.</li>
-        <li>Whitepaper and institutional documentation released.</li>
+        <li>Public launch of the GHI website (FR/EN).</li>
+        <li>Main pages: Home, Methodology, Transparency, API, Quickstart, Regions, Engine, Governance, Institutions.</li>
+        <li>Publication of the GHI Whitepaper (EN/FR).</li>
+        <li>Release of the “GHI Institutional Pack – Slide Deck”.</li>
+        <li>Technical documentation published: <code>ENGINE_DESIGN.md</code>, <code>VERSIONS.md</code>.</li>
       </ul>
     </div>
 
-    <!-- ================= VERSION 0.4.2 ================= -->
+    <!-- ================= ENGINE / API ================= -->
+    <h3>Engine &amp; API</h3>
+
     <div class="card">
-      <h3>v0.4.2 — Major Sandbox Engine update</h3>
+      <h3 id="v0-4-2-en">v0.4.2 — Major Sandbox Engine update</h3>
+      <p>
+        This release introduces a more coherent synthetic model,
+        a unified API structure and improved stability.
+        Fully backward-compatible.
+      </p>
+
+      <h4>Main changes</h4>
       <ul>
-        <li>Unified API structure.</li>
-        <li>New analytical endpoints.</li>
-        <li>Improved synthetic data model.</li>
-        <li>Backward compatible release.</li>
+        <li>Unified API format with enriched metadata.</li>
+        <li>New endpoints: <code>/metadata</code>, <code>/network</code>, <code>/forecast</code>.</li>
+        <li>Improved synthetic model and harmonised regional costs.</li>
+        <li>CI-compliant deterministic outputs.</li>
+        <li>Updated documentation.</li>
+      </ul>
+
+      <h4>Status</h4>
+      <ul>
+        <li>Sandbox Engine: active</li>
+        <li>Public API: stable</li>
+        <li>Legacy API: supported</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>v0.4.0 — Sandbox Engine stabilisation</h3>
+      <ul>
+        <li>Initial public API integration.</li>
+        <li>Standard metadata block added.</li>
+        <li>Deterministic and stabilised demo outputs.</li>
+        <li>Schema inconsistencies fixed.</li>
+        <li>All automated tests passed.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>v0.3.0 — Engine refactor</h3>
+      <ul>
+        <li>Large refactor of the engine.</li>
+        <li>New loader and aggregator layers.</li>
+        <li>Improved Sandbox implementation.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>v0.2.0 — First testing endpoints</h3>
+      <ul>
+        <li>Initial Sandbox Engine structure.</li>
+        <li>First mocked responses.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>v0.1.0 — Project creation</h3>
+      <ul>
+        <li>GHI project created.</li>
       </ul>
     </div>
 
